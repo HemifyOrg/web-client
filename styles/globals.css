@@ -25,3 +25,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+a{
+  --tw-border-opacity: 1;
+  color: rgb(210 179 125 / var(--tw-border-opacity));
+}
