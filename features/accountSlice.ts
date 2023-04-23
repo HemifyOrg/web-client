@@ -75,7 +75,7 @@ export const connectAccount = createAsyncThunk(
         case 'coinbase':
           const { default: WalletLink } = await import('walletlink');
           const walletLink = new WalletLink({
-            appName: 'Bidz & Bazaar Web3 Auth',
+            appName: 'Bidz & Bazaar',
             darkMode: false,
           });
 
@@ -101,7 +101,7 @@ export const connectAccount = createAsyncThunk(
       const usdtBalance = await contract.balanceOf(address)
 
       dispatch(
-        connected({ address, networkId, provider, balance, usdtBalance }),
+        connected({ address: address, networkId: networkId, provider: provider, balance: balance, usdtBalance: usdtBalance })
       )
     })
 
@@ -134,6 +134,7 @@ export const accountSlice = createSlice({
       state.loading = true
     },
     connected: (state, { payload }) => {
+      console.log(payload)
       state.address = payload.address
       state.networkId = payload.networkId
       state.provider = payload.provider

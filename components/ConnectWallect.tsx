@@ -54,7 +54,7 @@ function ConnectWallet(props: { label: string }) {
               <ul className="flex-wrap w-full justify-center grid grid-cols-2 items-center px-6">
               <WalletListItem onClick={onWalletListItemClick('metamask')}>
               <svg width="50" className="z-10 translate-y-2 group-hover:translate-y-0 transition-all" height="48" viewBox="0 0 50 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_722_1393)">
+                <g clipPath="url(#clip0_722_1393)">
                   <path d="M48.8381 0.257202L27.3863 16.3388L31.3754 6.86146L48.8381 0.257202Z" fill="#E17726"/>
                   <path d="M1.21208 0.276245L18.6281 6.86269L22.4159 16.4643L1.21208 0.276245ZM40.2051 34.4583L49.6865 34.6412L46.3728 46.046L34.8034 42.8188L40.2051 34.4583ZM9.79461 34.4583L15.1762 42.8188L3.62624 46.0462L0.332703 34.6412L9.79461 34.4583Z" fill="#E27625"/>
                   <path d="M21.901 14.0185L22.2884 26.6978L10.694 26.1634L13.992 21.1224L14.0338 21.0739L21.901 14.0185ZM27.9789 13.8771L35.9662 21.0743L36.0076 21.1226L39.3056 26.1636L27.7137 26.6978L27.9789 13.8771ZM15.5158 34.4951L21.8467 39.4928L14.4925 43.09L15.5158 34.4951ZM34.4853 34.4943L35.4874 43.0902L28.1537 39.4924L34.4853 34.4943Z" fill="#E27625"/>
@@ -89,12 +89,12 @@ function ConnectWallet(props: { label: string }) {
                 </WalletListItem>
               <WalletListItem onClick={onWalletListItemClick('walletconnect')}>
               <svg width="50" className="z-10 translate-y-2 group-hover:translate-y-0 transition-all" height="48" viewBox="0 0 50 51" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M24.8345 3.08997C36.9869 3.08997 46.8361 12.9391 46.8361 25.0916C46.8361 37.244 36.9869 47.0932 24.8345 47.0932C12.682 47.0932 2.83289 37.244 2.83289 25.0916C2.83289 12.9391 12.682 3.08997 24.8345 3.08997Z" fill="url(#paint0_radial_722_1435)"/>
+              <path fillRule="evenodd" clipRule="evenodd" d="M24.8345 3.08997C36.9869 3.08997 46.8361 12.9391 46.8361 25.0916C46.8361 37.244 36.9869 47.0932 24.8345 47.0932C12.682 47.0932 2.83289 37.244 2.83289 25.0916C2.83289 12.9391 12.682 3.08997 24.8345 3.08997Z" fill="url(#paint0_radial_722_1435)"/>
               <path d="M16.816 20.0811C21.2421 15.7581 28.427 15.7581 32.8531 20.0811L33.3859 20.6054C33.6094 20.8202 33.6094 21.1726 33.3859 21.3874L31.5639 23.1665C31.4522 23.2782 31.2717 23.2782 31.16 23.1665L30.4294 22.4531C27.3355 19.4365 22.3335 19.4365 19.2396 22.4531L18.4575 23.218C18.3458 23.3298 18.1653 23.3298 18.0535 23.218L16.2315 21.439C16.0081 21.2241 16.0081 20.8718 16.2315 20.6569L16.816 20.0811ZM36.626 23.7595L38.2503 25.3409C38.4738 25.5557 38.4738 25.9081 38.2503 26.1229L30.9365 33.2649C30.7131 33.4797 30.3521 33.4797 30.1372 33.2649L24.9462 28.1942C24.8947 28.1426 24.8001 28.1426 24.7486 28.1942L19.5576 33.2649C19.3341 33.4797 18.9731 33.4797 18.7583 33.2649L11.4187 26.1229C11.1952 25.9081 11.1952 25.5557 11.4187 25.3409L13.043 23.7595C13.2665 23.5446 13.6274 23.5446 13.8423 23.7595L19.0333 28.8302C19.0849 28.8817 19.1794 28.8817 19.231 28.8302L24.422 23.7595C24.6454 23.5446 25.0064 23.5446 25.2213 23.7595L30.4123 28.8302C30.4638 28.8817 30.5584 28.8817 30.6099 28.8302L35.8009 23.7595C36.0416 23.5446 36.4025 23.5446 36.626 23.7595Z" fill="white"/>
               <defs>
               <radialGradient id="paint0_radial_722_1435" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(2.83302 25.0923) scale(44.0032)">
-              <stop stop-color="#5D9DF6"/>
-              <stop offset="1" stop-color="#006FFF"/>
+              <stop stopColor="#5D9DF6"/>
+              <stop offset="1" stopColor="#006FFF"/>
               </radialGradient>
               </defs>
                 </svg>
@@ -106,30 +106,10 @@ function ConnectWallet(props: { label: string }) {
         )}
       <button className="rounded-full items-center px-4 py-2 flex gap-2 bg-btnImage" type="button" title="connect wallet" onClick={() => setShowConnectPopup(true)}>
       <svg width="20" height="20" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 16.6667H20.0133M2 4.66667V23.3333C2 24.8061 3.19391 26 4.66667 26H23.3333C24.8061 26 26 24.8061 26 23.3333V10C26 8.52724 24.8061 7.33334 23.3333 7.33333L4.66667 7.33333C3.19391 7.33333 2 6.13943 2 4.66667ZM2 4.66667C2 3.19391 3.19391 2 4.66667 2H20.6667M20.6667 16.6667C20.6667 17.0349 20.3682 17.3333 20 17.3333C19.6318 17.3333 19.3333 17.0349 19.3333 16.6667C19.3333 16.2985 19.6318 16 20 16C20.3682 16 20.6667 16.2985 20.6667 16.6667Z" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20 16.6667H20.0133M2 4.66667V23.3333C2 24.8061 3.19391 26 4.66667 26H23.3333C24.8061 26 26 24.8061 26 23.3333V10C26 8.52724 24.8061 7.33334 23.3333 7.33333L4.66667 7.33333C3.19391 7.33333 2 6.13943 2 4.66667ZM2 4.66667C2 3.19391 3.19391 2 4.66667 2H20.6667M20.6667 16.6667C20.6667 17.0349 20.3682 17.3333 20 17.3333C19.6318 17.3333 19.3333 17.0349 19.3333 16.6667C19.3333 16.2985 19.6318 16 20 16C20.3682 16 20.6667 16.2985 20.6667 16.6667Z" stroke="black" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
         <span>{props.label}</span>
       </button>
-    <details className="rounded-full hidden items-center px-4 py-2 gap-2 bg-btnImage">
-      <summary className="cursor-pointer px-2 group-open:bg-amber-400 gap-2 py-1 font-semibold rounded-t-md flex justify-between items-center">
-        
-        <span className="group-open:hidden">{props.label}</span>
-        <span className="group-open:block hidden">Pick Wallet</span>
-        <span className="group-open:block hidden">&times;</span>
-      </summary>
-
-      <ul className="border-t border-amber-500">
-        <WalletListItem onClick={onWalletListItemClick('metamask')}>
-          Metamask
-        </WalletListItem>
-        <WalletListItem onClick={onWalletListItemClick('walletconnect')}>
-          WalletConnect
-        </WalletListItem>
-        <WalletListItem onClick={onWalletListItemClick('coinbase')}>
-          Coinbase
-        </WalletListItem>
-      </ul>
-    </details>
     </>
   )
 }
