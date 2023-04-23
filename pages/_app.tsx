@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <div className="w-screen h-screen flex flex-col bg-primary overflow-y-auto overflow-x-hidden">
         <NavBar />
-        <div className="mt-16 relative h-full">
+        <div className="mt-20 relative h-full">
       <Component {...pageProps} />
         </div>
       </div>

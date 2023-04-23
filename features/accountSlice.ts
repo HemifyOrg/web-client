@@ -148,6 +148,9 @@ export const accountSlice = createSlice({
     updated: (state, { payload }) => {
       Object.assign(state, payload)
     },
+    logout: (state) => {
+      state = initialState
+    }
   },
 })
 
