@@ -42,12 +42,12 @@ export default function Home() {
             <div className="w-full absolute top-[50%] flex justify-between items-center">
               <div className="p-2 bg-[#F1E7D480] flex items-center justify-center -translate-x-5 w-10 h-10 rounded-full">
               <svg width="38" height="30" viewBox="0 0 38 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M35.6665 15H2.33317M2.33317 15L14.8332 2.5M2.33317 15L14.8332 27.5" stroke="black" stroke-width="4.16667" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M35.6665 15H2.33317M2.33317 15L14.8332 2.5M2.33317 15L14.8332 27.5" stroke="black" strokeWidth="4.16667" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
               </div>
               <div className="p-2 bg-[#F1E7D480] flex items-center justify-center translate-x-5 w-10 h-10 rounded-full">
                 <svg width="38" height="30" viewBox="0 0 38 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.3335 15H35.6668M35.6668 15L23.1668 2.5M35.6668 15L23.1668 27.5" stroke="black" stroke-width="4.16667" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2.3335 15H35.6668M35.6668 15L23.1668 2.5M35.6668 15L23.1668 27.5" stroke="black" strokeWidth="4.16667" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
             </div>
             </div>

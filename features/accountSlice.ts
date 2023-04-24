@@ -59,6 +59,7 @@ export const connectAccount = createAsyncThunk(
     const { infuraId, chainId, networkName, usdtContractAddress } = getState().config;
 
     const providerForWalletType = async (walletType: WalletType) => {
+      dispatch(connecting())
       switch (walletType) {
         case 'metamask':
           return (window as any).ethereum;
@@ -106,7 +107,9 @@ export const connectAccount = createAsyncThunk(
     })
 
     window.ethereum?.on('accountsChanged', (accounts) => {
-      dispatch(updated({ address: accounts[0] }))
+      if(accounts && accounts.length > 0 && accounts[0])
+        dispatch(updated({ address: accounts[0] }))
+      else dispatch(disconnected({}))
     });
 
     window.ethereum?.on('chainChanged', () => {
@@ -134,7 +137,6 @@ export const accountSlice = createSlice({
       state.loading = true
     },
     connected: (state, { payload }) => {
-      console.log(payload)
       state.address = payload.address
       state.networkId = payload.networkId
       state.provider = payload.provider
@@ -148,8 +150,13 @@ export const accountSlice = createSlice({
     updated: (state, { payload }) => {
       Object.assign(state, payload)
     },
-    logout: (state) => {
-      state = initialState
+    disconnected: (state, {payload}) => {
+      state.address = initialState.address
+      state.networkId = initialState.networkId
+      state.provider = initialState.provider
+      state.balance = initialState.balance
+      state.usdtBalance = initialState.usdtBalance
+      state.connected = initialState.connected
     }
   },
 })
@@ -159,6 +166,7 @@ export const {
   connected,
   connectionFailed,
   updated,
+  disconnected
 } = accountSlice.actions
 
 export default accountSlice.reducer
