@@ -1,4 +1,35 @@
+import {useEffect, useState} from "react"
+
 const AuctionComponent = () => {
+    const [data, setData] = useState([]);
+    
+    useEffect(() => {
+      let dataList = [
+        {
+          id: 0,
+          image: "/images/ape4.png",
+          name: "BBApe 1/1",
+          price: "0.9",
+          time: { days: "1", hours: "02", minutes: "23" }
+        },
+        {
+          id: 1,
+          image: "/images/ape2.png",
+          name: "BBApe 1/1",
+          price: "0.87",
+          time: { days: "10", hours: "22", minutes: "30" }
+        },
+        {
+          id: 2,
+          image: "/images/ape3.png",
+          name: "BBApe 1/1",
+          price: "1.02",
+          time: { days: "5", hours: "24", minutes: "50" }
+        }
+      ]
+      setData([...dataList])
+    }, [])
+
   return (
     <div className="py-8 rounded-t-2xl bg-[#F6EFE2] flex flex-col gap-8">
       {/* top */}
@@ -56,9 +87,11 @@ const AuctionComponent = () => {
         </div>
 
         {/* items */}
-        <div className="flex w-full gap-4 pl-4">
+        <div className="flex w-full gap-4 reloverflow-x-auto overflow-y-hidden pl-4">
+              {data && data.length > 0 && data.map((n, i) => (       
           <figure
-            style={{ backgroundImage: `url(/images/ape4.png)` }}
+          key={i}
+            style={{ backgroundImage: `url(${n.image})` }}
             className={`w-[360px] h-[360px] relative transition-all py-4 px-2 bg-cover overflow-hidden bg-no-repeat
                   bg-center rounded-lg flex justify-center items-end bg-gradient-to-t from-pink-400 to-pink-800 shadow-none`}
           >
@@ -112,18 +145,17 @@ const AuctionComponent = () => {
                 </figure>
               </div>
             </div>
-            <div className="w-full bg-[#0000005e] text-white backdrop-blur-sm rounded-xl pt-4 pb-6 px-5 flex justify-between">
+            <div className="w-full bg-[#0000005e] text-white backdrop-blur-sm rounded-xl pt-4 pb-5 px-3 flex justify-between">
               {/* left side */}
               <div className="flex flex-col gap-2 justify-center items-center">
                 <span className="text-sm">Ends in</span>
                 <div className="flex gap-2 text-xl font-semibold items-center">
-                  <span>1d</span>
+                                  <span>{n.time?.days}d</span>
                   <div className="w-1 h-full bg-[#15120D80]"></div>
 
-                  <span>02h</span>
+                                  <span>{n.time?.hours}h</span>
                   <div className="w-1 h-full bg-[#15120D80]"></div>
-
-                  <span>12m</span>
+    <span>{ n.time?.minutes}m</span>
                 </div>
               </div>
 
@@ -160,6 +192,7 @@ const AuctionComponent = () => {
               </div>
             </div>
           </figure>
+        ))}
         </div>
       </div>
     </div>
