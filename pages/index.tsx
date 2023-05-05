@@ -1,11 +1,63 @@
+import { useState, useEffect } from "react";
 import Head from 'next/head';
 // import { useSelector } from 'react-redux';
 // import { formatBalance } from '@/components/ConnectWallect'
 
 import { RootState } from '../app/store';
 
+interface SlideType {
+  id: number;
+  image: string;
+  price: string;
+  time: {
+      days: string;
+      hours: string;
+      minutes: string;
+  };
+}
+
 export default function Home() {
   // const account = useSelector((state: RootState) => state.account);
+
+  
+  const [hotBidz, setHotBidz] = useState<Array<SlideType>>([]);
+  const [selectedSlide, setSelectedSlide] = useState(0)
+  
+  useEffect(() => {
+    let slidesList: Array<SlideType> = [
+      {
+        id: 0,
+        image: "/images/ape.webp",
+        price: "0.9",
+        time: { days: "1", hours: "02", minutes: "23" }
+      },
+      {
+        id: 1,
+        image: "/images/ape.webp",
+        price: "0.87",
+        time: { days: "10", hours: "22", minutes: "30" }
+      },
+      {
+        id: 2,
+        image: "/images/ape.webp",
+        price: "1.02",
+        time: { days: "5", hours: "24", minutes: "50" }
+      }
+    ]
+    setHotBidz([...slidesList])
+  }, [])
+
+  const handleSlide = (action: "right" | "left") => {
+    if (action === "right") {
+      let nextSelectedSlide = selectedSlide < hotBidz.length - 1 ? selectedSlide + 1 : selectedSlide
+      setSelectedSlide(nextSelectedSlide)
+    } if (action === "left" && selectedSlide > -1) {
+      console.log(selectedSlide)
+      let previousSelectedSlide = selectedSlide < hotBidz.length - 2 ? selectedSlide : selectedSlide - 1
+      setSelectedSlide(previousSelectedSlide)
+    }
+  }
+
 
   return (
     <div>
@@ -14,7 +66,10 @@ export default function Home() {
       </Head>
 
       <main className="px-4 mt-2">
-        <div className="flex items-center justify-between w-full py-4 px-8 h-full flex-wrap">
+        {/* hero section */}
+        <div className="flex items-center justify-between w-full py-4 px-8 h-full m-auto lg:flex-row flex-col-reverse">
+
+          {/* left hero */}
           <div className="flex flex-col gap-6 items-start h-full justify-center">
             <div className='flex gap-1 flex-col text-left justify-start text-4xl lg:text-5xl leading-relaxed tracking-wide font-semibold'>
               <div className='flex gap-2'>
@@ -37,15 +92,19 @@ export default function Home() {
           </div>
 
           {/* right hero */}
-          <div className="relative mr-2">
+          <div className="relative mr-2 mt-5 select-none">
+
             {/* arrows */}
-            <div className="w-full absolute top-[50%] flex justify-between items-center">
-              <div className="p-2 bg-[#F1E7D480] flex items-center justify-center -translate-x-5 w-10 h-10 rounded-full">
+            <div className="w-full absolute top-[50%] z-10 flex justify-between items-center">
+              {/* left */}
+              <div onClick={() => handleSlide("left")} className="p-2 bg-[#F1E7D480] flex items-center justify-center -translate-x-5 w-10 h-10 rounded-full">
               <svg width="38" height="30" viewBox="0 0 38 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M35.6665 15H2.33317M2.33317 15L14.8332 2.5M2.33317 15L14.8332 27.5" stroke="black" strokeWidth="4.16667" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
               </div>
-              <div className="p-2 bg-[#F1E7D480] flex items-center justify-center translate-x-5 w-10 h-10 rounded-full">
+
+              {/* right */}
+              <div onClick={() => handleSlide("right")} className="p-2 bg-[#F1E7D480] flex items-center justify-center translate-x-5 w-10 h-10 rounded-full">
                 <svg width="38" height="30" viewBox="0 0 38 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2.3335 15H35.6668M35.6668 15L23.1668 2.5M35.6668 15L23.1668 27.5" stroke="black" strokeWidth="4.16667" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
@@ -54,7 +113,7 @@ export default function Home() {
             {/* end arrows */}
 
             {/* hot bids */}
-            <div className="absolute top-2 -left-10 -rotate-[35deg] flex items-center gap-2 font-semibold bg-[#FFF9E5] rounded-full px-4">
+            <div className="absolute top-2 -left-10 z-10 -rotate-[35deg] flex items-center gap-2 font-semibold bg-[#FFF9E5] rounded-full px-4">
               <span>Hot Bidz</span>
               <span>
               <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,14 +146,17 @@ export default function Home() {
 
               </span>
             </div>
-            <figure style={{ backgroundImage: `url(/images/ape.webp)` }} className="w-[400px] h-[400px] py-4 px-8 bg-cover overflow-hidden bg-no-repeat bg-center rounded-lg flex justify-center
-             items-end bg-gradient-to-t from-pink-400 to-pink-800 shadow-none">
+
+            {hotBidz && hotBidz.length > 0 ? hotBidz.map((n, i) => (
+              <figure key={i} style={{ backgroundImage: `url(${n.image})` }}
+                className={`w-[400px] h-[400px] transition-all ${selectedSlide !== n.id ? `top-0 ${hotBidz.length - 1 === n.id ? "-rotate-[5deg]": "rotate-[5deg]"} absolute z-[-1]`: ""} py-4 px-8 bg-cover overflow-hidden bg-no-repeat
+                bg-center rounded-lg flex justify-center items-end bg-gradient-to-t from-pink-400 to-pink-800 shadow-none`}>
               <div className="w-full bg-[#0000005e] text-white backdrop-blur-sm rounded-xl pt-4 pb-6 px-5 flex justify-between">
                 {/* left side */}
                 <div className="flex flex-col gap-2 justify-center items-center">
                   <span className='text-sm'>Current Bid</span>
                   <div className="flex gap-2 text-xl font-semibold items-center">
-                    <span>0.09 ETH</span>
+                    <span>{n.price} ETH</span>
                     <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1.5835 11.5L7.00026 17.3334L12.4168 11.5L7.00016 12.75L1.5835 11.5Z" fill="#FAF7F0"/>
                       <path d="M0.333496 8.16681L7.00016 9.83335L13.6668 8.16669L7.00016 0.666687L0.333496 8.16681Z" fill="#FAF7F0"/>
@@ -108,18 +170,50 @@ export default function Home() {
                 <div className='flex flex-col gap-2 justify-center items-center'>
                   <span className='text-sm'>Ends in</span>
                   <div className="flex gap-2 text-xl font-semibold items-center">
-                    <span>1d</span>
+                      <span>{n.time?.days}d</span>
                     <div className="w-1 h-full bg-[#15120D80]"></div>
 
-                    <span>02h</span>
+                      <span>{n.time?.hours}h</span>
                     <div className="w-1 h-full bg-[#15120D80]"></div>
 
-                    <span>23m</span>
+                      <span>{n.time?.minutes}m</span>
                   </div>
                 </div>
               </div>
             </figure>
+            )) : (
+              <figure className={`w-[400px] h-[400px] transition-all z-[-1] animate-pulse py-4 px-8 bg-cover overflow-hidden bg-no-repeat
+              bg-center rounded-lg flex justify-center items-end bg-gradient-to-t from-gray-200 to-gray-300 shadow-none`}></figure>
+            )}
+
           </div>
+        </div>
+
+        {/* how it works */}
+        <div className="">
+
+          <div className="w-full absolute"></div>
+        <svg className="w-full" height="326" viewBox="0 0 1488 326" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19.7988 166.424C219.159 378.24 326.27 375.728 509.366 166.424" stroke="#D2B37D" stroke-width="1.48503" stroke-dasharray="24.75 14.85"/>
+          <path d="M978.633 166.424C1177.99 378.24 1285.1 375.728 1468.2 166.424" stroke="#D2B37D" stroke-width="1.48503" stroke-dasharray="24.75 14.85"/>
+          <path d="M498.969 177.822C698.329 -33.9938 805.44 -31.4824 988.536 177.822" stroke="#D2B37D" stroke-width="1.48503" stroke-dasharray="24.75 14.85"/>
+          <circle cx="19.8004" cy="19.8004" r="19.8004" transform="matrix(1 0 0 -1 0 190.678)" fill="#F20606" fill-opacity="0.2"/>
+          <circle cx="9.9002" cy="9.9002" r="9.9002" transform="matrix(1 0 0 -1 9.90039 180.778)" fill="#F20606"/>
+          <circle cx="19.8004" cy="19.8004" r="19.8004" transform="matrix(1 0 0 -1 731.625 39.7)" fill="#F1F434" fill-opacity="0.2"/>
+          <circle cx="9.9002" cy="9.9002" r="9.9002" transform="matrix(1 0 0 -1 741.525 29.8)" fill="#F1F434"/>
+          <circle cx="19.8004" cy="19.8004" r="19.8004" transform="matrix(1 0 0 -1 1448.4 190.678)" fill="#07CA1A" fill-opacity="0.2"/>
+          <circle cx="9.9002" cy="9.9002" r="9.9002" transform="matrix(1 0 0 -1 1458.3 180.778)" fill="#07CA1A"/>
+          <g filter="url(#filter3_d_1182_586)">
+            <path d="M455.75 216.608C457.64 214.656 460.761 214.631 462.682 216.552C464.55 218.42 464.585 221.437 462.76 223.348L457.319 229.046C456.892 229.493 456.679 229.716 456.547 229.978C456.431 230.209 456.362 230.462 456.344 230.72C456.323 231.012 456.393 231.313 456.532 231.915L459.915 246.578C460.058 247.196 460.129 247.504 460.106 247.803C460.086 248.068 460.012 248.325 459.889 248.56C459.75 248.826 459.526 249.05 459.078 249.498L458.352 250.224C457.165 251.411 456.571 252.005 455.964 252.112C455.433 252.206 454.888 252.077 454.455 251.756C453.96 251.388 453.695 250.592 453.164 248.999L449.228 237.192L442.677 243.743C442.286 244.134 442.09 244.33 441.959 244.56C441.843 244.764 441.765 244.987 441.728 245.219C441.687 245.48 441.717 245.755 441.778 246.305L442.138 249.543C442.199 250.092 442.229 250.367 442.188 250.629C442.151 250.86 442.073 251.084 441.957 251.288C441.826 251.518 441.63 251.713 441.239 252.104L440.853 252.491C439.926 253.418 439.463 253.881 438.948 254.015C438.497 254.133 438.018 254.085 437.598 253.881C437.12 253.649 436.757 253.104 436.03 252.014L432.959 247.407C432.829 247.212 432.764 247.115 432.688 247.026C432.621 246.948 432.548 246.875 432.47 246.808C432.382 246.732 432.284 246.667 432.09 246.538L427.483 243.466C426.392 242.74 425.847 242.376 425.615 241.898C425.411 241.478 425.364 240.999 425.481 240.548C425.615 240.033 426.079 239.57 427.005 238.644L427.392 238.257C427.783 237.866 427.978 237.67 428.209 237.539C428.413 237.424 428.636 237.345 428.867 237.308C429.129 237.267 429.404 237.297 429.953 237.358L433.191 237.718C433.741 237.779 434.016 237.81 434.277 237.768C434.509 237.731 434.732 237.653 434.936 237.537C435.166 237.406 435.362 237.211 435.753 236.819L442.304 230.268L430.497 226.332C428.904 225.802 428.108 225.536 427.74 225.041C427.419 224.608 427.29 224.063 427.384 223.532C427.492 222.925 428.085 222.331 429.272 221.144L429.998 220.418C430.446 219.97 430.671 219.746 430.936 219.607C431.171 219.484 431.429 219.41 431.693 219.39C431.992 219.367 432.301 219.438 432.918 219.581L447.526 222.952C448.133 223.092 448.436 223.162 448.729 223.141C449.012 223.121 449.287 223.04 449.536 222.903C449.793 222.761 450.01 222.537 450.443 222.089L455.75 216.608Z" fill="#2D4C82"/>
+            <path d="M455.75 216.608C457.64 214.656 460.761 214.631 462.682 216.552C464.55 218.42 464.585 221.437 462.76 223.348L457.319 229.046C456.892 229.493 456.679 229.716 456.547 229.978C456.431 230.209 456.362 230.462 456.344 230.72C456.323 231.012 456.393 231.313 456.532 231.915L459.915 246.578C460.058 247.196 460.129 247.504 460.106 247.803C460.086 248.068 460.012 248.325 459.889 248.56C459.75 248.826 459.526 249.05 459.078 249.498L458.352 250.224C457.165 251.411 456.571 252.005 455.964 252.112C455.433 252.206 454.888 252.077 454.455 251.756C453.96 251.388 453.695 250.592 453.164 248.999L449.228 237.192L442.677 243.743C442.286 244.134 442.09 244.33 441.959 244.56C441.843 244.764 441.765 244.987 441.728 245.219C441.687 245.48 441.717 245.755 441.778 246.305L442.138 249.543C442.199 250.092 442.229 250.367 442.188 250.629C442.151 250.86 442.073 251.084 441.957 251.288C441.826 251.518 441.63 251.713 441.239 252.104L440.853 252.491C439.926 253.418 439.463 253.881 438.948 254.015C438.497 254.133 438.018 254.085 437.598 253.881C437.12 253.649 436.757 253.104 436.03 252.014L432.959 247.407C432.829 247.212 432.764 247.115 432.688 247.026C432.621 246.948 432.548 246.875 432.47 246.808C432.382 246.732 432.284 246.667 432.09 246.538L427.483 243.466C426.392 242.74 425.847 242.376 425.615 241.898C425.411 241.478 425.364 240.999 425.481 240.548C425.615 240.033 426.079 239.57 427.005 238.644L427.392 238.257C427.783 237.866 427.978 237.67 428.209 237.539C428.413 237.424 428.636 237.345 428.867 237.308C429.129 237.267 429.404 237.297 429.953 237.358L433.191 237.718C433.741 237.779 434.016 237.81 434.277 237.768C434.509 237.731 434.732 237.653 434.936 237.537C435.166 237.406 435.362 237.211 435.753 236.819L442.304 230.268L430.497 226.332C428.904 225.802 428.108 225.536 427.74 225.041C427.419 224.608 427.29 224.063 427.384 223.532C427.492 222.925 428.085 222.331 429.272 221.144L429.998 220.418C430.446 219.97 430.671 219.746 430.936 219.607C431.171 219.484 431.429 219.41 431.693 219.39C431.992 219.367 432.301 219.438 432.918 219.581L447.526 222.952C448.133 223.092 448.436 223.162 448.729 223.141C449.012 223.121 449.287 223.04 449.536 222.903C449.793 222.761 450.01 222.537 450.443 222.089L455.75 216.608Z" stroke="#D2B37D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <g filter="url(#filter4_d_1182_586)">
+            <path d="M947.107 124.096C948.951 126.091 948.803 129.209 946.779 131.02C944.81 132.782 941.795 132.65 939.989 130.722L934.601 124.973C934.178 124.522 933.967 124.297 933.713 124.151C933.489 124.022 933.241 123.939 932.984 123.907C932.693 123.87 932.389 123.923 931.78 124.028L916.952 126.594C916.328 126.702 916.015 126.756 915.718 126.716C915.455 126.681 915.202 126.593 914.974 126.458C914.717 126.304 914.506 126.068 914.083 125.596L913.398 124.83C912.279 123.579 911.719 122.954 911.645 122.341C911.581 121.807 911.74 121.269 912.085 120.855C912.479 120.381 913.289 120.16 914.909 119.718L926.916 116.443L920.738 109.539C920.369 109.126 920.185 108.92 919.962 108.777C919.765 108.65 919.547 108.56 919.317 108.51C919.058 108.454 918.782 108.469 918.23 108.499L914.977 108.679C914.425 108.71 914.149 108.725 913.89 108.669C913.661 108.619 913.443 108.528 913.245 108.401C913.023 108.258 912.838 108.052 912.469 107.64L912.105 107.232C911.231 106.256 910.794 105.768 910.689 105.246C910.596 104.789 910.67 104.314 910.897 103.906C911.156 103.441 911.72 103.109 912.849 102.444L917.619 99.6323C917.821 99.5135 917.921 99.4541 918.014 99.3837C918.096 99.3212 918.173 99.2523 918.244 99.1777C918.324 99.0937 918.394 99.0001 918.535 98.8128L921.857 94.3832C922.643 93.3351 923.036 92.811 923.527 92.6054C923.957 92.4251 924.437 92.4043 924.882 92.5468C925.388 92.7093 925.825 93.1974 926.699 94.1738L927.063 94.5814C927.432 94.9935 927.616 95.1996 927.734 95.4367C927.839 95.6468 927.904 95.874 927.929 96.1073C927.956 96.3708 927.91 96.6435 927.819 97.1889L927.28 100.402C927.188 100.947 927.143 101.22 927.17 101.483C927.194 101.717 927.26 101.944 927.364 102.154C927.482 102.391 927.666 102.597 928.035 103.009L934.213 109.914L938.797 98.3427C939.416 96.782 939.725 96.0017 940.24 95.6619C940.689 95.3653 941.241 95.2669 941.766 95.39C942.366 95.5309 942.926 96.1565 944.045 97.4075L944.73 98.1727C945.153 98.6451 945.364 98.8813 945.488 99.1541C945.598 99.3956 945.657 99.6568 945.663 99.922C945.669 100.222 945.581 100.526 945.404 101.135L941.229 115.533C941.055 116.131 940.969 116.43 940.973 116.724C940.977 117.008 941.043 117.287 941.166 117.543C941.294 117.807 941.505 118.036 941.928 118.493L947.107 124.096Z" fill="#2D4C82"/>
+            <path d="M947.107 124.096C948.951 126.091 948.803 129.209 946.779 131.02C944.81 132.782 941.795 132.65 939.989 130.722L934.601 124.973C934.178 124.522 933.967 124.297 933.713 124.151C933.489 124.022 933.241 123.939 932.984 123.907C932.693 123.87 932.389 123.923 931.78 124.028L916.952 126.594C916.328 126.702 916.015 126.756 915.718 126.716C915.455 126.681 915.202 126.593 914.974 126.458C914.717 126.304 914.506 126.068 914.083 125.596L913.398 124.83C912.279 123.579 911.719 122.954 911.645 122.341C911.581 121.807 911.74 121.269 912.085 120.855C912.479 120.381 913.289 120.16 914.909 119.718L926.916 116.443L920.738 109.539C920.369 109.126 920.185 108.92 919.962 108.777C919.765 108.65 919.547 108.56 919.317 108.51C919.058 108.454 918.782 108.469 918.23 108.499L914.977 108.679C914.425 108.71 914.149 108.725 913.89 108.669C913.661 108.619 913.443 108.528 913.245 108.401C913.023 108.258 912.838 108.052 912.469 107.64L912.105 107.232C911.231 106.256 910.794 105.768 910.689 105.246C910.596 104.789 910.67 104.314 910.897 103.906C911.156 103.441 911.72 103.109 912.849 102.444L917.619 99.6323C917.821 99.5135 917.921 99.4541 918.014 99.3837C918.096 99.3212 918.173 99.2523 918.244 99.1777C918.324 99.0937 918.394 99.0001 918.535 98.8128L921.857 94.3832C922.643 93.3351 923.036 92.811 923.527 92.6054C923.957 92.4251 924.437 92.4043 924.882 92.5468C925.388 92.7093 925.825 93.1974 926.699 94.1738L927.063 94.5814C927.432 94.9935 927.616 95.1996 927.734 95.4367C927.839 95.6468 927.904 95.874 927.929 96.1073C927.956 96.3708 927.91 96.6435 927.819 97.1889L927.28 100.402C927.188 100.947 927.143 101.22 927.17 101.483C927.194 101.717 927.26 101.944 927.364 102.154C927.482 102.391 927.666 102.597 928.035 103.009L934.213 109.914L938.797 98.3427C939.416 96.782 939.725 96.0017 940.24 95.6619C940.689 95.3653 941.241 95.2669 941.766 95.39C942.366 95.5309 942.926 96.1565 944.045 97.4075L944.73 98.1727C945.153 98.6451 945.364 98.8813 945.488 99.1541C945.598 99.3956 945.657 99.6568 945.663 99.922C945.669 100.222 945.581 100.526 945.404 101.135L941.229 115.533C941.055 116.131 940.969 116.43 940.973 116.724C940.977 117.008 941.043 117.287 941.166 117.543C941.294 117.807 941.505 118.036 941.928 118.493L947.107 124.096Z" stroke="#D2B37D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <defs>
+          </defs>
+        </svg>
         </div>
       </main>
     </div>
