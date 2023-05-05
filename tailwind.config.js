@@ -9,7 +9,8 @@ module.exports = {
     extend: {
       colors: {
         themeColor: "#D2B37D",
-        navBarColor: "rgba(246, 239, 226, 0.7)"
+        navBarColor: "rgba(246, 239, 226, 0.7)",
+        primary: "#FAF7F0",
       },
       backgroundImage: {
         'btnImage': "radial-gradient(transparent, #D2B37D)",
