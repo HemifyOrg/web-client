@@ -59,7 +59,7 @@ const AuctionComponent = () => {
         <div className="flex w-full gap-4 pl-4">
           <figure
             style={{ backgroundImage: `url(/images/ape4.png)` }}
-            className={`w-[360px] h-[360px] relative transition-all py-4 px-8 bg-cover overflow-hidden bg-no-repeat
+            className={`w-[360px] h-[360px] relative transition-all py-4 px-2 bg-cover overflow-hidden bg-no-repeat
                   bg-center rounded-lg flex justify-center items-end bg-gradient-to-t from-pink-400 to-pink-800 shadow-none`}
           >
             <div className="absolute top-3 w-full left-0 px-2 flex justify-between items-center">
