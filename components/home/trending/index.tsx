@@ -3,7 +3,7 @@ import AuctionComponent from "./AuctionComponent";
 
 const TrandingComponent = () => {
   return (
-    <section className="py-8">
+    <section className="py-8 bg-[#F6EFE2] rounded-t-3xl">
       <AuctionComponent />
       <P2PComponent />
     </section>

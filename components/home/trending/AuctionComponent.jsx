@@ -1,40 +1,74 @@
-import {useEffect, useState} from "react"
+import { useEffect, useState } from "react";
 
 const AuctionComponent = () => {
-    const [data, setData] = useState([]);
-    
-    useEffect(() => {
-      let dataList = [
-        {
-          id: 0,
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    let dataList = [
+      {
+        id: 0,
+        image: "/images/ape4.png",
+        name: "BBApe 1/1",
+        price: "0.9",
+        user: {
+          username: "divuzki",
           image: "/images/ape4.png",
-          name: "BBApe 1/1",
-          price: "0.9",
-          time: { days: "1", hours: "02", minutes: "23" }
         },
-        {
-          id: 1,
-          image: "/images/ape2.png",
-          name: "BBApe 1/1",
-          price: "0.87",
-          time: { days: "10", hours: "22", minutes: "30" }
+        time: { days: "1", hours: "02", minutes: "23" },
+      },
+      {
+        id: 1,
+        image: "/images/ape2.png",
+        name: "BBApe 1/1",
+        price: "0.87",
+        user: {
+          username: "ayotunde",
+          image: "/images/ape4.png",
         },
-        {
-          id: 2,
+        time: { days: "10", hours: "22", minutes: "30" },
+      },
+      {
+        id: 2,
+        image: "/images/ape3.png",
+        name: "BBApe 1/1",
+        price: "1.02",
+        user: {
+          username: "greenlight",
+          image: "/images/ape4.png",
+        },
+        time: { days: "5", hours: "24", minutes: "50" },
+      },
+      {
+        id: 3,
+        image: "/images/ape.webp",
+        name: "BBApe 1/1",
+        price: "1.02",
+        user: {
+          username: "ayoze",
           image: "/images/ape3.png",
-          name: "BBApe 1/1",
-          price: "1.02",
-          time: { days: "5", hours: "24", minutes: "50" }
-        }
-      ]
-      setData([...dataList])
-    }, [])
+        },
+        time: { days: "5", hours: "24", minutes: "50" },
+      },
+      {
+        id: 4,
+        image: "/images/ape2.png",
+        name: "BBApe 1/1",
+        price: "1.02",
+        user: {
+          username: "onelight",
+          image: "/images/ape4.png",
+        },
+        time: { days: "5", hours: "24", minutes: "50" },
+      },
+    ];
+    setData([...dataList]);
+  }, []);
 
   return (
     <div className="py-8 rounded-t-2xl bg-[#F6EFE2] flex flex-col gap-8">
       {/* top */}
       <svg
-        className="w-full py-4"
+        className="w-full py-2"
         height="198"
         viewBox="0 0 826 198"
         fill="none"
@@ -87,112 +121,177 @@ const AuctionComponent = () => {
         </div>
 
         {/* items */}
-        <div className="flex w-full gap-4 reloverflow-x-auto overflow-y-hidden pl-4">
-              {data && data.length > 0 && data.map((n, i) => (       
-          <figure
-          key={i}
-            style={{ backgroundImage: `url(${n.image})` }}
-            className={`w-[360px] h-[360px] relative transition-all py-4 px-2 bg-cover overflow-hidden bg-no-repeat
-                  bg-center rounded-lg flex justify-center items-end bg-gradient-to-t from-pink-400 to-pink-800 shadow-none`}
-          >
-            <div className="absolute top-3 w-full left-0 px-2 flex justify-between items-center">
-              {/* status */}
-              <div className="px-3 py-2 rounded-2xl bg-[#3F3626] backdrop-blur-md shadow flex items-center gap-2">
-                <span className="text-sm text-white font-semibold">
-                  Ongoing
-                </span>
-                <svg
-                  className="w-4 h-4"
-                  viewBox="0 0 7 6"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle
-                    cx="3.39941"
-                    cy="3"
-                    r="3"
-                    fill="#07CA1A"
-                    fillOpacity="0.2"
-                  />
-                  <circle cx="3.39941" cy="3" r="1.5" fill="#07CA1A" />
-                </svg>
-              </div>
-              {/* user tag */}
-              <div className="px-3 py-2 rounded-3xl bg-white shadow flex gap-4">
-                <span className="text-sm font-semibold">@greenlight</span>
+        <div className="flex w-screen will-change-scroll gap-4 overflow-x-scroll overflow-y-hidden pl-4">
+          <div className="flex gap-4 pr-10">
+            {data &&
+              data.length > 0 &&
+              data.map((n, i) => (
                 <figure
-                  className="relative w-6 h-6 rounded-full bg-cover bg-no-repeat bg-center"
-                  style={{ backgroundImage: `url(/images/ape2.png)` }}
+                  key={i}
+                  style={{ backgroundImage: `url(${n.image})` }}
+                  className={`w-[360px] h-[360px] relative transition-all py-4 px-2 bg-cover overflow-hidden bg-no-repeat
+                  bg-center rounded-lg flex justify-center items-end bg-gradient-to-t from-pink-400 to-pink-800 shadow-none`}
                 >
-                  <svg
-                    className="w-4 h-4 absolute -bottom-1 -left-1"
-                    viewBox="0 0 6 5"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M2.40328 0.983133C2.28053 1.08774 2.12791 1.15096 1.96714 1.16379C1.59198 1.19373 1.29407 1.49164 1.26413 1.8668C1.2513 2.02757 1.18808 2.18019 1.08347 2.30294C0.839363 2.58939 0.839363 3.0107 1.08347 3.29716C1.18808 3.41991 1.2513 3.57253 1.26413 3.7333C1.29407 4.10846 1.59198 4.40637 1.96714 4.43631C2.12791 4.44914 2.28053 4.51236 2.40328 4.61697C2.68974 4.86108 3.11105 4.86108 3.3975 4.61697C3.52025 4.51236 3.67287 4.44914 3.83364 4.43631C4.2088 4.40637 4.50671 4.10846 4.53665 3.7333C4.54948 3.57253 4.6127 3.41991 4.71731 3.29716C4.96142 3.0107 4.96142 2.58939 4.71731 2.30294C4.6127 2.18019 4.54948 2.02757 4.53665 1.8668C4.50671 1.49164 4.2088 1.19373 3.83364 1.16379C3.67287 1.15096 3.52025 1.08774 3.3975 0.983133C3.11105 0.739021 2.68974 0.739021 2.40328 0.983133Z"
-                      fill="#D2B37D"
-                    />
-                    <path
-                      d="M2.30039 2.80005L2.70039 3.20005L3.60039 2.30005M1.96714 1.16379C2.12791 1.15096 2.28053 1.08774 2.40328 0.983133C2.68974 0.739021 3.11105 0.739021 3.3975 0.983133C3.52025 1.08774 3.67287 1.15096 3.83364 1.16379C4.2088 1.19373 4.50671 1.49164 4.53665 1.8668C4.54948 2.02757 4.6127 2.18019 4.71731 2.30294C4.96142 2.58939 4.96142 3.0107 4.71731 3.29716C4.6127 3.41991 4.54948 3.57253 4.53665 3.7333C4.50671 4.10846 4.2088 4.40637 3.83364 4.43631C3.67287 4.44914 3.52025 4.51236 3.3975 4.61697C3.11105 4.86108 2.68974 4.86108 2.40328 4.61697C2.28053 4.51236 2.12791 4.44914 1.96714 4.43631C1.59198 4.40637 1.29407 4.10846 1.26413 3.7333C1.2513 3.57253 1.18808 3.41991 1.08347 3.29716C0.839363 3.0107 0.839363 2.58939 1.08347 2.30294C1.18808 2.18019 1.2513 2.02757 1.26413 1.8668C1.29407 1.49164 1.59198 1.19373 1.96714 1.16379Z"
-                      stroke="#2D4C82"
-                      strokeWidth="0.3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  <div className="absolute top-3 w-full left-0 px-2 flex justify-between items-center">
+                    {/* status */}
+                    <div className="px-3 py-2 rounded-2xl bg-[#3F3626] backdrop-blur-md shadow flex items-center gap-2">
+                      <span className="text-sm text-white font-semibold">
+                        Ongoing
+                      </span>
+                      <svg
+                        className="w-4 h-4"
+                        viewBox="0 0 7 6"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="3.39941"
+                          cy="3"
+                          r="3"
+                          fill="#07CA1A"
+                          fillOpacity="0.2"
+                        />
+                        <circle cx="3.39941" cy="3" r="1.5" fill="#07CA1A" />
+                      </svg>
+                    </div>
+                    {/* user tag */}
+                    <div className="px-3 py-2 rounded-3xl bg-white shadow flex gap-4">
+                      <span className="text-sm font-semibold">
+                        @{n.user?.username}
+                      </span>
+                      <figure
+                        className="relative w-6 h-6 rounded-full bg-cover bg-no-repeat bg-center"
+                        style={{ backgroundImage: `url(${n.user?.image})` }}
+                      >
+                        <svg
+                          className="w-4 h-4 absolute -bottom-1 -left-1"
+                          viewBox="0 0 6 5"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M2.40328 0.983133C2.28053 1.08774 2.12791 1.15096 1.96714 1.16379C1.59198 1.19373 1.29407 1.49164 1.26413 1.8668C1.2513 2.02757 1.18808 2.18019 1.08347 2.30294C0.839363 2.58939 0.839363 3.0107 1.08347 3.29716C1.18808 3.41991 1.2513 3.57253 1.26413 3.7333C1.29407 4.10846 1.59198 4.40637 1.96714 4.43631C2.12791 4.44914 2.28053 4.51236 2.40328 4.61697C2.68974 4.86108 3.11105 4.86108 3.3975 4.61697C3.52025 4.51236 3.67287 4.44914 3.83364 4.43631C4.2088 4.40637 4.50671 4.10846 4.53665 3.7333C4.54948 3.57253 4.6127 3.41991 4.71731 3.29716C4.96142 3.0107 4.96142 2.58939 4.71731 2.30294C4.6127 2.18019 4.54948 2.02757 4.53665 1.8668C4.50671 1.49164 4.2088 1.19373 3.83364 1.16379C3.67287 1.15096 3.52025 1.08774 3.3975 0.983133C3.11105 0.739021 2.68974 0.739021 2.40328 0.983133Z"
+                            fill="#D2B37D"
+                          />
+                          <path
+                            d="M2.30039 2.80005L2.70039 3.20005L3.60039 2.30005M1.96714 1.16379C2.12791 1.15096 2.28053 1.08774 2.40328 0.983133C2.68974 0.739021 3.11105 0.739021 3.3975 0.983133C3.52025 1.08774 3.67287 1.15096 3.83364 1.16379C4.2088 1.19373 4.50671 1.49164 4.53665 1.8668C4.54948 2.02757 4.6127 2.18019 4.71731 2.30294C4.96142 2.58939 4.96142 3.0107 4.71731 3.29716C4.6127 3.41991 4.54948 3.57253 4.53665 3.7333C4.50671 4.10846 4.2088 4.40637 3.83364 4.43631C3.67287 4.44914 3.52025 4.51236 3.3975 4.61697C3.11105 4.86108 2.68974 4.86108 2.40328 4.61697C2.28053 4.51236 2.12791 4.44914 1.96714 4.43631C1.59198 4.40637 1.29407 4.10846 1.26413 3.7333C1.2513 3.57253 1.18808 3.41991 1.08347 3.29716C0.839363 3.0107 0.839363 2.58939 1.08347 2.30294C1.18808 2.18019 1.2513 2.02757 1.26413 1.8668C1.29407 1.49164 1.59198 1.19373 1.96714 1.16379Z"
+                            stroke="#2D4C82"
+                            strokeWidth="0.3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </figure>
+                    </div>
+                  </div>
+                  <div className="w-full bg-[#0000005e] text-white backdrop-blur-sm rounded-xl pt-4 pb-5 px-3 flex justify-between">
+                    <div className="flex gap-2 items-center">
+                      <span className="text-xl font-semibold">{n.name}</span>
+                      <svg
+                        width="11"
+                        height="12"
+                        viewBox="0 0 11 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M5.39941 8.00004V6.00004M5.39941 4.00004H5.40441M0.899414 3.97076V8.02932C0.899414 8.20064 0.899414 8.2863 0.924656 8.3627C0.946988 8.43029 0.983493 8.49233 1.03173 8.54467C1.08626 8.60384 1.16114 8.64544 1.3109 8.72864L5.0109 10.7842C5.1527 10.863 5.2236 10.9024 5.29869 10.9178C5.36514 10.9315 5.43368 10.9315 5.50014 10.9178C5.57522 10.9024 5.64613 10.863 5.78793 10.7842L9.48793 8.72864C9.63769 8.64544 9.71257 8.60384 9.7671 8.54467C9.81533 8.49233 9.85184 8.43029 9.87417 8.3627C9.89941 8.2863 9.89941 8.20064 9.89941 8.02932V3.97076C9.89941 3.79944 9.89941 3.71378 9.87417 3.63738C9.85184 3.56979 9.81533 3.50775 9.7671 3.45541C9.71257 3.39624 9.63769 3.35464 9.48793 3.27144L5.78793 1.21588C5.64613 1.1371 5.57522 1.09771 5.50014 1.08227C5.43368 1.0686 5.36514 1.0686 5.29869 1.08227C5.2236 1.09771 5.1527 1.1371 5.0109 1.21588L1.3109 3.27144C1.16114 3.35464 1.08626 3.39624 1.03173 3.45541C0.983493 3.50775 0.946988 3.56979 0.924656 3.63738C0.899414 3.71378 0.899414 3.79944 0.899414 3.97076Z"
+                          stroke="#D2B37D"
+                          strokeWidth="1.2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      {/* left side */}
+                      <div className="flex flex-col gap-2 justify-center items-center">
+                        <span className="text-xs">Ends in</span>
+                        <div className="flex gap-2 text-sm font-semibold items-center">
+                          <span>{n.time?.days}d</span>
+                          <div className="w-1 h-full bg-[#15120D80]"></div>
+
+                          <span>{n.time?.hours}h</span>
+                          <div className="w-1 h-full bg-[#15120D80]"></div>
+                          <span>{n.time?.minutes}m</span>
+                        </div>
+                      </div>
+
+                      {/* right side */}
+                      <div className="flex flex-col gap-2 justify-center items-center">
+                        <span className="text-xs">Current Bid</span>
+                        <div className="flex gap-2 text-sm font-semibold items-center">
+                          <span>{n.price} ETH</span>
+                          <svg
+                            width="14"
+                            height="18"
+                            viewBox="0 0 14 18"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M1.5835 11.5L7.00026 17.3334L12.4168 11.5L7.00016 12.75L1.5835 11.5Z"
+                              fill="#FAF7F0"
+                            />
+                            <path
+                              d="M0.333496 8.16681L7.00016 9.83335L13.6668 8.16669L7.00016 0.666687L0.333496 8.16681Z"
+                              fill="#FAF7F0"
+                            />
+                            <path
+                              d="M7.00016 0.666687V6.50009V0.666687Z"
+                              fill="#FAF7F0"
+                            />
+                            <path
+                              d="M0.333496 8.16681L7.00016 6.50009L13.6668 8.16669"
+                              fill="#FAF7F0"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </figure>
-              </div>
-            </div>
-            <div className="w-full bg-[#0000005e] text-white backdrop-blur-sm rounded-xl pt-4 pb-5 px-3 flex justify-between">
-              {/* left side */}
-              <div className="flex flex-col gap-2 justify-center items-center">
-                <span className="text-sm">Ends in</span>
-                <div className="flex gap-2 text-xl font-semibold items-center">
-                                  <span>{n.time?.days}d</span>
-                  <div className="w-1 h-full bg-[#15120D80]"></div>
+              ))}
+          </div>
+        </div>
 
-                                  <span>{n.time?.hours}h</span>
-                  <div className="w-1 h-full bg-[#15120D80]"></div>
-    <span>{ n.time?.minutes}m</span>
-                </div>
-              </div>
+        {/* control buttons */}
+        <div className="w-full px-4 flex mt-8 justify-center items-center">
+          <div className="bg-[#e3d5bdab] rounded-lg p-2 flex justify-between gap-4">
+            <svg
+              width="22"
+              height="20"
+              viewBox="0 0 22 20"
+              className="transition-all active:scale-75 active:stroke-[#D2B37D] stroke-[#54473271]"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21 18.3334L12.6667 10.0001L21 1.66675M9.33333 18.3334L1 10.0001L9.33333 1.66675"
+                // stroke=""
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
 
-              {/* right side */}
-              <div className="flex flex-col gap-2 justify-center items-center">
-                <span className="text-sm">Current Bid</span>
-                <div className="flex gap-2 text-xl font-semibold items-center">
-                  <span>0.9 ETH</span>
-                  <svg
-                    width="14"
-                    height="18"
-                    viewBox="0 0 14 18"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M1.5835 11.5L7.00026 17.3334L12.4168 11.5L7.00016 12.75L1.5835 11.5Z"
-                      fill="#FAF7F0"
-                    />
-                    <path
-                      d="M0.333496 8.16681L7.00016 9.83335L13.6668 8.16669L7.00016 0.666687L0.333496 8.16681Z"
-                      fill="#FAF7F0"
-                    />
-                    <path
-                      d="M7.00016 0.666687V6.50009V0.666687Z"
-                      fill="#FAF7F0"
-                    />
-                    <path
-                      d="M0.333496 8.16681L7.00016 6.50009L13.6668 8.16669"
-                      fill="#FAF7F0"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </figure>
-        ))}
+            <svg
+              width="22"
+              height="20"
+              viewBox="0 0 22 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="transition-all active:scale-75 active:stroke-[#54473271] stroke-[#D2B37D]"
+            >
+              <path
+                d="M1 18.3334L9.33333 10.0001L1 1.66675M12.6667 18.3334L21 10.0001L12.6667 1.66675"
+                stroke="#D2B37D"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
         </div>
       </div>
     </div>
