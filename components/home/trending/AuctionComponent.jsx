@@ -1,68 +1,64 @@
-import { useEffect, useState } from "react";
+// import { useState } from "react";
 
 const AuctionComponent = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    let dataList = [
-      {
-        id: 0,
+  let dataList = [
+    {
+      id: 0,
+      image: "/images/ape4.png",
+      name: "BBApe 1/1",
+      price: "0.9",
+      user: {
+        username: "divuzki",
         image: "/images/ape4.png",
-        name: "BBApe 1/1",
-        price: "0.9",
-        user: {
-          username: "divuzki",
-          image: "/images/ape4.png",
-        },
-        time: { days: "1", hours: "02", minutes: "23" },
       },
-      {
-        id: 1,
-        image: "/images/ape2.png",
-        name: "BBApe 1/1",
-        price: "0.87",
-        user: {
-          username: "ayotunde",
-          image: "/images/ape4.png",
-        },
-        time: { days: "10", hours: "22", minutes: "30" },
+      time: { days: "1", hours: "02", minutes: "23" },
+    },
+    {
+      id: 1,
+      image: "/images/ape2.png",
+      name: "BBApe 1/1",
+      price: "0.87",
+      user: {
+        username: "ayotunde",
+        image: "/images/ape4.png",
       },
-      {
-        id: 2,
+      time: { days: "10", hours: "22", minutes: "30" },
+    },
+    {
+      id: 2,
+      image: "/images/ape3.png",
+      name: "BBApe 1/1",
+      price: "1.02",
+      user: {
+        username: "greenlight",
+        image: "/images/ape4.png",
+      },
+      time: { days: "5", hours: "24", minutes: "50" },
+    },
+    {
+      id: 3,
+      image: "/images/ape.webp",
+      name: "BBApe 1/1",
+      price: "1.02",
+      user: {
+        username: "ayoze",
         image: "/images/ape3.png",
-        name: "BBApe 1/1",
-        price: "1.02",
-        user: {
-          username: "greenlight",
-          image: "/images/ape4.png",
-        },
-        time: { days: "5", hours: "24", minutes: "50" },
       },
-      {
-        id: 3,
-        image: "/images/ape.webp",
-        name: "BBApe 1/1",
-        price: "1.02",
-        user: {
-          username: "ayoze",
-          image: "/images/ape3.png",
-        },
-        time: { days: "5", hours: "24", minutes: "50" },
+      time: { days: "5", hours: "24", minutes: "50" },
+    },
+    {
+      id: 4,
+      image: "/images/ape2.png",
+      name: "BBApe 1/1",
+      price: "1.02",
+      user: {
+        username: "onelight",
+        image: "/images/ape4.png",
       },
-      {
-        id: 4,
-        image: "/images/ape2.png",
-        name: "BBApe 1/1",
-        price: "1.02",
-        user: {
-          username: "onelight",
-          image: "/images/ape4.png",
-        },
-        time: { days: "5", hours: "24", minutes: "50" },
-      },
-    ];
-    setData([...dataList]);
-  }, []);
+      time: { days: "5", hours: "24", minutes: "50" },
+    },
+  ];
+  // const [data] = useState([...dataList]);
 
   return (
     <div className="py-8 rounded-t-2xl bg-[#F6EFE2] flex flex-col gap-8">
@@ -101,7 +97,7 @@ const AuctionComponent = () => {
       {/* center */}
       <div className="flex flex-col gap-5 px-4">
         {/* view all */}
-        <div className="flex items-center justify-end gap-2">
+        <div className="flex items-center justify-end gap-2 cursor-pointer">
           <span className="text-base text-themeColor">View all</span>
           <svg
             width="14"
@@ -113,9 +109,9 @@ const AuctionComponent = () => {
             <path
               d="M1 6H13M13 6L8.5 1.5M13 6L8.5 10.5"
               stroke="#D2B37D"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </div>
@@ -123,9 +119,9 @@ const AuctionComponent = () => {
         {/* items */}
         <div className="flex w-screen will-change-scroll gap-4 overflow-x-scroll overflow-y-hidden pl-4">
           <div className="flex gap-4 pr-10">
-            {data &&
-              data.length > 0 &&
-              data.map((n, i) => (
+            {dataList &&
+              dataList.length > 0 &&
+              dataList.map((n, i) => (
                 <figure
                   key={i}
                   style={{ backgroundImage: `url(${n.image})` }}

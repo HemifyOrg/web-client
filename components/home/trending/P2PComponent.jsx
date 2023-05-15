@@ -411,6 +411,7 @@ const P2PComponent = () => {
           (n) => n.currency.toUpperCase() === selectedTab.toUpperCase()
         );
       setP2PList(list);
+      console.log(selectedTab)
     }
   }, [p2pList, selectedTab, p2pList2]);
 
@@ -451,31 +452,53 @@ const P2PComponent = () => {
       </svg>
 
       <div className="flex gap-4 flex-col justify-start px-4 lg:px-10 items-center">
-        <div className="overflow-x-auto overflow-y-hidden justify-start flex w-screen will-change-scroll">
-          <ul className="flex gap-4 pl-4 lg:pl-10 justify-center items-center">
-            {listOfTabs &&
-              listOfTabs.length > 0 &&
-              listOfTabs.map((n, i) => (
-                <li
-                  key={i}
-                  onClick={() => handleTabToggle(n?.value)}
-                  className={`flex cursor-pointer hover:bg-[#f7f0dfd2] rounded-md gap-2 border-b-2 px-1 ${
-                    selectedTab === n.value
-                      ? "border-themeColor"
-                      : "border-transparent border active:border-gray-200"
-                  } py-2`}
-                >
-                  {n.iconElement}
-                  <span
-                    className={`font-semibold ${
-                      n.value === "ALL" ? "ml-8" : ""
-                    }`}
+        <div className="flex justify-between px-4 w-screen">
+          <div className="overflow-x-auto overflow-y-hidden justify-start flex w-full will-change-scroll">
+            <ul className="flex gap-4 pl-4 lg:pl-10 justify-center items-center">
+              {listOfTabs &&
+                listOfTabs.length > 0 &&
+                listOfTabs.map((n, i) => (
+                  <li
+                    key={i}
+                    onClick={() => handleTabToggle(n?.value)}
+                    className={`flex cursor-pointer hover:bg-[#f7f0dfd2] rounded-md gap-2 border-b-2 px-1 ${
+                      selectedTab === n.value
+                        ? "border-themeColor"
+                        : "border-transparent border active:border-gray-200"
+                    } py-2`}
                   >
-                    {n.name}
-                  </span>
-                </li>
-              ))}
-          </ul>
+                    {n.iconElement}
+                    <span
+                      className={`font-semibold ${
+                        n.value === "ALL" ? "ml-8" : ""
+                      }`}
+                    >
+                      {n.name}
+                    </span>
+                  </li>
+                ))}
+            </ul>
+          </div>
+
+          {/* view all */}
+          <div className="flex items-center justify-end gap-2 w-full lg:pr-10 pr-4 cursor-pointer">
+            <span className="text-base text-themeColor">View all</span>
+            <svg
+              width="14"
+              height="12"
+              viewBox="0 0 14 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 6H13M13 6L8.5 1.5M13 6L8.5 10.5"
+                stroke="#D2B37D"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
         </div>
 
         {/* items */}
