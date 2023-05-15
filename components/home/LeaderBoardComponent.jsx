@@ -8,6 +8,7 @@ const LeaderBoardComponent = () => {
       <svg
         width="1192"
         height="161"
+        className="w-full py-2"
         viewBox="0 0 1192 161"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

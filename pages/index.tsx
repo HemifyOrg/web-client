@@ -17,7 +17,7 @@ export default function Home() {
         <title>Bidz & Bazaar</title>
       </Head>
 
-      <main className="mt-2 flex flex-col gap-20">
+      <main className="mt-2 flex flex-col">
         {/* hero section */}
         <HeroComponent />
 
