@@ -1,8 +1,8 @@
 import HeroComponent from "./HeroComponent"
 import HowItWorksComponent from "./HowItWorksComponent"
-import VerifedComponent from "./VerifedComponent"
+import VerifiedComponent from "./VerifiedComponent"
 export {
     HeroComponent, 
     HowItWorksComponent,
-    VerifedComponent
+    VerifiedComponent
 }

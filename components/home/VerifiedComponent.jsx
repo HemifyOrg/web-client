@@ -1,9 +1,100 @@
-const VerifedComponent = () => {
+const VerifiedComponent = () => {
+  const verifiedList = [
+    {
+      username: "OptiApe",
+      image: "/images/ape4.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape3.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape2.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape4.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape2.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape4.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape3.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape4.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape4.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape4.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape3.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape2.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape4.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape3.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape2.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape4.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape4.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape2.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape3.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape4.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape3.png",
+    },
+    {
+      username: "OptiApe",
+      image: "/images/ape4.png",
+    },
+  ];
   return (
     <section
       id="verifed-users"
       className="py-8 rounded-t-3xl bg-[#fff] flex flex-col gap-8"
     >
+      {/* top */}
       <svg
         width="745"
         height="161"
@@ -35,8 +126,80 @@ const VerifedComponent = () => {
           </linearGradient>
         </defs>
       </svg>
+
+      {/* center */}
+      <div className="w-full flex justify-between lg:px-10 px-4">
+        <ul className="flex gap-4">
+          <li className="py-2 px-5 border-b-2 border-themeColor rounded-md">
+            Creators
+          </li>
+          <li className="py-2 px-5 border-b-2 border-transparent rounded-md">
+            Collection
+          </li>
+        </ul>
+
+        {/* view all */}
+        <div className="flex items-center justify-end gap-2 cursor-pointer">
+          <span className="text-base text-themeColor">View all</span>
+          <svg
+            width="14"
+            height="12"
+            viewBox="0 0 14 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1 6H13M13 6L8.5 1.5M13 6L8.5 10.5"
+              stroke="#D2B37D"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+      </div>
+
+      {/* bottom */}
+      <div className="w-full justify-start grid grid-rows-2 grid-cols-none flex-rows lg:px-10 px-4 gap-4 max-w-[100vw] overflow-x-auto overflow-y-hidden">
+        {verifiedList &&
+          verifiedList.length > 0 &&
+          verifiedList.map((n, i) => (
+            <div
+              key={i}
+              className="flex flex-col items-center gap-4 shadow p-3 bg-[#2A2419] w-fit rounded-2xl"
+            >
+              <figure
+                style={{ backgroundImage: `url(${n?.image})` }}
+                className="bg-cover bg-no-repeat bg-center h-[80px] w-[80px] border-2 rounded-xl border-themeColor"
+              />
+
+              <div className="flex gap-2 items-center">
+                <span className="text-lg text-themeColor">{n.username}</span>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.34265 1.94378C5.93348 2.29247 5.42474 2.5032 4.88885 2.54596C3.6383 2.64575 2.64527 3.63879 2.54547 4.88934C2.50271 5.42523 2.29198 5.93397 1.94329 6.34314C1.12958 7.29798 1.12958 8.70235 1.94329 9.65718C2.29198 10.0664 2.50271 10.5751 2.54547 11.111C2.64527 12.3615 3.6383 13.3546 4.88885 13.4544C5.42474 13.4971 5.93348 13.7079 6.34265 14.0566C7.29749 14.8703 8.70186 14.8703 9.6567 14.0566C10.0659 13.7079 10.5746 13.4971 11.1105 13.4544C12.361 13.3546 13.3541 12.3615 13.4539 11.111C13.4966 10.5751 13.7074 10.0664 14.0561 9.65718C14.8698 8.70235 14.8698 7.29798 14.0561 6.34314C13.7074 5.93397 13.4966 5.42523 13.4539 4.88934C13.3541 3.63879 12.361 2.64575 11.1105 2.54596C10.5746 2.5032 10.0659 2.29247 9.6567 1.94378C8.70186 1.13007 7.29749 1.13007 6.34265 1.94378Z"
+                    fill="#D2B37D"
+                  />
+                  <path
+                    d="M5.99967 8.00016L7.33301 9.3335L10.333 6.3335M4.88885 2.54596C5.42474 2.5032 5.93348 2.29247 6.34265 1.94378C7.29749 1.13007 8.70186 1.13007 9.6567 1.94378C10.0659 2.29247 10.5746 2.5032 11.1105 2.54596C12.361 2.64575 13.3541 3.63879 13.4539 4.88934C13.4966 5.42523 13.7074 5.93397 14.0561 6.34314C14.8698 7.29798 14.8698 8.70235 14.0561 9.65718C13.7074 10.0664 13.4966 10.5751 13.4539 11.111C13.3541 12.3615 12.361 13.3546 11.1105 13.4544C10.5746 13.4971 10.0659 13.7079 9.6567 14.0566C8.70186 14.8703 7.29749 14.8703 6.34265 14.0566C5.93348 13.7079 5.42474 13.4971 4.88885 13.4544C3.6383 13.3546 2.64527 12.3615 2.54547 11.111C2.50271 10.5751 2.29198 10.0664 1.94329 9.65718C1.12958 8.70235 1.12958 7.29798 1.94329 6.34314C2.29198 5.93397 2.50271 5.42523 2.54547 4.88934C2.64527 3.63879 3.6383 2.64575 4.88885 2.54596Z"
+                    stroke="#2D4C82"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </div>
+          ))}
+      </div>
     </section>
   );
 };
 
-export default VerifedComponent;
+export default VerifiedComponent;
