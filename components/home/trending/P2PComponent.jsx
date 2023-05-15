@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
 const P2PComponent = () => {
@@ -55,6 +55,7 @@ const P2PComponent = () => {
       fee: "2.05",
     },
   ];
+
   const [p2pList, setP2PList] = useState([
     ...listOfP2p,
     ...listOfP2p,
@@ -403,19 +404,17 @@ const P2PComponent = () => {
     },
   ];
 
-  useEffect(() => {
-    if (selectedTab && p2pList2 && p2pList2.length > 0) {
+  const handleTabToggle = (action) => {
+    setSelectedTab(action.toUpperCase());
+    if (p2pList2 && p2pList2.length > 0) {
       let list = [...p2pList2];
-      if (selectedTab !== "ALL")
+      if (action !== "ALL")
         list = list.filter(
-          (n) => n.currency.toUpperCase() === selectedTab.toUpperCase()
+          (n) => n.currency.toUpperCase() === action.toUpperCase()
         );
       setP2PList(list);
-      console.log(selectedTab)
     }
-  }, [p2pList, selectedTab, p2pList2]);
-
-  const handleTabToggle = (action) => setSelectedTab(action.toUpperCase());
+  };
 
   return (
     <div className="py-8 rounded-t-3xl bg-[#fff] flex flex-col gap-8">
