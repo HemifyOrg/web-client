@@ -4,7 +4,7 @@ import Head from 'next/head';
 // import { formatBalance } from '@/components/ConnectWallect'
 
 // import { RootState } from '../app/store';
-import { HeroComponent, HowItWorksComponent } from "@/components/home";
+import { HeroComponent, HowItWorksComponent, VerifedComponent } from "@/components/home";
 import TrandingComponent from "@/components/home/trending";
 
 export default function Home() {
@@ -26,6 +26,9 @@ export default function Home() {
 
         {/* Trending */}
         <TrandingComponent />
+
+        {/* Verified Section */}
+        <VerifedComponent />
       </main>
     </div>
   );
