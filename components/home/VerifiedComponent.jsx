@@ -160,7 +160,7 @@ const VerifiedComponent = () => {
       </div>
 
       {/* bottom */}
-      <div className="w-full justify-start grid grid-rows-2 grid-cols-none flex-rows lg:px-10 px-4 gap-4 max-w-[100vw] overflow-x-auto overflow-y-hidden">
+      <div className="w-full justify-start grid-flow-col auto-cols-max grid grid-rows-2 pb-2 flex-col lg:px-10 px-4 gap-4 max-w-[100vw] overflow-x-auto overflow-y-hidden">
         {verifiedList &&
           verifiedList.length > 0 &&
           verifiedList.map((n, i) => (

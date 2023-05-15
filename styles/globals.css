@@ -26,6 +26,12 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.grid-cols-auto {
+  grid-template-rows: auto auto;
+  grid-auto-columns: 1fr;
+}
+
 a {
   --tw-border-opacity: 1;
   color: rgb(210 179 125 / var(--tw-border-opacity));
