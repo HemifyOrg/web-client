@@ -1,32 +1,52 @@
-import React from "react"
 import { loadConfig } from '../features/configSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import ConnectWallet, { formatAddress } from '@/components/ConnectWallect'
 
-import { useEffect } from 'react';
 import { AppDispatch, RootState } from '../app/store';
 import { ThunkDispatch, AnyAction } from '@reduxjs/toolkit';
 import Link from "next/link";
 
+import { useState, useEffect } from "react"
+import { useRouter } from 'next/router'
+import Head from 'next/head'
+import { capitalizeAWord } from '@/utils'
+
 const NavBar = () => {
-    const [showMaterialDropdown, setShowMaterialDropdown] = React.useState(false);
-    const [showNotificationDropdown, setShowNotificationDropdown] = React.useState(false);
+    const [showMaterialDropdown, setShowMaterialDropdown] = useState(false);
+    const [showNotificationDropdown, setShowNotificationDropdown] = useState(false);
     const config = useSelector((state: RootState) => state.config);
     const account = useSelector((state: RootState) => state.account);
+
+
+    const router = useRouter()
+    const { pathname } : { pathname: string } = router
+    const [headTitle, setHeadTitle] = useState("Hemify")
+    
+    useEffect(() => {
+        if (pathname && typeof pathname === 'string' && pathname.includes("/") && pathname.split("/").length >= 1 && pathname !== "/") {
+            let pathName: string = pathname.split("/")[1]
+            const title = `${pathName} | Hemify`
+            setHeadTitle(capitalizeAWord(title))
+        }
+    }, [pathname])
   
     const dispatch: AppDispatch = useDispatch<ThunkDispatch<RootState, undefined, AnyAction>>()
     useEffect(() => {
       dispatch(loadConfig());
     }, [dispatch, config]);
+
     return (
-        <nav className="w-full py-4 mb-2 left-0 right-0 select-none z-[101] px-5 lg:px-8 fixed font-semibold">
-            <div className="shadow-sm w-full pr-4 pl-2 py-2 rounded-3xl bg-navBarColor backdrop-blur-md flex items-center justify-between">
+        <nav className="w-full py-4 mb-2 left-0 right-0 select-none z-[101] px-2 lg:px-8 fixed font-semibold">
+             <Head>
+                 <title>{headTitle}</title>
+             </Head>
+            <div className="shadow-sm w-full pr-4 pl-2 py-2 rounded-3xl bg-navBarColor backdrop-blur-md flex items-center justify-between lg:gap-0 gap-5">
                 {/* left */}
                 <div className="flex gap-20 items-center justify-between">
                     <Link href="/" className="border-none hover:border-none">
                         <div className="w-8 h-8 shadow-sm bg-black rounded-full"></div>
                     </Link>
-                <ul className="flex gap-10">
+                <ul className="gap-10 hidden lg:flex">
                     <Link href="/swap" className="border-none text-gray-900"><li>Swap</li></Link>
                     <Link href="/wager" className="border-none text-gray-900"><li>Wager</li></Link>
                 </ul>
@@ -37,12 +57,12 @@ const NavBar = () => {
                 <svg className="text-gray-400" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19 19L14.65 14.65M9 4C11.7614 4 14 6.23858 14 9M17 9C17 13.4183 13.4183 17 9 17C4.58172 17 1 13.4183 1 9C1 4.58172 4.58172 1 9 1C13.4183 1 17 4.58172 17 9Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    <input type="text" className="select-text lg:w-[479px] bg-transparent border-none shadow-none outline-none" placeholder="Search..." name="search" id="search" />
+                    <input type="text" className="select-text lg:text-base text-sm lg:w-[479px] bg-transparent border-none shadow-none outline-none" placeholder="Search..." name="search" id="search" />
                 </div>
 
                 {/* right */}
-                <div className="flex gap-6">
-                    <div className="flex gap-2 items-center cursor-pointer relative">
+                <div className="flex lg:gap-6 gap-2">
+                    <div className="hidden lg:flex gap-2 items-center cursor-pointer relative">
                         <span onClick={() => setShowMaterialDropdown(!showMaterialDropdown)}>Materials</span>
                         <svg onClick={() => setShowMaterialDropdown(!showMaterialDropdown)} width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 1L7 7L13 1" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -82,7 +102,7 @@ const NavBar = () => {
                     </div>
                     {/* icons */}
                     <div className="flex gap-4">
-                        <div className="relative flex items-center justify-center">
+                        <div className="relative hidden lg:flex items-center justify-center">
                             <svg onClick={() => setShowNotificationDropdown(!showNotificationDropdown)} width="22" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M13.2358 8.44541C12.8789 7.11328 11.926 5.99931 10.5867 5.34858C9.24742 4.69785 7.6315 4.56365 6.09443 4.97551C4.55735 5.38737 3.22502 6.31155 2.39054 7.54473C1.55606 8.77792 1.28779 10.2191 1.64473 11.5512C2.2353 13.7553 2.12063 15.5137 1.74768 16.8498C1.32261 18.3727 1.11008 19.1341 1.16749 19.287C1.23318 19.4619 1.2807 19.5099 1.45494 19.5774C1.60723 19.6364 2.247 19.465 3.52654 19.1222L15.3916 15.9429C16.6712 15.6001 17.3109 15.4286 17.4133 15.3014C17.5304 15.1558 17.5476 15.0905 17.517 14.9061C17.4903 14.745 16.9255 14.1919 15.796 13.0856C14.8049 12.1149 13.8264 10.6495 13.2358 8.44541Z" fill="black"/>
                             <path d="M11.3909 17.0149C11.8198 18.6153 10.87 20.2603 9.26961 20.6891C7.66921 21.118 6.0242 20.1682 5.59537 18.5678M7.89146 4.74097C8.19567 4.19367 8.29588 3.53217 8.12101 2.87957C7.76366 1.54591 6.39282 0.754452 5.05915 1.11181C3.72549 1.46916 2.93403 2.84 3.29138 4.17367C3.46625 4.82627 3.88378 5.34904 4.42088 5.67091M13.2358 8.44541C12.8789 7.11328 11.926 5.99931 10.5867 5.34858C9.24742 4.69785 7.6315 4.56365 6.09443 4.97551C4.55735 5.38737 3.22502 6.31155 2.39054 7.54473C1.55606 8.77792 1.28779 10.2191 1.64473 11.5512C2.2353 13.7553 2.12063 15.5137 1.74768 16.8498C1.32261 18.3727 1.11008 19.1341 1.16749 19.287C1.23318 19.4619 1.2807 19.5099 1.45494 19.5774C1.60723 19.6364 2.247 19.465 3.52654 19.1222L15.3916 15.9429C16.6711 15.6001 17.3109 15.4287 17.4133 15.3014C17.5304 15.1558 17.5476 15.0905 17.517 14.9061C17.4903 14.745 16.9255 14.1919 15.796 13.0856C14.8049 12.1149 13.8264 10.6495 13.2358 8.44541Z" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -110,7 +130,12 @@ const NavBar = () => {
             </div>
           ) : (
             <ConnectWallet label="Connect Wallet" />
-          )}
+                        )}
+                        <button type="button" className="lg:hidden" title="Open Menu">
+                        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 7H7M19 1H1M19 13H1" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        </button>
                     </div>
                 </div>
             </div>

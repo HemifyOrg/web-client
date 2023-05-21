@@ -1,0 +1,1 @@
+export { capitalizeAWord } from "./components"
