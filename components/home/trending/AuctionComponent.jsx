@@ -88,8 +88,8 @@ const AuctionComponent = () => {
             y2="104"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#15120D" />
-            <stop offset="1" stop-color="#15120D" stop-opacity="0" />
+            <stop stopColor="#15120D" />
+            <stop offset="1" stopColor="#15120D" stopOpacity="0" />
           </linearGradient>
         </defs>
       </svg>

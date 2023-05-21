@@ -6,6 +6,7 @@ import ConnectWallet, { formatAddress } from '@/components/ConnectWallect'
 import { useEffect } from 'react';
 import { AppDispatch, RootState } from '../app/store';
 import { ThunkDispatch, AnyAction } from '@reduxjs/toolkit';
+import Link from "next/link";
 
 const NavBar = () => {
     const [showMaterialDropdown, setShowMaterialDropdown] = React.useState(false);
@@ -22,10 +23,12 @@ const NavBar = () => {
             <div className="shadow-sm w-full pr-4 pl-2 py-2 rounded-3xl bg-navBarColor backdrop-blur-md flex items-center justify-between">
                 {/* left */}
                 <div className="flex gap-20 items-center justify-between">
-                <div className="w-8 h-8 shadow-sm bg-black rounded-full"></div>
+                    <Link href="/" className="border-none hover:border-none">
+                        <div className="w-8 h-8 shadow-sm bg-black rounded-full"></div>
+                    </Link>
                 <ul className="flex gap-10">
-                    <li>Auction</li>
-                    <li>P2P</li>
+                    <Link href="/swap" className="border-none text-gray-900"><li>Swap</li></Link>
+                    <Link href="/wager" className="border-none text-gray-900"><li>Wager</li></Link>
                 </ul>
                 </div>
 
