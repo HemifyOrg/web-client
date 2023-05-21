@@ -6,7 +6,7 @@ const TrandingComponent = () => {
     <section className="pt-8 bg-[#F6EFE2] rounded-t-3xl mt-16">
       <AuctionComponent />
 
-      <div className="py-8 rounded-t-3xl bg-[#fff] flex flex-col gap-8">
+      <div className="py-8 rounded-t-3xl bg-[#fff] flex flex-col lg:gap-8 gap-4">
       {/* top */}
       <svg
         className="w-full py-2"

@@ -49,7 +49,7 @@ const LeaderBoardComponent = () => {
   return (
     <section
       id="leaderboard"
-      className="py-8 rounded-t-3xl bg-[#fff] flex flex-col gap-8"
+      className="py-8 rounded-t-3xl bg-[#fff] flex flex-col lg:gap-8 gap-4"
     >
       {/* top */}
       <svg

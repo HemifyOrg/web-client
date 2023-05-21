@@ -51,10 +51,12 @@ const HeroComponent = () => {
   }
 
   return (
-    <div className="flex items-center justify-between w-full py-4 z-10 px-8 h-full m-auto lg:flex-row flex-col-reverse">
+    <div className="flex items-center justify-between w-full py-4 z-10 lg:px-8 px-4 h-full m-auto lg:flex-row flex-col-reverse">
       {/* left hero */}
-      <div className="flex flex-col gap-6 items-start h-full justify-center">
-        <div className="flex gap-1 flex-col text-left justify-start text-4xl lg:text-5xl leading-relaxed tracking-wide font-semibold">
+      <div className="flex flex-col lg:gap-6 items-start h-full justify-center">
+
+        {/* big text */}
+        <div className="lg:flex hidden gap-1 flex-col text-left justify-start text-4xl lg:text-5xl leading-relaxed tracking-wide font-semibold">
           <div className="flex gap-2">
             <span>The</span>
             <div className="relative mr-1">
@@ -65,27 +67,30 @@ const HeroComponent = () => {
           </div>
           <span>p2p power house</span>
         </div>
-        <span>Giving power to creators and community</span>
-        <div className="flex gap-2 items-center justify-center">
+        <span className="lg:hidden block mt-4 text-left text-4xl lg:text-5xl leading-relaxed tracking-wide font-semibold">
+        Uniting the Web through Blockchain
+        </span>
+        <span className="text-xl">Connecting web2 and web3</span>
+        <div className="flex gap-2 mt-2 items-center justify-center">
           <button
-            title="Explore Auctions"
+            title="Explore Wagers"
             type="button"
-            className="bg-btnImage font-semibold py-3 px-4 rounded-full shadow-sm"
+            className="bg-btnImage font-semibold py-2 px-6 rounded-full shadow-sm"
           >
-            Explore Auctions
+            Wager
           </button>
           <button
-            title="Click To Create"
+            title="Click To Start Swapping"
             type="button"
-            className="border border-themeColor font-semibold py-3 px-4 w-32 rounded-full shadow-sm"
+            className="border border-themeColor font-semibold py-2 px-6 rounded-full shadow-sm"
           >
-            Create
+            Swap
           </button>
         </div>
       </div>
 
       {/* right hero */}
-      <div className="relative mr-2 mt-5 select-none">
+      <div className="relative lg:mr-2 mx-auto mt-5 select-none">
         {/* arrows */}
         <div className="w-full absolute top-[50%] z-10 flex justify-between items-center">
           {/* left */}
@@ -204,7 +209,7 @@ const HeroComponent = () => {
             <figure
               key={i}
               style={{ backgroundImage: `url(${n.image})` }}
-              className={`w-[400px] h-[400px] transition-all ${
+              className={`lg:w-[400px] lg:h-[400px] w-[350px] h-[350px] transition-all ${
                 selectedSlide !== n.id
                   ? `top-0 ${
                       hotBidz.length - 1 === n.id

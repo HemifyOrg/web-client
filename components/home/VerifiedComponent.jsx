@@ -92,7 +92,7 @@ const VerifiedComponent = () => {
   return (
     <section
       id="verifed-users"
-      className="py-8 rounded-t-3xl bg-[#fff]- flex flex-col gap-8"
+      className="py-8 rounded-t-3xl flex flex-col lg:gap-8 gap-4"
     >
       {/* top */}
       <svg

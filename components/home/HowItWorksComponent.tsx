@@ -1,5 +1,5 @@
 const HowItWorksComponent = () => (
-  <section className="w-full flex flex-col mt-16 p-8">
+  <section className="w-full flex flex-col lg:mt-16 p-8">
     {/* top */}
     <div className="w-full flex justify-center items-center">
       <svg

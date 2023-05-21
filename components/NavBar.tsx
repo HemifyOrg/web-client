@@ -40,9 +40,9 @@ const NavBar = () => {
              <Head>
                  <title>{headTitle}</title>
              </Head>
-            <div className="shadow-sm w-full pr-4 pl-2 py-2 rounded-3xl bg-navBarColor backdrop-blur-md flex items-center justify-between lg:gap-0 gap-5">
+            <div className="shadow-sm w-full lg:pr-4 px-1 lg:pl-2 py-2 rounded-3xl bg-navBarColor backdrop-blur-md flex items-center justify-between lg:gap-0 gap-5">
                 {/* left */}
-                <div className="flex gap-20 items-center justify-between">
+                <div className="flex gap-20 items-center lg:justify-between justify-center ml-auto lg:ml-0">
                     <Link href="/" className="border-none hover:border-none">
                         <div className="w-8 h-8 shadow-sm bg-black rounded-full"></div>
                     </Link>

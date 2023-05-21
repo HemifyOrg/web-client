@@ -417,8 +417,8 @@ const P2PComponent = ({ flag }: { flag?: boolean }) => {
   };
 
   return (
-    <div className="flex gap-4 flex-col justify-start px-4 lg:px-8 items-center">
-      <div className={`flex justify-between px-3 w-screen ${flag ? "md:flex-nowrap flex-wrap":""}`}>
+    <div className="flex gap-4 flex-col justify-start px-2 lg:px-4 items-center">
+      <div className={`flex justify-between px-3 w-screen md:flex-nowrap flex-wrap`}>
         {flag && (
           <div className="flex gap-2 lg:px-7 items-center w-screen overflow-x-auto overflow-y-hidden">
             <button

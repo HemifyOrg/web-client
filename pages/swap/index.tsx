@@ -3,7 +3,7 @@ import P2PComponent from "@/components/home/trending/P2PComponent";
 
 const SwapPage = () => {
   return (
-    <div className="mt-2 flex flex-col pl-2 gap-10">
+    <div className="mt-2 flex flex-col pl-2 gap-8">
       {/* top */}
       {/* lg */}
       <svg
