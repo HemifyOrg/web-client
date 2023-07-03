@@ -4,7 +4,7 @@ import Head from 'next/head';
 // import { formatBalance } from '@/components/ConnectWallect'
 
 // import { RootState } from '../app/store';
-import { HeroComponent, HowItWorksComponent, VerifiedComponent, LeaderBoardComponent } from "@/components/home";
+import { HeroComponent, VerifiedComponent, LeaderBoardComponent } from "@/components/home";
 import TrandingComponent from "@/components/home/trending";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
 
 
   return (
-    <div>
+    <>
       <Head>
         <title>Bidz & Bazaar</title>
       </Head>
@@ -20,9 +20,6 @@ export default function Home() {
       <main className="mt-2 flex flex-col">
         {/* hero section */}
         <HeroComponent />
-
-        {/* how it works */}
-        <HowItWorksComponent />
 
         {/* Trending */}
         <TrandingComponent />
@@ -33,6 +30,6 @@ export default function Home() {
         {/* LeaderBoard Section*/}
         <LeaderBoardComponent />
       </main>
-    </div>
+    </>
   );
 }

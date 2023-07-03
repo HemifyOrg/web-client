@@ -1,1 +1,1 @@
-export { capitalizeAWord } from "./components"
+export { capitalizeAWord, LogoSvg } from "./components"

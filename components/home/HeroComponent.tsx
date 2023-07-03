@@ -3,58 +3,52 @@ import { useEffect, useState } from "react";
 interface SlideType {
   id: number;
   image: string;
-  price: string;
-  time: {
-      days: string;
-      hours: string;
-      minutes: string;
-  };
+  desc: string;
 }
 
 const HeroComponent = () => {
   const [hotBidz, setHotBidz] = useState<Array<SlideType>>([]);
-  const [selectedSlide, setSelectedSlide] = useState(0)
-  
+  const [selectedSlide, setSelectedSlide] = useState(0);
+
   useEffect(() => {
     let slidesList: Array<SlideType> = [
       {
         id: 0,
         image: "/images/ape.webp",
-        price: "0.9",
-        time: { days: "1", hours: "02", minutes: "23" }
+        desc: "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
       },
       {
         id: 1,
         image: "/images/ape2.png",
-        price: "0.87",
-        time: { days: "10", hours: "22", minutes: "30" }
+        desc: "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
       },
       {
         id: 2,
         image: "/images/ape3.png",
-        price: "1.02",
-        time: { days: "5", hours: "24", minutes: "50" }
-      }
-    ]
-    setHotBidz([...slidesList])
-  }, [])
+        desc: "lorum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+      },
+    ];
+    setHotBidz([...slidesList]);
+  }, []);
 
   const handleSlide = (action: "right" | "left") => {
     if (action === "right") {
-      let nextSelectedSlide = selectedSlide < hotBidz.length - 1 ? selectedSlide + 1 : selectedSlide
-      setSelectedSlide(nextSelectedSlide)
-    } if (action === "left" && selectedSlide > -1) {
-      // console.log(selectedSlide)
-      let previousSelectedSlide = selectedSlide < hotBidz.length - 2 ? selectedSlide : selectedSlide - 1
-      setSelectedSlide(previousSelectedSlide)
+      let nextSelectedSlide =
+        selectedSlide < hotBidz.length - 1 ? selectedSlide + 1 : selectedSlide;
+      setSelectedSlide(nextSelectedSlide);
     }
-  }
+    if (action === "left" && selectedSlide > -1) {
+      // console.log(selectedSlide)
+      let previousSelectedSlide =
+        selectedSlide < hotBidz.length - 2 ? selectedSlide : selectedSlide - 1;
+      setSelectedSlide(previousSelectedSlide);
+    }
+  };
 
   return (
     <div className="flex items-center justify-between w-full py-4 z-10 lg:px-8 px-4 h-full m-auto lg:flex-row flex-col-reverse">
       {/* left hero */}
       <div className="flex flex-col lg:gap-6 items-start h-full justify-center">
-
         {/* big text */}
         <div className="lg:flex hidden gap-1 flex-col text-left justify-start text-4xl lg:text-5xl leading-relaxed tracking-wide font-semibold">
           <div className="flex gap-2">
@@ -68,9 +62,9 @@ const HeroComponent = () => {
           <span>p2p power house</span>
         </div>
         <span className="lg:hidden block mt-4 text-left text-4xl lg:text-5xl leading-relaxed tracking-wide font-semibold">
-        Uniting the Web through Blockchain
+          Uniting the Web through Blockchain
         </span>
-        <span className="text-xl">Connecting web2 and web3</span>
+        <span className="text-xl mt-2">Connecting web2 and web3</span>
         <div className="flex gap-2 mt-2 items-center justify-center">
           <button
             title="Explore Wagers"
@@ -96,7 +90,9 @@ const HeroComponent = () => {
           {/* left */}
           <div
             onClick={() => handleSlide("left")}
-            className={`${selectedSlide < 1 ? "opacity-75":"active:scale-75"} p-2 bg-[#F1E7D480] flex transition-all cursor-pointer items-center justify-center -translate-x-5 w-10 h-10 rounded-full`}
+            className={`${
+              selectedSlide < 1 ? "opacity-75" : "active:scale-75"
+            } p-2 bg-[#F1E7D480] flex transition-all cursor-pointer items-center justify-center -translate-x-5 w-10 h-10 rounded-full`}
           >
             <svg
               width="38"
@@ -118,7 +114,11 @@ const HeroComponent = () => {
           {/* right */}
           <div
             onClick={() => handleSlide("right")}
-            className={`${selectedSlide > hotBidz.length - 2 ? "opacity-75":"active:scale-75"} p-2 bg-[#F1E7D480] flex transition-all cursor-pointer items-center justify-center translate-x-5 w-10 h-10 rounded-full`}
+            className={`${
+              selectedSlide > hotBidz.length - 2
+                ? "opacity-75"
+                : "active:scale-75"
+            } p-2 bg-[#F1E7D480] flex transition-all cursor-pointer items-center justify-center translate-x-5 w-10 h-10 rounded-full`}
           >
             <svg
               width="38"
@@ -140,7 +140,7 @@ const HeroComponent = () => {
         {/* end arrows */}
 
         {/* hot bids */}
-        <div className="absolute top-2 -left-10 z-10 -rotate-[35deg] flex items-center gap-2 font-semibold bg-[#FFF9E5] rounded-full px-4">
+        <div className="absolute top-2 -left-7 z-10 -rotate-[35deg] flex items-center gap-2 font-semibold bg-[#FFF9E5] rounded-full px-4">
           <span>Hot Bidz</span>
           <span>
             <svg
@@ -186,8 +186,16 @@ const HeroComponent = () => {
                   <stop offset="0.487" stopColor="#FFF48F" />
                   <stop offset="0.672" stopColor="#FFF7AD" />
                   <stop offset="0.793" stopColor="#FFF9C4" />
-                  <stop offset="0.822" stopColor="#FFF8BD" stopOpacity="0.804" />
-                  <stop offset="0.863" stopColor="#FFF6AB" stopOpacity="0.529" />
+                  <stop
+                    offset="0.822"
+                    stopColor="#FFF8BD"
+                    stopOpacity="0.804"
+                  />
+                  <stop
+                    offset="0.863"
+                    stopColor="#FFF6AB"
+                    stopOpacity="0.529"
+                  />
                   <stop offset="0.91" stopColor="#FFF38D" stopOpacity="0.209" />
                   <stop offset="0.941" stopColor="#FFF176" stopOpacity="0" />
                 </radialGradient>
@@ -209,63 +217,21 @@ const HeroComponent = () => {
             <figure
               key={i}
               style={{ backgroundImage: `url(${n.image})` }}
-              className={`lg:w-[400px] lg:h-[400px] w-[350px] h-[350px] transition-all ${
+              className={`lg:w-[400px] lg:h-[400px] w-full h-[250px] transition-all ${
                 selectedSlide !== n.id
-                  ? `top-0 ${
-                      hotBidz.length - 1 === n.id
-                        ? "-rotate-[5deg]"
-                        : "rotate-[5deg]"
-                    } absolute z-[-1]`
+                  ? `top-0 
+                ${
+                  hotBidz.length - 1 === n.id
+                    ? "lg:-rotate-[5deg]"
+                    : "lg:rotate-[5deg]"
+                }
+                 absolute z-[-1]`
                   : ""
               } py-4 px-8 bg-cover overflow-hidden bg-no-repeat
                   bg-center rounded-lg flex justify-center items-end bg-gradient-to-t from-pink-400 to-pink-800 shadow-none`}
             >
               <div className="w-full bg-[#0000005e] text-white backdrop-blur-sm rounded-xl pt-4 pb-6 px-5 flex justify-between">
-                {/* left side */}
-                <div className="flex flex-col gap-2 justify-center items-center">
-                  <span className="text-sm">Current Bid</span>
-                  <div className="flex gap-2 text-xl font-semibold items-center">
-                    <span>{n.price} ETH</span>
-                    <svg
-                      width="14"
-                      height="18"
-                      viewBox="0 0 14 18"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M1.5835 11.5L7.00026 17.3334L12.4168 11.5L7.00016 12.75L1.5835 11.5Z"
-                        fill="#FAF7F0"
-                      />
-                      <path
-                        d="M0.333496 8.16681L7.00016 9.83335L13.6668 8.16669L7.00016 0.666687L0.333496 8.16681Z"
-                        fill="#FAF7F0"
-                      />
-                      <path
-                        d="M7.00016 0.666687V6.50009V0.666687Z"
-                        fill="#FAF7F0"
-                      />
-                      <path
-                        d="M0.333496 8.16681L7.00016 6.50009L13.6668 8.16669"
-                        fill="#FAF7F0"
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* right side */}
-                <div className="flex flex-col gap-2 justify-center items-center">
-                  <span className="text-sm">Ends in</span>
-                  <div className="flex gap-2 text-xl font-semibold items-center">
-                    <span>{n.time?.days}d</span>
-                    <div className="w-1 h-full bg-[#15120D80]"></div>
-
-                    <span>{n.time?.hours}h</span>
-                    <div className="w-1 h-full bg-[#15120D80]"></div>
-
-                    <span>{n.time?.minutes}m</span>
-                  </div>
-                </div>
+                <p>{n.desc}</p>
               </div>
             </figure>
           ))
@@ -277,7 +243,7 @@ const HeroComponent = () => {
         )}
       </div>
     </div>
-  )
+  );
 };
 
 export default HeroComponent;
