@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url("./fonts/Montserrat/stylesheet.css");
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -16,8 +16,13 @@
   }
 }
 
+@viewport {
+  min-zoom: 50%;
+  max-zoom: 200%;
+}
+
 body {
-  font-family: "Inter", sans-serif;
+  font-family: 'Montserrat';
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,

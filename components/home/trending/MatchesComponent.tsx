@@ -149,7 +149,7 @@ const MatchesComponent = () => {
       </svg>
 
       {/* center */}
-      <div className="flex flex-col gap-5 px-4">
+      <div className="flex flex-col gap-5 lg:px-4">
         {/* matches */}
         <div className="flex flex-col gap-4 justify-center w-full mx-auto">
           {dataList &&
@@ -158,13 +158,19 @@ const MatchesComponent = () => {
               <div key={i} className="flex flex-col gap-4 px-2">
                 <div className="flex justify-between">
                   <div className="flex gap-3 items-center">
-                  <figure className="w-12 h-12 justify-center flex items-center overflow-hidden">
-                    <MatchLeagueIcon className="w-8 h-8" type={n.league} />
-                  </figure>
-                  <span className="font-semibold text-lg capitalize">{n.league.replaceAll("_", " ")}</span>
+                    <figure className="w-12 h-12 justify-center flex items-center overflow-hidden">
+                      <MatchLeagueIcon className="w-8 h-8" type={n.league} />
+                    </figure>
+                    <span className="font-semibold text-lg capitalize">
+                      {n.league.replaceAll("_", " ")}
+                    </span>
                   </div>
                 </div>
-                <MatchCardComponet n={n} />
+                {n.matches &&
+                  n.matches.length > 0 &&
+                  n.matches.map((match, idx) => (
+                    <MatchCardComponet match={match} key={idx} />
+                  ))}
               </div>
             ))}
         </div>

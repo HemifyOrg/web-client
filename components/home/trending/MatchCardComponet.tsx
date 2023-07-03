@@ -1,21 +1,42 @@
-import { WagerType } from "@/utils/types";
+import { MatchType } from "@/utils/types";
+import Image from "next/image";
 import React from "react";
 
-export const MatchCardComponet = ({ n }: { n: WagerType }) => {
+export const MatchCardComponet = ({ match }: { match: MatchType }) => {
   return (
     <div className="p-2 rounded-lg w-full bg-white flex flex-col gap-4">
       {/* verus */}
       <div className="flex justify-between w-full items-center">
         <div className="flex items-center gap-2">
-          <figure className="w-8 h-8 rounded-lg bg-black overflow-hidden" />
-          <span className="text-lg font-medium capitalize">Chicago Bulls</span>
+          <figure className="rounded-lg bg-black overflow-hidden">
+            <Image
+              width={40}
+              height={40}
+              src={match.home.image}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+          </figure>
+          <span className="text-lg font-medium capitalize">
+            {match.home.name}
+          </span>
         </div>
         <div className="flex items-center gap-2 mx-2">
           <span className="text-lg font-medium uppercase">VS</span>
         </div>
         <div className="flex items-center gap-2">
-          <figure className="w-8 h-8 rounded-lg bg-black overflow-hidden" />
-          <span className="text-lg font-medium capitalize">Chicago Bulls</span>
+          <figure className="rounded-lg bg-black overflow-hidden">
+            <Image
+              width={40}
+              height={40}
+              src={match.away.image}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+          </figure>
+          <span className="text-lg font-medium capitalize">
+            {match.away.name}
+          </span>
         </div>
       </div>
       {/* odds */}
