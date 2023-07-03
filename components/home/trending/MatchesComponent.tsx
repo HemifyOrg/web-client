@@ -58,7 +58,7 @@ const MatchesComponent = () => {
     },
     {
       id: 2,
-      league: "la_liga",
+      league: "ligue_1",
       image: null,
       matches: [...matches],
     },
