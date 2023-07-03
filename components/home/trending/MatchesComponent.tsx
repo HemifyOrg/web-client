@@ -1,69 +1,72 @@
 // import { useState } from "react";
 
+import { WagerType } from "@/utils/types";
 import { MatchCardComponet } from "./MatchCardComponet";
+import { MatchLeagueIcon } from "@/utils/components";
 
 const MatchesComponent = () => {
-  let dataList = [
+  let matches = [
     {
       id: 0,
-      image: "/images/ape4.png",
-      name: "BBApe 1/1",
-      price: "0.9",
-      user: {
-        username: "divuzki",
+      home: {
+        name: "Los Angeles Clippers",
         image: "/images/ape4.png",
       },
+      away: {
+        name: "Chicago Bulls",
+        image: "/images/ape3.png",
+      },
+      odds: {
+        home: 1.56,
+        both: 4.1,
+        away: 2.33,
+      },
+      status: "live",
       time: { days: "1", hours: "02", minutes: "23" },
     },
     {
       id: 1,
-      image: "/images/ape2.png",
-      name: "BBApe 1/1",
-      price: "0.87",
-      user: {
-        username: "ayotunde",
+      home: {
+        name: "Los Angeles Clippers",
         image: "/images/ape4.png",
       },
-      time: { days: "10", hours: "22", minutes: "30" },
+      away: {
+        name: "Chicago Bulls",
+        image: "/images/ape3.png",
+      },
+      odds: {
+        home: 1.56,
+        both: 4.1,
+        away: 2.33,
+      },
+      status: "live",
+      time: { days: "1", hours: "02", minutes: "23" },
+    },
+  ];
+  let dataList = [
+    {
+      id: 0,
+      league: "world_cup",
+      image: null,
+      matches: [...matches],
+    },
+    {
+      id: 1,
+      league: "la_liga",
+      image: null,
+      matches: [...matches],
     },
     {
       id: 2,
-      image: "/images/ape3.png",
-      name: "BBApe 1/1",
-      price: "1.02",
-      user: {
-        username: "greenlight",
-        image: "/images/ape4.png",
-      },
-      time: { days: "5", hours: "24", minutes: "50" },
+      league: "la_liga",
+      image: null,
+      matches: [...matches],
     },
-    {
-      id: 3,
-      image: "/images/ape.webp",
-      name: "BBApe 1/1",
-      price: "1.02",
-      user: {
-        username: "ayoze",
-        image: "/images/ape3.png",
-      },
-      time: { days: "5", hours: "24", minutes: "50" },
-    },
-    {
-      id: 4,
-      image: "/images/ape2.png",
-      name: "BBApe 1/1",
-      price: "1.02",
-      user: {
-        username: "onelight",
-        image: "/images/ape4.png",
-      },
-      time: { days: "5", hours: "24", minutes: "50" },
-    },
-  ];
+  ] as WagerType[];
   // const [data] = useState([...dataList]);
 
   return (
-    <div className="py-4 rounded-t-2xl bg-[#F6EFE2] flex flex-col gap-8">
+    <div className="py-4 rounded-t-2xl bg-primary flex flex-col gap-8">
       {/* top */}
 
       <svg
@@ -147,15 +150,24 @@ const MatchesComponent = () => {
 
       {/* center */}
       <div className="flex flex-col gap-5 px-4">
-
         {/* matches */}
-         <div className="flex flex-col gap-4 justify-center w-full mx-auto">
-            {dataList &&
-              dataList.length > 0 &&
-              dataList.map((n, i) => (
-                <MatchCardComponet key={i} n={n} />
-              ))}
-          </div>
+        <div className="flex flex-col gap-4 justify-center w-full mx-auto">
+          {dataList &&
+            dataList.length > 0 &&
+            dataList.map((n, i) => (
+              <div key={i} className="flex flex-col gap-4 px-2">
+                <div className="flex justify-between">
+                  <div className="flex gap-3 items-center">
+                  <figure className="w-12 h-12 justify-center flex items-center overflow-hidden">
+                    <MatchLeagueIcon className="w-8 h-8" type={n.league} />
+                  </figure>
+                  <span className="font-semibold text-lg capitalize">{n.league.replaceAll("_", " ")}</span>
+                  </div>
+                </div>
+                <MatchCardComponet n={n} />
+              </div>
+            ))}
+        </div>
 
         {/* control buttons */}
         <div className="w-full px-4 flex mt-8 justify-center items-center">

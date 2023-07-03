@@ -1,7 +1,7 @@
+import { WagerType } from "@/utils/types";
 import React from "react";
-import { MatchType } from "./types";
 
-export const MatchCardComponet = ({ n }: { n: MatchType }) => {
+export const MatchCardComponet = ({ n }: { n: WagerType }) => {
   return (
     <div className="p-2 rounded-lg w-full bg-white flex flex-col gap-4">
       {/* verus */}
