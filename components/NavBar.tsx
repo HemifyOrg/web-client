@@ -264,7 +264,6 @@ const NavBar = () => {
               </div>
             ) : (
               <ConnectWallet label="Connect Wallet" />
-              // <></>
             )}
             <button type="button" className="lg:hidden" title="Open Menu">
               <svg

@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   res.status(200).json({
-    name: 'Bidz & Bazaar',
+    name: 'Hemify',
     infuraId: process.env.INFURA_KEY,
     chainId: process.env.CHAIN_ID,
     networkName: process.env.NETWORK_NAME,

@@ -6,6 +6,7 @@ interface ConfigState {
   chainId: string;
   networkName: string;
   usdtContractAddress: string;
+  showConnectModal: boolean,
 }
 
 const initialState: ConfigState = {
@@ -14,6 +15,7 @@ const initialState: ConfigState = {
   chainId: '',
   networkName: '',
   usdtContractAddress: '',
+  showConnectModal: false,
 };
 
 export const loadConfig = createAsyncThunk('config/load', async (_, { dispatch }) => {
@@ -33,9 +35,12 @@ export const configSlice = createSlice({
       state.networkName = action.payload.networkName;
       state.usdtContractAddress = action.payload.usdtContractAddress;
     },
+     setShowConnectModal: (state, { payload }) => {
+        state.showConnectModal = payload
+    }
   },
 });
 
-export const { received } = configSlice.actions;
+export const { received, setShowConnectModal } = configSlice.actions;
 
 export default configSlice.reducer;

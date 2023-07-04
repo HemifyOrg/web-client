@@ -76,7 +76,8 @@ export const connectAccount = createAsyncThunk(
         case 'coinbase':
           const { default: WalletLink } = await import('walletlink');
           const walletLink = new WalletLink({
-            appName: 'Bidz & Bazaar',
+            appName: 'Hemify',
+            appLogoUrl: '/public/favicon.ico',
             darkMode: false,
           });
 

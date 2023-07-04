@@ -27,3 +27,22 @@ export interface WagerType {
     image: JSX.Element | undefined | any;
     matches: MatchType[];
 }
+
+export interface SwapType {
+    user: {
+        username: string;
+        image: string;
+    };
+    trade: number;
+    currency: string;
+    completionRate: string;
+    offer: string;
+    available: string;
+    preference: {
+        username: string;
+        image: string;
+        value: string;
+    };
+    negotiation: string;
+    fee: string;
+}

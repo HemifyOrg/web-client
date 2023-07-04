@@ -35,7 +35,7 @@
     "**/*.tsx",
     "features/accountSlice.ts",
     ".next/types/**/*.ts"
-, "components/home/how-it-works.jsx", "components/home/trending/P2PComponent.tsx"  ],
+, "components/home/how-it-works.jsx", "components/reusable/P2PComponent.tsx"  ],
   "exclude": [
     "node_modules"
   ]
