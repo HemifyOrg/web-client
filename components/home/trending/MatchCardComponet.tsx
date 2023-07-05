@@ -73,7 +73,7 @@ export const MatchCardComponet = ({ match }: { match: MatchType }) => {
                 cy="3.66211"
                 r="3.125"
                 fill="#07CA1A"
-                fill-opacity="0.2"
+                fillOpacity="0.2"
               />
               <circle cx="3.125" cy="3.66211" r="1.5625" fill="#07CA1A" />
             </svg>

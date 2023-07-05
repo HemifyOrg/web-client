@@ -43,8 +43,8 @@ const TrandingComponent = () => {
               y2="40.6621"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#15120D" />
-              <stop offset="1" stop-color="#15120D" stop-opacity="0" />
+              <stop stopColor="#15120D" />
+              <stop offset="1" stopColor="#15120D" stopOpacity="0" />
             </linearGradient>
             <radialGradient
               id="paint1_radial_2040_31311"
@@ -54,9 +54,9 @@ const TrandingComponent = () => {
               gradientUnits="userSpaceOnUse"
               gradientTransform="translate(236.777 36.7) rotate(-179.751) scale(8.82346 14.4775)"
             >
-              <stop offset="0.314" stop-color="#FF9800" />
-              <stop offset="0.662" stop-color="#FF6D00" />
-              <stop offset="0.972" stop-color="#F44336" />
+              <stop offset="0.314" stopColor="#FF9800" />
+              <stop offset="0.662" stopColor="#FF6D00" />
+              <stop offset="0.972" stopColor="#F44336" />
             </radialGradient>
             <radialGradient
               id="paint2_radial_2040_31311"
@@ -66,15 +66,15 @@ const TrandingComponent = () => {
               gradientUnits="userSpaceOnUse"
               gradientTransform="translate(237.273 27.9195) rotate(90.5787) scale(9.23205 6.94781)"
             >
-              <stop offset="0.214" stop-color="#FFF176" />
-              <stop offset="0.328" stop-color="#FFF27D" />
-              <stop offset="0.487" stop-color="#FFF48F" />
-              <stop offset="0.672" stop-color="#FFF7AD" />
-              <stop offset="0.793" stop-color="#FFF9C4" />
-              <stop offset="0.822" stop-color="#FFF8BD" stop-opacity="0.804" />
-              <stop offset="0.863" stop-color="#FFF6AB" stop-opacity="0.529" />
-              <stop offset="0.91" stop-color="#FFF38D" stop-opacity="0.209" />
-              <stop offset="0.941" stop-color="#FFF176" stop-opacity="0" />
+              <stop offset="0.214" stopColor="#FFF176" />
+              <stop offset="0.328" stopColor="#FFF27D" />
+              <stop offset="0.487" stopColor="#FFF48F" />
+              <stop offset="0.672" stopColor="#FFF7AD" />
+              <stop offset="0.793" stopColor="#FFF9C4" />
+              <stop offset="0.822" stopColor="#FFF8BD" stopOpacity="0.804" />
+              <stop offset="0.863" stopColor="#FFF6AB" stopOpacity="0.529" />
+              <stop offset="0.91" stopColor="#FFF38D" stopOpacity="0.209" />
+              <stop offset="0.941" stopColor="#FFF176" stopOpacity="0" />
             </radialGradient>
             <clipPath id="clip0_2040_31311">
               <rect

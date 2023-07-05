@@ -1,38 +1,30 @@
-import { configureStore } from '@reduxjs/toolkit';
-import accountReducer from '../features/accountSlice';
-import configReducer from '../features/configSlice';
-import CircularJSON from 'circular-json';
+import { configureStore } from "@reduxjs/toolkit";
+import {
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import { persistedReducerMain } from "./reducerMain";
 
 // Function to retrieve the saved state from localStorage
-const getSavedState = (stateName: string) => {
-  try {
-    const savedState = localStorage.getItem(stateName+'State');
-    return savedState ? JSON.parse(savedState) : undefined;
-  } catch (err) {
-    console.error('Error parsing saved '+ stateName +' state:', err);
-    return undefined;
-  }
-};
 
 const store = configureStore({
-  reducer: {
-    account: accountReducer,
-    config: configReducer,
-  },
-  preloadedState: {
-    account: getSavedState("account"),
-  },
+  reducer: persistedReducerMain,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false,
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredPaths: ["account"],
+      },
     }),
+  // DEV set devTools to false in production
+  devTools: process.env.NODE_ENV !== "production",
 });
-
-// Subscribe to user state changes and save the updated state to localStorage
-store.subscribe(() => {
-  const accountState = store.getState().account;
-  localStorage.setItem('accountState', CircularJSON.stringify(accountState));
-});
+export const reduxStoreMainPersistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
