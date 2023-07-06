@@ -257,11 +257,12 @@ const NavBar = () => {
               )}
             </div>
             {account.connected ? (
-              <div className="space-x-3 font-mono">
-                <span className="rounded-md py-1 px-2 bg-gradient-to-r from-pink-400 to-amber-200 font-mono tracking-wide">
-                  {formatAddress(account.address)}
-                </span>
-              </div>
+              <figure
+                className="flex items-center justify-center overflow-hidden bg-center bg-cover bg-no-repeat bg-[#68E1FD] rounded-full w-10 h-10"
+                style={{
+                  backgroundImage: `url(/images/user-pic.png)`,
+                }}
+              />
             ) : (
               <ConnectWallet label="Connect Wallet" />
             )}

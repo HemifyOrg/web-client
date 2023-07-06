@@ -12,7 +12,7 @@ const Footer = () => {
         {/* logo section */}
         <div className="flex flex-col gap-2 justify-center items-start">
           <div className="flex flex-col gap-1">
-            <figure className="flex items-center justify-center overflow-hidden w-10 h-10 bg-black rounded-full">
+            <figure className="flex items-center justify-center overflow-hidden w-12 h-12 bg-black rounded-full">
               <LogoSvg className="w-full h-full" />
             </figure>
             <span className="lg:text-base text-sm text-gray-100">
@@ -25,9 +25,13 @@ const Footer = () => {
         </div>
 
         {/* quick links section */}
-        <div className="flex flex-wrap gap-4 justify-between items-center">
+        <div className="md:flex grid grid-cols-2 flex-wrap gap-4 justify-between items-center">
           {quickLinks.map((link, index) => (
-            <QuickLinkComponent key={index} link={link} />
+            <QuickLinkComponent
+              key={index}
+              index={index}
+              link={link}
+            />
           ))}
         </div>
       </div>
