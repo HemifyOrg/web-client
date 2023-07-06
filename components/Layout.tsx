@@ -4,6 +4,7 @@ import { ConnectWalletPopup } from "./reusable";
 import { AppProps } from "next/app";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
+import { Footer } from "./footer";
 
 const Layout = ({ Component, pageProps }: AppProps) => {
   const showConnectPopup = useSelector(
@@ -15,6 +16,7 @@ const Layout = ({ Component, pageProps }: AppProps) => {
       <div className="relative overflow-x-hidden">
         {showConnectPopup && <ConnectWalletPopup />}
         <Component {...pageProps} />
+      <Footer />
       </div>
     </div>
   );

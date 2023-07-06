@@ -58,10 +58,10 @@ const NavBar = () => {
             </div>
           </Link>
           <ul className="gap-10 hidden lg:flex">
-            <Link href="/swap" className="border-none text-gray-900">
+            <Link href="/product/swap" className="border-none text-gray-900">
               <li>Swap</li>
             </Link>
-            <Link href="/wager" className="border-none text-gray-900">
+            <Link href="/product/wager" className="border-none text-gray-900">
               <li>Wager</li>
             </Link>
           </ul>
