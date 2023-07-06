@@ -29,7 +29,6 @@ export interface ConnectAccountArgs {
 const initialState: AccountState = {
   address: null,
   networkId: null,
-  // provider: null,
   connected: false,
   balance: ethers.constants.Zero,
   usdtBalance: ethers.constants.Zero,
@@ -117,7 +116,6 @@ export const connectAccount = createAsyncThunk(
         connected({
           address: address,
           networkId: networkId,
-          // provider: provider,
           balance: balance,
           usdtBalance: usdtBalance,
         })
@@ -157,7 +155,6 @@ export const accountSlice = createSlice({
     connected: (state, { payload }) => {
       state.address = payload.address
       state.networkId = payload.networkId
-      // state.provider = payload.provider
       state.balance = payload.balance
       state.usdtBalance = payload.usdtBalance
       state.connected = true
@@ -169,14 +166,12 @@ export const accountSlice = createSlice({
       produce(state, (draft) => {
         const { provider, ...restPayload } = payload;
         Object.assign(draft, restPayload);
-        // draft.provider = provider;
       });
     },
     disconnected: (state) => {
       produce(state, (draft) => {
         draft.address = initialState.address;
         draft.networkId = initialState.networkId;
-        // draft.provider = null;
         draft.balance = initialState.balance;
         draft.usdtBalance = initialState.usdtBalance;
         draft.connected = initialState.connected;
