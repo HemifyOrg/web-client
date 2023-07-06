@@ -2,6 +2,14 @@ import { combineReducers } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import {accountReducer, configReducer} from "../features";
+import providerAccountTransform from "./reduxTransforms";
+
+
+const persistConfigAccountMain = {
+  key: "account",
+  storage,
+  transforms: [providerAccountTransform],
+};
 
 const persistConfigMain = {
   key: "root",
@@ -10,8 +18,8 @@ const persistConfigMain = {
 };
 
 const rootReducerMain = combineReducers({
-  account: accountReducer,
-  config: configReducer
+  account: persistReducer(persistConfigAccountMain, accountReducer),
+  config: configReducer,
 });
 
 export const persistedReducerMain = persistReducer(
