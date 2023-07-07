@@ -25,11 +25,13 @@ const QuickLinkComponent = ({
           <Link
             key={index}
             href={link.href}
-            className="text-sm font-light flex md:gap-4 gap-2 no-underline border-none decoration-transparent text-gray-100 hover:text-gray-200"
+            className="text-sm group font-light flex md:gap-4 gap-2 no-underline hover:border-transparent border-transparent text-gray-100 hover:text-gray-200"
           >
-            <span>{link.title}</span>
+            <span className="border-b border-transparent group-hover:border-[#d2b37d]">
+              {link.title}
+            </span>
             {link.isComingSoon && (
-              <span className="text-xs font-light bg-[#938558] rounded-full p-1 text-gray-100">
+              <span className="sm:text-xs text-[9px] border-b border-transparent group-hover:border- font-light bg-[#938558] rounded-full p-1 text-gray-100">
                 Coming Soon
               </span>
             )}

@@ -8,3 +8,9 @@ export interface QuickLinkType {
   title: string;
   subLinks: SubLinkType[];
 };
+
+export interface SocialLink {
+    title: string;
+    href: string;
+    icon: JSX.Element;
+}

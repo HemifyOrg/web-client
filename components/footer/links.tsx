@@ -1,5 +1,5 @@
 import { QuickLinkType } from "./types";
-import { BsTwitter } from "react-icons/bs";
+import { BsTwitter, BsDiscord, BsLinkedin } from "react-icons/bs";
 
 export const quickLinks: QuickLinkType[] = [
   {
@@ -21,17 +21,27 @@ export const quickLinks: QuickLinkType[] = [
   {
     title: "Materials",
     subLinks: [
-        { title: "Whitepaper", href: "/material/whitepaper" },
-        { title: "Blog", href: "/material/blog" },
-        { title: "FAQ", href: "/material/faq" },
-    ]
-  }
+      { title: "Whitepaper", href: "/material/whitepaper" },
+      { title: "Blog", href: "/material/blog" },
+      { title: "FAQ", href: "/material/faq" },
+    ],
+  },
 ];
 
 export const socialLinks = [
-    {
-        title: "Twitter",
-        href: "https://twitter.com/swapdex",
-        icon: <BsTwitter />,
-    }
-  ]
+  {
+    title: "Twitter",
+    href: "#",
+    icon: <BsTwitter className="text-black w-full h-full" />,
+  },
+  {
+    title: "Discord",
+    href: "#",
+    icon: <BsDiscord className="text-black w-full h-full" />,
+  },
+  {
+    title: "Linkedin",
+    href: "#",
+    icon: <BsLinkedin className="text-black w-full h-full" />,
+  },
+];

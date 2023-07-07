@@ -1,7 +1,8 @@
 import { LogoSvg } from "@/utils";
 import React from "react";
-import { quickLinks } from "./links";
+import { quickLinks, socialLinks } from "./links";
 import QuickLinkComponent from "./QuickLinkComponent";
+import SocialLinkComponent from "./SocialLinkComponent";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -25,14 +26,22 @@ const Footer = () => {
         </div>
 
         {/* quick links section */}
-        <div className="md:flex grid grid-cols-2 flex-wrap gap-4 justify-between items-center">
+        <div className="md:flex w-full grid grid-cols-2 flex-wrap gap-4 justify-between items-center">
           {quickLinks.map((link, index) => (
-            <QuickLinkComponent
-              key={index}
-              index={index}
-              link={link}
-            />
+            <QuickLinkComponent key={index} index={index} link={link} />
           ))}
+          {/* contact us */}
+          <div className="flex flex-col gap-3 md:justify-center justify-start md:items-start items-end">
+            <span className="text-lg font-semibold text-gray-100">
+              Contacts
+            </span>
+
+            <div className="flex flex-wrap gap-2 select-none items-center">
+              {socialLinks.map((link, index) => (
+                <SocialLinkComponent key={index} link={link} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
       <div className="flex items-center justify-center gap-4 p-4">
