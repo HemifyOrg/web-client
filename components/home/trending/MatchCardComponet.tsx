@@ -42,16 +42,16 @@ export const MatchCardComponet = ({ match }: { match: MatchType }) => {
       {/* odds */}
       <div className="flex justify-between w-full items-center">
         <div className="flex items-center justify-between gap-4 px-1 py-[1px] bg-darkGold rounded-lg">
-          <span className="text-base text-gold font-medium">1</span>
-          <span className="text-base text-gold font-medium">1.5</span>
+          <span className="text-base text-themeColor font-medium">1</span>
+          <span className="text-base text-themeColor font-medium">1.5</span>
         </div>
         <div className="flex items-center justify-between gap-4 px-1 py-[1px] bg-darkGold rounded-lg mx-2">
-          <span className="text-base text-gold font-medium">X</span>
-          <span className="text-base text-gold font-medium">2.5</span>
+          <span className="text-base text-themeColor font-medium">X</span>
+          <span className="text-base text-themeColor font-medium">2.5</span>
         </div>
         <div className="flex items-center justify-between gap-4 px-1 py-[1px] bg-darkGold rounded-lg">
-          <span className="text-base text-gold font-medium">2</span>
-          <span className="text-base text-gold font-medium">3.5</span>
+          <span className="text-base text-themeColor font-medium">2</span>
+          <span className="text-base text-themeColor font-medium">3.5</span>
         </div>
       </div>
 

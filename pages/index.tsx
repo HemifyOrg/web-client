@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Bidz & Bazaar</title>
+        <title>Hemify</title>
       </Head>
 
       <main className="mt-20 flex flex-col">
