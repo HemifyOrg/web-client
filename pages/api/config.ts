@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+
 export const runtime = 'edge' // 'nodejs' (default) | 'edge'
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(req: any, res: any) {
   res.status(200).json({
     name: 'Hemify',
     infuraId: process.env.INFURA_KEY,
