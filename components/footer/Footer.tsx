@@ -6,9 +6,9 @@ import SocialLinkComponent from "./SocialLinkComponent";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
+  console.log(process.env.INFURA_KEY);
   return (
-    <div className="flex flex-col px-2 divide-y-[0.5px] divide-[#3F3626] lg:px-8 gap-4 py-2 bg-footerBg">
+    <div className="flex flex-col px-2 divide-y-[0.5px] divide-[#3F3626] lg:px-8 gap-4 pb-2 pt-4 bg-footerBg">
       <div className="flex lg:flex-row gap-4 flex-col w-full justify-between">
         {/* logo section */}
         <div className="flex flex-col gap-2 justify-center items-start">
