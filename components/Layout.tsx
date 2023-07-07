@@ -10,13 +10,14 @@ const Layout = ({ Component, pageProps }: AppProps) => {
   const showConnectPopup = useSelector(
     (state: RootState) => state.config.showConnectModal
   );
+  const isConnected = useSelector((state: RootState) => state.account.connected)
   return (
     <div className="w-screen h-screen flex flex-col bg-gradient-to-b from-[#d0d4d651] overflow-y-auto overflow-x-hidden">
       <NavBar />
       <div className="relative overflow-x-hidden">
-        {showConnectPopup && <ConnectWalletPopup />}
+        {showConnectPopup && !isConnected && <ConnectWalletPopup />}
         <Component {...pageProps} />
-      <Footer />
+        <Footer />
       </div>
     </div>
   );

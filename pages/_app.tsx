@@ -2,9 +2,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import store, { reduxStoreMainPersistor } from "../app/store";
-import NavBar from "@/components/NavBar";
 import { PersistGate } from "redux-persist/integration/react";
-import { ConnectWalletPopup } from "@/components/reusable";
 import Layout from "@/components/Layout";
 
 export default function App({ Component, pageProps }: AppProps) {
