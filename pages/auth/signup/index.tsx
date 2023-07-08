@@ -65,15 +65,11 @@ const SignupPage = () => {
           const dob = new Date(values.dob);
           const today = new Date();
           const age = today.getFullYear() - dob.getFullYear();
-          const m = today.getMonth() - dob.getMonth();
-          if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
-            return;
-          }
+          const errors: any = {};
           if (age < 18) {
-            return {
-              dob: "You must be 18 years or older to use our platform",
-            };
+            errors.dob = "You must be 18 years or older to use our platform";
           }
+          return errors;
         }}
         onSubmit={(values, actions) => {
           console.log({ values, actions });

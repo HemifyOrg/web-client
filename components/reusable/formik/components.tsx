@@ -1,6 +1,6 @@
 import { Field, useField, ErrorMessage, ErrorMessageProps } from "formik";
 import React, { InputHTMLAttributes } from "react";
-
+import { motion } from "framer-motion";
 const validatePhone = (value: string) => {
   // Regular expression to match only numbers
   const regEx = /^[\d]*$/;
@@ -17,7 +17,16 @@ const validatePhone = (value: string) => {
 };
 
 export const TextError = (props: ErrorMessageProps | any) => {
-  return <div className="text-sm text-red-500 text-left">{props.children}</div>;
+  return (
+    <motion.div
+      initial={{ opacity: -1, y: "-100%" }}
+      animate={{ opacity: 1, y: "0%" }}
+      exit={{ opacity: -1, y: "100%" }}
+      className="text-sm text-red-500 text-left"
+    >
+      {props.children}
+    </motion.div>
+  );
 };
 
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
@@ -56,7 +65,7 @@ export const InputField = ({
       field.onChange({
         target: {
           name: "dob",
-          value: `${dob.day}/${dob.month}/${dob.year}`,
+          value: `${dob.month}/${dob.day}/${dob.year}`,
         },
       });
     }
