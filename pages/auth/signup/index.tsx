@@ -34,13 +34,13 @@ const SignupPage = () => {
     {
       name: "dob",
       label: "Date of Birth",
-      type: "date",
+      type: "number",
       placeholder: "Enter your date of birth",
       autoComplete: "dob",
     },
   ];
   return (
-    <main className="mt-20 p-4 gap-4 flex w-full md:w-3/6 m-auto flex-col items-center justify-center">
+    <main className="md:mt-32 mt-20 mb-12 p-4 gap-4 flex w-full md:w-[40%] m-auto flex-col items-center justify-center">
       <Formik
         initialValues={initialValues}
         onSubmit={(values, actions) => {
