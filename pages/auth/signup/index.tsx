@@ -1,11 +1,16 @@
-import { useState, useEffect, useRef } from "react";
-import { InputField, TextError } from "@/components/reusable/formik";
+import { useState, useEffect } from "react";
+import {
+  AuthHeader,
+  InputField,
+  TextError,
+} from "@/components/reusable/formik";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { AnimatePresence } from "framer-motion";
 import { Slide } from "@/components/reusable";
 import { motion } from "framer-motion";
 import Link from "next/link";
+
 const SignupPage = () => {
   const SignupSchema = Yup.object().shape({
     fullName: Yup.string()
@@ -161,11 +166,11 @@ const SignupPage = () => {
         </div>
       </>,
       // <div>Slide 3</div>,
-      // Add more slides as needed
     ][currentSlide];
   };
   return (
     <main className="md:mt-32 mt-20 mb-12 p-4 gap-4 h-full flex w-full md:w-[45%] lg:w-1/3 m-auto flex-col items-center justify-start lg:justify-center">
+      <AuthHeader type="signup" />
       <Formik
         initialValues={initialValues}
         validationSchema={SignupSchema}
