@@ -1,8 +1,19 @@
 import { InputField } from "@/components/reusable/formik";
 import { Formik, Form } from "formik";
-import Head from "next/head";
+import * as Yup from "yup";
 
 const SignupPage = () => {
+  const SignupSchema = Yup.object().shape({
+    fullName: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    username: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    email: Yup.string().email("Invalid email").required("Required"),
+  });
   const initialValues = {
     fullName: "",
     email: "",
@@ -16,12 +27,14 @@ const SignupPage = () => {
       name: "fullName",
       label: "Full Name",
       type: "text",
+      infoText: "Your full name will not be visible to other users",
       placeholder: "Enter your legal First and Last name",
     },
     {
       name: "email",
       label: "Email",
       type: "email",
+      infoText: "We'll never share your email with anyone else.",
       placeholder: "Enter a valid email address",
       autoComplete: "email",
     },
@@ -29,6 +42,7 @@ const SignupPage = () => {
       name: "username",
       label: "Username",
       type: "text",
+      infoText: "Your username will be visible to other users",
       placeholder: "Enter your preferred username",
       autoComplete: "username",
     },
@@ -36,17 +50,31 @@ const SignupPage = () => {
       name: "dob",
       label: "Date of Birth",
       type: "number",
+      infoText: "We require your date of birth to verify your age",
       placeholder: "Enter your date of birth",
       autoComplete: "dob",
     },
   ];
   return (
     <main className="md:mt-32 mt-20 mb-12 p-4 gap-4 h-full flex w-full md:w-[50%] m-auto flex-col items-center justify-start lg:justify-center">
-     <Head>
-        <title>Sign Up | {process.env.PUBLIC_APP_NAME}</title>
-     </Head>
       <Formik
         initialValues={initialValues}
+        validationSchema={SignupSchema}
+        validate={(values) => {
+          // check if user is 18 years or older
+          const dob = new Date(values.dob);
+          const today = new Date();
+          const age = today.getFullYear() - dob.getFullYear();
+          const m = today.getMonth() - dob.getMonth();
+          if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+            return;
+          }
+          if (age < 18) {
+            return {
+              dob: "You must be 18 years or older to use our platform",
+            };
+          }
+        }}
         onSubmit={(values, actions) => {
           console.log({ values, actions });
           alert(JSON.stringify(values, null, 2));
@@ -86,11 +114,11 @@ const SignupPage = () => {
                 <InputField {...field} key={index} />
               ))}
 
-              <div className="flex gap-4 justify-center items-center w-full">
+              <div className="flex gap-4 my-2 justify-center items-center w-full">
                 <button
                   type="submit"
                   disabled={!dirty}
-                  className="bg-btnImage disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all text-gray-700 font-bold py-2"
+                  className="bg-btnImage disabled:cursor-not-allowed disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all text-gray-700 font-bold py-2"
                 >
                   Next
                 </button>
