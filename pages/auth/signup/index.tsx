@@ -22,6 +22,7 @@ const SignupPage = () => {
       .max(50, "Too Long!")
       .required("Required"),
     email: Yup.string().email("Invalid email").required("Required"),
+    dob: Yup.string(),
     checkedTerms: Yup.boolean().oneOf(
       [true],
       "You must accept the terms and conditions"
@@ -65,6 +66,7 @@ const SignupPage = () => {
       name: "dob",
       label: "Date of Birth",
       type: "number",
+      helpText: "Format: DD-MM-YYYY",
       infoText: "We require your date of birth to verify your age",
       placeholder: "Enter your date of birth",
       autoComplete: "dob",
@@ -120,11 +122,12 @@ const SignupPage = () => {
     values: any;
     touched: any;
     errors: any;
+    validateOnChange?: any;
   }) => {
     return [
       <>
         {fieldsList.slice(0, 4).map((field, index) => (
-          <InputField {...field} key={index} />
+          <InputField {...field} {...props.validateOnChange} key={index} />
         ))}
       </>,
       <>
@@ -179,11 +182,10 @@ const SignupPage = () => {
           const dob = new Date(values.dob);
           const today = new Date();
           const age = today.getFullYear() - dob.getFullYear();
-          const errors: any = {};
           if (age < 18) {
-            errors.dob = "You must be 18 years or older to use our platform";
+            return { dob: "You must be 18 years or older to use our platform" };
           }
-          return errors;
+          return;
         }}
         onSubmit={(values, actions) => {
           console.log({ values, actions });
@@ -263,7 +265,15 @@ const SignupPage = () => {
                 <button
                   type="button"
                   onClick={goToNextSlide}
-                  disabled={!dirty || currentSlide >= 1}
+                  disabled={
+                    !dirty ||
+                    currentSlide >= 1 ||
+                    (currentSlide === 0 &&
+                      (typeof rest.errors.email === "string" ||
+                        typeof rest.errors.fullName === "string" ||
+                        typeof rest.errors.username === "string" ||
+                        typeof rest.errors.dob === "string"))
+                  }
                   className="bg-btnImage disabled:cursor-not-allowed disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all text-gray-700 font-bold py-2"
                 >
                   Next

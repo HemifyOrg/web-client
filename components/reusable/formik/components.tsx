@@ -1,4 +1,10 @@
-import { Field, useField, ErrorMessage, ErrorMessageProps } from "formik";
+import {
+  Field,
+  useField,
+  ErrorMessage,
+  ErrorMessageProps,
+  useFormikContext,
+} from "formik";
 import React, { InputHTMLAttributes } from "react";
 import { motion } from "framer-motion";
 const validatePhone = (value: string) => {
@@ -11,6 +17,28 @@ const validatePhone = (value: string) => {
 
   if (!regEx.test(value)) {
     return "Invalid phone number";
+  }
+
+  return undefined;
+};
+
+const validateDoB = (value: string) => {
+  // Regular expression to match only numbers
+  // check if user is 18 years and above
+  const regEx = /^[\d]*$/;
+
+  if (!value) {
+    return "Date of birth is required";
+  }
+
+  if (!regEx.test(value)) {
+    return "Invalid date of birth";
+  }
+
+  const currentYear = new Date().getFullYear();
+  const userYear = parseInt(value.split("/")[2]);
+  if (currentYear - userYear < 18) {
+    return "You must be 18 years and above";
   }
 
   return undefined;
@@ -48,6 +76,8 @@ export const InputField = ({
   loading,
   ...props
 }: InputFieldProps) => {
+  const { values, setFieldValue } = useFormikContext();
+  console.log({ values });
   const [field, meta] = useField(name);
   const currentYear = new Date().getFullYear();
   const [dob, setDob] = React.useState<{
@@ -62,12 +92,11 @@ export const InputField = ({
   // set dob to formik values
   React.useEffect(() => {
     if (dob.day && dob.month && dob.year) {
-      field.onChange({
-        target: {
-          name: "dob",
-          value: `${dob.month}/${dob.day}/${dob.year}`,
-        },
-      });
+      setFieldValue("dob", `${dob.month}/${dob.day}/${dob.year}`);
+      let errorMsg = validateDoB(`${dob.month}/${dob.day}/${dob.year}`);
+      if (errorMsg) {
+        setFieldValue("dob", "");
+      }
     }
   }, [dob]);
   return (

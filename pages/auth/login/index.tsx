@@ -4,19 +4,8 @@ import * as Yup from "yup";
 
 const LoginPage = () => {
   const SignupSchema = Yup.object().shape({
-    fullName: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-    username: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
     email: Yup.string().email("Invalid email").required("Required"),
-    checkedTerms: Yup.boolean().oneOf(
-      [true],
-      "You must accept the terms and conditions"
-    ),
+    password: Yup.string()
   });
   const initialValues = {
     email: "",
@@ -51,9 +40,11 @@ const LoginPage = () => {
           actions.setSubmitting(false);
         }}
       >
-        {({ dirty }) => (
+        {({ dirty, isValid }) => (
           <>
-            <p>Kindly</p>
+            <p className="text-[#15120d96] text-base ml-2 w-full font-semibold">
+              Kindly login with the email you used to sign up
+            </p>
             <Form
               className={`form md:p-2 flex flex-col gap-8 overflow-hidden md:border-[0.5px] md:border-themeColor md:bg-white  w-full`}
             >
@@ -63,11 +54,11 @@ const LoginPage = () => {
 
               <div className="flex gap-4 my-2 justify-center items-center w-full">
                 <button
-                  type="button"
-                  disabled={!dirty}
+                  type="submit"
+                  disabled={!dirty || !isValid}
                   className="bg-btnImage disabled:cursor-not-allowed disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all text-gray-700 font-bold py-2"
                 >
-                  Login
+                  Login me in
                 </button>
               </div>
             </Form>
