@@ -6,7 +6,7 @@ const AuthHeader = ({ type }: { type: "login" | "signup" }) => {
   const router = useRouter();
 
   const handleRedirect = (type: string) => {
-    router.push("/" + type);
+    router.push("/auth/" + type);
   };
   return (
     <div className="py-2 my-2 flex flex-col gap-1 justify-center items-center w-full">
