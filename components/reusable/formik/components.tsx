@@ -17,7 +17,6 @@ const validatePhone = (value: string) => {
 };
 
 export const TextError = (props: ErrorMessageProps | any) => {
-  const { errors } = props;
   return <div className="text-sm text-red-500 text-left">{props.children}</div>;
 };
 

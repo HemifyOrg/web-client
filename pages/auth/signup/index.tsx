@@ -8,8 +8,37 @@ const SignupPage = () => {
     username: "",
     password: "",
     confirmPassword: "",
-    dob: ""
+    dob: "",
   };
+  const fieldsList = [
+    {
+      name: "fullName",
+      label: "Full Name",
+      type: "text",
+      placeholder: "Enter your legal First and Last name",
+    },
+    {
+      name: "email",
+      label: "Email",
+      type: "email",
+      placeholder: "Enter a valid email address",
+      autoComplete: "email",
+    },
+    {
+      name: "username",
+      label: "Username",
+      type: "text",
+      placeholder: "Enter your preferred username",
+      autoComplete: "username",
+    },
+    {
+      name: "dob",
+      label: "Date of Birth",
+      type: "date",
+      placeholder: "Enter your date of birth",
+      autoComplete: "dob",
+    },
+  ];
   return (
     <main className="mt-20 p-4 gap-4 flex w-full md:w-3/6 m-auto flex-col items-center justify-center">
       <Formik
@@ -48,8 +77,20 @@ const SignupPage = () => {
                 </g>
               </svg>
             </div>
-            <Form className="flex flex-col gap-4 justify-start items-center w-full">
-              <InputField name="fullName" title="enter your first name" placeholder="Enter your legal First and Last name" label="Full name" />
+            <Form className="flex flex-col gap-8 justify-start items-center w-full">
+              {fieldsList.map((field, index) => (
+                <InputField {...field} key={index} />
+              ))}
+
+              <div className="flex gap-4 justify-center items-center w-full">
+                <button
+                  type="submit"
+                  disabled={!dirty}
+                  className="bg-btnImage disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all text-gray-700 font-bold py-2"
+                >
+                  Next
+                </button>
+              </div>
             </Form>
           </>
         )}

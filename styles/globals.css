@@ -52,7 +52,7 @@ select:-webkit-autofill:focus {
 }
 
 input {
-  @apply border-themeColor bg-primary appearance-none border-[0.5px] rounded w-full p-2 selection:bg-themeColor
+  @apply border-themeColor bg-primary appearance-none border-[0.5px] rounded w-full p-2 selection:bg-themeColor autofill:selection:!bg-blue-300
          autofill:!shadow-themeColor autofill:focus:!shadow-themeColor autofill:hover:!bg-themeColor text-gray-700
           leading-tight focus:outline-none focus:shadow;
 }
