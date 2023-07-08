@@ -141,7 +141,7 @@ export const InputField = ({
             {...field}
             {...props}
           />
-          {!loading && (
+          {loading && (
             <div
               className="inline-block input-loader pointer-events-none absolute right-2 h-4 w-4 animate-spin rounded-full border-2 border-solid border-themeColor border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
               role="status"
