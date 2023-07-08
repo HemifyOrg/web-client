@@ -78,7 +78,7 @@ const SignupPage = () => {
       type: "password",
       infoText: "Your password must be at least 8 characters long",
       placeholder: "Confirm your password",
-      autoComplete: "confirm-password",
+      autoComplete: "new-password",
     },
     {
       name: "referralCode",
