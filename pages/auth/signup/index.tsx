@@ -1,7 +1,11 @@
-import { InputField } from "@/components/reusable/formik";
-import { Formik, Form } from "formik";
+import { useState, useEffect, useRef } from "react";
+import { InputField, TextError } from "@/components/reusable/formik";
+import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
-
+import { AnimatePresence } from "framer-motion";
+import { Slide } from "@/components/reusable";
+import { motion } from "framer-motion";
+import Link from "next/link";
 const SignupPage = () => {
   const SignupSchema = Yup.object().shape({
     fullName: Yup.string()
@@ -13,6 +17,10 @@ const SignupPage = () => {
       .max(50, "Too Long!")
       .required("Required"),
     email: Yup.string().email("Invalid email").required("Required"),
+    checkedTerms: Yup.boolean().oneOf(
+      [true],
+      "You must accept the terms and conditions"
+    ),
   });
   const initialValues = {
     fullName: "",
@@ -21,6 +29,8 @@ const SignupPage = () => {
     password: "",
     confirmPassword: "",
     dob: "",
+    referralCode: "",
+    checkedTerms: true,
   };
   const fieldsList = [
     {
@@ -54,9 +64,108 @@ const SignupPage = () => {
       placeholder: "Enter your date of birth",
       autoComplete: "dob",
     },
+    {
+      name: "password",
+      label: "Password",
+      type: "password",
+      infoText: "Your password must be at least 8 characters long",
+      placeholder: "Enter a strong password",
+      autoComplete: "new-password",
+    },
+    {
+      name: "confirmPassword",
+      label: "Confirm Password",
+      type: "password",
+      infoText: "Your password must be at least 8 characters long",
+      placeholder: "Confirm your password",
+      autoComplete: "confirm-password",
+    },
+    {
+      name: "referralCode",
+      label: "Referral Code",
+      type: "text",
+      infoText: "Enter a referral code if you have one",
+      placeholder: "Enter a referral code",
+      autoComplete: "off",
+    },
   ];
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [containerOverflowChanged, setContainerOverflowChanged] =
+    useState(false);
+
+  useEffect(() => {
+    setContainerOverflowChanged(true);
+    setTimeout(() => {
+      setContainerOverflowChanged(false);
+    }, 500);
+  }, [currentSlide]);
+
+  const goToNextSlide = () => {
+    setCurrentSlide((prevSlide) => prevSlide + 1);
+  };
+
+  const goToPreviousSlide = () => {
+    setCurrentSlide((prevSlide) => prevSlide - 1);
+  };
+  const SlidesComponent = ({
+    ...props
+  }: {
+    currentSlide: number;
+    setValues: any;
+    values: any;
+    touched: any;
+    errors: any;
+  }) => {
+    return [
+      <>
+        {fieldsList.slice(0, 4).map((field, index) => (
+          <InputField {...field} key={index} />
+        ))}
+      </>,
+      <>
+        {fieldsList.slice(4, 7).map((field, index) => (
+          <InputField {...field} key={index} />
+        ))}
+        {/* term and condition checkbox */}
+        <label className="flex items-center justify-start gap-2">
+          <InputField
+            name="checkedTerms"
+            type="checkbox"
+            hideError
+            onChange={(e: any) => {
+              props.setValues({
+                ...props.values,
+                checkedTerms: e.target.checked,
+              });
+            }}
+            checked={props.values.checkedTerms}
+            className="form-checkbox h-5 !w-5 text-themeColor"
+          />
+          <span className="text-gray-500 text-sm flex gap-1 flex-wrap w-full">
+            By signing up you agree to our
+            <Link href={`/pages/terms-of-use`} className="text-themeColor">
+              <span>Terms of Use</span>
+            </Link>
+            and
+            <Link href={`/pages/privacy-policy`} className="text-themeColor">
+              <span>Privacy Policy</span>
+            </Link>
+          </span>
+        </label>
+        <div className="ml-5">
+          <ErrorMessage
+            name={"checkedTerms"}
+            component={TextError}
+            className="text-red-500 text-xs"
+          />
+        </div>
+      </>,
+      // <div>Slide 3</div>,
+      // Add more slides as needed
+    ][currentSlide];
+  };
   return (
-    <main className="md:mt-32 mt-20 mb-12 p-4 gap-4 h-full flex w-full md:w-[50%] m-auto flex-col items-center justify-start lg:justify-center">
+    <main className="md:mt-32 mt-20 mb-12 p-4 gap-4 h-full flex w-full md:w-[45%] lg:w-1/3 m-auto flex-col items-center justify-start lg:justify-center">
       <Formik
         initialValues={initialValues}
         validationSchema={SignupSchema}
@@ -77,7 +186,7 @@ const SignupPage = () => {
           actions.setSubmitting(false);
         }}
       >
-        {({ dirty }) => (
+        {({ dirty, setValues, ...rest }) => (
           <>
             {/* flight indicator */}
             <div className="py-2 w-full relative flex items-center justify-center">
@@ -85,7 +194,13 @@ const SignupPage = () => {
               <svg
                 viewBox="0 0 23 22"
                 fill="none"
-                className="absolute top-0 -left-2 w-6 h-6 transition-all"
+                className={`absolute top-0 ${
+                  currentSlide > 1
+                    ? "left-full"
+                    : currentSlide > 0
+                    ? "left-2/4"
+                    : "-left-2"
+                } w-6 h-6 transition-all duration-500`}
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <g filter="url(#filter0_d_3122_38071)">
@@ -105,15 +220,45 @@ const SignupPage = () => {
                 </g>
               </svg>
             </div>
-            <Form className="flex flex-col gap-8 p-2 border-[0.5px] border-themeColor bg-white justify-start items-center w-full">
-              {fieldsList.map((field, index) => (
-                <InputField {...field} key={index} />
-              ))}
+            <Form
+              className={`form md:p-2 flex flex-col gap-8 ${
+                containerOverflowChanged ? "overflow-hidden" : ""
+              }  md:border-[0.5px] md:border-themeColor md:bg-white  w-full`}
+            >
+              <AnimatePresence initial={false} custom={currentSlide}>
+                <Slide
+                  className="flex flex-col gap-8 justify-start items-center transition-transform duration-100"
+                  key={currentSlide}
+                  direction={"left"}
+                >
+                  <SlidesComponent
+                    setValues={setValues}
+                    currentSlide={currentSlide}
+                    {...rest}
+                  />
+                </Slide>
+              </AnimatePresence>
 
               <div className="flex gap-4 my-2 justify-center items-center w-full">
-                <button
-                  type="submit"
+                <motion.button
+                  initial={{ opacity: 0, left: "-100%", display: "none" }}
+                  animate={
+                    !(currentSlide > 0)
+                      ? { opacity: 0, left: "-100%", display: "none" }
+                      : { opacity: 1, left: "0%", display: "block" }
+                  }
+                  exit={{ opacity: 0, left: "-100%", display: "none" }}
+                  type="button"
+                  onClick={goToPreviousSlide}
                   disabled={!dirty}
+                  className="border-themeColor relative border rounded-full px-5 w-full active:scale-90 transition-all text-gray-700 font-bold py-2"
+                >
+                  Back
+                </motion.button>
+                <button
+                  type="button"
+                  onClick={goToNextSlide}
+                  disabled={!dirty || currentSlide >= 1}
                   className="bg-btnImage disabled:cursor-not-allowed disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all text-gray-700 font-bold py-2"
                 >
                   Next

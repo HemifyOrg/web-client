@@ -51,13 +51,13 @@ select:-webkit-autofill:focus {
   --tw-shadow-colored: none !important;
 }
 
-input {
+.form input {
   @apply border-themeColor bg-primary appearance-none border-[0.5px] rounded w-full p-2 selection:bg-themeColor autofill:selection:!bg-blue-300
          autofill:!shadow-themeColor autofill:focus:!shadow-themeColor autofill:hover:!bg-themeColor text-gray-700
           leading-tight focus:outline-none focus:shadow disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
-input:autofill ~ .input-loader {
+.form input:autofill ~ .input-loader {
   @apply border-r-primary border-y-white bg-navBarColor;
 }
 
@@ -83,4 +83,88 @@ a:hover {
     width: 110%;
     color: white;
   }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  appearance: textfield;
+}
+input[type="checkbox"] {
+  outline: none;
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: var(--form-background);
+  /* Not removed via appearance */
+  margin: 0;
+
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  @apply text-primary;
+  box-shadow: inset 1em 1em currentColor;
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
+}
+input[type="checkbox"]:checked {
+  @apply bg-themeColor;
+  border: none;
+  animation: check 0.5s ease-in-out;
+}
+@keyframes check {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+  outline: none;
+  /* outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em); */
+}
+
+input[type="checkbox"]:disabled {
+  --form-control-color: var(--form-control-disabled);
+
+  color: var(--form-control-disabled);
+  cursor: not-allowed;
 }

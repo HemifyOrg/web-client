@@ -1,3 +1,3 @@
 import ConnectWalletPopup from "./ConnectWalletPopup";
-export { OutsideAlerter } from "./components";
+export * from "./components";
 export { ConnectWalletPopup };

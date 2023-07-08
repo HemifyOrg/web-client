@@ -71,7 +71,9 @@ export const InputField = ({
     }
   }, [dob]);
   return (
-    <div className={`w-full flex flex-col gap-2`}>
+    <div
+      className={`${props.className ? "w-auto" : "w-full"} flex flex-col gap-2`}
+    >
       {label && (
         <label
           className="flex items-center gap-1 text-gray-700 text-sm font-bold"

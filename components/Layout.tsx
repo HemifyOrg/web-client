@@ -35,14 +35,14 @@ const Layout = ({ Component, pageProps }: AppProps) => {
       router.events.off("routeChangeComplete", handleRouteChangeComplete);
     };
   }, [router]);
-  
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="w-screen h-screen flex flex-col bg-gradient-to-b from-[#d0d4d651] overflow-y-auto overflow-x-hidden"
+      className="w-screen md:h-screen flex flex-col bg-gradient-to-b from-[#d0d4d651] overflow-y-auto overflow-x-hidden"
     >
       <NavBar />
       <motion.div
