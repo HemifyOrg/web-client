@@ -53,7 +53,7 @@ const ConnectWalletPopup = () => {
             }`}
           >
             <figure className="w-10 h-10 rounded-full overflow-hidden p-1 bg-black shadow-sm">
-              <LogoSvg className='w-full h-full' />
+              <LogoSvg className="w-full h-full" />
             </figure>
 
             <div role="status">
@@ -108,7 +108,7 @@ const ConnectWalletPopup = () => {
               <figure className="w-8 h-8 rounded-full p-1 bg-black shadow-sm">
                 <LogoSvg />
               </figure>
-              <h4 className="font-semibold">Hemify</h4>
+              <h4 className="font-semibold">{process.env.PUBLIC_APP_NAME}</h4>
             </div>
             <fieldset className="flex gap-2 w-full justify-center items-center">
               <input

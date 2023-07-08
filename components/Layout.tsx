@@ -50,7 +50,7 @@ const Layout = ({ Component, pageProps }: AppProps) => {
         animate={{ opacity: isAnimating ? 0 : 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className="relative overflow-x-hidden"
+        className="relative h-full overflow-x-hidden"
       >
         {showConnectPopup && !isConnected && <ConnectWalletPopup />}
         <Component {...pageProps} />

@@ -1,5 +1,6 @@
 import { InputField } from "@/components/reusable/formik";
 import { Formik, Form } from "formik";
+import Head from "next/head";
 
 const SignupPage = () => {
   const initialValues = {
@@ -40,7 +41,10 @@ const SignupPage = () => {
     },
   ];
   return (
-    <main className="md:mt-32 mt-20 mb-12 p-4 gap-4 flex w-full md:w-[40%] m-auto flex-col items-center justify-center">
+    <main className="md:mt-32 mt-20 mb-12 p-4 gap-4 h-full flex w-full md:w-[50%] m-auto flex-col items-center justify-start lg:justify-center">
+     <Head>
+        <title>Sign Up | {process.env.PUBLIC_APP_NAME}</title>
+     </Head>
       <Formik
         initialValues={initialValues}
         onSubmit={(values, actions) => {
@@ -52,12 +56,12 @@ const SignupPage = () => {
         {({ dirty }) => (
           <>
             {/* flight indicator */}
-            <div className="py-2 px-4 w-full h-full relative flex items-center justify-center">
+            <div className="py-2 w-full relative flex items-center justify-center">
               <div className="w-full border-b-4 border-dashed border-themeColor"></div>
               <svg
                 viewBox="0 0 23 22"
                 fill="none"
-                className="absolute top-0 left-0 w-6 h-6 transition-all"
+                className="absolute top-0 -left-2 w-6 h-6 transition-all"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <g filter="url(#filter0_d_3122_38071)">
@@ -77,7 +81,7 @@ const SignupPage = () => {
                 </g>
               </svg>
             </div>
-            <Form className="flex flex-col gap-8 justify-start items-center w-full">
+            <Form className="flex flex-col gap-8 p-2 border-[0.5px] border-themeColor bg-white justify-start items-center w-full">
               {fieldsList.map((field, index) => (
                 <InputField {...field} key={index} />
               ))}

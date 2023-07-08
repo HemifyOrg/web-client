@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Hemify</title>
+        <title>{process.env.PUBLIC_APP_NAME}</title>
       </Head>
 
       <main className="mt-20 flex flex-col">

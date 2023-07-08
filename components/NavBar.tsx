@@ -1,17 +1,13 @@
 import { loadConfig } from "../features/configSlice";
 import { useDispatch, useSelector } from "react-redux";
-import ConnectWallet, {
-  formatAddress,
-} from "@/components/reusable/ConnectWallect";
+import ConnectWallet from "@/components/reusable/ConnectWallect";
 
 import { AppDispatch, RootState } from "../app/store";
 import { ThunkDispatch, AnyAction } from "@reduxjs/toolkit";
 import Link from "next/link";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import Head from "next/head";
-import { LogoSvg, capitalizeAWord } from "@/utils";
+import { LogoSvg } from "@/utils";
 
 const NavBar = () => {
   const [showMaterialDropdown, setShowMaterialDropdown] = useState(false);
@@ -19,24 +15,6 @@ const NavBar = () => {
     useState(false);
   const config = useSelector((state: RootState) => state.config);
   const account = useSelector((state: RootState) => state.account);
-
-  const router = useRouter();
-  const { pathname }: { pathname: string } = router;
-  const [headTitle, setHeadTitle] = useState("Hemify");
-
-  useEffect(() => {
-    if (
-      pathname &&
-      typeof pathname === "string" &&
-      pathname.includes("/") &&
-      pathname.split("/").length >= 1 &&
-      pathname !== "/"
-    ) {
-      let pathName: string = pathname.split("/")[1];
-      const title = `${pathName} | Hemify`;
-      setHeadTitle(capitalizeAWord(title));
-    }
-  }, [pathname]);
 
   const dispatch: AppDispatch =
     useDispatch<ThunkDispatch<RootState, undefined, AnyAction>>();
@@ -46,9 +24,6 @@ const NavBar = () => {
 
   return (
     <nav className="w-full py-4 mb-2 left-0 right-0 select-none z-[101] px-2 lg:px-8 fixed font-semibold">
-      <Head>
-        <title>{headTitle}</title>
-      </Head>
       <div className="shadow-sm w-full lg:pr-4 px-1 lg:pl-2 py-2 rounded-3xl bg-navBarColor backdrop-blur-md flex items-center justify-between lg:gap-0 gap-5">
         {/* left */}
         <div className="flex gap-20 items-center lg:justify-between justify-center lg:ml-0">

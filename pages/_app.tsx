@@ -1,11 +1,32 @@
+import { useEffect, useState } from "react";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import store, { reduxStoreMainPersistor } from "../app/store";
 import { PersistGate } from "redux-persist/integration/react";
 import Layout from "@/components/Layout";
+import { useRouter } from "next/router";
+import { capitalizeAWord } from "@/utils";
+import Head from "next/head";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const { pathname }: { pathname: string } = router;
+  const [headTitle, setHeadTitle] = useState("Hemify");
+
+  useEffect(() => {
+    if (
+      pathname &&
+      typeof pathname === "string" &&
+      pathname.includes("/") &&
+      pathname.split("/").length >= 1 &&
+      pathname !== "/"
+    ) {
+      let pathName: string = pathname.split("/")[pathname.split("/").length-1];
+      const title = `${pathName} | Hemify`;
+      setHeadTitle(capitalizeAWord(title));
+    }
+  }, [pathname]);
   return (
     <Provider store={store}>
       <PersistGate
@@ -24,6 +45,9 @@ export default function App({ Component, pageProps }: AppProps) {
         persistor={reduxStoreMainPersistor}
       >
         <Layout Component={Component} {...pageProps} />
+        <Head>
+          <title>{headTitle}</title>
+        </Head>
       </PersistGate>
     </Provider>
   );
