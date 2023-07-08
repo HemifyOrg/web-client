@@ -21,7 +21,7 @@ const AuthHeader = ({ type }: { type: "login" | "signup" }) => {
           </button>
           <button
             type="button"
-            onClick={() => handleRedirect("login")}
+            onClick={() => handleRedirect("signup")}
             className="p-1 font-semibold text-gray-700 text-lg"
           >
             SignUp
