@@ -30,11 +30,11 @@ const AuthHeader = ({ type }: { type: "login" | "signup" }) => {
         <motion.div
           initial={{ width: "0%" }}
           animate={{
-            width: type === "login" ? "50%" : "50%",
+            width: type === "login" ? "40%" : "50%",
             left: type === "login" ? "0%" : "50%",
           }}
           transition={{ duration: 0.3 }}
-          className="w-10 h-2 absolute -bottom-1 left-0 bg-themeColor rounded-full shadow-md"
+          className="w-auto h-2 absolute -bottom-1 left-0 bg-themeColor rounded-full shadow-md"
         ></motion.div>
       </div>
     </div>
