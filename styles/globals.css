@@ -22,7 +22,7 @@
 }
 
 body {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -37,6 +37,26 @@ body {
   grid-auto-columns: 1fr;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  --tw-border-opacity: 1;
+  -webkit-box-shadow: 0 0 0px 1000px rgb(210 179 125 / var(--tw-border-opacity))
+    inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+  --tw-shadow-colored: none !important;
+}
+
+input {
+  @apply border-themeColor bg-primary appearance-none border-[0.5px] rounded w-full p-2 selection:bg-themeColor
+         autofill:!shadow-themeColor autofill:focus:!shadow-themeColor autofill:hover:!bg-themeColor text-gray-700
+          leading-tight focus:outline-none focus:shadow;
+}
+
 a {
   --tw-border-opacity: 1;
   color: rgb(210 179 125 / var(--tw-border-opacity));
@@ -44,10 +64,10 @@ a {
 .animate-hero-swipe {
   animation: heroSwipe 1000ms alternate both;
 }
-a{
+a {
   border-bottom: 1px solid rgb(31 41 55 / 1);
 }
-a:hover{
+a:hover {
   border-bottom: 1px solid rgb(210 179 125 / 1);
   opacity: 0.75;
 }

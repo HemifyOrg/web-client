@@ -8,6 +8,7 @@ const SignupPage = () => {
     username: "",
     password: "",
     confirmPassword: "",
+    dob: ""
   };
   return (
     <main className="mt-20 p-4 gap-4 flex w-full md:w-3/6 m-auto flex-col items-center justify-center">
@@ -48,7 +49,7 @@ const SignupPage = () => {
               </svg>
             </div>
             <Form className="flex flex-col gap-4 justify-start items-center w-full">
-              <InputField name="fullName" label="Full name" />
+              <InputField name="fullName" title="enter your first name" placeholder="Enter your legal First and Last name" label="Full name" />
             </Form>
           </>
         )}

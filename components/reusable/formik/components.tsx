@@ -49,8 +49,8 @@ export const InputField = ({
         validate={type === "phone" ? validatePhone : null}
         type={type === "phone" ? "number" : type}
         className={`${
-          meta.error && meta.touched ? "border-red-500" : ""
-        } border-themeColor bg-primary appearance-none border-0 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow`}
+          meta.error && meta.touched ? "border-red-400" : ""
+        }`}
         {...field}
         {...props}
       />

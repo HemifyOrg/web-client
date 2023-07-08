@@ -33,8 +33,10 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
-, "components/home/how-it-works.jsx", "components/reusable/P2PComponent.tsx"  ],
+    ".next/types/**/*.ts", 
+    "components/home/how-it-works.jsx",
+    "components/reusable/P2PComponent.tsx"
+  ],
   "exclude": [
     "node_modules"
   ]
