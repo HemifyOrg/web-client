@@ -47,14 +47,13 @@ export const OutsideAlerter = (props: {
 interface SlideProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
-  refValue?: any;
   direction?: "left" | "right";
 }
 
 export const Slide: React.FC<SlideProps> = ({
   children,
   className,
-  direction
+  direction,
 }) => {
   const slideRef = useRef<HTMLDivElement>(null);
   const slideHeight: any = useMotionValue(0);
@@ -88,7 +87,7 @@ export const Slide: React.FC<SlideProps> = ({
       initial={{ opacity: 0, x: initialX, height: slideHeight }}
       animate={{ opacity: 1, x: "0%", height: slideHeight }}
       exit={{ opacity: 0, x: exitX, height: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.5 }}
       className={className}
       ref={slideRef}
     >

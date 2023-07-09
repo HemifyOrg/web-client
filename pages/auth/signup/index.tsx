@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   AuthHeader,
   InputField,
@@ -22,7 +22,7 @@ const SignupPage = () => {
       .max(50, "Too Long!")
       .required("Required"),
     email: Yup.string().email("Invalid email").required("Required"),
-    dob: Yup.string(),
+    dob: Yup.string().required("Date of birth is required"),
     checkedTerms: Yup.boolean().oneOf(
       [true],
       "You must accept the terms and conditions"
@@ -100,19 +100,20 @@ const SignupPage = () => {
   const [containerOverflowChanged, setContainerOverflowChanged] =
     useState(false);
 
-  useEffect(() => {
+  const goToNextSlide = () => {
     setContainerOverflowChanged(true);
+    setCurrentSlide((prevSlide) => prevSlide + 1);
     setTimeout(() => {
       setContainerOverflowChanged(false);
-    }, 500);
-  }, [currentSlide]);
-
-  const goToNextSlide = () => {
-    setCurrentSlide((prevSlide) => prevSlide + 1);
+    }, 600);
   };
 
   const goToPreviousSlide = () => {
+    setContainerOverflowChanged(true);
     setCurrentSlide((prevSlide) => prevSlide - 1);
+    setTimeout(() => {
+      setContainerOverflowChanged(false);
+    }, 600);
   };
   const SlidesComponent = ({
     ...props
@@ -122,12 +123,11 @@ const SignupPage = () => {
     values: any;
     touched: any;
     errors: any;
-    validateOnChange?: any;
   }) => {
     return [
       <>
         {fieldsList.slice(0, 4).map((field, index) => (
-          <InputField {...field} {...props.validateOnChange} key={index} />
+          <InputField {...field} key={index} />
         ))}
       </>,
       <>
@@ -139,7 +139,7 @@ const SignupPage = () => {
           <InputField
             name="checkedTerms"
             type="checkbox"
-            hideError
+            hideError={true}
             onChange={(e: any) => {
               props.setValues({
                 ...props.values,
@@ -193,7 +193,7 @@ const SignupPage = () => {
           actions.setSubmitting(false);
         }}
       >
-        {({ dirty, setValues, ...rest }) => (
+        {({ dirty, setValues, values, touched, errors }) => (
           <>
             {/* flight indicator */}
             <div className="py-2 w-full relative flex items-center justify-center">
@@ -236,12 +236,14 @@ const SignupPage = () => {
                 <Slide
                   className="flex flex-col gap-8 justify-start items-center transition-transform duration-100"
                   key={currentSlide}
-                  direction={"left"}
+                  direction={currentSlide === 1 ? "right" : "left"}
                 >
                   <SlidesComponent
                     setValues={setValues}
                     currentSlide={currentSlide}
-                    {...rest}
+                    values={values}
+                    errors={errors}
+                    touched={touched}
                   />
                 </Slide>
               </AnimatePresence>
@@ -269,10 +271,10 @@ const SignupPage = () => {
                     !dirty ||
                     currentSlide >= 1 ||
                     (currentSlide === 0 &&
-                      (typeof rest.errors.email === "string" ||
-                        typeof rest.errors.fullName === "string" ||
-                        typeof rest.errors.username === "string" ||
-                        typeof rest.errors.dob === "string"))
+                      (typeof errors.email === "string" ||
+                        typeof errors.fullName === "string" ||
+                        typeof errors.username === "string" ||
+                        typeof errors.dob === "string"))
                   }
                   className="bg-btnImage disabled:cursor-not-allowed disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all text-gray-700 font-bold py-2"
                 >
