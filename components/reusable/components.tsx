@@ -84,9 +84,9 @@ export const Slide: React.FC<SlideProps> = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: initialX, height: slideHeight }}
-      animate={{ opacity: 1, x: "0%", height: slideHeight }}
-      exit={{ opacity: 0, x: exitX, height: 0 }}
+      initial={{ opacity: 0, y: initialX, height: slideHeight }}
+      animate={{ opacity: 1, y: "0%", height: slideHeight }}
+      exit={{ opacity: 0, y: exitX, height: 0 }}
       transition={{ duration: 0.5 }}
       className={className}
       ref={slideRef}
