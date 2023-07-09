@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect, SetStateAction } from "react";
 import {
   AuthHeader,
   InputField,
   TextError,
+  OTPField,
 } from "@/components/reusable/formik";
-import { ErrorMessage, Form, Formik } from "formik";
+import {
+  ErrorMessage,
+  Form,
+  Formik,
+  FormikErrors,
+  FormikTouched,
+} from "formik";
 import * as Yup from "yup";
 import { AnimatePresence } from "framer-motion";
-import { Slide } from "@/components/reusable";
+import { Slide, TimerComponent } from "@/components/reusable";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -115,15 +122,57 @@ const SignupPage = () => {
       setContainerOverflowChanged(false);
     }, 600);
   };
+
+  const jumpToSlide = (slideNumber: number) => {
+    setContainerOverflowChanged(true);
+    setCurrentSlide(slideNumber);
+    setTimeout(() => {
+      setContainerOverflowChanged(false);
+    }, 600);
+  };
+
   const SlidesComponent = ({
     ...props
   }: {
     currentSlide: number;
-    setValues: any;
-    values: any;
-    touched: any;
-    errors: any;
+    setValues: (values: SetStateAction<typeof initialValues>) => void;
+    values: typeof initialValues;
+    touched: FormikTouched<typeof initialValues>;
+    errors: FormikErrors<typeof initialValues>;
   }) => {
+    const [otpValue, setOTPValue] = useState("");
+    const [email, setEmail] = useState("");
+
+    // use 'useEffect' to set email value
+    useEffect(() => {
+      if (!props.values.email) return;
+      const email = props.values.email;
+      const hiddenEmail = email
+        .substring(4, 8) // remove last character
+        .replace(/./g, "*"); // replace all characters with '*'
+      const firstFourChar = email.substring(0, 4); // get the first 4 characters of the email
+      const lastChar = email.substring(email.indexOf("@") + 1); // get the last character after '@'
+      const newEmail = firstFourChar + hiddenEmail + "@" + lastChar; // add the last character back
+      setEmail(newEmail); // set the new email
+    }, [props.values.email]);
+
+    const [loading, setLoading] = useState(false);
+
+    const [sentOTP, setSentOTP] = useState(false);
+
+    // use 'useEffect' to check if otp is valid, then trigger 'goToNextSlide'
+    useEffect(() => {
+      if (otpValue.length === 6) {
+        setLoading(true);
+      }
+    }, [otpValue]);
+
+    const handleTimerUpdate = (timerText: string, isEnded: boolean) => {
+      if (isEnded === true) {
+        setSentOTP(false);
+      }
+    };
+
     return [
       <>
         {fieldsList.slice(0, 4).map((field, index) => (
@@ -168,7 +217,49 @@ const SignupPage = () => {
           />
         </div>
       </>,
-      // <div>Slide 3</div>,
+      <div className="flex flex-col gap-5 py-2">
+        <p className="text-gray-500 text-sm">
+          We have sent a 6-digit code to your email address{" "}
+          <span className="text-themeColor font-semibold">{email}</span>{" "}
+          <button
+            className="text-themeColor underline text-sm"
+            onClick={() => jumpToSlide(0)}
+          >
+            (change email)
+          </button>
+        </p>
+        <OTPField
+          label="Enter Verification Code"
+          setValue={setOTPValue}
+          loading={loading}
+        />
+        <div className="flex flex-col justify-center items-center">
+          <span className="text-sm font-semibold">
+            Didn't receive the code?{" "}
+          </span>
+          <div className="flex gap-1">
+            <button
+              disabled={sentOTP}
+              onClick={() => {
+                setSentOTP(true);
+              }}
+              className="text-themeColor disabled:opacity-50 underline font-semibold text-sm"
+            >
+              Resend {!sentOTP && "Code"}
+            </button>
+            {sentOTP && (
+              <>
+                <span className="text-sm">after</span>
+                <TimerComponent
+                  className="text-themeColor font-semibold text-sm"
+                  duration={30}
+                  onUpdate={handleTimerUpdate}
+                />
+              </>
+            )}
+          </div>
+        </div>
+      </div>,
     ][currentSlide];
   };
   return (
@@ -236,7 +327,9 @@ const SignupPage = () => {
                 <Slide
                   className="flex flex-col gap-8 justify-start items-center transition-transform duration-100"
                   key={currentSlide}
-                  direction={currentSlide === 1 ? "right" : "left"}
+                  direction={
+                    currentSlide === 1 || currentSlide === 2 ? "top" : "bottom"
+                  }
                 >
                   <SlidesComponent
                     setValues={setValues}
@@ -269,7 +362,7 @@ const SignupPage = () => {
                   onClick={goToNextSlide}
                   disabled={
                     !dirty ||
-                    currentSlide >= 1 ||
+                    currentSlide >= 2 ||
                     (currentSlide === 0 &&
                       (typeof errors.email === "string" ||
                         typeof errors.fullName === "string" ||
@@ -278,7 +371,11 @@ const SignupPage = () => {
                   }
                   className="bg-btnImage disabled:cursor-not-allowed disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all text-gray-700 font-bold py-2"
                 >
-                  Next
+                  {currentSlide === 2
+                    ? "Sign me up"
+                    : currentSlide === 1
+                    ? "Send OTP"
+                    : "Next"}
                 </button>
               </div>
             </Form>

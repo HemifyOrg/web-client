@@ -58,7 +58,7 @@ const LoginPage = () => {
                   disabled={!dirty || !isValid}
                   className="bg-btnImage disabled:cursor-not-allowed disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all text-gray-700 font-bold py-2"
                 >
-                  Login me in
+                  Log me in
                 </button>
               </div>
             </Form>

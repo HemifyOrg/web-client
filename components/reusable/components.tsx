@@ -1,6 +1,6 @@
 import { motion, useMotionValue } from "framer-motion";
 import { useRef, useEffect, ReactNode, useLayoutEffect } from "react";
-
+import TimerComponent from "./TimerComponent";
 /**
  * Hook that alerts clicks outside of the passed ref
  */
@@ -47,7 +47,7 @@ export const OutsideAlerter = (props: {
 interface SlideProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
-  direction?: "left" | "right";
+  direction?: "top" | "bottom" | "left" | "right";
 }
 
 export const Slide: React.FC<SlideProps> = ({
@@ -79,14 +79,14 @@ export const Slide: React.FC<SlideProps> = ({
     };
   }, [slideHeight]);
 
-  const initialX = direction === "left" ? "-100%" : "100%";
-  const exitX = direction === "left" ? "100%" : "-100%";
+  const initialY = direction === "top" ? "-100%" : "100%";
+  const exitY = direction === "bottom" ? "100%" : "-100%";
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: initialX, height: slideHeight }}
+      initial={{ opacity: 0, y: initialY, height: slideHeight }}
       animate={{ opacity: 1, y: "0%", height: slideHeight }}
-      exit={{ opacity: 0, y: exitX, height: 0 }}
+      exit={{ opacity: 0, y: exitY, height: 0 }}
       transition={{ duration: 0.5 }}
       className={className}
       ref={slideRef}
@@ -95,3 +95,5 @@ export const Slide: React.FC<SlideProps> = ({
     </motion.div>
   );
 };
+
+export { TimerComponent };

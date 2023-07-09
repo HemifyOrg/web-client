@@ -5,7 +5,7 @@ import {
   ErrorMessageProps,
   useFormikContext,
 } from "formik";
-import React, { InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes, useState, FC } from "react";
 import { motion } from "framer-motion";
 const validatePhone = (value: string) => {
   // Regular expression to match only numbers
@@ -227,6 +227,122 @@ export const InputField = ({
           className="text-red-500 text-xs"
         />
       )}
+    </div>
+  );
+};
+
+interface Props {
+  setValue: (value: string) => void;
+  loading?: boolean;
+  label?: string;
+}
+let currentOTPIndex: number = 0;
+export const OTPField: FC<Props> = ({
+  setValue,
+  loading,
+  label,
+}): JSX.Element => {
+  const [otp, setOtp] = useState<string[]>(new Array(6).fill(""));
+  const [activateOTPIndex, setActivateOTPIndex] = useState<number>(0);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    // check for non-number or empty character
+    if (isNaN(Number(value))) return;
+    // check if value contains more than 1 character
+    const newOTP: string[] = [...otp];
+    if (value.length > 1) {
+      const otpArray = value.split("");
+      otpArray.forEach((num, i) => {
+        if (currentOTPIndex + i < otp.length) {
+          newOTP[currentOTPIndex + i] = num;
+        }
+        // set focus on the last input
+        if (i === otpArray.length - 1)
+          setActivateOTPIndex(
+            currentOTPIndex === 5
+              ? 5
+              : currentOTPIndex + i === 5
+              ? 5
+              : currentOTPIndex + i + 1
+          );
+      });
+    } else {
+      newOTP[currentOTPIndex] = value.substring(value.length - 1, value.length);
+      if (!value)
+        setActivateOTPIndex(currentOTPIndex > 0 ? currentOTPIndex - 1 : 0);
+      else setActivateOTPIndex(currentOTPIndex === 5 ? 5 : currentOTPIndex + 1);
+    }
+
+    // check if otp is complete, then blur input
+    if (newOTP.every((num) => num !== "")) {
+      if (inputRef.current) inputRef.current.blur();
+    }
+
+    setOtp(newOTP);
+  };
+
+  const handleOnKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    currentOTPIndex = index;
+    if (e.key === "Backspace") {
+      setActivateOTPIndex(currentOTPIndex > 0 ? currentOTPIndex - 1 : 0);
+    }
+  };
+
+  React.useEffect(() => {
+    // unfocus input if otp is complete
+    if (inputRef.current) inputRef.current.focus();
+  }, [activateOTPIndex]);
+
+  // set value to parent
+  React.useEffect(() => {
+    // check if otp is complete
+    if (otp.length === 6 && otp.every((num) => num !== ""))
+      setValue(otp.reduce((acc, num) => acc + num, ""));
+  }, [otp]);
+
+  return (
+    <div className="flex flex-col gap-2">
+      {label && (
+        <label className="text-gray-500 text-sm font-semibold mt-2">
+          {label}
+        </label>
+      )}
+      <div className="h-auto flex relative justify-center items-center gap-2">
+        {/* Loader */}
+        <div
+          className={`absolute w-full h-full transition-all duration-200 right-0 flex justify-center items-center ${
+            !loading
+              ? "opacity-0 pointer-events-none bg-transparent z-0"
+              : "opacity-100 bg-[#fffa] pointer-events-auto z-[1] backdrop-blur-sm"
+          }`}
+        >
+          <div className="w-8 h-8 border-2 rounded-full border-themeColor border-l-transparent animate-spin" />
+        </div>
+        {otp.map((_, index) => {
+          return (
+            <React.Fragment key={index}>
+              <input
+                ref={index === activateOTPIndex ? inputRef : null}
+                type="number"
+                value={otp[index]}
+                onChange={handleChange}
+                onKeyDown={(e) => handleOnKeyDown(e, index)}
+                inputMode="numeric"
+                disabled={loading}
+                className="w-12 h-12 border-2 rounded disabled:animate-pulse disabled:opacity-50 bg-transparent outline-none text-center font-semibold text-xl spin-button-none border-gray-400 focus:border-gray-700 focus:text-gray-700 text-gray-400 transition"
+              />
+              {index === otp.length - 1 ? null : (
+                <span className="w-2 py-0.5 bg-gray-400" />
+              )}
+            </React.Fragment>
+          );
+        })}
+      </div>
     </div>
   );
 };
