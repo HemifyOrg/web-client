@@ -167,7 +167,7 @@ const SignupPage = () => {
       }
     }, [otpValue]);
 
-    const handleTimerUpdate = (timerText: string, isEnded: boolean) => {
+    const handleTimerUpdate = (isEnded: boolean) => {
       if (isEnded === true) {
         setSentOTP(false);
       }

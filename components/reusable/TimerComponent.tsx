@@ -6,7 +6,7 @@ export const TimerComponent = ({
   className,
 }: {
   duration: number;
-  onUpdate: (timerText: string, isEnded: boolean) => void;
+  onUpdate: (isEnded: boolean, timerText?: string) => void;
   className?: string;
 }) => {
   const [seconds, setSeconds] = useState(duration);
@@ -22,9 +22,9 @@ export const TimerComponent = ({
 
           if (newSeconds === 0) {
             clearInterval(interval);
-            onUpdate(formatTime(newSeconds), true);
+            onUpdate(true, formatTime(newSeconds));
           } else {
-            onUpdate(formatTime(newSeconds), false);
+            onUpdate(false, formatTime(newSeconds));
           }
 
           const newTimerText = formatTime(newSeconds);
