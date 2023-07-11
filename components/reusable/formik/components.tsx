@@ -66,6 +66,28 @@ type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   loading?: boolean;
 };
 
+export const dobList = [
+  {
+    placeholder: "Day",
+    name: "day",
+    min: 1,
+    max: 31,
+  },
+  {
+    placeholder: "Month",
+    name: "month",
+    min: 1,
+    max: 12,
+  },
+  {
+    placeholder: "Year",
+    name: "year",
+    min: 1910,
+    max: new Date().getFullYear(),
+  },
+];
+
+let currentDOBIndex: number = 0;
 export const InputField = ({
   name,
   label,
@@ -80,26 +102,60 @@ export const InputField = ({
   const currentYear = new Date().getFullYear();
   const { values } = useFormikContext<any>();
   const [dob, setDob] = React.useState<{
-    day: number | string;
-    month: number | string;
-    year: number | string;
+    day: string;
+    month: string;
+    year: string;
   }>({
-    day: values.dob ? parseInt(values.dob.split("/")[1]) : "",
-    month: values.dob ? parseInt(values.dob.split("/")[0]) : "",
-    year: values.dob ? parseInt(values.dob.split("/")[2]) : "",
-  });
+    day: values.dob ? values.dob.split("/")[1] : "",
+    month: values.dob ? values.dob.split("/")[0] : "",
+    year: values.dob ? values.dob.split("/")[2] : "",
+  }); // DONOT CHANGE THIS ORDER
+  const [activateDOBIndex, setActivateDOBIndex] = useState<number>(0);
+  const inputDOBRef = React.useRef<HTMLInputElement>(null);
+
+  const handleDOBChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let { name, value, min, max } = e.target;
+    if (isNaN(Number(value))) return;
+    console.log({ name, value, min, max });
+    // check for non-number or empty character
+    if (name === "day") {
+      setDob((prev) => ({ ...prev, day: value }));
+      setActivateDOBIndex(1);
+    } else if (name === "month") {
+      setDob((prev) => ({ ...prev, month: value }));
+      setActivateDOBIndex(2);
+    } else if (name === "year") {
+      setDob((prev) => ({ ...prev, year: value }));
+      setActivateDOBIndex(3);
+    }
+  };
+  const handleDOBKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    currentDOBIndex = index;
+    if (e.key === "Backspace") {
+      setActivateDOBIndex(currentDOBIndex > 0 ? currentDOBIndex - 1 : 0);
+    }
+  };
+
+  React.useEffect(() => {
+    // unfocus input if otp is complete
+    if (inputDOBRef.current) inputDOBRef.current.focus();
+  }, [setActivateDOBIndex]);
+
   // set dob to formik values
   React.useEffect(() => {
     if (
-      typeof dob.day === "number" &&
-      dob.day > 0 &&
-      dob.day < 32 &&
-      typeof dob.month === "number" &&
-      dob.month > 0 &&
-      dob.month < 13 &&
-      typeof dob.year === "number" &&
-      dob.year > 1910 &&
-      dob.year < currentYear
+      typeof dob.day === "string" &&
+      parseInt(dob.day) > 0 &&
+      parseInt(dob.day) < 32 &&
+      typeof dob.month === "string" &&
+      parseInt(dob.month) > 0 &&
+      parseInt(dob.month) < 13 &&
+      typeof dob.year === "string" &&
+      parseInt(dob.year) > 1909 &&
+      parseInt(dob.year) < currentYear
     ) {
       // console.log("dob", dob);
       field.onChange({
@@ -109,7 +165,6 @@ export const InputField = ({
         },
       });
     } else {
-      console.log("dob", dob);
       field.onChange({
         target: {
           name: "dob",
@@ -118,6 +173,7 @@ export const InputField = ({
       });
     }
   }, [dob]);
+
   return (
     <div
       className={`${props.className ? "w-auto" : "w-full"} flex flex-col gap-2`}
@@ -160,38 +216,26 @@ export const InputField = ({
       {helpText && <p className="text-xs text-gray-500 mb-2">{helpText}</p>}
       {name === "dob" ? (
         <div className="flex gap-5 w-full justify-between">
-          <input
-            type={"number"}
-            placeholder={"Day"}
-            onChange={(e) => setDob({ ...dob, day: parseInt(e.target.value) })}
-            value={dob.day || ""}
-            min={1}
-            max={31}
-            className={`${meta.error && meta.touched ? "border-red-400" : ""}
+          {dobList.map((n, index) => (
+            <React.Fragment key={index}>
+              <input
+                ref={index === activateDOBIndex ? inputDOBRef : null}
+                inputMode="numeric"
+                pattern="[0-9]*"
+                placeholder={n.placeholder}
+                onChange={handleDOBChange}
+                onKeyDown={(e) => handleDOBKeyDown(e, index)}
+                name={n.name}
+                value={Object.values(dob)[index] || ""}
+                min={n.min}
+                max={n.max}
+                className={`${
+                  meta.error && meta.touched ? "border-red-400" : ""
+                }
             w-32 h-12 text-center`}
-          />
-          <input
-            type={"number"}
-            placeholder={"Month"}
-            onChange={(e) =>
-              setDob({ ...dob, month: parseInt(e.target.value) })
-            }
-            value={dob.month || ""}
-            min={1}
-            max={12}
-            className={`${meta.error && meta.touched ? "border-red-400" : ""}
-            w-32 h-12 text-center`}
-          />
-          <input
-            type={"number"}
-            placeholder={"Year"}
-            onChange={(e) => setDob({ ...dob, year: parseInt(e.target.value) })}
-            value={dob.year || ""}
-            min={1910}
-            max={currentYear}
-            className={`${meta.error && meta.touched ? "border-red-400" : ""}
-            w-32 h-12 text-center`}
-          />
+              />
+            </React.Fragment>
+          ))}
           <Field
             type="hidden"
             name={field.name}
@@ -202,7 +246,17 @@ export const InputField = ({
         <div className="relative items-center flex">
           <Field
             validate={type === "phone" ? validatePhone : null}
-            type={type === "phone" ? "number" : type}
+            type={type === "phone" || type === "number" ? undefined : type}
+            pattern={
+              type === "phone"
+                ? "[0-9]{10}"
+                : type === "number"
+                ? "[0-9]*"
+                : undefined
+            }
+            inputMode={
+              type === "phone" || type === "number" ? "numeric" : undefined
+            }
             className={`${meta.error && meta.touched ? "border-red-400" : ""}`}
             {...field}
             {...props}
@@ -328,7 +382,8 @@ export const OTPField: FC<Props> = ({
             <React.Fragment key={index}>
               <input
                 ref={index === activateOTPIndex ? inputRef : null}
-                type="number"
+                // type="number"
+                pattern="[0-9]*"
                 value={otp[index]}
                 onChange={handleChange}
                 onKeyDown={(e) => handleOnKeyDown(e, index)}

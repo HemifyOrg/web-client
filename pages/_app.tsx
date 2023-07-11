@@ -7,6 +7,8 @@ import { PersistGate } from "redux-persist/integration/react";
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
 import { capitalizeAWord } from "@/utils";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "@/graphql";
 import Head from "next/head";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -22,7 +24,8 @@ export default function App({ Component, pageProps }: AppProps) {
       pathname.split("/").length >= 1 &&
       pathname !== "/"
     ) {
-      let pathName: string = pathname.split("/")[pathname.split("/").length-1];
+      let pathName: string =
+        pathname.split("/")[pathname.split("/").length - 1];
       const title = `${pathName} | Hemify`;
       setHeadTitle(capitalizeAWord(title));
     }
@@ -44,7 +47,9 @@ export default function App({ Component, pageProps }: AppProps) {
         }
         persistor={reduxStoreMainPersistor}
       >
-        <Layout Component={Component} {...pageProps} />
+        <ApolloProvider client={client}>
+          <Layout Component={Component} {...pageProps} />
+        </ApolloProvider>
         <Head>
           <title>{headTitle}</title>
         </Head>

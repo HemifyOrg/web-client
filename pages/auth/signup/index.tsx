@@ -222,6 +222,7 @@ const SignupPage = () => {
           We have sent a 6-digit code to your email address{" "}
           <span className="text-themeColor font-semibold">{email}</span>{" "}
           <button
+            type="button"
             className="text-themeColor underline text-sm"
             onClick={() => jumpToSlide(0)}
           >
@@ -273,6 +274,7 @@ const SignupPage = () => {
           const dob = new Date(values.dob);
           const today = new Date();
           const age = today.getFullYear() - dob.getFullYear();
+          console.log({ age, dob: values.dob });
           if (age < 18) {
             return { dob: "You must be 18 years or older to use our platform" };
           }
@@ -328,7 +330,7 @@ const SignupPage = () => {
                   className="flex flex-col gap-8 justify-start items-center transition-transform duration-100"
                   key={currentSlide}
                   direction={
-                    currentSlide === 1 || currentSlide === 2 ? "top" : "bottom"
+                    currentSlide === 1 ? "bottom" : "top"
                   }
                 >
                   <SlidesComponent

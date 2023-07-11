@@ -53,7 +53,7 @@ interface SlideProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Slide: React.FC<SlideProps> = ({
   children,
   className,
-  direction,
+  direction = "top",
 }) => {
   const slideRef = useRef<HTMLDivElement>(null);
   const slideHeight: any = useMotionValue(0);
