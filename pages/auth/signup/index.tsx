@@ -162,7 +162,7 @@ const SignupPage = () => {
 
     // use 'useEffect' to check if otp is valid, then trigger 'goToNextSlide'
     useEffect(() => {
-      if (otpValue.length === 6) {
+      if (otpValue.length === 6 && otpValue === "123456") {
         setLoading(true);
       }
     }, [otpValue]);
@@ -278,7 +278,6 @@ const SignupPage = () => {
           if (age < 18) {
             return { dob: "You must be 18 years or older to use our platform" };
           }
-          return;
         }}
         onSubmit={(values, actions) => {
           console.log({ values, actions });

@@ -72,18 +72,21 @@ export const dobList = [
     name: "day",
     min: 1,
     max: 31,
+    maxLength: 2,
   },
   {
     placeholder: "Month",
     name: "month",
     min: 1,
     max: 12,
+    maxLength: 2,
   },
   {
     placeholder: "Year",
     name: "year",
     min: 1910,
     max: new Date().getFullYear(),
+    maxLength: 4,
   },
 ];
 
@@ -99,6 +102,7 @@ export const InputField = ({
   ...props
 }: InputFieldProps) => {
   const [field, meta] = useField(name);
+  console.log(meta.error);
   const currentYear = new Date().getFullYear();
   const { values } = useFormikContext<any>();
   const [dob, setDob] = React.useState<{
@@ -113,36 +117,40 @@ export const InputField = ({
   const [activateDOBIndex, setActivateDOBIndex] = useState<number>(0);
   const inputDOBRef = React.useRef<HTMLInputElement>(null);
 
-  const handleDOBChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let { name, value, min, max } = e.target;
-    if (isNaN(Number(value))) return;
-    console.log({ name, value, min, max });
-    // check for non-number or empty character
-    if (name === "day") {
-      setDob((prev) => ({ ...prev, day: value }));
-      setActivateDOBIndex(1);
-    } else if (name === "month") {
-      setDob((prev) => ({ ...prev, month: value }));
-      setActivateDOBIndex(2);
-    } else if (name === "year") {
-      setDob((prev) => ({ ...prev, year: value }));
-      setActivateDOBIndex(3);
-    }
-  };
-  const handleDOBKeyDown = (
-    e: React.KeyboardEvent<HTMLInputElement>,
+  const handleDOBChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    currentDOBIndex = index;
-    if (e.key === "Backspace") {
-      setActivateDOBIndex(currentDOBIndex > 0 ? currentDOBIndex - 1 : 0);
+    let { name, value, min, max, maxLength } = e.target;
+    if (isNaN(Number(value))) return;
+    console.log({ name, value, min, max, field });
+    // check for non-number or empty character
+    if (name) {
+      // check for min and max
+      let valueAsNumber = parseInt(value);
+      let minAsNumber = parseInt(min);
+      let maxAsNumber = parseInt(max);
+
+      // check if the value length is greater than or equal to max length
+      if (value.length === maxLength) {
+        if (valueAsNumber < minAsNumber) value = minAsNumber.toString();
+        if (valueAsNumber > maxAsNumber) value = maxAsNumber.toString();
+      }
+      setDob((prev) => ({ ...prev, [name]: value }));
+      if (value.length === maxLength) {
+        if (index < dobList.length - 1) {
+          setActivateDOBIndex(index + 1);
+        } else {
+          inputDOBRef.current?.blur();
+          // setActivateDOBIndex(0);
+        }
+      }
     }
   };
 
   React.useEffect(() => {
-    // unfocus input if otp is complete
     if (inputDOBRef.current) inputDOBRef.current.focus();
-  }, [setActivateDOBIndex]);
+  }, [activateDOBIndex]);
 
   // set dob to formik values
   React.useEffect(() => {
@@ -222,9 +230,9 @@ export const InputField = ({
                 ref={index === activateDOBIndex ? inputDOBRef : null}
                 inputMode="numeric"
                 pattern="[0-9]*"
+                maxLength={n.maxLength}
                 placeholder={n.placeholder}
-                onChange={handleDOBChange}
-                onKeyDown={(e) => handleDOBKeyDown(e, index)}
+                onChange={(e) => handleDOBChange(e, index)}
                 name={n.name}
                 value={Object.values(dob)[index] || ""}
                 min={n.min}
