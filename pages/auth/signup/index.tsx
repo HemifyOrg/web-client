@@ -274,7 +274,7 @@ const SignupPage = () => {
           const dob = new Date(values.dob);
           const today = new Date();
           const age = today.getFullYear() - dob.getFullYear();
-          console.log({ age, dob: values.dob });
+          console.log(age < 18);
           if (age < 18) {
             return { dob: "You must be 18 years or older to use our platform" };
           }

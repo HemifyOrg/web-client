@@ -102,9 +102,9 @@ export const InputField = ({
   ...props
 }: InputFieldProps) => {
   const [field, meta] = useField(name);
-  console.log(meta.error);
+  console.log(meta.touched, meta.error);
   const currentYear = new Date().getFullYear();
-  const { values } = useFormikContext<any>();
+  const { values, setFieldValue, setFieldTouched } = useFormikContext<any>();
   const [dob, setDob] = React.useState<{
     day: string;
     month: string;
@@ -123,7 +123,6 @@ export const InputField = ({
   ) => {
     let { name, value, min, max, maxLength } = e.target;
     if (isNaN(Number(value))) return;
-    console.log({ name, value, min, max, field });
     // check for non-number or empty character
     if (name) {
       // check for min and max
@@ -164,21 +163,11 @@ export const InputField = ({
       typeof dob.year === "string" &&
       parseInt(dob.year) > 1909 &&
       parseInt(dob.year) < currentYear
-    ) {
-      // console.log("dob", dob);
-      field.onChange({
-        target: {
-          name: "dob",
-          value: `${dob.month}/${dob.day}/${dob.year}`,
-        },
-      });
+      ) {
+      setFieldTouched("dob", true);
+      setFieldValue("dob", `${dob.month}/${dob.day}/${dob.year}`);
     } else {
-      field.onChange({
-        target: {
-          name: "dob",
-          value: "",
-        },
-      });
+      setFieldValue("dob", "");
     }
   }, [dob]);
 
