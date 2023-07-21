@@ -204,7 +204,11 @@ const NavBar = () => {
               </svg>
               {/* dropdown */}
               {showMaterialDropdown && (
-                <div className="overflow-hidden backdrop-blur-lg rounded-xl absolute top-8 border border-themeColor -right-1 shadow-md bg-navBarColor flex flex-col gap-4">
+                <OutsideAlerter
+                  visible={showMaterialDropdown}
+                  setState={setShowMaterialDropdown}
+                  className="overflow-hidden backdrop-blur-lg rounded-xl absolute top-8 border border-themeColor -right-1 shadow-md bg-navBarColor flex flex-col gap-4"
+                >
                   <div className="flex gap-2 w-full px-4 py-2 border-b border-transparent hover:border-themeColor">
                     <svg
                       width="22"
@@ -286,7 +290,7 @@ const NavBar = () => {
 
                     <span>Blog</span>
                   </div>
-                </div>
+                </OutsideAlerter>
               )}
             </div>
             {/* icons */}
@@ -319,8 +323,12 @@ const NavBar = () => {
                 {/* badge */}
                 <div className="rounded-full bg-red-600 w-3 h-3 absolute top-0 right-0"></div>
                 {showNotificationDropdown && (
-                  <div className="overflow-hidden backdrop-blur-lg rounded-xl absolute top-8 border border-themeColor -right-1 shadow-md bg-navBarColor flex flex-col gap-4">
-                    <div className="flex gap-2 max-w-[320px] px-6 py-3 w-max border-t border-transparent hover:border-themeColor">
+                  <OutsideAlerter
+                    visible={showNotificationDropdown}
+                    setState={setShowNotificationDropdown}
+                    className="overflow-hidden backdrop-blur-lg rounded-xl absolute top-8 border border-themeColor -right-1 shadow-md bg-navBarColor flex flex-col gap-4"
+                  >
+                    <div className="flex gap-2 max-w-[320px] px-6 py-3 w-max border-t border-transparent hover:border-themeCXolor">
                       <svg
                         width="20"
                         height="22"
@@ -339,7 +347,7 @@ const NavBar = () => {
 
                       <span>You have no pending notification</span>
                     </div>
-                  </div>
+                  </OutsideAlerter>
                 )}
               </div>
               {account.connected ? (
