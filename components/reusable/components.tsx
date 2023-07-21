@@ -6,7 +6,7 @@ import TimerComponent from "./TimerComponent";
  */
 const useOutsideAlerter = (
   ref: { current: any },
-  setState: Function,
+  setState: Function | undefined,
   visible: boolean | undefined
 ) => {
   useEffect(() => {
@@ -33,13 +33,18 @@ const useOutsideAlerter = (
  */
 export const OutsideAlerter = (props: {
   children: ReactNode;
-  setState: Function;
+  setState: Function | undefined;
+  className?: string;
   visible?: boolean | undefined;
 }) => {
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef, props.setState, props.visible);
 
-  return <div ref={wrapperRef}>{props.children}</div>;
+  return (
+    <div ref={wrapperRef} className={props.className}>
+      {props.children}
+    </div>
+  );
 };
 
 // Content Slider

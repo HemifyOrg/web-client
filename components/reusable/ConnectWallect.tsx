@@ -16,13 +16,16 @@ export const formatBalance = (balanceInWei: any) => {
   return parseFloat(utils.formatEther(BigNumber.from(balanceInWei))).toFixed(4);
 };
 
-function ConnectWallet(props: { label: string }) {
+function ConnectWallet(props: { label: string; className?: string, textClassName?: string }) {
   // const [showConnectPopup, setShowConnectPopup] = useState(false);
   const dispatch: AppDispatch =
     useDispatch<ThunkDispatch<RootState, undefined, AnyAction>>();
   return (
     <button
-      className="rounded-full items-center transition-all duration-75 active:scale-75 px-3 lg:px-4 py-2 lg:text-base text-sm flex gap-2 bg-btnImage"
+      className={
+        props.className ||
+        "rounded-full items-center transition-all duration-75 active:scale-75 px-3 lg:px-4 py-2 lg:text-base text-sm flex gap-2 bg-btnImage"
+      }
       type="button"
       title="connect wallet"
       onClick={() => dispatch(setShowConnectModal(true))}
@@ -42,7 +45,7 @@ function ConnectWallet(props: { label: string }) {
           strokeLinejoin="round"
         />
       </svg>
-      <span className="hidden lg:flex">{props.label}</span>
+      <span className={props.textClassName || "hidden lg:flex"}>{props.label}</span>
     </button>
   );
 }
