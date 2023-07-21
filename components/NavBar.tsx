@@ -179,7 +179,10 @@ const NavBar = () => {
           <div className="flex lg:gap-6 gap-2 mr-1">
             <div className="hidden lg:flex gap-2 items-center cursor-pointer relative">
               <span
-                onClick={() => setShowMaterialDropdown(!showMaterialDropdown)}
+                onClick={() => {
+                  setShowMaterialDropdown(!showMaterialDropdown);
+                  setShowNotificationDropdown(false);
+                }}
               >
                 Materials
               </span>
@@ -290,9 +293,11 @@ const NavBar = () => {
             <div className="flex gap-4">
               <div className="relative hidden lg:flex items-center justify-center">
                 <svg
-                  onClick={() =>
-                    setShowNotificationDropdown(!showNotificationDropdown)
-                  }
+                  onClick={() => {
+                    setShowNotificationDropdown(!showNotificationDropdown);
+                    setShowMaterialDropdown(false);
+                  }}
+                  className="cursor-pointer"
                   width="22"
                   height="22"
                   viewBox="0 0 19 22"
