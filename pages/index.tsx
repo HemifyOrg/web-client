@@ -25,10 +25,10 @@ export default function Home() {
         <TrandingComponent />
 
         {/* Verified Section */}
-        <VerifiedComponent />
+        {/* <VerifiedComponent /> */}
 
         {/* LeaderBoard Section*/}
-        <LeaderBoardComponent />
+        {/* <LeaderBoardComponent /> */}
       </main>
     </>
   );

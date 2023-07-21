@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "475px",
+      },
       colors: {
         themeColor: "#D2B37D",
         navBarColor: "rgba(246, 239, 226, 0.7)",

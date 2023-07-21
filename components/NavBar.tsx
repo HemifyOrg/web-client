@@ -20,6 +20,28 @@ const NavBar = () => {
   const account = useSelector((state: RootState) => state.account);
   const [showMenu, setShowMenu] = useState(false);
   const [hoverNav, setHoverNav] = useState(false);
+  const [scrolledTo5Percent, setScrolledTo5Percent] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const pageHeight = document.documentElement.scrollHeight;
+
+      const scrollPercentage = (scrollY / (pageHeight - viewportHeight)) * 100;
+      setScrolledTo5Percent(scrollPercentage >= 5);
+    };
+
+    // Attach the scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  console.log("scrolledTo5Percent", scrolledTo5Percent);
 
   const dispatch: AppDispatch =
     useDispatch<ThunkDispatch<RootState, undefined, AnyAction>>();
@@ -60,11 +82,15 @@ const NavBar = () => {
 
   return (
     <React.Fragment>
-      <nav className="w-full py-4 mb-2 left-0 right-0 select-none z-[101] px-2 lg:px-8 fixed font-semibold">
+      <nav
+        className={`w-full ${
+          scrolledTo5Percent ? "pt-0 px-1 lg:px-6" : "pt-4 px-2 lg:px-8"
+        } pb-4 mb-2 left-0 right-0 select-none z-[101] transition-all fixed font-semibold`}
+      >
         <div
           className={`flex fixed w-screen justify-end h-screen transition-all ${
-            showMenu ? "opacity-100" : "opacity-0"
-          } top-0 lg:px-6 px-3 left-0 bg-[#0000001a]`}
+            showMenu ? "opacity-100" : "opacity-0 pointer-events-none"
+          } top-0 xs:px-8 lg:px-12 md:px-6 px-3 left-0 bg-[#0000001a]`}
         >
           <OutsideAlerter
             visible={showMenu}
@@ -72,9 +98,13 @@ const NavBar = () => {
             className="h-max"
           >
             <motion.div
-              initial={{ x: "100%", y: 80 }}
-              animate={showMenu ? { x: 0, y: 80 } : { x: "100%", y: 80 }}
-              exit={{ x: "100%", y: 80 }}
+              initial={{ x: "100%", y: scrolledTo5Percent ? 70 : 80 }}
+              animate={
+                showMenu
+                  ? { x: 0, y: scrolledTo5Percent ? 70 : 80 }
+                  : { x: "100%", y: scrolledTo5Percent ? 70 : 80 }
+              }
+              exit={{ x: "100%", y: scrolledTo5Percent ? 70 : 80 }}
               transition={{ duration: 0.3 }}
               className="flex flex-col py-5 pl-5 pr-8 bg-primary rounded-l-lg h-max gap-4"
             >
@@ -97,10 +127,12 @@ const NavBar = () => {
         <div
           onMouseEnter={() => setHoverNav(true)}
           onMouseLeave={() => setHoverNav(false)}
-          className="shadow-sm w-full lg:pr-4 px-1 lg:pl-2 py-2 rounded-3xl bg-navBarColor backdrop-blur-md flex items-center justify-between lg:gap-0 gap-5"
+          className={`shadow-sm w-full lg:pr-4 transition-all px-1 lg:pl-2 pb-2 ${
+            scrolledTo5Percent ? "rounded-b-3xl pt-[10px]" : "rounded-3xl pt-2"
+          } bg-navBarColor backdrop-blur-md flex items-center justify-between lg:gap-0 gap-5`}
         >
           {/* left */}
-          <div className="flex gap-20 items-center lg:justify-between justify-center lg:ml-0">
+          <div className="flex ml-2 gap-20 items-center lg:justify-between justify-center lg:ml-0">
             <Link href="/" className="border-none hover:border-none">
               <div className="w-10 h-10 flex justify-center items-center shadow-sm bg-black rounded-lg">
                 <LogoSvg className="w-full h-full" />
@@ -144,7 +176,7 @@ const NavBar = () => {
           </div>
 
           {/* right */}
-          <div className="flex lg:gap-6 gap-2">
+          <div className="flex lg:gap-6 gap-2 mr-1">
             <div className="hidden lg:flex gap-2 items-center cursor-pointer relative">
               <span
                 onClick={() => setShowMaterialDropdown(!showMaterialDropdown)}
