@@ -12,7 +12,7 @@ const Footer = () => {
         {/* logo section */}
         <div className="flex flex-col gap-2 justify-center items-start">
           <div className="flex flex-col gap-1">
-            <figure className="flex items-center justify-center overflow-hidden w-12 h-12 bg-black rounded-full">
+            <figure className="flex items-center justify-center overflow-hidden w-12 h-12 bg-white p-2 shadow-md rounded-full">
               <LogoSvg className="w-full h-full" />
             </figure>
             <span className="lg:text-base text-sm text-gray-100">

@@ -7,48 +7,45 @@ interface SlideType {
 }
 
 const HeroComponent = () => {
-  const [hotBidz, setHotBidz] = useState<Array<SlideType>>([]);
+  const [hotBidz, setHotBidz] = useState<Array<SlideType>>([
+    {
+      id: 0,
+      image: "/images/ape.webp",
+      desc: "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    },
+    {
+      id: 1,
+      image: "/images/ape2.png",
+      desc: "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    },
+    {
+      id: 2,
+      image: "/images/ape3.png",
+      desc: "lorum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+    },
+    {
+      id: 3,
+      image: "/images/ape4.png",
+      desc: "lorum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+    },
+  ]);
   const [selectedSlide, setSelectedSlide] = useState(0);
-
-  useEffect(() => {
-    let slidesList: Array<SlideType> = [
-      {
-        id: 0,
-        image: "/images/ape.webp",
-        desc: "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      },
-      {
-        id: 1,
-        image: "/images/ape2.png",
-        desc: "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      },
-      {
-        id: 2,
-        image: "/images/ape3.png",
-        desc: "lorum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
-      },
-    ];
-    setHotBidz([...slidesList]);
-  }, []);
 
   const handleSlide = (action: "right" | "left") => {
     if (action === "right") {
-      let nextSelectedSlide =
-        selectedSlide < hotBidz.length - 1 ? selectedSlide + 1 : selectedSlide;
-      setSelectedSlide(nextSelectedSlide);
+      setSelectedSlide(
+        selectedSlide > hotBidz.length - 2 ? 0 : selectedSlide + 1
+      );
     }
     if (action === "left" && selectedSlide > -1) {
-      // console.log(selectedSlide)
-      let previousSelectedSlide =
-        selectedSlide < hotBidz.length - 2 ? selectedSlide : selectedSlide - 1;
-      setSelectedSlide(previousSelectedSlide);
+      setSelectedSlide(selectedSlide < 1 ? 0 : selectedSlide - 1);
     }
   };
 
   return (
     <div className="flex items-center justify-between w-full py-4 z-10 lg:px-8 px-4 h-full m-auto lg:flex-row flex-col-reverse">
       {/* left hero */}
-      <div className="flex flex-col lg:gap-6 items-start h-full justify-center">
+      <div className="hidden vflex flex-col lg:gap-6 items-start h-full justify-center">
         {/* big text */}
         <div className="lg:flex hidden gap-1 flex-col text-left justify-start text-4xl lg:text-5xl leading-relaxed tracking-wide font-semibold">
           <div className="flex gap-2">
@@ -84,9 +81,9 @@ const HeroComponent = () => {
       </div>
 
       {/* right hero */}
-      <div className="relative lg:mr-2 mx-auto mt-5 select-none">
+      <div className="relative w-full lg:mr-2 mx-auto pl-4 pr-8 md:px-10 mt-5 select-none">
         {/* arrows */}
-        <div className="w-full absolute top-[50%] z-10 flex justify-between items-center">
+        <div className="w-full hidsden absolute top-[50%] z-10 left-0 flex justify-between items-center">
           {/* left */}
           <div
             onClick={() => handleSlide("left")}
@@ -139,99 +136,43 @@ const HeroComponent = () => {
         </div>
         {/* end arrows */}
 
-        {/* hot bids */}
-        <div className="absolute top-2 -left-7 z-10 -rotate-[35deg] flex items-center gap-2 font-semibold bg-[#FFF9E5] rounded-full px-4">
-          <span>Hot Bidz</span>
-          <span>
-            <svg
-              width="33"
-              height="34"
-              viewBox="0 0 33 34"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clipPath="url(#clip0_878_2637)">
-                <path
-                  d="M9.65917 16.2082C10.1366 17.2489 11.0804 19.0336 12.0927 19.4407C12.0927 19.4407 10.7102 17.6798 11.7799 13.8514C12.2107 12.3102 11.6785 10.8594 10.7616 10.0702C10.2417 9.62346 9.61568 9.36787 9.11735 9.22473C8.8258 9.13975 8.78451 8.74573 9.05575 8.60428C10.6981 7.75135 13.5498 6.69815 16.2498 8.82854C17.435 9.76376 18.1954 10.9983 18.7017 12.4078C19.0262 13.3073 19.5528 15.4194 20.8666 14.9575C21.8045 14.6282 21.8255 13.7197 21.7297 13.1299C21.6897 12.8845 21.9253 12.6813 22.1611 12.7596C24.5284 13.56 25.7555 15.4042 26.4116 17.2229C27.6794 20.7388 25.7916 24.9204 22.5862 26.771C18.582 29.0829 14.0716 28.6321 10.8507 24.9621C9.55131 23.4801 7.80768 20.0701 9.03952 16.2412C9.12988 15.9552 9.53327 15.9301 9.65917 16.2082Z"
-                  fill="url(#paint0_radial_878_2637)"
-                />
-                <path
-                  d="M19.6831 18.3643C17.1102 17.3167 16.5195 14.7673 16.3829 13.6944C16.3659 13.5526 16.1742 13.5205 16.1122 13.6493C15.7267 14.4478 15.0129 16.2153 15.2331 17.9955C15.5297 20.4029 16.1347 21.3158 17.2877 22.1917C17.9822 22.7195 17.7281 23.0632 17.5726 23.1876C17.422 23.3092 17.2056 23.287 17.0173 23.242C16.4727 23.1079 15.9763 22.8247 15.5838 22.4241C15.4997 22.3385 15.3522 22.3868 15.34 22.5043C15.2481 23.3952 15.5948 24.5395 15.995 25.2589C17.2315 27.4831 20.083 28.2183 22.2849 26.947C25.06 25.3449 25.3097 21.1087 22.2339 19.4637C21.3399 18.984 20.6225 18.7464 19.6831 18.3643Z"
-                  fill="url(#paint1_radial_878_2637)"
-                />
-              </g>
-              <defs>
-                <radialGradient
-                  id="paint0_radial_878_2637"
-                  cx="0"
-                  cy="0"
-                  r="1"
-                  gradientUnits="userSpaceOnUse"
-                  gradientTransform="translate(21.8223 27.2794) rotate(150.249) scale(13.2352 21.7163)"
-                >
-                  <stop offset="0.314" stopColor="#FF9800" />
-                  <stop offset="0.662" stopColor="#FF6D00" />
-                  <stop offset="0.972" stopColor="#F44336" />
-                </radialGradient>
-                <radialGradient
-                  id="paint1_radial_878_2637"
-                  cx="0"
-                  cy="0"
-                  r="1"
-                  gradientUnits="userSpaceOnUse"
-                  gradientTransform="translate(15.8805 15.5018) rotate(60.5787) scale(13.8481 10.4217)"
-                >
-                  <stop offset="0.214" stopColor="#FFF176" />
-                  <stop offset="0.328" stopColor="#FFF27D" />
-                  <stop offset="0.487" stopColor="#FFF48F" />
-                  <stop offset="0.672" stopColor="#FFF7AD" />
-                  <stop offset="0.793" stopColor="#FFF9C4" />
-                  <stop
-                    offset="0.822"
-                    stopColor="#FFF8BD"
-                    stopOpacity="0.804"
-                  />
-                  <stop
-                    offset="0.863"
-                    stopColor="#FFF6AB"
-                    stopOpacity="0.529"
-                  />
-                  <stop offset="0.91" stopColor="#FFF38D" stopOpacity="0.209" />
-                  <stop offset="0.941" stopColor="#FFF176" stopOpacity="0" />
-                </radialGradient>
-                <clipPath id="clip0_878_2637">
-                  <rect
-                    width="24"
-                    height="24"
-                    fill="white"
-                    transform="translate(0.0664062 12.9282) rotate(-30)"
-                  />
-                </clipPath>
-              </defs>
-            </svg>
-          </span>
-        </div>
-
         {hotBidz && hotBidz.length > 0 ? (
           hotBidz.map((n, i) => (
             <figure
-              key={i}
+              key={n.id + i}
               style={{ backgroundImage: `url(${n.image})` }}
-              className={`lg:w-[400px] lg:h-[400px] w-full h-[250px] transition-all ${
+              className={`lg:w-[500pmx] lg:h-[500px] h-[250px] shadow-lg w-full transition-all ${
                 selectedSlide !== n.id
-                  ? `top-0 
+                  ? `top-0 absolute
                 ${
-                  hotBidz.length - 1 === n.id
-                    ? "lg:-rotate-[5deg]"
-                    : "lg:rotate-[5deg]"
-                }
-                 absolute z-[-1]`
-                  : ""
-              } py-4 px-8 bg-cover overflow-hidden bg-no-repeat
-                  bg-center rounded-lg flex justify-center items-end bg-gradient-to-t from-pink-400 to-pink-800 shadow-none`}
+                  hotBidz.length - 1 === n.id &&
+                  hotBidz.length - 1 === selectedSlide
+                    ? "translate-x-[40px] scale-[.65] z-[-3]"
+                    : n.id < selectedSlide
+                    ? `${
+                        selectedSlide - 1 === n.id
+                          ? "-translate-x-[55px] scale-[.75] z-[-1]"
+                          : selectedSlide - 2 === n.id
+                          ? "-translate-x-[100px] scale-[.65] z-[-1]"
+                          : "-translate-x-[130px] scale-[.6] z-[-1]"
+                      }`
+                    : `${
+                        selectedSlide + 1 === n.id
+                          ? "translate-x-[70px] scale-[.6] z-[-1]"
+                          : selectedSlide + 2 === n.id
+                          ? "translate-x-[40px] scale-[.65] z-[-1]"
+                          : "translate-x-[-10px] scale-[.75] z-[-1]"
+                    }`
+                }`
+                  : "z-[1] drop-shadow-xl scale-[.85]"
+              } 
+              py-4 px-8 bg-cover overflow-hidden bg-no-repeat
+                  bg-center rounded-xl flex justify-center items-end bg-gradient-to-t from-pink-400 to-pink-800 shadow-none`}
             >
               <div className="w-full bg-[#0000005e] text-white backdrop-blur-sm rounded-xl pt-4 pb-6 px-5 flex justify-between">
-                <p>{n.desc}</p>
+                <p>
+                  {n.desc} + <b>{n.id}</b>
+                </p>
               </div>
             </figure>
           ))

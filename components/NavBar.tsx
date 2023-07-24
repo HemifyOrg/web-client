@@ -134,7 +134,7 @@ const NavBar = () => {
           {/* left */}
           <div className="flex ml-2 gap-20 items-center lg:justify-between justify-center lg:ml-0">
             <Link href="/" className="border-none hover:border-none">
-              <div className="w-10 h-10 flex justify-center items-center shadow-sm bg-black rounded-lg">
+              <div className="w-10 h-10 flex justify-center items-center shadow-md bg-white p-2 rounded-lg">
                 <LogoSvg className="w-full h-full" />
               </div>
             </Link>
