@@ -119,7 +119,7 @@ const HeroComponent = () => {
         className="relative w-full lg:mr-2 mx-auto pl-4 pr-8 md:px-10 mt-5 select-none"
       >
         {/* arrows */}
-        <div className="w-full hidsden absolute px-8 top-[50%] z-10 left-0 flex justify-between items-center">
+        <div className="w-full hidsden absolute md:px-8 px-6 top-[50%] z-10 left-0 flex justify-between items-center">
           {/* left */}
           <div
             onClick={() => handleSlide("left")}
@@ -177,7 +177,7 @@ const HeroComponent = () => {
             <SwiperSlide
               key={n.id + i}
               style={{ backgroundImage: `url(${n.image})` }}
-              className={`lg:!h-[500px] scale-90 md:!h-[300px] !h-[250px] !w-[85%] shadow-lg w-fullx transition-all 
+              className={`lg:!h-[400px] scale-90 md:!h-[300px] lg:!w-[50%] !h-[250px] !w-[85%] shadow-lg w-fullx transition-all 
               py-4 px-8 bg-cover overflow-hidden bg-no-repeat
                   bg-center rounded-xl !flex justify-center items-end bg-gradient-to-t from-pink-400 to-pink-800`}
             >
