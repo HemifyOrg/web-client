@@ -4,37 +4,43 @@ import React from "react";
 
 export const MatchCardComponet = ({ match }: { match: MatchType }) => {
   return (
-    <div className="p-2 rounded-lg w-full bg-white flex flex-col gap-4">
+    <div className="overflow-hidden p-2 rounded-lg w-full bg-white flex flex-col gap-4">
       {/* verus */}
       <div className="flex justify-between w-full items-center">
-        <div className="flex items-center gap-2">
-          <figure className="rounded-lg bg-black overflow-hidden">
+        <div className="flex items-center gap-2 w-full">
+          <figure className="rounded-lg xs:w-[40px] w-[30px] h-[30px] xs:h-[40px] bg-black overflow-hidden">
             <Image
               width={40}
               height={40}
               src={match.home.image}
               alt=""
-              className="w-full h-full object-cover"
+              className="object-cover w-full h-full"
             />
           </figure>
-          <span className="text-lg font-medium capitalize">
+          <span
+            title={match.home.name}
+            className="text-lg truncate font-medium capitalize xs:max-w-[12rem] lg:max-w-[25rem] max-w-[80px]"
+          >
             {match.home.name}
           </span>
         </div>
-        <div className="flex items-center gap-2 mx-2">
+        <div className="flex items-center gap-2 w-full justify-center">
           <span className="text-lg font-medium uppercase">VS</span>
         </div>
-        <div className="flex items-center gap-2">
-          <figure className="rounded-lg bg-black overflow-hidden">
+        <div className="flex items-center gap-2 w-full">
+          <figure className="rounded-lg xs:w-[40px] w-[30px] h-[30px] xs:h-[40px] bg-black overflow-hidden">
             <Image
               width={40}
               height={40}
               src={match.away.image}
               alt=""
-              className="w-full h-full object-cover"
+              className="object-cover w-full h-full"
             />
           </figure>
-          <span className="text-lg font-medium capitalize">
+          <span
+            title={match.away.name}
+            className="text-lg truncate font-medium capitalize xs:max-w-[12rem] lg:max-w-[25rem] max-w-[80px]"
+          >
             {match.away.name}
           </span>
         </div>

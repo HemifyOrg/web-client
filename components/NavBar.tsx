@@ -41,8 +41,6 @@ const NavBar = () => {
     };
   }, []);
 
-  console.log("scrolledTo5Percent", scrolledTo5Percent);
-
   const dispatch: AppDispatch =
     useDispatch<ThunkDispatch<RootState, undefined, AnyAction>>();
   useEffect(() => {

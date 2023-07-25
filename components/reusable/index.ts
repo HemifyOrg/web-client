@@ -1,3 +1,4 @@
 import ConnectWalletPopup from "./ConnectWalletPopup";
+import SlideControlButtons from "./SlideControlButtons";
 export * from "./components";
-export { ConnectWalletPopup };
+export { ConnectWalletPopup, SlideControlButtons };

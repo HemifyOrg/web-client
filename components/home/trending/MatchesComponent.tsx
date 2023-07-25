@@ -1,15 +1,20 @@
-// import { useState } from "react";
+import { useState } from "react";
 
 import { WagerType } from "@/utils/types";
 import { MatchCardComponet } from "./MatchCardComponet";
 import { MatchLeagueIcon } from "@/utils/components";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import { SlideControlButtons } from "@/components/reusable";
 
 const MatchesComponent = () => {
+  const [isEnd, setIsEnd] = useState(false);
+  const [isBeginning, setIsBeginning] = useState(true);
   let matches = [
     {
       id: 0,
       home: {
-        name: "Los Angeles Clippers",
+        name: "L.A Clippers",
         image: "/images/ape4.png",
       },
       away: {
@@ -27,7 +32,7 @@ const MatchesComponent = () => {
     {
       id: 1,
       home: {
-        name: "Los Angeles Clippers",
+        name: "L.A Clippers",
         image: "/images/ape4.png",
       },
       away: {
@@ -148,14 +153,20 @@ const MatchesComponent = () => {
         </defs>
       </svg>
 
-      {/* center */}
+      {/* Leagues & Matches */}
       <div className="flex flex-col gap-5 lg:px-4">
         {/* matches */}
-        <div className="flex flex-col gap-4 justify-center w-full mx-auto">
+        <Swiper
+          onSlideChange={(swiper) => {
+            setIsBeginning(swiper.isBeginning);
+            setIsEnd(swiper.isEnd);
+          }}
+          className="flex gap-4 justify-center w-full mx-auto"
+        >
           {dataList &&
             dataList.length > 0 &&
             dataList.map((n, i) => (
-              <div key={i} className="flex flex-col gap-4 px-2">
+              <SwiperSlide key={i} className="flex flex-col gap-4 px-2">
                 <div className="flex justify-between">
                   <div className="flex gap-3 items-center">
                     <figure className="w-12 h-12 justify-center flex items-center overflow-hidden">
@@ -166,14 +177,19 @@ const MatchesComponent = () => {
                     </span>
                   </div>
                 </div>
-                {n.matches &&
-                  n.matches.length > 0 &&
-                  n.matches.map((match, idx) => (
-                    <MatchCardComponet match={match} key={idx} />
-                  ))}
-              </div>
+                <div className="flex flex-col gap-4">
+                  {n.matches &&
+                    n.matches.length > 0 &&
+                    n.matches
+                      .slice(0, 1)
+                      .map((match, idx) => (
+                        <MatchCardComponet match={match} key={idx} />
+                      ))}
+                </div>
+              </SwiperSlide>
             ))}
-        </div>
+          <SlideControlButtons isEnd={isEnd} isBeginning={isBeginning} />
+        </Swiper>
       </div>
     </div>
   );

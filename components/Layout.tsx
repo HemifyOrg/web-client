@@ -7,6 +7,12 @@ import { RootState } from "@/app/store";
 import { Footer } from "./footer";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+// Import Swiper styles
+import "swiper/css";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
 
 const Layout = ({ Component, pageProps }: AppProps) => {
   const showConnectPopup = useSelector(

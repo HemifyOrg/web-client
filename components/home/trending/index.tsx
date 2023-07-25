@@ -7,7 +7,7 @@ const TrandingComponent = () => {
       <MatchesComponent />
 
       {/* featured Swaps */}
-      <div className="py-4 border-t border-gray-100 bg-primary flex flex-col gap-8">
+      <div className="py-4 border-t hidden border-gray-100 bg-primary fdlex flex-col gap-8">
         <svg
           width="361"
           className="w-full py-2 max-h-44"
