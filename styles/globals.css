@@ -20,16 +20,18 @@
   min-zoom: 50%;
   max-zoom: 200%;
 }
+/* #011737 */
 
 body {
   font-family: "Montserrat";
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  background: #011737;
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
 }
 
 .grid-cols-auto {
