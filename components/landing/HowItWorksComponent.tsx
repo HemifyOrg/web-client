@@ -7,13 +7,25 @@ const HowItWorksComponent = () => {
     "Start Betting",
   ];
 
+  const currenciesImages = [
+    "/images/currencies/bitcoin.png",
+    "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=013",
+    "/images/currencies/tethers.png",
+    "/images/currencies/solana.png",
+    "/images/currencies/optism.png",
+    "/images/currencies/polygon.png",
+  ];
+
   return (
     <section id="how-it-works" className="flex flex-col gap-4 mt-6 w-full">
       <h1 className="py-2 px-4 text-center font-bold text-3xl">How it Works</h1>
-      <div className="flex justify-center gap-10 items-center px-4">
+      <div className="flex md:justify-center md:gap-10 justify-between w-full items-center md:px-4 px-2">
         {listOfHowItWorks.map((item, index) => (
-          <div key={index} className="flex gap-4 md:gap-10 items-center">
-            <h3 className="md:text-xl text-xs font-medium">{item}</h3>
+          <div
+            key={index}
+            className="flex sm:gap-4 gap-2 md:gap-10 items-center"
+          >
+            <h2 className="md:text-xl text-xs font-medium">{item}</h2>
             {index !== listOfHowItWorks.length - 1 && (
               <svg
                 className="w-6 h-6"
@@ -32,8 +44,44 @@ const HowItWorksComponent = () => {
         ))}
       </div>
 
-      <div className="mt-4 w-full flex gap-4">
+      <div className="mt-4 w-full flex gap-4 justify-center items-center md:px-4 px-2">
+        {/* left how it works content */}
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
+            <h3 className="text-lg font-semibold">Multichain Choice</h3>
+            <p className="text-left text-sm w-60">
+              our users can choose from multiple choice of cryptocurrency to bet
+              with
+            </p>
+          </div>
+          {/* crypto icons */}
+          <div className="flex gap-4 py-4">
+            {currenciesImages.map((currency, i) => (
+              <img key={i} src={currency} alt="currency" className="w-8 h-8" />
+            ))}
+          </div>
+          <button className="bg-themeColor hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded">
+            Learn More
+          </button>
+        </div>
 
+        <div className="flex justify-end items-center relative">
+          <figure
+            style={{ backgroundImage: "url('/images/iphone-x.png')" }}
+            className="w-[300px] p-2 h-[400px] flex items-center justify-center bg-contain bg-no-repeat bg-center"
+          >
+            {/* <img
+              src="/images/iphone-x-shadow.png"
+              alt="iphone-content"
+              className="w-full h-full absolute top-0 left-0"
+            /> */}
+            <img
+              src="/images/iphone-mockup-label.png"
+              alt="iphone-content"
+              className="w-full h-full object-contain"
+            />
+          </figure>
+        </div>
       </div>
     </section>
   );

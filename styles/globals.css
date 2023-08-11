@@ -26,6 +26,7 @@ body {
   font-family: "Montserrat";
   color: rgb(var(--foreground-rgb));
   background: #011737;
+  scroll-behavior: smooth;
   /* background: linear-gradient(
       to bottom,
       transparent,

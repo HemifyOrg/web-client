@@ -16,7 +16,7 @@ module.exports = {
         primary: "#FAF7F0",
         darkGold: "#F6EFE2",
         statusBg: "#3F3626",
-        footerBg: "#544732",
+        footerBg: "#353535",
       },
       backgroundImage: {
         btnImage: "radial-gradient(transparent, #D2B37D)",
