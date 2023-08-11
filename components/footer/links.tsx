@@ -14,7 +14,7 @@ export const quickLinks: QuickLinkType[] = [
     title: "Profile",
     subLinks: [
       { title: "Settings", href: "/profile/settings" },
-      { title: "wallet", href: "/profile/wallet" },
+      { title: "Wallet", href: "/profile/wallet" },
       { title: "Notification", href: "/profile/notification" },
     ],
   },
