@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function Home() {
-  const [selectedNav, setSelectedNav] = useState(0);
+  const [selectedNav, setSelectedNav] = useState(-1);
   const router = useRouter();
   const { asPath } = router;
   const navLinks = [
@@ -56,7 +56,7 @@ export default function Home() {
   }, [selectedNav]);
 
   return (
-    <div className="w-full h-screen overflow-x-hidden text-white">
+    <div className="w-full h-full text-white">
       <nav className="flex bg-[#01173751] backdrop-blur-sm md:px-6 px-4 justify-between items-center py-4">
         <div className="flex items-center">
           <img src="/favicon.ico" alt="logo" className="h-8 w-8 mr-2" />
