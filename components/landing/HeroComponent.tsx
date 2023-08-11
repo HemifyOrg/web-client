@@ -1,9 +1,17 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
+import { Player } from "@lottiefiles/react-lottie-player";
+
+import HourGlassAnimate from "./lottiefiles/hour-glass-animate.json";
+import UserLoadAnimate from "./lottiefiles/user-load-animate.json";
+import CryptoAnimate from "./lottiefiles/crypto-animate.json";
 
 const HeroComponent = () => {
   return (
-    <section id="top" className="flex flex-col gap-4 justify-center items-center">
+    <section
+      id="top"
+      className="flex flex-col gap-4 justify-center items-center"
+    >
       <div className="flex px-4 flex-col gap-5 w-full items-center justify-center">
         <div className="flex gap-2 font-semibold md:text-6xl text-2xl">
           <div className="flex gap-6 md:gap-7">
@@ -61,9 +69,38 @@ const HeroComponent = () => {
       </div>
 
       {/* Main Hero */}
-      <div className="flex flex-col overflow-hidden">
-        <div className="flex translate-y-32 md:top-8 top-16 relative flex-col gap-4 px-4 md:px-8 justify-center items-center">
-          <figure className="absolute hidden w-full bg-slate-600 md:w-[80%] md:h-[80%] h-[50%]"></figure>
+      <div className="flex flex-col relative w-full overflow-hidden">
+        <div className="absolute flex z-[1] flex-col left-8 top-8 backdrop-blur-md bg-[#D9D9D947] rounded-full p-3">
+          <Player className="w-8 h-8" loop autoplay src={HourGlassAnimate} />
+          <div className="absolute w-max top-10 -translate-x-6">
+            <span className="text-slate-100 w-max relative left-8">
+              Swift Payment
+            </span>
+          </div>
+        </div>
+        <div className="absolute flex z-[1] flex-col backdrop-blur-md left-8 bottom-20 bg-[#D9D9D947] rounded-md p-2">
+          <Player className="w-12 h-12" loop autoplay src={UserLoadAnimate} />
+          <div className="absolute w-max top-12 -translate-x-6">
+            <span className="text-slate-100 w-max relative left-8 top-1">
+              User Prioritization
+            </span>
+          </div>
+        </div>
+        <div className="absolute flex z-[1] flex-col backdrop-blur-md right-20 top-52 bg-[#EDDFC7B2] rounded-tr-md p-2">
+          <Player className="w-12 h-12" loop autoplay src={CryptoAnimate} />
+          <div className="absolute w-max top-12 -left-20">
+            <span className="text-slate-100 w-max relative left-8 top-1">
+              Free Crypto Incentives
+            </span>
+          </div>
+        </div>
+        <div className="flex translate-y-28 md:top-0 top-12 relative flex-col gap-4 px-4 md:px-8 justify-center items-center">
+          <figure
+            style={{
+              backgroundImage: "url('/images/herobg.png')",
+            }}
+            className="absolute md:h-[50rem] md:w-[50rem] w-full h-[34rem] translate-y-24 bg-contain bg-no-repeat"
+          ></figure>
           <svg
             // width="1280"
             height="429"
@@ -90,7 +127,7 @@ const HeroComponent = () => {
           {Array(5)
             .fill(0)
             .map((_, i) => (
-              <div className="flex items-center gap-4 justify-center">
+              <div key={i} className="flex items-center gap-4 justify-center">
                 <svg
                   viewBox="0 0 24 24"
                   className="w-6 h-6 text-themeColor"
