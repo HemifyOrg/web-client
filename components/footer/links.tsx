@@ -5,9 +5,9 @@ export const quickLinks: QuickLinkType[] = [
   {
     title: "Products",
     subLinks: [
-      { title: "Wager", href: "/product/wager" },
-      { title: "Swap", href: "/product/swap" },
-      { title: "Raffles", href: "/product/raffles", isComingSoon: true },
+      { title: "Betting", href: "/product/wager" },
+      { title: "Duel bet", href: "/product/duel-bet" },
+      { title: "Loot box", href: "/product/loot-box", isComingSoon: true },
     ],
   },
   {

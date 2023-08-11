@@ -6,8 +6,8 @@ import { Footer } from "../footer";
 
 const MainComponent = () => {
   return (
-    <main className="mt-12 flex flex-col gap-6 h-full overflow-x-hidden">
-      <div className="flex flex-col gap-6 md:mb-56 mb-96">
+    <main className="mt-11 flex flex-col gap-6 h-full overflow-x-hidden">
+      <div className="flex flex-col gap-6 lg:mb-56 sm:mb-80 mb-[500px]">
         <HeroComponent />
         <FeaturedComponent />
         <HowItWorksComponent />

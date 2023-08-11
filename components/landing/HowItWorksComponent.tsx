@@ -8,9 +8,7 @@ const HowItWorksComponent = () => {
   ];
 
   const currenciesImages = [
-    "/images/currencies/bitcoin.png",
     "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=013",
-    "/images/currencies/tethers.png",
     "/images/currencies/solana.png",
     "/images/currencies/optism.png",
     "/images/currencies/polygon.png",
@@ -70,15 +68,21 @@ const HowItWorksComponent = () => {
             style={{ backgroundImage: "url('/images/iphone-x.png')" }}
             className="w-[300px] p-2 h-[400px] flex items-center justify-center bg-contain bg-no-repeat bg-center"
           >
-            {/* <img
-              src="/images/iphone-x-shadow.png"
-              alt="iphone-content"
-              className="w-full h-full absolute top-0 left-0"
-            /> */}
             <img
               src="/images/iphone-mockup-label.png"
               alt="iphone-content"
               className="w-full h-full object-contain"
+            />
+          </figure>
+
+          <figure
+            style={{ backgroundImage: "url('/images/iphone-x-tilt.png')" }}
+            className="w-[300px] p-3 h-[400px] -translate-x-10 overflow-hidden md:flex hidden items-center justify-center bg-contain bg-no-repeat bg-center"
+          >
+            <img
+              src="/images/iphone-mockup-label-tilt.png"
+              alt="iphone-content"
+              className="w-full h-full object-contain -translate-x-1 -translate-y-1"
             />
           </figure>
         </div>

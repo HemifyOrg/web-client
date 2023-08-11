@@ -24,7 +24,7 @@ const QuickLinkComponent = ({
         {link.subLinks.map((link, index) => (
           <Link
             key={index}
-            href={link.href}
+            href={"#" + link.href}
             className="text-sm group font-light flex md:gap-4 gap-2 no-underline hover:border-transparent border-transparent text-gray-100 hover:text-gray-200"
           >
             <span className="border-b border-transparent group-hover:border-[#d2b37d]">

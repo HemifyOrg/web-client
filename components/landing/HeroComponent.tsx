@@ -10,7 +10,7 @@ const HeroComponent = () => {
   return (
     <section
       id="top"
-      className="flex flex-col gap-4 justify-center items-center"
+      className="flex flex-col gap-4 pt-4 justify-center items-center"
     >
       <div className="flex px-4 flex-col gap-5 w-full items-center justify-center">
         <div className="flex gap-2 font-semibold md:text-6xl text-2xl">
