@@ -60,7 +60,7 @@ const AboutUsComponent = () => {
               We are building a platform assistant that can help you monitor
               your betting activities; a smart gambling feature that helps
               provide users with statistical data of their activities if they
-              are too exposed (over betting ) It provides users with option to
+              are too exposed (over betting) It provides users with option to
               limit stake, odds and lock funds.
             </p>
             <p>
