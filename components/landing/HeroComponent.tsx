@@ -70,7 +70,7 @@ const HeroComponent = () => {
 
       {/* Main Hero */}
       <div className="flex flex-col relative w-full overflow-hidden">
-        <div className="absolute flex z-[1] flex-col left-8 top-8 backdrop-blur-md bg-[#D9D9D947] rounded-full p-3">
+        <div className="absolute flex z-[1] flex-col lg:left-[200px] left-10 top-20 backdrop-blur-md bg-[#D9D9D947] rounded-full p-3">
           <Player className="w-8 h-8" loop autoplay src={HourGlassAnimate} />
           <div className="absolute w-max top-10 -translate-x-6">
             <span className="text-slate-100 w-max relative left-8">
@@ -78,7 +78,7 @@ const HeroComponent = () => {
             </span>
           </div>
         </div>
-        <div className="absolute flex z-[1] flex-col backdrop-blur-md left-8 bottom-20 bg-[#D9D9D947] rounded-md p-2">
+        <div className="absolute flex z-[1] flex-col backdrop-blur-md lg:left-[150px] left-5 bottom-[100px] bg-[#D9D9D947] rounded-md p-2">
           <Player className="w-12 h-12" loop autoplay src={UserLoadAnimate} />
           <div className="absolute w-max top-12 -translate-x-6">
             <span className="text-slate-100 w-max relative left-8 top-1">
@@ -86,7 +86,7 @@ const HeroComponent = () => {
             </span>
           </div>
         </div>
-        <div className="absolute flex z-[1] flex-col backdrop-blur-md right-20 top-52 bg-[#EDDFC7B2] rounded-tr-md p-2">
+        <div className="absolute flex z-[1] flex-col backdrop-blur-md lg:right-[150px] right-5 top-52 bg-[#EDDFC7B2] rounded-tr-md p-2">
           <Player className="w-12 h-12" loop autoplay src={CryptoAnimate} />
           <div className="absolute w-max top-12 -left-20">
             <span className="text-slate-100 w-max relative left-8 top-1">
@@ -99,13 +99,13 @@ const HeroComponent = () => {
             style={{
               backgroundImage: "url('/images/herobg.png')",
             }}
-            className="absolute md:h-[50rem] md:w-[50rem] w-full h-[34rem] translate-y-24 bg-contain bg-no-repeat"
+            className="absolute md:h-[50rem] md:w-[50rem] w-full h-[30rem] translate-y-24 bg-contain bg-no-repeat"
           ></figure>
           <svg
             // width="1280"
             height="429"
             viewBox="0 0 1280 429"
-            className="z-[-1] md:w-[80%] w-full"
+            className="z-[-1] w-full"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
