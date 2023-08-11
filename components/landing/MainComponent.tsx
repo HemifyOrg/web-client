@@ -7,7 +7,7 @@ import { Footer } from "../footer";
 const MainComponent = () => {
   return (
     <main className="mt-12 flex flex-col gap-6 h-full overflow-x-hidden">
-      <div className="flex flex-col gap-6 mb-56">
+      <div className="flex flex-col gap-6 md:mb-56 mb-96">
         <HeroComponent />
         <FeaturedComponent />
         <HowItWorksComponent />
