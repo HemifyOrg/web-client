@@ -61,7 +61,7 @@ const HeroComponent = () => {
             Subscribe
           </button>
         </form>
-        <p className="w-full px-4 md:w-96 text-center">
+        <p className="w-full px-4 md:w-[30rem] text-center">
           Be the first to know about our launch date, exclusive offers and
           thrilling promotions. Don't miss out on the action – join our winning
           team today!"

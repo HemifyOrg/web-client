@@ -4,6 +4,7 @@ import FeaturedComponent from "./FeaturedComponent";
 import HowItWorksComponent from "./HowItWorksComponent";
 import { Footer } from "../footer";
 import RoadMapComponent from "./RoadMapComponent";
+import AboutUsComponent from "./AboutUsComponent";
 
 const MainComponent = () => {
   return (
@@ -13,6 +14,7 @@ const MainComponent = () => {
         <FeaturedComponent />
         <HowItWorksComponent />
         <RoadMapComponent />
+        <AboutUsComponent />
       </div>
       <div className="relative mt-10 w-full">
         <div className="absolute bottom-0 w-full">
