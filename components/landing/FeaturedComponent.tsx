@@ -139,7 +139,7 @@ const FeaturedComponent = () => {
               //   style={{
               //     backgroundImage: `url(${image})`,
               //   }}
-              className="rounded-md bg-cover bg-center w-full h-full"
+              className="rounded-md animate-pulse bg-cover bg-center w-full h-full"
             ></div>
           </SwiperSlide>
         ))}

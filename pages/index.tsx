@@ -51,7 +51,7 @@ export default function Home() {
       // scroll to the selected nav link
       document
         .getElementById(selectedNavLink.href.replace("#", ""))
-        ?.scrollIntoView({ behavior: "smooth" });
+        ?.scrollIntoView({ behavior: "auto" });
     }
   }, [selectedNav]);
 
