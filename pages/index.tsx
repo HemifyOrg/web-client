@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Head from "next/head";
 import { MainComponent } from "@/components/landing";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -56,14 +55,8 @@ export default function Home() {
     }
   }, [selectedNav]);
 
-  console.log(selectedNav);
-
   return (
     <div className="w-full h-screen overflow-x-hidden text-white">
-      <Head>
-        <title>{process.env.PUBLIC_APP_NAME}</title>
-      </Head>
-
       <nav className="flex bg-[#01173751] backdrop-blur-sm md:px-6 px-4 justify-between items-center py-4">
         <div className="flex items-center">
           <img src="/favicon.ico" alt="logo" className="h-8 w-8 mr-2" />
@@ -107,8 +100,6 @@ export default function Home() {
           </button>
         </div>
       </nav>
-      {/* 
-      <main className="mt-20 flex flex-col"> */}
       <MainComponent />
     </div>
   );
