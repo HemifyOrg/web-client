@@ -3,6 +3,7 @@ import HeroComponent from "./HeroComponent";
 import FeaturedComponent from "./FeaturedComponent";
 import HowItWorksComponent from "./HowItWorksComponent";
 import { Footer } from "../footer";
+import RoadMapComponent from "./RoadMapComponent";
 
 const MainComponent = () => {
   return (
@@ -11,6 +12,7 @@ const MainComponent = () => {
         <HeroComponent />
         <FeaturedComponent />
         <HowItWorksComponent />
+        <RoadMapComponent />
       </div>
       <div className="relative mt-10 w-full">
         <div className="absolute bottom-0 w-full">
