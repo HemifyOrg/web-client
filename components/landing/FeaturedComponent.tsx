@@ -12,11 +12,12 @@ import StarHappyAnimate from "./lottiefiles/star-happy-animate.json";
 
 const FeaturedComponent = () => {
   const slidesImages = [
-    "/images/logos/apple-touch-icon.png",
-    "/images/logos/apple-touch-icon.png",
-    "/images/logos/apple-touch-icon.png",
-    "/images/logos/apple-touch-icon.png",
-    "/images/logos/apple-touch-icon.png",
+    "/images/sports/basketball.png",
+    "/images/sports/soccer.png",
+    "/images/sports/baseball.png",
+    "/images/sports/golf.png",
+    "/images/sports/boxing.png",
+    "/images/sports/car-race.png",
   ];
   const featuresList = [
     {
@@ -126,7 +127,6 @@ const FeaturedComponent = () => {
           delay: 2500,
           disableOnInteraction: false,
         }}
-        // className="w-full flex px-2 overflow-x-scroll scrollbar-none"
         className="w-full flex items-center no-select !px-2 justify-start lg:justify-center gap-8 py-6 overflow-x-scroll scrollbar-none"
         modules={[Autoplay, Pagination]}
       >
@@ -136,10 +136,10 @@ const FeaturedComponent = () => {
             className="md:!w-96 !w-44 md:!h-60 !h-52 rounded-lg shadow-md drop-shadow-md bg-slate-400"
           >
             <div
-              //   style={{
-              //     backgroundImage: `url(${image})`,
-              //   }}
-              className="rounded-md animate-pulse bg-cover bg-center w-full h-full"
+                style={{
+                  backgroundImage: `url(${image})`,
+                }}
+              className="rounded-md bg-cover bg-center w-full h-full"
             ></div>
           </SwiperSlide>
         ))}
