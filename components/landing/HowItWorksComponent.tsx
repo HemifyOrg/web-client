@@ -17,7 +17,7 @@ const HowItWorksComponent = () => {
   ];
 
   return (
-    <section id="how-it-works" className="flex flex-col gap-4 mt-6 w-full">
+    <section id="how-it-works" className="flex flex-col gap-4 mt-6 w-full mb-2">
       <h1 className="py-2 px-4 text-center font-bold text-3xl">How it Works</h1>
       <div className="flex md:justify-center md:gap-10 justify-between w-full items-center md:px-4 px-2">
         {listOfHowItWorks.map((item, index) => (
@@ -44,7 +44,7 @@ const HowItWorksComponent = () => {
         ))}
       </div>
 
-      <div className="mt-4 w-full flex gap-4 justify-center items-center md:px-4 px-2">
+      <div className="mt-4 w-full flex md:flex-row flex-row-reverse md:flex-nowrap flex-wrap gap-4 justify-center items-center md:px-4 px-2">
         {/* left how it works content */}
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
