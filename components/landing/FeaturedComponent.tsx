@@ -81,7 +81,7 @@ const FeaturedComponent = () => {
       ),
     },
     {
-      title: "Smart Betting",
+      title: "Smart Play",
       icon: (
         <Player
           style={{

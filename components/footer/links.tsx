@@ -1,5 +1,11 @@
 import { QuickLinkType } from "./types";
-import { BsTwitter, BsDiscord, BsLinkedin } from "react-icons/bs";
+import {
+  BsTwitter,
+  BsDiscord,
+  BsTelegram,
+  BsInstagram,
+  BsFacebook,
+} from "react-icons/bs";
 
 export const quickLinks: QuickLinkType[] = [
   {
@@ -30,18 +36,28 @@ export const quickLinks: QuickLinkType[] = [
 
 export const socialLinks = [
   {
+    title: "Telegram",
+    href: "https://t.me/hemify",
+    icon: <BsTelegram className="text-black w-full h-full" />,
+  },
+  {
     title: "Twitter",
-    href: "#",
+    href: "https://twitter.com/hemifybet",
     icon: <BsTwitter className="text-black w-full h-full" />,
   },
   {
     title: "Discord",
-    href: "#",
+    href: "https://discord.gg/ASY6e658JB",
     icon: <BsDiscord className="text-black w-full h-full" />,
   },
   {
-    title: "Linkedin",
-    href: "#",
-    icon: <BsLinkedin className="text-black w-full h-full" />,
+    title: "Facebook",
+    href: "https://www.facebook.com/HemifyBet",
+    icon: <BsFacebook className="text-black w-full h-full" />,
+  },
+  {
+    title: "Instagram",
+    href: "https://www.instagram.com/hemify_bet/",
+    icon: <BsInstagram className="text-black w-full h-full" />,
   },
 ];
