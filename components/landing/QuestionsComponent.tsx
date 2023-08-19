@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const QuestionsComponent = () => {
   return (
@@ -9,12 +10,24 @@ const QuestionsComponent = () => {
         us directly or join our community to interact with us
       </p>
       <div className="flex gap-6 p-2">
-        <button className="border-themeColor border w-48 py-2 rounded-md text-sm font-medium">
+        <a
+          href="https://t.me/hemify"
+          rel="noreferrer"
+          target="_blank"
+          className="border-themeColor border w-48 py-2 flex justify-center items-center rounded-md text-sm font-medium"
+        >
           Contact Us
-        </button>
-        <button className="bg-themeColor text-white w-48 py-2 rounded-md text-sm font-medium">
+        </a>
+        <motion.a
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.8 }}
+          href="https://discord.gg/ASY6e658JB"
+          rel="noreferrer"
+          target="_blank"
+          className="bg-themeColor text-white w-48 py-2 flex justify-center items-center rounded-md text-sm font-medium"
+        >
           Join Our Community
-        </button>
+        </motion.a>
       </div>
     </section>
   );

@@ -12,11 +12,6 @@ const HeroComponent = () => {
   const [loading, setLoading] = React.useState(false);
   const [response, setResponse] = React.useState<any>(null);
 
-  // {
-  //   status: 400,
-  //   message: "Something went wrong",
-  // }
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -44,10 +39,18 @@ const HeroComponent = () => {
         })
         .catch((err) => {
           console.log(err);
+          setResponse({
+            status: 400,
+            message: "Something went wrong",
+          });
           setLoading(false);
         });
     } catch (error) {
       console.log(error);
+      setResponse({
+        status: 400,
+        message: "Something went wrong",
+      });
       setLoading(false);
     }
   };
