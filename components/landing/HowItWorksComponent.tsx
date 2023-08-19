@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const HowItWorksComponent = () => {
   const listOfHowItWorks = [
@@ -64,7 +65,12 @@ const HowItWorksComponent = () => {
         </div>
 
         <div className="flex justify-end items-center relative">
-          <figure
+          <motion.figure
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
             style={{ backgroundImage: "url('/images/iphone-x.png')" }}
             className="w-[300px] p-2 h-[400px] flex items-center justify-center bg-contain bg-no-repeat bg-center"
           >
@@ -73,9 +79,15 @@ const HowItWorksComponent = () => {
               alt="iphone-content"
               className="w-full h-full object-contain"
             />
-          </figure>
+          </motion.figure>
 
-          <figure
+          <motion.figure
+            initial={{ opacity: 0, scale: 0.5, x: "-2.5rem" }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+            }}
+            transition={{ duration: 0.3 }}
             style={{ backgroundImage: "url('/images/iphone-x-tilt.png')" }}
             className="w-[300px] p-3 h-[400px] -translate-x-10 overflow-hidden md:flex hidden items-center justify-center bg-contain bg-no-repeat bg-center"
           >
@@ -84,7 +96,7 @@ const HowItWorksComponent = () => {
               alt="iphone-content"
               className="w-full h-full object-contain -translate-x-1 -translate-y-1"
             />
-          </figure>
+          </motion.figure>
         </div>
       </div>
     </section>

@@ -41,7 +41,7 @@ const HeroComponent = () => {
           console.log(err);
           setResponse({
             status: 400,
-            message: "Something went wrong",
+            message: "Something went wrong, please try again later",
           });
           setLoading(false);
         });
@@ -49,7 +49,7 @@ const HeroComponent = () => {
       console.log(error);
       setResponse({
         status: 400,
-        message: "Something went wrong",
+        message: "Something went wrong, please try again later",
       });
       setLoading(false);
     }
