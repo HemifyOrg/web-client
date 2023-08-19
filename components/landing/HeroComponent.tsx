@@ -21,14 +21,21 @@ const HeroComponent = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await fetch("http://localhost:8000/api/add-email-to-waitlist/", {
-        method: "POST",
-        // mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      })
+      await fetch(
+        `${
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:8000"
+            : "https://api.hemify.bet"
+        }/api/add-email-to-waitlist/`,
+        {
+          method: "POST",
+          // mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      )
         .then(async (res) => {
           const data = await res.json();
           setResponse(data);
