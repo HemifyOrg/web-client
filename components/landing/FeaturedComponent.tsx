@@ -10,6 +10,8 @@ import CustomerServiceAnimate from "./lottiefiles/customer-service-animate.json"
 import AIRobotAnimate from "./lottiefiles/ai-robot-animate.json";
 import StarHappyAnimate from "./lottiefiles/star-happy-animate.json";
 
+import { motion } from "framer-motion";
+
 const FeaturedComponent = () => {
   const slidesImages = [
     "/images/sports/basketball.png",
@@ -136,9 +138,9 @@ const FeaturedComponent = () => {
             className="md:!w-96 !w-44 md:!h-60 !h-52 rounded-lg shadow-md drop-shadow-md bg-slate-400"
           >
             <div
-                style={{
-                  backgroundImage: `url(${image})`,
-                }}
+              style={{
+                backgroundImage: `url(${image})`,
+              }}
               className="rounded-md bg-cover bg-center w-full h-full"
             ></div>
           </SwiperSlide>
@@ -148,7 +150,18 @@ const FeaturedComponent = () => {
       <div className="flex flex-col justify-center items-center gap-6 py-6 px-10 mt-6">
         <div className="flex gap-6 flex-wrap md:justify-start justify-center items-center">
           {featuresList.splice(0, 2).map((feature, index) => (
-            <div
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.5,
+                y: 20,
+              }}
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+              }}
+              transition={{ duration: 0.3 }}
               key={index}
               className="flex flex-col md:w-[400px] h-[240px] w-full gap-4 items-center justify-center p-3 bg-[#0D213E]"
             >
@@ -156,7 +169,7 @@ const FeaturedComponent = () => {
               <h3 className="text-center text-lg font-semibold">
                 {feature.title}
               </h3>
-            </div>
+            </motion.div>
           ))}
           <div className="flex flex-col md:w-[400px] h-[240px] w-full gap-5 items-start justify-center p-4">
             <div>
@@ -176,7 +189,18 @@ const FeaturedComponent = () => {
 
         <div className="flex gap-6 flex-wrap justify-center items-center">
           {featuresList.splice(0, 4).map((feature, index) => (
-            <div
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.5,
+                y: 20,
+              }}
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+              }}
+              transition={{ duration: 0.3 }}
               key={index}
               className="flex flex-col md:w-[400px] h-[240px] w-full gap-4 items-center justify-center p-3 bg-[#0D213E]"
             >
@@ -184,7 +208,7 @@ const FeaturedComponent = () => {
               <h3 className="text-center text-lg font-semibold">
                 {feature.title}
               </h3>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

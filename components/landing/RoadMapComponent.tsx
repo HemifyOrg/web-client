@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const RoadMapComponent = () => {
   return (
@@ -10,19 +11,35 @@ const RoadMapComponent = () => {
         Road Map
       </h1>
       {/* md */}
-      <figure
+      <motion.figure
+        initial={{
+          y: 20,
+          opacity: 0,
+        }}
+        whileInView={{
+          y: 0,
+          opacity: 1,
+        }}
         style={{
           backgroundImage: "url(/images/roadmap.png)",
         }}
         className="w-full h-[400px] md:block hidden bg-center bg-contain bg-no-repeat"
-      ></figure>
+      ></motion.figure>
       {/* sm */}
-      <figure
+      <motion.figure
+        initial={{
+          y: 20,
+          opacity: 0,
+        }}
+        whileInView={{
+          y: 0,
+          opacity: 1,
+        }}
         style={{
           backgroundImage: "url(/images/roadmap-mobile.png)",
         }}
         className="w-full h-[700px] md:hidden bg-center bg-contain bg-no-repeat"
-      ></figure>
+      ></motion.figure>
     </section>
   );
 };
