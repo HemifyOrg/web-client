@@ -3,6 +3,8 @@ import { MainComponent } from "@/components/landing";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import { motion } from "framer-motion";
+
 export default function Home() {
   const [selectedNav, setSelectedNav] = useState(-1);
   const router = useRouter();
@@ -58,9 +60,18 @@ export default function Home() {
   return (
     <div className="w-full h-full text-white">
       <nav className="flex bg-[#01173751] backdrop-blur-sm md:px-6 px-4 justify-between items-center py-4">
-        <div className="flex items-center">
-          <img src="/favicon.ico" alt="logo" className="h-8 w-8 mr-2" />
-        </div>
+        <Link
+          href={"/"}
+          className="flex items-center border-none hover:border-none"
+        >
+          <motion.img
+            whileHover={{ rotate: 360, scale: 1.2 }}
+            whileTap={{ scale: 0.8 }}
+            src="/favicon.ico"
+            alt="logo"
+            className="h-8 w-8 mr-2"
+          />
+        </Link>
         <div className="md:flex hidden gap-8 items-center">
           {navLinks.map((link) => (
             <Link
@@ -77,7 +88,12 @@ export default function Home() {
             </Link>
           ))}
         </div>
-        <div className="flex gap-4 items-center">
+        <a
+          href="https://t.me/hemify"
+          rel="noreferrer"
+          target="_blank"
+          className="flex gap-4 items-center border-none hover:border-none text-slate-100"
+        >
           <button className="border-themeColor border px-4 py-2 rounded-md text-sm font-medium">
             Contact Us
           </button>
@@ -98,7 +114,7 @@ export default function Home() {
               />
             </svg>
           </button>
-        </div>
+        </a>
       </nav>
       <MainComponent />
     </div>

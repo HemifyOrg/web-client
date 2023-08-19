@@ -1,12 +1,50 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
 import { Player } from "@lottiefiles/react-lottie-player";
+import { motion } from "framer-motion";
 
 import HourGlassAnimate from "./lottiefiles/hour-glass-animate.json";
 import UserLoadAnimate from "./lottiefiles/user-load-animate.json";
 import CryptoAnimate from "./lottiefiles/crypto-animate.json";
 
 const HeroComponent = () => {
+  const [email, setEmail] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+  const [response, setResponse] = React.useState<any>(null);
+
+  // {
+  //   status: 400,
+  //   message: "Something went wrong",
+  // }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await fetch("http://localhost:8000/api/add-email-to-waitlist/", {
+        method: "POST",
+        // mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      })
+        .then(async (res) => {
+          const data = await res.json();
+          setResponse(data);
+          setLoading(false);
+          setEmail("");
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
   return (
     <section
       id="top"
@@ -46,21 +84,118 @@ const HeroComponent = () => {
       <div className="w-full flex md:px-8 px-4 justify-center items-center flex-col gap-3">
         <form
           method="POST"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit}
           className="flex md:w-[50%] lg:w-[30%] lg:focus-within:w-[50%] md:focus-within:w-[60%] focus-within:scale-105 w-[90%] transition-all duration-75 overflow-hidden focus-within:w-full"
         >
           <input
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={loading || response?.status === 200}
+            required
             placeholder="Enter your email"
             className="w-full px-4 py-2 outline-none text-slate-800 font-semibold"
           />
           <button
             type="submit"
-            className="px-4 py-2 bg-green-600 text-white font-semibold"
+            disabled={loading || response?.status === 200}
+            className="px-4 py-2 relative flex justify-center items-center bg-green-600 text-white font-semibold"
           >
-            Subscribe
+            <span className={`${loading ? "opacity-0" : ""}`}>
+              {response?.status === 200 ? "Subscribed" : "Subscribe"}
+            </span>
+            {response?.status === 200 && (
+              <motion.svg
+                initial={{ opacity: -1, rotate: 0, x: -20 }}
+                animate={{ opacity: 1, rotate: 360, x: 0 }}
+                transition={{ duration: 1 }}
+                className="ml-2 w-5 h-5 text-white inline-block"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12 0a12 12 0 1012 12A12.013 12.013 0 0012 0zm6.707 9.293l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L10 14.586l7.293-7.293a1 1 0 011.414 1.414z"
+                ></path>
+              </motion.svg>
+            )}
+            {loading && (
+              <svg
+                className="absolute animate-spin ml-2 h-5 w-5 text-white inline-block"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                ></path>
+              </svg>
+            )}
           </button>
         </form>
+        {/* message card */}
+        {response?.status === 200 && (
+          <div className="flex justify-center items-center gap-2">
+            <motion.svg
+              initial={{ opacity: -1, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+              className="w-6 h-6 text-slate-100"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="12" cy="12" r="12" fill="green" />
+              <path
+                d="M8 13L11 16L16 11"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </motion.svg>
+            <span className="text-green-600 font-semibold">
+              {response?.message}
+            </span>
+          </div>
+        )}
+        {response?.status === 400 && (
+          <div className="flex justify-center items-center gap-2">
+            {/* x-icon */}
+            <svg
+              className="w-6 h-6 text-slate-100"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="12" cy="12" r="12" fill="red" />
+              <path
+                d="M15 9L9 15"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M9 9L15 15"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="text-red-600 font-semibold">
+              {response?.message}
+            </span>
+          </div>
+        )}
         <p className="w-full px-4 md:w-[30rem] text-center">
           Be the first to know about our launch date, exclusive offers and
           thrilling promotions. Don't miss out on the action – join our winning
