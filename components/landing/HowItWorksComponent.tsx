@@ -59,9 +59,24 @@ const HowItWorksComponent = () => {
               <img key={i} src={currency} alt="currency" className="w-8 h-8" />
             ))}
           </div>
-          <button className="bg-themeColor hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded">
+          <motion.a
+            initial={{
+              scale: 0.7,
+              opacity: 0,
+            }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.8 }}
+            whileInView={{
+              scale: 1,
+              opacity: 1,
+            }}
+            href="https://hemify-bet.gitbook.io/hemify-bet/"
+            rel="noreferrer"
+            target="_blank"
+            className="bg-themeColor hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded"
+          >
             Learn More
-          </button>
+          </motion.a>
         </div>
 
         <div className="flex justify-end items-center relative">
