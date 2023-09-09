@@ -11,6 +11,8 @@ import { ApolloProvider } from "@apollo/client";
 import { client } from "@/graphql";
 import Head from "next/head";
 
+export const runtime = "experimental-edge";
+
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const { pathname }: { pathname: string } = router;

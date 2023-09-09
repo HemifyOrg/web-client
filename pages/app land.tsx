@@ -3,7 +3,6 @@ import "swiper/css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
-export const runtime = "experimental-edge";
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   return (
