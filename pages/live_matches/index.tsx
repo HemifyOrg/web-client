@@ -36,7 +36,7 @@ export default function liveMatches() {
 
         </nav>
 
-            {/* footer */}
+            {/* footer starts here*/}
             <Footer />
         </div>
         
