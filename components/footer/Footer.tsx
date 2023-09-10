@@ -48,7 +48,7 @@ const Footer = () => {
           Copyright © {currentYear}
         </span>
         <span className="md:text-base sm:text-sm text-xs font-light text-gray-100">
-          Hemifiy.{"  "}Right Reserved
+          Hemify.{"  "}Right Reserved
         </span>
       </div>
     </div>
