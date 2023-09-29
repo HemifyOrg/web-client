@@ -230,10 +230,7 @@ export default function liveMatches() {
   </defs>
                       </svg>
                       {/* double arrow up */}
-                      <svg className="ml-[1rem] hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-  <g opacity="0.6">
-    <path d="M4.66797 7.92611L8.0013 4.59277L11.3346 7.92611M4.66797 12.5928L8.0013 9.25944L11.3346 12.5928" stroke="#FAFAFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </g>
+                      <svg className="ml-[1rem] hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none"> <g opacity="0.6"> <path d="M4.66797 7.92611L8.0013 4.59277L11.3346 7.92611M4.66797 12.5928L8.0013 9.25944L11.3346 12.5928" stroke="#FAFAFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </g>
                       </svg>
                       {/* arrow down */}
                       <svg className="ml-[1rem] hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">

@@ -170,3 +170,8 @@ input[type="checkbox"]:disabled {
   color: var(--form-control-disabled);
   cursor: not-allowed;
 }
+
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
