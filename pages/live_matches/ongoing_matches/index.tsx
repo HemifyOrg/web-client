@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import "@/styles/globals.css";
-// import logos
+// import logos from public folder
 import chelsea_logo from "../../../../web-client/public/icons/Chelsea.png"
 import RMadrid_logo from "../../../../web-client/public/icons/RMadrid.png"
 import redCard from "../../../../web-client/public/icons/redCard.png"
