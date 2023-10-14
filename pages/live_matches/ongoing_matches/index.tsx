@@ -2,17 +2,16 @@ import React from 'react'
 import Image from 'next/image'
 import "@/styles/globals.css";
 // import logos from public folder
-import chelsea_logo from "../../../../web-client/public/icons/Chelsea.png"
-import RMadrid_logo from "../../../../web-client/public/icons/RMadrid.png"
-import redCard from "../../../../web-client/public/icons/redCard.png"
-import yellowCard from "../../../../web-client/public/icons/yellowCard.png"
+import chelsea_logo from "../../../../web-client/components/assets/Chelsea.png"
+import RMadrid_logo from "../../../../web-client/components/assets/RMadrid.png"
+import redCard from "../../../../web-client/components/assets/redCard.png"
+import yellowCard from "../../../../web-client/components/assets/yellowCard.png"
 
 
 const ongoingMatches = () => {
   return (
     <section className='mt-[6rem] bg-[#25282B] pt-[1rem] pb-[2rem]'>
         
-
         {/*BETTING SCORE CARD*/}
         <div className='w-[80%] bg-[#FFF] flex justify-between m-auto rounded-lg p-[0.5rem]'>
 
