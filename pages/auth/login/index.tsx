@@ -1,4 +1,4 @@
-import { InputField } from "@/components/reusable/formik";
+import { AuthHeader, InputField } from "@/components/reusable/formik";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
@@ -30,6 +30,7 @@ const LoginPage = () => {
 
   return (
     <main className="md:mt-32 mt-20 mb-12 p-4 gap-4 h-full flex w-full md:w-[45%] lg:w-1/3 m-auto flex-col items-center justify-start lg:justify-center">
+      <AuthHeader type="login" />
       <Formik
         initialValues={initialValues}
         validationSchema={SignupSchema}
