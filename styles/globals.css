@@ -25,13 +25,14 @@
 body {
   font-family: "Montserrat";
   color: rgb(var(--foreground-rgb));
+  background: #011737;
   scroll-behavior: smooth;
-  background: linear-gradient(
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
 }
 
 .grid-cols-auto {
@@ -54,9 +55,9 @@ select:-webkit-autofill:focus {
 }
 
 .form input {
-  @apply border-transparent bg-transparent appearance-none border-[0.5px] rounded w-full p-2 selection:bg-themeColor autofill:selection:!bg-blue-300
-         autofill:hover:!bg-themeColor text-gray-700
-          leading-tight focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply border-themeColor bg-primary appearance-none border-[0.5px] rounded w-full p-2 selection:bg-themeColor autofill:selection:!bg-blue-300
+         autofill:!shadow-themeColor autofill:focus:!shadow-themeColor autofill:hover:!bg-themeColor text-gray-700
+          leading-tight focus:outline-none focus:shadow disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
 .form input:autofill ~ .input-loader {
@@ -117,7 +118,7 @@ input[type="checkbox"] {
   width: 1.15em;
   height: 1.15em;
   border: 0.15em solid currentColor;
-  border-radius: 25%;
+  border-radius: 50%;
   transform: translateY(-0.075em);
 
   display: grid;
@@ -169,8 +170,4 @@ input[type="checkbox"]:disabled {
 
   color: var(--form-control-disabled);
   cursor: not-allowed;
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
 }
