@@ -27,12 +27,12 @@ const SignupPage = () => {
   const fieldsList = [
     {
       name: "email",
-      label: "Sign in with Email",
+      label: "Sign up with Email",
       type: "email",
       placeholder: "example@email.com",
       autoComplete: "email",
       className:
-        "relative items-center flex border rounded-xl py-2 px-4 w-full",
+        "relative items-center flex border rounded-xl py-2 px-4 w-full bg-white",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -397,7 +397,7 @@ const SignupPage = () => {
                   </button>
                   <span className="mx-auto mt-2 flex gap-2">
                     Already have an account?
-                    <Link href="/login">
+                    <Link href="/auth/login">
                       <span className="text-themeColor font-semibold">
                         Login Instead
                       </span>
