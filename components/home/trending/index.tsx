@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { FilterComponent } from "@/components/reusable";
 
 const TrandingComponent = () => {
   const [selectedTab, setSelectedTab] = useState("all");
@@ -353,25 +354,7 @@ const TrandingComponent = () => {
 
       {/* menu area */}
       <div className="px-2 md:px-16 md:max-w-lg max-w-md w-full">
-        <div className="mx-auto overflow-x-auto w-full px-4 py-2 shadow-sm rounded-full bg-white flex gap-4 items-center justify-start">
-          {tabs.map((tab, index) => (
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.9 }}
-              type="button"
-              onClick={() => setSelectedTab(tab.name)}
-              key={index}
-              className={`flex gap-2 items-center ${
-                selectedTab === tab.name
-                  ? "bg-darkGold text-white"
-                  : "hover:border-darkGold border text-gray-700 bg-secondary"
-              } px-8 py-1 rounded-full `}
-            >
-              <span className="w-6 h-6">{tab.icon}</span>
-              <span className="text-xs capitalize">{tab.name}</span>
-            </motion.button>
-          ))}
-        </div>
+        <FilterComponent tabs={tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       </div>
     </section>
   );
