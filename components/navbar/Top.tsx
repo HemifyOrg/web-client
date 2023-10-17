@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-import { loadConfig } from "../features/configSlice";
+import { loadConfig } from "../../features/configSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ConnectWallet from "@/components/reusable/ConnectWallect";
 
-import { AppDispatch, RootState } from "../app/store";
+import { AppDispatch, RootState } from "../../app/store";
 import { ThunkDispatch, AnyAction } from "@reduxjs/toolkit";
 import Link from "next/link";
 
 import { LogoSvg } from "@/utils";
-import { OutsideAlerter } from "./reusable";
+import { OutsideAlerter } from "../reusable";
 
-const NavBar = () => {
+const TopNav = () => {
   const [showMaterialDropdown, setShowMaterialDropdown] = useState(false);
   const [showNotificationDropdown, setShowNotificationDropdown] =
     useState(false);
@@ -387,4 +387,4 @@ const NavBar = () => {
     </React.Fragment>
   );
 };
-export default NavBar;
+export default TopNav;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "./NavBar";
+import TopNav from "./navbar/Top";
 import { ConnectWalletPopup } from "./reusable";
 import { AppProps } from "next/app";
 import { useSelector } from "react-redux";
@@ -13,6 +13,7 @@ import "swiper/css";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import BottomNav from "./navbar/Bottom";
 
 const Layout = ({ Component, pageProps }: AppProps) => {
   const showConnectPopup = useSelector(
@@ -50,7 +51,7 @@ const Layout = ({ Component, pageProps }: AppProps) => {
       transition={{ duration: 0.3 }}
       className="w-full h-full flex flex-col bg-gradient-to-b from-[#d0d4d651] !overflow-y-auto !overflow-x-hidden"
     >
-      <NavBar />
+      <TopNav />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: isAnimating ? 0 : 1 }}
@@ -62,6 +63,7 @@ const Layout = ({ Component, pageProps }: AppProps) => {
         <Component {...pageProps} />
         <Footer />
       </motion.div>
+      <BottomNav />
     </motion.div>
   );
 };
