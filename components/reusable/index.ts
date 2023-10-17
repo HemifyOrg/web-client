@@ -1,5 +1,5 @@
 import ConnectWalletPopup from "./ConnectWalletPopup";
 import SlideControlButtons from "./SlideControlButtons";
-import FilterComponent from "./FilterComponent";
+import FilterMenuComponent from "./FilterMenuComponent";
 export * from "./components";
-export { ConnectWalletPopup, SlideControlButtons, FilterComponent };
+export { ConnectWalletPopup, SlideControlButtons, FilterMenuComponent };

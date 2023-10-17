@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FilterComponent } from "@/components/reusable";
+import { FilterMenuComponent } from "@/components/reusable";
 
 const TrandingComponent = () => {
   const [selectedTab, setSelectedTab] = useState("all");
@@ -354,7 +354,7 @@ const TrandingComponent = () => {
 
       {/* menu area */}
       <div className="px-2 md:px-16 md:max-w-lg max-w-md w-full">
-        <FilterComponent tabs={tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+        <FilterMenuComponent tabs={tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       </div>
     </section>
   );

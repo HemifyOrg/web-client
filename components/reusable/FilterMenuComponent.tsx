@@ -11,7 +11,7 @@ type Props = {
   className?: string;
 };
 
-const FilterComponent: React.FC<Props> = ({
+const FilterMenuComponent: React.FC<Props> = ({
   tabs,
   selectedTab,
   setSelectedTab,
@@ -45,4 +45,4 @@ const FilterComponent: React.FC<Props> = ({
   );
 };
 
-export default FilterComponent;
+export default FilterMenuComponent;
