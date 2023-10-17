@@ -1,9 +1,75 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { FilterMenuComponent } from "@/components/reusable";
+import MatchesComponent from "./MatchesComponent";
+import { MatchType } from "@/utils/types";
 
 const TrandingComponent = () => {
   const [selectedTab, setSelectedTab] = useState("all");
+  const [matches, setMatches] = useState<MatchType[]>([
+    {
+      id: 0,
+      sport: {
+        league: {
+          id: "122",
+          name: "premier_league",
+          country: "england",
+        },
+        name: "soccer",
+      },
+      home: {
+        name: "Liverpool",
+        image: "/images/sports/team/liverpool.png",
+      },
+      away: {
+        name: "Man Utd",
+        image: "/images/sports/team/man-utd.png",
+      },
+      status: "live",
+      time: { days: "2", hours: "05", minutes: "17" },
+    },
+    {
+      id: 0,
+      sport: {
+        league: {
+          id: "122",
+          name: "premier_league",
+          country: "england",
+        },
+        name: "soccer",
+      },
+      home: {
+        name: "Liverpool",
+        image: "/images/sports/team/liverpool.png",
+      },
+      away: {
+        name: "Man Utd",
+        image: "/images/sports/team/man-utd.png",
+      },
+      status: "live",
+      time: { days: "2", hours: "05", minutes: "17" },
+    },
+    {
+      id: 0,
+      sport: {
+        league: {
+          id: "122",
+          name: "premier_league",
+          country: "england",
+        },
+        name: "soccer",
+      },
+      home: {
+        name: "Liverpool",
+        image: "/images/sports/team/liverpool.png",
+      },
+      away: {
+        name: "Man Utd",
+        image: "/images/sports/team/man-utd.png",
+      },
+      status: "live",
+      time: { days: "2", hours: "05", minutes: "17" },
+    },
+  ]);
   const tabs = [
     {
       name: "all",
@@ -300,7 +366,7 @@ const TrandingComponent = () => {
   ];
   return (
     <section className="my-16 rounded-t-3xl w-full flex flex-col justify-center items-center">
-      <h3 className="flex gap-0 mb-4 items-center text-lg mx-auto font-medium">
+      <h1 className="flex gap-0 mb-4 items-center text-lg mx-auto font-medium">
         Trending{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -350,12 +416,19 @@ const TrandingComponent = () => {
             </radialGradient>
           </defs>
         </svg>{" "}
-      </h3>
+      </h1>
 
       {/* menu area */}
-      <div className="px-2 md:px-16 md:max-w-lg max-w-md w-full">
-        <FilterMenuComponent tabs={tabs} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+      <div className="px-2 md:max-w-xl max-w-md w-full">
+        <FilterMenuComponent
+          tabs={tabs}
+          selectedTab={selectedTab}
+          setSelectedTab={setSelectedTab}
+        />
       </div>
+
+      {/* content area */}
+      <MatchesComponent matches={matches} />
     </section>
   );
 };

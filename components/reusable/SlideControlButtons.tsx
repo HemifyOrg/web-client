@@ -2,58 +2,55 @@ import React from "react";
 import { useSwiper } from "swiper/react";
 
 interface Props {
-  isEnd: boolean;
-  isBeginning: boolean;
+  isEnd?: boolean;
+  isBeginning?: boolean;
 }
 
 const SlideControlButtons: React.FC<Props> = ({ isEnd, isBeginning }) => {
   const swiper = useSwiper();
   return (
     <div className="w-full px-4 flex mt-8 justify-center items-center select-none">
-      <div className="bg-transparent rounded-lg p-2 flex justify-between gap-4">
-        <div
-          className={`p-2 rounded-md bg-[#F1E7D44D] border-[0.4px] border-themeColor transition-all ${
+      <div className="bg-transparent rounded-lg py-2 justify-center md:gap-16 flex gap-24 w-full">
+        <span
+          className={`p-1 w-7 h-7 rounded-xl bg-slate-200 flex justify-center items-center transition-all ${
             isBeginning ? "opacity-50" : "active:scale-75"
           }`}
           onClick={() => swiper && swiper.slidePrev()}
         >
           <svg
-            width="22"
-            height="20"
-            viewBox="0 0 22 20"
-            className="transition-all active:stroke-[#d2b37dd8] stroke-themeColor"
-            fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 17 16"
+            className="w-full h-full"
+            fill="none"
           >
             <path
-              d="M21 18.3334L12.6667 10.0001L21 1.66675M9.33333 18.3334L1 10.0001L9.33333 1.66675"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              d="M10.5 12L6.5 8L10.5 4"
+              stroke="#A0A4A8"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             />
           </svg>
-        </div>
+        </span>
 
         <div
-          className={`p-2 rounded-md bg-[#F1E7D4] transition-all ${
+          className={`p-1 w-7 h-7 rounded-xl bg-darkGold transition-all ${
             isEnd ? "opacity-50" : "active:scale-75"
           }`}
           onClick={() => swiper && swiper.slideNext()}
         >
           <svg
-            width="22"
-            height="20"
-            viewBox="0 0 22 20"
-            fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="transition-all active:stroke-[#54473271] stroke-[#D2B37D]"
+            className="w-full h-full"
+            viewBox="0 0 17 16"
+            fill="none"
           >
             <path
-              d="M1 18.3334L9.33333 10.0001L1 1.66675M12.6667 18.3334L21 10.0001L12.6667 1.66675"
-              stroke="#D2B37D"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              d="M6.5 12L10.5 8L6.5 4"
+              stroke="#FAFAFA"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             />
           </svg>
         </div>
