@@ -69,24 +69,24 @@ const ongoingMatches = () => {
       {/*  Category Tab */}
       <div className="overflow-x-auto w-[80%] hide-scrollbar bg-[#000] m-auto p-[0.2rem] mt-[2.28rem] rounded-[2rem]">
         <div className="flex flex-nowrap">
-          <div className=" h-[50%] px-[1.65925rem] py-[0.5185rem] bg-[#6E5E1B] rounded-[1.5rem] text-[#FFF] font-medium text-[0.925rem] m-2">
+          <div className=" h-[50%] px-[1.65925rem] py-[0.5185rem] bg-darkGold rounded-[1.5rem] text-[#FFF] font-medium text-[0.925rem] m-2">
             Favourite
           </div>
-          <div className=" h-[50%] px-[1.65925rem] py-[0.5185rem] bg-[#FFF] rounded-[1.5rem] font-medium text-[0.925rem] m-2 cursor-pointer hover:bg-[#6E5E1B] hover:text-[#fff]">
+          <div className=" h-[50%] px-[1.65925rem] py-[0.5185rem] bg-[#FFF] rounded-[1.5rem] font-medium text-[0.925rem] m-2 cursor-pointer hover:bg-darkGold hover:text-[#fff]">
             Winner
           </div>
           {/* i don;t know what's wrong with this div */}
-          {/* <div className='h-[50%] px-[1.65925rem] text-center min-w-full py-[0.5185rem] bg-[#6E5E1B] rounded-[1.5rem]'>Both teams to score</div> */}
-          <div className="h-[50%] px-[1.65925rem] py-[0.5185rem] bg-[#FFF] rounded-[1.5rem] font-medium text-[0.925rem] m-2 cursor-pointer hover:bg-[#6E5E1B] hover:text-[#fff]">
+          {/* <div className='h-[50%] px-[1.65925rem] text-center min-w-full py-[0.5185rem] bg-darkGold rounded-[1.5rem]'>Both teams to score</div> */}
+          <div className="h-[50%] px-[1.65925rem] py-[0.5185rem] bg-[#FFF] rounded-[1.5rem] font-medium text-[0.925rem] m-2 cursor-pointer hover:bg-darkGold hover:text-[#fff]">
             Over/Under
           </div>
-          <div className="h-[50%] px-[1.65925rem] py-[0.5185rem] bg-[#FFF] rounded-[1.5rem] font-medium text-[0.925rem] m-2 cursor-pointer hover:bg-[#6E5E1B] hover:text-[#fff]">
+          <div className="h-[50%] px-[1.65925rem] py-[0.5185rem] bg-[#FFF] rounded-[1.5rem] font-medium text-[0.925rem] m-2 cursor-pointer hover:bg-darkGold hover:text-[#fff]">
             Home/Away
           </div>
-          <div className="h-[50%] px-[1.65925rem] py-[0.5185rem] bg-[#FFF] rounded-[1.5rem] font-medium text-[0.925rem] m-2 cursor-pointer hover:bg-[#6E5E1B] hover:text-[#fff]">
+          <div className="h-[50%] px-[1.65925rem] py-[0.5185rem] bg-[#FFF] rounded-[1.5rem] font-medium text-[0.925rem] m-2 cursor-pointer hover:bg-darkGold hover:text-[#fff]">
             saved_games
           </div>
-          <div className="h-[50%] px-[1.65925rem] py-[0.5185rem] bg-[#FFF] rounded-[1.5rem] font-medium text-[0.925rem] m-2 cursor-pointer hover:bg-[#6E5E1B] hover:text-[#fff]">
+          <div className="h-[50%] px-[1.65925rem] py-[0.5185rem] bg-[#FFF] rounded-[1.5rem] font-medium text-[0.925rem] m-2 cursor-pointer hover:bg-darkGold hover:text-[#fff]">
             Starred
           </div>
         </div>
@@ -262,10 +262,10 @@ const ongoingMatches = () => {
         </div>
         {/* buttons - odds */}
         <div className="flex justify-between bg-[#000] p-[1rem]">
-          <div className="block hover:bg-[#6E5E1B] hover:text-[#fff] bg-[#CBCDCF] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
+          <div className="block hover:bg-darkGold hover:text-[#fff] bg-[#CBCDCF] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
             Yes
           </div>
-          <div className="block hover:bg-[#6E5E1B] hover:text-[#fff] bg-[#CBCDCF] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
+          <div className="block hover:bg-darkGold hover:text-[#fff] bg-[#CBCDCF] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
             No
           </div>
         </div>
@@ -340,10 +340,10 @@ const ongoingMatches = () => {
         </div>
         {/* buttons - odds */}
         <div className="flex justify-between bg-[#000] p-[1rem]">
-          <div className="block hover:bg-[#6E5E1B] bg-[#CBCDCF] hover:text-[#fff] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
+          <div className="block hover:bg-darkGold bg-[#CBCDCF] hover:text-[#fff] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
             Yes
           </div>
-          <div className="block hover:bg-[#6E5E1B] bg-[#CBCDCF] hover:text-[#fff] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
+          <div className="block hover:bg-darkGold bg-[#CBCDCF] hover:text-[#fff] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
             No
           </div>
         </div>
@@ -418,10 +418,10 @@ const ongoingMatches = () => {
         </div>
         {/* buttons - odds */}
         <div className="flex justify-between bg-[#000] p-[1rem]">
-          <div className="block hover:bg-[#6E5E1B] bg-[#CBCDCF] hover:text-[#fff] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
+          <div className="block hover:bg-darkGold bg-[#CBCDCF] hover:text-[#fff] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
             Yes
           </div>
-          <div className="block hover:bg-[#6E5E1B] bg-[#CBCDCF] hover:text-[#fff] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
+          <div className="block hover:bg-darkGold bg-[#CBCDCF] hover:text-[#fff] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
             No
           </div>
         </div>
@@ -496,10 +496,10 @@ const ongoingMatches = () => {
         </div>
         {/* buttons - odds */}
         <div className="flex justify-between bg-[#000] p-[1rem]">
-          <div className="block hover:bg-[#6E5E1B] bg-[#CBCDCF] hover:text-[#fff] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
+          <div className="block hover:bg-darkGold bg-[#CBCDCF] hover:text-[#fff] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
             Yes
           </div>
-          <div className="block hover:bg-[#6E5E1B] bg-[#CBCDCF] hover:text-[#fff] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
+          <div className="block hover:bg-darkGold bg-[#CBCDCF] hover:text-[#fff] w-[48%] h-[2.75rem] pt-[.7rem] text-center rounded-[0.25rem] cursor-pointer font-medium">
             No
           </div>
         </div>

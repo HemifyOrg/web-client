@@ -216,7 +216,7 @@ const SignupPage = () => {
                     typeof errors.email === "string" ||
                     typeof errors.checkedTerms === "string"
                   }
-                  className="disabled:bg-[#e0e3e7] bg-[#6E5E1B] disabled:cursor-not-allowed border disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all disabled:text-gray-700 text-gray-50 font-medium py-4"
+                  className="disabled:bg-[#e0e3e7] bg-darkGold disabled:cursor-not-allowed border disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all disabled:text-gray-700 text-gray-50 font-medium py-4"
                 >
                   {currentSlide === 1 ? "Verify" : "Login"}
                 </button>
