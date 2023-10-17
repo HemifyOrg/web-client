@@ -366,7 +366,7 @@ const TrandingComponent = () => {
   ];
   return (
     <section className="my-16 rounded-t-3xl w-full flex flex-col justify-center items-center">
-      <h1 className="flex gap-0 mb-4 items-center text-lg mx-auto font-medium">
+      <h1 className="flex gap-0 mb-4 items-center text-2xl mx-auto font-semibold">
         Trending{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
