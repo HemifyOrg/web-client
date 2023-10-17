@@ -14,6 +14,7 @@ module.exports = {
         themeColor: "#D2B37D",
         navBarColor: "rgba(246, 239, 226, 0.7)",
         primary: "#FAF7F0",
+        secondary: "#FFFCEE",
         darkGold: "#6E5E1B",
         statusBg: "#3F3626",
         footerBg: "#353535",

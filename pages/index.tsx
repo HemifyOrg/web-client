@@ -26,7 +26,7 @@ export default function Home() {
 
         <button
           type="button"
-          className="text-white mx-auto px-6 py-4 bg-darkGold rounded-md mt-10"
+          className="text-white mx-auto text-lg px-12 py-4 font-medium rounded-full bg-darkGold mt-10"
         >
           Create a Wager
         </button>
