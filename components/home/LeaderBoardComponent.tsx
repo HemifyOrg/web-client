@@ -1,55 +1,53 @@
+import Image from "next/image";
+import { UserComponent } from "../reusable";
+
 const LeaderBoardComponent = () => {
   const usersList = [
     {
-      user: {
-        username: "divuzki",
-        image: "/images/ape3.png",
-      },
-      auctions: 56,
-      volume: "100.20",
+      username: "russellfrank",
+      image: "/images/ape4.png",
       position: 1,
+      wins: 41,
+      wagers: 53,
+      totalStake: 678987,
     },
     {
-      user: {
-        username: "divuzki",
-        image: "/images/ape2.png",
-      },
-      auctions: 56,
-      volume: "100.20",
+      username: "divuzki",
+      image: "/images/ape.webp",
       position: 2,
+      wins: 40,
+      wagers: 47,
+      totalStake: 566776,
     },
     {
-      user: {
-        username: "divuzki",
-        image: "/images/ape4.png",
-      },
-      auctions: 56,
-      volume: "100.20",
+      username: "johnbiko",
+      image: "/images/ape3.png",
       position: 3,
+      wins: 35,
+      wagers: 40,
+      totalStake: 364011,
     },
     {
-      user: {
-        username: "divuzki",
-        image: "/images/ape2.png",
-      },
-      auctions: 56,
-      volume: "100.20",
+      username: "amonk_",
+      image: "/images/ape2.png",
       position: 4,
+      wins: 29,
+      wagers: 34,
+      totalStake: 234765,
     },
     {
-      user: {
-        username: "divuzki",
-        image: "/images/ape3.png",
-      },
-      auctions: 56,
-      volume: "100.20",
+      username: "julie_mutie",
+      image: "/images/ape4.png",
       position: 5,
+      wins: 29,
+      wagers: 20,
+      totalStake: 123098,
     },
   ];
   return (
     <section
       id="leaderboard"
-      className="py-8 rounded-t-3xl bg-[#fff] flex flex-col lg:gap-8 gap-4"
+      className="py-8 rounded-t-3xl bg-[#e6e3e3] flex flex-col lg:gap-8 gap-2"
     >
       {/* top */}
       <svg
@@ -84,230 +82,127 @@ const LeaderBoardComponent = () => {
         </defs>
       </svg>
 
-      {/* center */}
-      <div className="w-full flex justify-between lg:px-10 px-4">
-        <ul className="flex gap-4">
-          <li className="py-2 px-5 border-b-2 border-themeColor rounded-md">
-            Creators
-          </li>
-          <li className="py-2 px-5 border-b-2 border-transparent rounded-md">
-            Collection
-          </li>
-          <li className="py-2 px-5 border-b-2 border-transparent rounded-md">
-            Collectors
-          </li>
-        </ul>
-
-        {/* view all */}
-        <div className="flex items-center justify-end gap-2 cursor-pointer">
-          <span className="text-base text-themeColor">View all</span>
-          <svg
-            width="14"
-            height="12"
-            viewBox="0 0 14 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+      <div className="flex flex-col gap-4 justify-center items-center md:px-4 px-2 w-full">
+        {usersList.map((user, index) => (
+          <div
+            key={index}
+            className="md:px-4 p-2 md:py-3 bg-[#FAFAFA] flex md:gap-6 gap-3 rounded-xl items-center"
           >
-            <path
-              d="M1 6H13M13 6L8.5 1.5M13 6L8.5 10.5"
-              stroke="#D2B37D"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-      </div>
-
-      {/* bottom */}
-      <div className="w-full justify-start flex flex-col gap-4 px-4 pr-2 max-h-[600px] overflow-y-auto overflow-x-hidden">
-        {/* users */}
-        {usersList &&
-          usersList.length > 0 &&
-          usersList.map((n, i) => (
-            <div
-              key={i}
-              className="grid grid-cols-6 grid-rows-none w-max px-8 py-4 m-auto gap-20 bg-[#f7efdf] shadow rounded-lg items-center"
-            >
-              <div className="col-span-2 flex gap-10 items-center justify-start">
-                {/* left 1 */}
-                <div className="relative">
-                  <span className="text-[#353535] font-bold absolute top-[5px] left-[11px]">
-                    {n.position}
-                  </span>
-                  <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 32 32"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M2.54645 11.6287L16 1.8541L29.4535 11.6287L24.3148 27.4443H7.68525L2.54645 11.6287Z"
-                      fill={`url(#paint${i}_linear_${n.position})`}
-                      stroke={
-                        n.position === 1
-                          ? "#DAB800"
-                          : n.position === 2
-                          ? "#C0C0C0"
-                          : n.position === 3
-                          ? "#CD7F32"
-                          : "transparent"
-                      }
-                      strokeWidth="3"
-                    />
-                    <defs>
-                      <linearGradient
-                        id={`paint${i}_linear_${n.position}`}
-                        x1="16"
-                        y1="0"
-                        x2="16"
-                        y2="32"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop
-                          offset="0.145389"
-                          stopColor={
-                            n.position === 1
-                              ? "#DAB800"
-                              : n.position === 2
-                              ? "#C0C0C0"
-                              : n.position === 3
-                              ? "#CD7F32"
-                              : "transparent"
-                          }
-                        />
-                        <stop
-                          offset="0.504772"
-                          stopColor={n.position < 3 ? "#F5F5F5" : "transparent"}
-                        />
-                        <stop
-                          offset="0.853738"
-                          stopColor={
-                            n.position === 1
-                              ? "#DAB800"
-                              : n.position === 2
-                              ? "#C0C0C0"
-                              : n.position === 3
-                              ? "#CD7F32"
-                              : "transparent"
-                          }
-                        />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-
-                {/* left 2:profile */}
-                <div className="flex gap-4 items-center">
-                  <figure
-                    style={{ backgroundImage: `url(${n.user?.image})` }}
-                    className="bg-center bg-cover shadow rounded-lg bg-gray-300 bg-no-repeat h-12 w-12"
-                  />
-                  <div className="flex gap-2 items-center">
-                    <span className="font-semibold">@{n.user?.username}</span>
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 22 22"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M8.51447 1.91542C7.90071 2.43846 7.1376 2.75455 6.33377 2.8187C4.45794 2.96839 2.96839 4.45794 2.8187 6.33377C2.75455 7.1376 2.43846 7.90071 1.91542 8.51447C0.69486 9.94672 0.69486 12.0533 1.91542 13.4855C2.43846 14.0993 2.75455 14.8624 2.8187 15.6662C2.96839 17.5421 4.45794 19.0316 6.33377 19.1813C7.1376 19.2455 7.90071 19.5615 8.51447 20.0846C9.94672 21.3051 12.0533 21.3051 13.4855 20.0846C14.0993 19.5615 14.8624 19.2455 15.6662 19.1813C17.5421 19.0316 19.0316 17.5421 19.1813 15.6662C19.2455 14.8624 19.5615 14.0993 20.0846 13.4855C21.3051 12.0533 21.3051 9.94672 20.0846 8.51447C19.5615 7.90071 19.2455 7.1376 19.1813 6.33377C19.0316 4.45794 17.5421 2.96839 15.6662 2.8187C14.8624 2.75455 14.0993 2.43846 13.4855 1.91542C12.0533 0.69486 9.94672 0.69486 8.51447 1.91542Z"
-                        fill="#D2B37D"
-                      />
-                      <path
-                        d="M8 11L10 13L14.5 8.5M6.33377 2.8187C7.1376 2.75455 7.90071 2.43846 8.51447 1.91542C9.94672 0.69486 12.0533 0.69486 13.4855 1.91542C14.0993 2.43846 14.8624 2.75455 15.6662 2.8187C17.5421 2.96839 19.0316 4.45794 19.1813 6.33377C19.2455 7.1376 19.5615 7.90071 20.0846 8.51447C21.3051 9.94672 21.3051 12.0533 20.0846 13.4855C19.5615 14.0993 19.2455 14.8624 19.1813 15.6662C19.0316 17.5421 17.5421 19.0316 15.6662 19.1813C14.8624 19.2455 14.0993 19.5615 13.4855 20.0846C12.0533 21.3051 9.94672 21.3051 8.51447 20.0846C7.90071 19.5615 7.1376 19.2455 6.33377 19.1813C4.45794 19.0316 2.96839 17.5421 2.8187 15.6662C2.75455 14.8624 2.43846 14.0993 1.91542 13.4855C0.69486 12.0533 0.69486 9.94672 1.91542 8.51447C2.43846 7.90071 2.75455 7.1376 2.8187 6.33377C2.96839 4.45794 4.45794 2.96839 6.33377 2.8187Z"
-                        stroke="#2D4C82"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              {/* center */}
-              <div className="flex flex-col justify-center col-span-1 items-center gap-3">
-                <span>No. of auctions</span>
-                <span className="font-bold">{n.auctions}</span>
-              </div>
-
-              {/* right 2: volume generated */}
-              <div className="flex flex-col justify-center col-span-1 items-center gap-3">
-                <span>Volume generated</span>
-                <div className="flex gap-2 items-center">
-                  <svg
-                    width="19"
-                    height="17"
-                    viewBox="0 0 19 17"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M4.29279 0.293C4.48028 0.105451 4.73459 5.66374e-05 4.99979 0H17.9998C18.1975 4.22243e-05 18.3908 0.0587139 18.5552 0.168598C18.7197 0.278482 18.8478 0.434646 18.9235 0.617345C18.9991 0.800045 19.0189 1.00108 18.9804 1.19503C18.9418 1.38898 18.8466 1.56715 18.7068 1.707L15.7068 4.707C15.5193 4.89455 15.265 4.99994 14.9998 5H1.99979C1.80204 4.99996 1.60874 4.94129 1.44433 4.8314C1.27992 4.72152 1.15178 4.56535 1.07611 4.38265C1.00044 4.19995 0.980636 3.99892 1.0192 3.80497C1.05777 3.61102 1.15298 3.43285 1.29279 3.293L4.29279 0.293ZM1.11779 6.528C1.20324 6.36839 1.33041 6.23498 1.48575 6.14199C1.64108 6.049 1.81875 5.99993 1.99979 6H14.9998C15.1644 5.99998 15.3264 6.04058 15.4716 6.11821C15.6167 6.19583 15.7404 6.30808 15.8318 6.445L17.8318 9.445C17.9323 9.5956 17.99 9.77065 17.9988 9.95148C18.0075 10.1323 17.9671 10.3121 17.8817 10.4718C17.7963 10.6314 17.6691 10.7648 17.5138 10.8579C17.3585 10.9509 17.1808 11 16.9998 11H3.99979C3.83519 11 3.67314 10.9594 3.528 10.8818C3.38287 10.8042 3.25914 10.6919 3.16779 10.555L1.16779 7.555C1.06724 7.40439 1.00949 7.22929 1.00068 7.04842C0.991874 6.86754 1.03235 6.68767 1.11779 6.528ZM3.29279 12.293C3.48028 12.1054 3.73459 12.0001 3.99979 12H16.9998C17.1975 12 17.3908 12.0587 17.5552 12.1686C17.7197 12.2785 17.8478 12.4346 17.9235 12.6173C17.9991 12.8 18.0189 13.0011 17.9804 13.195C17.9418 13.389 17.8466 13.5671 17.7068 13.707L14.7068 16.707C14.5193 16.8946 14.265 16.9999 13.9998 17H0.999787C0.802037 17 0.608738 16.9413 0.444328 16.8314C0.279918 16.7215 0.151779 16.5654 0.076109 16.3827C0.000438951 16.2 -0.0193641 15.9989 0.0192035 15.805C0.057771 15.611 0.152977 15.4329 0.292787 15.293L3.29279 12.293Z"
-                      fill="url(#paint0_linear_1464_17491)"
-                    />
-                    <defs>
-                      <linearGradient
-                        id="paint0_linear_1464_17491"
-                        x1="9.49979"
-                        y1="0"
-                        x2="9.49979"
-                        y2="17"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop stopColor="#1EC538" />
-                        <stop
-                          offset="0.364144"
-                          stopColor="#1EC538"
-                          stopOpacity="0.563531"
-                        />
-                        <stop
-                          offset="0.525606"
-                          stopColor="#FA14FF"
-                          stopOpacity="0.37"
-                        />
-                        <stop offset="1" stopColor="#FA14FF" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-
-                  <span className="font-bold">{n.volume}</span>
-                </div>
-              </div>
-
-              {/* right 1 */}
-              <div className="col-span-2 justify-end items-center flex">
-                <button
-                  type="button"
-                  className="py-2 bg-btnImage w-28 justify-center items-center text-md flex gap-2 rounded-full"
+            <div className="flex md:gap-4 gap-2">
+              {/* position */}
+              <div className="relative mt-[2px]">
+                <span className="text-[#353535] font-bold absolute w-full flex justify-center items-center top-1">
+                  {user.position}
+                </span>
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <span className="font-semibold">Add</span>
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M7.00033 1.1665V12.8332M1.16699 6.99984H12.8337"
-                      stroke="black"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
+                  <path
+                    d="M2.54645 11.6287L16 1.8541L29.4535 11.6287L24.3148 27.4443H7.68525L2.54645 11.6287Z"
+                    fill={`url(#paint${index}_linear_${user.position})`}
+                    stroke={
+                      user.position === 1
+                        ? "#DAB800"
+                        : user.position === 2
+                        ? "#C0C0C0"
+                        : user.position === 3
+                        ? "#CD7F32"
+                        : "transparent"
+                    }
+                    strokeWidth="3"
+                  />
+                  <defs>
+                    <linearGradient
+                      id={`paint${index}_linear_${user.position}`}
+                      x1="16"
+                      y1="0"
+                      x2="16"
+                      y2="32"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop
+                        offset="0.145389"
+                        stopColor={
+                          user.position === 1
+                            ? "#DAB800"
+                            : user.position === 2
+                            ? "#C0C0C0"
+                            : user.position === 3
+                            ? "#CD7F32"
+                            : "transparent"
+                        }
+                      />
+                      <stop
+                        offset="0.504772"
+                        stopColor={
+                          user.position < 3 ? "#F5F5F5" : "transparent"
+                        }
+                      />
+                      <stop
+                        offset="0.853738"
+                        stopColor={
+                          user.position === 1
+                            ? "#DAB800"
+                            : user.position === 2
+                            ? "#C0C0C0"
+                            : user.position === 3
+                            ? "#CD7F32"
+                            : "transparent"
+                        }
+                      />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              <UserComponent
+                src={user.image}
+                className="flex gap-1 flex-wrap items-center"
+                username={user.username}
+              />
+            </div>
+
+            <div className="flex md:gap-6 gap-2 items-center">
+              {/* wins */}
+              <div className="flex flex-col gap-3">
+                <span className="md:text-lg font-medium text-gray-400">
+                  No. of wins
+                </span>
+                <span className="font-medium md:text-lg">{user.wins}</span>
+              </div>
+
+              {/* wagers */}
+              <div className="flex flex-col gap-3">
+                <span className="md:text-lg font-medium text-gray-400">
+                  No. of wagers
+                </span>
+                <span className="font-medium md:text-lg">{user.wagers}</span>
+              </div>
+
+              {/* total staked */}
+              <div className="flex flex-col gap-3">
+                <span className="md:text-lg font-medium text-gray-400">
+                  Total Staked
+                </span>
+                <span className="font-medium md:text-lg">
+                  ${user.totalStake.toLocaleString()}
+                </span>
               </div>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
+
+      <button
+        type="button"
+        className="text-2xl font-medium my-5 border-b-2 border-darkGold opacity-80 mx-auto text-darkGold"
+      >
+        View all
+      </button>
     </section>
   );
 };

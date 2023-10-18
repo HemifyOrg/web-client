@@ -1,6 +1,7 @@
 import { motion, useMotionValue } from "framer-motion";
 import { useRef, useEffect, ReactNode, useLayoutEffect } from "react";
 import TimerComponent from "./TimerComponent";
+import Image from "next/image";
 /**
  * Hook that alerts clicks outside of the passed ref
  */
@@ -101,4 +102,31 @@ export const Slide: React.FC<SlideProps> = ({
   );
 };
 
-export { TimerComponent };
+const UserComponent = ({
+  src,
+  username,
+  className,
+}: {
+  src: string;
+  username: string;
+  className?: string;
+}) => {
+  return (
+    <div
+      className={className || "gap-2 flex flex-wrap xs:px-2 px-6 items-center"}
+    >
+      <Image
+        alt=""
+        width={38}
+        height={38}
+        className="object-cover rounded-md shadow-md drop-shadow-sm"
+        src={src}
+      />
+      <span className="text-gray-600 font-semibold">@{username}</span>
+    </div>
+  );
+};
+
+export default UserComponent;
+
+export { TimerComponent, UserComponent };

@@ -35,6 +35,7 @@ export default function Home() {
         <TrendingComponent />
         <LobbyComponent />
         <EventsComponent />
+        <LeaderBoardComponent />
       </main>
     </>
   );
