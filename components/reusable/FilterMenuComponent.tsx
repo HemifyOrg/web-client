@@ -75,10 +75,10 @@ const FilterMenuComponent: React.FC<Props> = ({
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
                 type="button"
-                onClick={() => setSelectedTab(tab.name)}
+                onClick={() => setSelectedTab2(tab.name)}
                 key={index}
                 className={`flex gap-2 items-center ${
-                  selectedTab === tab.name
+                  selectedTab2 === tab.name
                     ? "bg-darkGold text-white"
                     : "hover:border-darkGold border text-gray-700 bg-secondary"
                 } px-8 py-[2px] rounded-full `}
