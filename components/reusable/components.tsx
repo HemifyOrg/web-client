@@ -122,7 +122,9 @@ const UserComponent = ({
         className="object-cover rounded-md shadow-md drop-shadow-sm"
         src={src}
       />
-      <span className="text-gray-600 font-semibold">@{username}</span>
+      <span title={username} className="max-w-[80px] truncate">
+        <span className="text-gray-600 font-semibold">@{username}</span>
+      </span>
     </div>
   );
 };
