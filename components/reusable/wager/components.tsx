@@ -160,10 +160,8 @@ export const SportEventWagerCardComponent = ({
               alt={match.home.name}
               className="object-contain"
             />
-            <span>
-              <span className="text-gray-800 font-semibold">
-                {match.home.name}
-              </span>
+            <span className="text-gray-800 font-semibold flex justify-center w-full items-center text-center">
+              {match.home.name}
             </span>
           </div>
           {/* vs */}
@@ -177,16 +175,14 @@ export const SportEventWagerCardComponent = ({
               alt={match.away.name}
               className="object-contain"
             />
-            <span>
-              <span className="ext-gray-800 font-semibold">
-                {match.away.name}
-              </span>
+            <span className="text-gray-800 font-semibold flex justify-center w-full items-center text-center">
+              {match.away.name}
             </span>
           </div>
         </div>
 
         {/* wager info & create btn */}
-        <div className="flex w-full justify-between mb-2 pl-4 pr-2 items-center">
+        <div className="flex flex-wrap w-full xs:justify-between justify-center gap-2 mb-2 pl-4 pr-2 items-center">
           <span className="text-gray-400 flex gap-1 text-sm font-medium">
             Ends in{" "}
             <span className="text-gray-800 font-semibold flex gap-1">
