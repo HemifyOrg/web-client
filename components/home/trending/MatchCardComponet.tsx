@@ -1,3 +1,4 @@
+import { sportsList } from "@/utils";
 import { MatchLeagueIcon } from "@/utils/components";
 import { MatchType } from "@/utils/types";
 import Image from "next/image";
@@ -32,15 +33,27 @@ export const MatchCardComponet = ({ match }: { match: MatchType }) => {
         </div>
       </div>
       <div className="flex flex-col mt-4 justify-center items-center">
-        <div>
+        <div className="w-full xs:w-auto">
           <div className="px-3 py-2 bg-white rounded-t-xl w-full shadow-sm flex justify-between gap-4 items-center">
             {/* match name */}
             <div className="flex gap-2 justify-start items-center">
-              <MatchLeagueIcon type={match.sport.league.name} />
-              <span className="font-medium capitalize">
-                {match.sport.league.country},{" "}
-                {match.sport.league.name.replace(/_/g, " ")}
-              </span>
+              {match.sport.league ? (
+                <MatchLeagueIcon type={match.sport.league.name} />
+              ) : (
+                <span className="w-[16px] h-[17px]">
+                  {sportsList.find((n) => n.name === match.sport.name)?.icon}
+                </span>
+              )}
+              {match.sport.league ? (
+                <span className="font-medium capitalize">
+                  {match.sport.league.country},{" "}
+                  {match.sport.league.name.replace(/_/g, " ")}
+                </span>
+              ) : (
+                <span className="font-medium capitalize">
+                  {match.sport.name.replace(/_/g, " ")}
+                </span>
+              )}
             </div>
             {/* match signal */}
             <span className="w-5 h-5 hidden">
@@ -57,7 +70,7 @@ export const MatchCardComponet = ({ match }: { match: MatchType }) => {
             </span>
           </div>
           <figure
-            className="md:w-[30rem] p-2 overflow-hidden relative w-[18rem] xs:w-[25rem] max-xs:w-full rounded-lg md:h-52 h-36 bg-no-repeat bg-cover bg-center flex justify-between items-center"
+            className="md:w-[30rem] px-2 py-4 overflow-hidden relative w-[18rem] xs:w-[25rem] max-xs:w-full rounded-lg md:h-52 h-36 bg-no-repeat bg-cover bg-center flex justify-between items-center"
             style={{
               backgroundImage: "url(/images/sports/football-field.png)",
             }}
@@ -66,8 +79,8 @@ export const MatchCardComponet = ({ match }: { match: MatchType }) => {
             <div className="absolute top-0 left-0 h-full w-full bg-[#000a]"></div>
             <div className="z-10 flex flex-col gap-2 items-center justify-center">
               <Image
-                width={90}
-                height={90}
+                width={80}
+                height={80}
                 src={match.home.image}
                 alt={match.home.name}
                 className="object-contain"

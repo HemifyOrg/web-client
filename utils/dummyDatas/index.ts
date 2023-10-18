@@ -83,31 +83,31 @@ export const matchList: MatchType[] = [
     time: { days: "2", hours: "05", minutes: "17" },
   },
   {
-    id: 0,
+    id: 1,
     sport: {
       league: {
         id: "122",
-        name: "premier_league",
-        country: "england",
+        name: "world_cup",
+        country: "Australia",
       },
-      name: "soccer",
+      name: "hockey",
     },
     home: {
-      name: "Liverpool",
-      image: "/images/sports/team/liverpool.png",
+      name: "Winter Classic",
+      image: "/images/sports/team/winter.png",
     },
     away: {
-      name: "Man Utd",
-      image: "/images/sports/team/man-utd.png",
+      name: "Outdoors Lake",
+      image: "/images/sports/team/lake.png",
     },
     status: "live",
     time: { days: "2", hours: "05", minutes: "17" },
   },
   {
-    id: 0,
+    id: 2,
     sport: {
       league: {
-        id: "122",
+        id: "1232",
         name: "world_cup",
         country: "USA",
       },
@@ -120,6 +120,38 @@ export const matchList: MatchType[] = [
     away: {
       name: "Cleveland",
       image: "/images/sports/team/cleveland.png",
+    },
+    status: "live",
+    time: { days: "2", hours: "05", minutes: "17" },
+  },
+  {
+    id: 3,
+    sport: {
+      name: "crypto",
+    },
+    home: {
+      name: "Bull",
+      image: "/images/sports/bull.svg",
+    },
+    away: {
+      name: "Bear",
+      image: "/images/sports/bear.svg",
+    },
+    status: "live",
+    time: { days: "2", hours: "05", minutes: "17" },
+  },
+  {
+    id: 4,
+    sport: {
+      name: "politics",
+    },
+    home: {
+      name: "Donald Trump",
+      image: "/images/trump.png",
+    },
+    away: {
+      name: "Joe Biden",
+      image: "/images/joe.jpg",
     },
     status: "live",
     time: { days: "2", hours: "05", minutes: "17" },
@@ -138,24 +170,70 @@ export const wagerList: WagerType[] = [
     },
     date: {
       start: "3 mins ago",
-      end: "20days",
+      end: "20 days",
     },
-    prediction: "Bitcoin;Above;28,000",
+    prediction: "Liverpool;to;Win",
   },
   {
     id: 1,
     topic: "Bitcoin price - October 30, 2023",
-    topicType: "bitcoin",
+    match: matchList[3],
     currentStake: 100,
     creator: {
       username: "greenlight",
+      image: "/images/ape4.png",
+      isVerified: false,
+    },
+    date: {
+      start: "3 mins ago",
+      end: "2 days",
+    },
+    prediction: "Bitcoin;Above;28,000",
+  },
+  {
+    id: 2,
+    topic: "2024 U.S.A Presidential Election",
+    match: matchList[4],
+    currentStake: 50,
+    creator: {
+      username: "angel",
+      image: "/images/ape2.png",
+      isVerified: false,
+    },
+    date: {
+      start: "3 mins ago",
+      end: "2 days",
+    },
+    prediction: "Donald Trump;to;Win",
+  },
+  {
+    id: 3,
+    match: matchList[2],
+    currentStake: 50,
+    creator: {
+      username: "divuzki",
       image: "/images/ape3.png",
       isVerified: false,
     },
     date: {
       start: "3 mins ago",
-      end: "20days",
+      end: "2 days",
     },
-    prediction: "Bitcoin;Above;28,000",
+    prediction: "Cleveland;to;Lose",
+  },
+  {
+    id: 4,
+    match: matchList[1],
+    currentStake: 50,
+    creator: {
+      username: "divuzki",
+      image: "/images/ape.webp",
+      isVerified: false,
+    },
+    date: {
+      start: "3 mins ago",
+      end: "2 days",
+    },
+    prediction: "Winter Classic;to;Win",
   },
 ];

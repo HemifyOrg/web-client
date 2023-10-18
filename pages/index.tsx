@@ -6,11 +6,11 @@ import Head from "next/head";
 // import { RootState } from '../app/store';
 import {
   HeroComponent,
-  VerifiedComponent,
+  LobbyComponent,
+  TrendingComponent,
+  EventsComponent,
   LeaderBoardComponent,
 } from "@/components/home";
-import TrandingComponent from "@/components/home/trending";
-import LobbyComponent from "@/components/home/LobbyComponent";
 
 export default function Home() {
   // const account = useSelector((state: RootState) => state.account);
@@ -32,9 +32,9 @@ export default function Home() {
           Create a Wager
         </button>
 
-        {/* Trending */}
-        <TrandingComponent />
+        <TrendingComponent />
         <LobbyComponent />
+        <EventsComponent />
       </main>
     </>
   );

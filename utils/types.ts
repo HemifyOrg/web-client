@@ -7,8 +7,18 @@ export interface UserType {
 export interface MatchType {
   id: number;
   sport: {
-    name: "soccer" | "basketball" | "vote" | "baseball" | "football" | "hockey";
-    league: {
+    name:
+      | "soccer"
+      | "basketball"
+      | "baseball"
+      | "golf"
+      | "ruby"
+      | "hockey"
+      | "crypto"
+      | "politics"
+      | "nft"
+      | "favorite";
+    league?: {
       id: string;
       country: string;
       name:
@@ -48,9 +58,8 @@ export interface WagerType {
     username: string;
     image: string;
   }[];
-  match?: MatchType | null;
+  match: MatchType;
   topic?: string | null;
-  topicType?: string | null;
   prediction: string;
   date: {
     start: string;

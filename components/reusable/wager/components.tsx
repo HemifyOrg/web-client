@@ -1,23 +1,21 @@
-import { sportsList } from "@/utils";
-import { WagerType } from "@/utils/types";
+import { MatchLeagueIcon, sportsList } from "@/utils";
+import { MatchType, WagerType } from "@/utils/types";
 import Image from "next/image";
 import React from "react";
 
-type Props = {
-  wager: WagerType;
-};
-
-export const WagerCardComponent: React.FC<Props> = ({ wager }) => {
+export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
   return wager.prediction &&
     typeof wager.prediction === "string" &&
     wager.prediction.split(";")?.length === 3 ? (
     <div className="w-full bg-white rounded-lg divide-y-2">
       {/* header */}
       <div className="pb-2 pl-2  pt-1 gap-4 flex items-center justify-between">
-        <span className="w-8 h-8">{sportsList[0].icon}</span>
+        <span className="w-8">
+          {sportsList.find((n) => n.name === wager.match?.sport.name)?.icon}
+        </span>
         <div className="w-full justify-center">
           <div className="flex justify-center items-center gap-2">
-            {wager.match ? (
+            {wager.match && wager.match.sport.league ? (
               <React.Fragment>
                 {/* home */}
                 <div className="flex gap-1">
@@ -109,5 +107,119 @@ export const WagerCardComponent: React.FC<Props> = ({ wager }) => {
     </div>
   ) : (
     <></>
+  );
+};
+
+export const SportEventWagerCardComponent = ({
+  match,
+}: {
+  match: MatchType;
+}) => {
+  return (
+    <div className="w-full bg-white rounded-lg divide-y-2">
+      {/* header */}
+      <div className="px-3 py-2 bg-white rounded-t-xl w-full shadow-sm flex justify-between gap-4 items-center">
+        {/* match name */}
+        <div className="flex gap-2 justify-start items-center">
+          {match.sport.league ? (
+            <MatchLeagueIcon type={match.sport.league.name} />
+          ) : (
+            <span className="w-[16px] h-[17px]">
+              {sportsList.find((n) => n.name === match.sport.name)?.icon}
+            </span>
+          )}
+          {match.sport.league ? (
+            <span className="font-medium capitalize">
+              {match.sport.league.country} |{" "}
+              {match.sport.league.name.replace(/_/g, " ")}
+            </span>
+          ) : (
+            <span className="font-medium capitalize">
+              {match.sport.name.replace(/_/g, " ")}
+            </span>
+          )}
+        </div>
+        {/* match signal */}
+        <div className="flex gap-4"></div>
+        <span className="w-5 h-5 hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="none"
+          >
+            <path
+              d="M13.2174 3.65835V16.1584C13.2174 17.55 14.1674 18.3334 15.2091 18.3334C16.1591 18.3334 17.2008 17.675 17.2008 16.1584V3.75002C17.2008 2.46669 16.2508 1.66669 15.2091 1.66669C14.1674 1.66669 13.2174 2.55002 13.2174 3.65835ZM8.00911 10V16.1584C8.00911 17.5584 8.97578 18.3334 10.0008 18.3334C10.9508 18.3334 11.9924 17.675 11.9924 16.1584V10.0917C11.9924 8.80835 11.0424 8.00835 10.0008 8.00835C8.95911 8.00835 8.00911 8.89169 8.00911 10ZM4.79245 14.3584C5.89245 14.3584 6.78412 15.25 6.78412 16.3417C6.78412 16.8699 6.57428 17.3765 6.20077 17.75C5.82726 18.1235 5.32067 18.3334 4.79245 18.3334C4.26423 18.3334 3.75764 18.1235 3.38413 17.75C3.01062 17.3765 2.80078 16.8699 2.80078 16.3417C2.80078 15.25 3.69245 14.3584 4.79245 14.3584Z"
+              fill="#A0A4A8"
+            />
+          </svg>
+        </span>
+      </div>
+
+      {/* content */}
+      <div className="flex pt-4 pb-2 gap-5 flex-col w-full justify-center items-center">
+        {/* match team info */}
+        <div className="px-4 sm:px-10 py-4 overflow-hidden relative w-full rounded-lg flex justify-between items-center">
+          <div className="z-10 flex flex-col gap-2 items-center justify-center">
+            <Image
+              width={80}
+              height={80}
+              src={match.home.image}
+              alt={match.home.name}
+              className="object-contain"
+            />
+            <span>
+              <span className="text-gray-800 font-semibold">
+                {match.home.name}
+              </span>
+            </span>
+          </div>
+          {/* vs */}
+          <span className="text-gray-400 z-10 text-5xl font-medium">vs</span>
+          {/* away */}
+          <div className="z-10 flex flex-col gap-2 items-center justify-center">
+            <Image
+              width={80}
+              height={80}
+              src={match.away.image}
+              alt={match.away.name}
+              className="object-contain"
+            />
+            <span>
+              <span className="ext-gray-800 font-semibold">
+                {match.away.name}
+              </span>
+            </span>
+          </div>
+        </div>
+
+        {/* wager info & create btn */}
+        <div className="flex w-full justify-between mb-2 pl-4 pr-2 items-center">
+          <span className="text-gray-400 flex gap-1 text-sm font-medium">
+            Ends in{" "}
+            <span className="text-gray-800 font-semibold flex gap-1">
+              <span>
+                {match.time.days}{" "}
+                {parseInt(match.time.days) > 1 ? "days" : "day"}
+              </span>
+              <span>
+                {match.time.hours}
+                {parseInt(match.time.hours) > 1 ? "hrs" : "hr"}
+              </span>
+              <span>
+                {match.time.minutes}
+                {parseInt(match.time.minutes) > 1 ? "mins" : "min"}
+              </span>
+            </span>
+          </span>
+
+          <button
+            type="button"
+            className="px-10 py-3 font-medium rounded-full bg-darkGold text-white"
+          >
+            Create Wager
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };

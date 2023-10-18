@@ -5,7 +5,7 @@ import { MatchType } from "@/utils/types";
 import { sportsList } from "@/utils";
 import { matchList } from "@/utils/dummyDatas";
 
-const TrandingComponent = () => {
+const TrendingComponent = () => {
   const [selectedTab, setSelectedTab] = useState("all");
   const [matches, setMatches] = useState<MatchType[]>(matchList);
   const [filteredMatches, setFilteredMatches] = useState<MatchType[]>([]);
@@ -87,4 +87,4 @@ const TrandingComponent = () => {
   );
 };
 
-export default TrandingComponent;
+export default TrendingComponent;
