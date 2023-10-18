@@ -62,7 +62,7 @@ export const WagerCardComponent: React.FC<Props> = ({ wager }) => {
         {/* wager info */}
         <div className="flex gap-4 justify-center items-center">
           {/* user content */}
-          <div className="gap-2 flex items-center">
+          <div className="gap-2 flex flex-wrap xs:px-2 px-6 items-center">
             <Image
               alt=""
               width={38}
@@ -86,7 +86,7 @@ export const WagerCardComponent: React.FC<Props> = ({ wager }) => {
         </div>
 
         {/* wager challenge */}
-        <div className="flex justify-between gap-16 p-2 rounded bg-lightGold">
+        <div className="flex justify-between xs:gap-16 gap-8 p-2 rounded bg-lightGold">
           <span className="font-medium">{wager.prediction.split(";")[0]}</span>
           <span>{wager.prediction.split(";")[1]}</span>
           <span className="font-semibold">
