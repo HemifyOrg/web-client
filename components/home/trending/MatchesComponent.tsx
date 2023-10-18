@@ -22,7 +22,7 @@ const MatchesComponent = ({ matches }: { matches: MatchType[] }) => {
             setIsBeginning(swiper.isBeginning);
             setIsEnd(swiper.isEnd);
           }}
-          className="flex gap-4 justify-center w-min overflow-hidden relative mx-auto"
+          className="flex gap-4 justify-center w-full overflow-hidden relative mx-auto"
           slidesPerView={1}
           spaceBetween={30}
           scrollbar={{

@@ -20,12 +20,12 @@ const TrendingComponent = () => {
 
   return (
     <section className="mt-16 mb-4 rounded-t-3xl w-full flex flex-col justify-center items-center">
-      <h1 className="flex gap-0 mb-4 items-center text-2xl mx-auto font-semibold">
+      <h1 className="flex gap-0 mb-4 items-center text-3xl mx-auto font-semibold">
         Trending{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="30"
+          height="30"
           viewBox="0 0 17 17"
           fill="none"
         >
