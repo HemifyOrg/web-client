@@ -66,7 +66,7 @@ const TopNav = () => {
     },
     {
       name: "Notifications",
-      link: "/profile/notification",
+      link: "/profile/notifications",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
           <path
@@ -118,7 +118,7 @@ const TopNav = () => {
     },
     {
       name: "Support",
-      link: "/profile/support",
+      link: "/support",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
           <path
