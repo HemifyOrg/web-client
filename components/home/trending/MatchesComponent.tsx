@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-import { MatchType, WagerType } from "@/utils/types";
+import { MatchType } from "@/utils/types";
 import { MatchCardComponet } from "./MatchCardComponet";
-import { MatchLeagueIcon } from "@/utils/components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Keyboard, Scrollbar, Pagination } from "swiper/modules";
 
@@ -11,8 +10,6 @@ import { SlideControlButtons } from "@/components/reusable";
 const MatchesComponent = ({ matches }: { matches: MatchType[] }) => {
   const [isEnd, setIsEnd] = useState(false);
   const [isBeginning, setIsBeginning] = useState(true);
-
-  // const [data] = useState([...dataList]);
 
   return (
     <div className="flex justify-center items-center my-6 w-full">

@@ -1,15 +1,11 @@
-import { useState, useEffect } from "react";
 import Head from "next/head";
-// import { useSelector } from 'react-redux';
-// import { formatBalance } from '@/components/ConnectWallect'
-
-// import { RootState } from '../app/store';
 import {
   HeroComponent,
   LobbyComponent,
   TrendingComponent,
   EventsComponent,
   LeaderBoardComponent,
+  WinningGamesComponent,
 } from "@/components/home";
 
 export default function Home() {
@@ -36,6 +32,7 @@ export default function Home() {
         <LobbyComponent />
         <EventsComponent />
         <LeaderBoardComponent />
+        <WinningGamesComponent />
       </main>
     </>
   );

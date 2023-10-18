@@ -199,7 +199,7 @@ const LeaderBoardComponent = () => {
 
       <button
         type="button"
-        className="text-2xl font-medium my-5 border-b-2 border-darkGold opacity-80 mx-auto text-darkGold"
+        className="text-2xl font-medium my-5 border-b-2 border-darkGold opacity-90 mx-auto text-darkGold"
       >
         View all
       </button>

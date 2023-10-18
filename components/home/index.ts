@@ -3,6 +3,7 @@ import LobbyComponent from "./LobbyComponent";
 import EventsComponent from "./EventsComponent";
 import TrendingComponent from "./trending";
 import LeaderBoardComponent from "./LeaderBoardComponent";
+import WinningGamesComponent from "./WinningGamesComponent";
 
 export {
   HeroComponent,
@@ -10,4 +11,5 @@ export {
   EventsComponent,
   TrendingComponent,
   LeaderBoardComponent,
+  WinningGamesComponent,
 };

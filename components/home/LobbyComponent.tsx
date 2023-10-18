@@ -12,7 +12,7 @@ const LobbyComponent = () => {
   return (
     <section className="mb-4 rounded-t-3xl w-full flex flex-col justify-center items-center">
       <div className="flex justify-center mb-4 gap-1 flex-col items-center">
-        <h1 className="flex gap-0 items-center text-2xl mx-auto font-semibold">
+        <h1 className="flex gap-0 items-center text-3xl mx-auto font-semibold">
           Lobby
         </h1>
         <span>Find a wager to challenge.</span>
