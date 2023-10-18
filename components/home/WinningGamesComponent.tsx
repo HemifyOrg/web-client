@@ -531,13 +531,31 @@ const WinningGamesComponent = () => {
     },
     {
       user: {
-        username: "greenlight",
+        username: "divuzki",
         isVerified: true,
       },
-      win: 5945,
-      event: "soccer",
+      win: 7857,
+      event: "basketball",
       date: "Few secs ago",
     },
+    {
+        user: {
+          username: "ayotunde",
+          isVerified: true,
+        },
+        win: 945,
+        event: "baseball",
+        date: "Few secs ago",
+      },
+      {
+        user: {
+          username: "michell",
+          isVerified: true,
+        },
+        win: 500,
+        event: "golf",
+        date: "Few secs ago",
+      },
   ]);
   return (
     <section className="mb-4 w-full flex flex-col justify-center items-center bg-[#e6e3e3]">
