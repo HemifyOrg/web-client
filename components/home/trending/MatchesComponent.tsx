@@ -15,7 +15,7 @@ const MatchesComponent = ({ matches }: { matches: MatchType[] }) => {
   // const [data] = useState([...dataList]);
 
   return (
-    <div className="flex flex-col justify-center items-center my-6">
+    <div className="flex justify-center items-center my-6 w-full">
       {matches && matches.length > 0 && (
         <Swiper
           onSlideChange={(swiper) => {

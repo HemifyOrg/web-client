@@ -38,7 +38,8 @@ export const MatchCardComponet = ({ match }: { match: MatchType }) => {
             <div className="flex gap-2 justify-start items-center">
               <MatchLeagueIcon type={match.sport.league.name} />
               <span className="font-medium capitalize">
-                {match.sport.league.country}, {match.sport.league.name}
+                {match.sport.league.country},{" "}
+                {match.sport.league.name.replace(/_/g, " ")}
               </span>
             </div>
             {/* match signal */}

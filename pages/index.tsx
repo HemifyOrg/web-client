@@ -10,6 +10,7 @@ import {
   LeaderBoardComponent,
 } from "@/components/home";
 import TrandingComponent from "@/components/home/trending";
+import LobbyComponent from "@/components/home/LobbyComponent";
 
 export default function Home() {
   // const account = useSelector((state: RootState) => state.account);
@@ -26,13 +27,14 @@ export default function Home() {
 
         <button
           type="button"
-          className="text-white mx-auto text-lg px-12 py-4 font-medium rounded-full bg-darkGold mt-10"
+          className="text-white mx-auto text-sm md:text-base px-24 py-4 font-medium rounded-full bg-darkGold mt-10"
         >
           Create a Wager
         </button>
 
         {/* Trending */}
         <TrandingComponent />
+        <LobbyComponent />
       </main>
     </>
   );

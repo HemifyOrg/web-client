@@ -1,1 +1,2 @@
-export { capitalizeAWord, LogoSvg } from "./components"
+export * from "./components"
+export * from "./staticLists"
