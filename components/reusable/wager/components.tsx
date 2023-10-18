@@ -2,6 +2,7 @@ import { MatchLeagueIcon, sportsList } from "@/utils";
 import { MatchType, WagerType } from "@/utils/types";
 import Image from "next/image";
 import React from "react";
+import UserComponent from "../components";
 
 export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
   return wager.prediction &&
@@ -60,18 +61,10 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
         {/* wager info */}
         <div className="flex gap-4 justify-center items-center">
           {/* user content */}
-          <div className="gap-2 flex flex-wrap xs:px-2 px-6 items-center">
-            <Image
-              alt=""
-              width={38}
-              height={38}
-              className="object-cover rounded-md shadow-md drop-shadow-sm"
-              src={wager.creator.image}
-            />
-            <span className="text-gray-600 font-semibold">
-              @{wager.creator.username}
-            </span>
-          </div>
+          <UserComponent
+            src={wager.creator.image}
+            username={wager.creator.username}
+          />
 
           {/* wage */}
           <span>
@@ -214,7 +207,7 @@ export const SportEventWagerCardComponent = ({
 
           <button
             type="button"
-            className="px-10 py-3 font-medium rounded-full bg-darkGold text-white"
+            className="md:px-10 px-4 py-2 xs:py-3 font-medium rounded-full bg-darkGold text-white"
           >
             Create Wager
           </button>
