@@ -187,7 +187,7 @@ const TopNav = () => {
                 {navLinks.map((link, index) => (
                   <li
                     key={index}
-                    className="flex w-full md:hover:bg-slate-200 active:bg-slate-200 group px-4 py-2 items-center justify-start gap-2 cursor-pointer select-none"
+                    className="flex w-full md:hover:bg-slate-200 active:bg-slate-200 group pl-4 pr-6 py-2 items-center justify-start gap-2 cursor-pointer select-none"
                   >
                     <div className="w-11 h-11 p-2 border group-hover:border-gray-500 rounded-xl flex items-center justify-center bg-[#E8E8E8]">
                       <span className="w-full h-full">{link.icon}</span>
