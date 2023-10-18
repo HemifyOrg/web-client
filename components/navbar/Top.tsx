@@ -11,6 +11,7 @@ import Link from "next/link";
 
 import { LogoSvg } from "@/utils";
 import { OutsideAlerter } from "../reusable";
+import Image from "next/image";
 
 const TopNav = () => {
   const [showMaterialDropdown, setShowMaterialDropdown] = useState(false);
@@ -51,30 +52,99 @@ const TopNav = () => {
     {
       name: "Profile",
       link: "/profile",
-    },
-    {
-      name: "Swap",
-      link: "/product/swap",
-    },
-    {
-      name: "Wager",
-      link: "/product/wager",
-    },
-    {
-      name: "Bet Slip",
-      link: "/product/wager/bet-slip",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M20 21C20 19.6044 20 18.9067 19.8278 18.3389C19.44 17.0605 18.4395 16.06 17.1611 15.6722C16.5933 15.5 15.8956 15.5 14.5 15.5H9.5C8.10444 15.5 7.40665 15.5 6.83886 15.6722C5.56045 16.06 4.56004 17.0605 4.17224 18.3389C4 18.9067 4 19.6044 4 21M16.5 7.5C16.5 9.98528 14.4853 12 12 12C9.51472 12 7.5 9.98528 7.5 7.5C7.5 5.01472 9.51472 3 12 3C14.4853 3 16.5 5.01472 16.5 7.5Z"
+            stroke="black"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
     },
     {
       name: "Notifications",
-      link: "/profile/notifications",
+      link: "/profile/notification",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M14.3909 18.0153C14.8197 19.6157 13.8699 21.2607 12.2695 21.6895C10.6691 22.1183 9.02414 21.1686 8.59531 19.5682M10.8914 5.74134C11.1956 5.19404 11.2958 4.53254 11.121 3.87994C10.7636 2.54627 9.39275 1.75482 8.05909 2.11217C6.72542 2.46953 5.93397 3.84037 6.29132 5.17404C6.46619 5.82663 6.88372 6.3494 7.42082 6.67128M16.2358 9.44578C15.8788 8.11364 14.9259 6.99968 13.5866 6.34895C12.2474 5.69822 10.6314 5.56402 9.09437 5.97588C7.55729 6.38774 6.22496 7.31191 5.39048 8.5451C4.556 9.77829 4.28773 11.2195 4.64467 12.5516C5.23524 14.7557 5.12057 16.514 4.74761 17.8502C4.32255 19.373 4.11001 20.1345 4.16743 20.2874C4.23312 20.4623 4.28064 20.5103 4.45488 20.5778C4.60717 20.6368 5.24694 20.4654 6.52648 20.1225L18.3915 16.9433C19.6711 16.6004 20.3109 16.429 20.4132 16.3018C20.5304 16.1562 20.5475 16.0909 20.517 15.9065C20.4902 15.7454 19.9255 15.1922 18.7959 14.086C17.8049 13.1153 16.8264 11.6498 16.2358 9.44578Z"
+            stroke="black"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
     },
     {
       name: "Settings",
       link: "/profile/settings",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+            stroke="black"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M18.7273 14.7273C18.6063 15.0015 18.5702 15.3056 18.6236 15.6005C18.6771 15.8954 18.8177 16.1676 19.0273 16.3818L19.0818 16.4364C19.2509 16.6052 19.385 16.8057 19.4765 17.0265C19.568 17.2472 19.6151 17.4838 19.6151 17.7227C19.6151 17.9617 19.568 18.1983 19.4765 18.419C19.385 18.6397 19.2509 18.8402 19.0818 19.0091C18.913 19.1781 18.7124 19.3122 18.4917 19.4037C18.271 19.4952 18.0344 19.5423 17.7955 19.5423C17.5565 19.5423 17.3199 19.4952 17.0992 19.4037C16.8785 19.3122 16.678 19.1781 16.5091 19.0091L16.4545 18.9545C16.2403 18.745 15.9682 18.6044 15.6733 18.5509C15.3784 18.4974 15.0742 18.5335 14.8 18.6545C14.5311 18.7698 14.3018 18.9611 14.1403 19.205C13.9788 19.4489 13.8921 19.7347 13.8909 20.0273V20.1818C13.8909 20.664 13.6994 21.1265 13.3584 21.4675C13.0174 21.8084 12.5549 22 12.0727 22C11.5905 22 11.1281 21.8084 10.7871 21.4675C10.4461 21.1265 10.2545 20.664 10.2545 20.1818V20.1C10.2475 19.7991 10.1501 19.5073 9.97501 19.2625C9.79991 19.0176 9.55521 18.8312 9.27273 18.7273C8.99853 18.6063 8.69437 18.5702 8.39947 18.6236C8.10456 18.6771 7.83244 18.8177 7.61818 19.0273L7.56364 19.0818C7.39478 19.2509 7.19425 19.385 6.97353 19.4765C6.7528 19.568 6.51621 19.6151 6.27727 19.6151C6.03834 19.6151 5.80174 19.568 5.58102 19.4765C5.36029 19.385 5.15977 19.2509 4.99091 19.0818C4.82186 18.913 4.68775 18.7124 4.59626 18.4917C4.50476 18.271 4.45766 18.0344 4.45766 17.7955C4.45766 17.5565 4.50476 17.3199 4.59626 17.0992C4.68775 16.8785 4.82186 16.678 4.99091 16.5091L5.04545 16.4545C5.25503 16.2403 5.39562 15.9682 5.4491 15.6733C5.50257 15.3784 5.46647 15.0742 5.34545 14.8C5.23022 14.5311 5.03887 14.3018 4.79497 14.1403C4.55107 13.9788 4.26526 13.8921 3.97273 13.8909H3.81818C3.33597 13.8909 2.87351 13.6994 2.53253 13.3584C2.19156 13.0174 2 12.5549 2 12.0727C2 11.5905 2.19156 11.1281 2.53253 10.7871C2.87351 10.4461 3.33597 10.2545 3.81818 10.2545H3.9C4.2009 10.2475 4.49273 10.1501 4.73754 9.97501C4.98236 9.79991 5.16883 9.55521 5.27273 9.27273C5.39374 8.99853 5.42984 8.69437 5.37637 8.39947C5.3229 8.10456 5.18231 7.83244 4.97273 7.61818L4.91818 7.56364C4.74913 7.39478 4.61503 7.19425 4.52353 6.97353C4.43203 6.7528 4.38493 6.51621 4.38493 6.27727C4.38493 6.03834 4.43203 5.80174 4.52353 5.58102C4.61503 5.36029 4.74913 5.15977 4.91818 4.99091C5.08704 4.82186 5.28757 4.68775 5.50829 4.59626C5.72901 4.50476 5.96561 4.45766 6.20455 4.45766C6.44348 4.45766 6.68008 4.50476 6.9008 4.59626C7.12152 4.68775 7.32205 4.82186 7.49091 4.99091L7.54545 5.04545C7.75971 5.25503 8.03183 5.39562 8.32674 5.4491C8.62164 5.50257 8.9258 5.46647 9.2 5.34545H9.27273C9.54161 5.23022 9.77093 5.03887 9.93245 4.79497C10.094 4.55107 10.1807 4.26526 10.1818 3.97273V3.81818C10.1818 3.33597 10.3734 2.87351 10.7144 2.53253C11.0553 2.19156 11.5178 2 12 2C12.4822 2 12.9447 2.19156 13.2856 2.53253C13.6266 2.87351 13.8182 3.33597 13.8182 3.81818V3.9C13.8193 4.19253 13.906 4.47834 14.0676 4.72224C14.2291 4.96614 14.4584 5.15749 14.7273 5.27273C15.0015 5.39374 15.3056 5.42984 15.6005 5.37637C15.8954 5.3229 16.1676 5.18231 16.3818 4.97273L16.4364 4.91818C16.6052 4.74913 16.8057 4.61503 17.0265 4.52353C17.2472 4.43203 17.4838 4.38493 17.7227 4.38493C17.9617 4.38493 18.1983 4.43203 18.419 4.52353C18.6397 4.61503 18.8402 4.74913 19.0091 4.91818C19.1781 5.08704 19.3122 5.28757 19.4037 5.50829C19.4952 5.72901 19.5423 5.96561 19.5423 6.20455C19.5423 6.44348 19.4952 6.68008 19.4037 6.9008C19.3122 7.12152 19.1781 7.32205 19.0091 7.49091L18.9545 7.54545C18.745 7.75971 18.6044 8.03183 18.5509 8.32674C18.4974 8.62164 18.5335 8.9258 18.6545 9.2V9.27273C18.7698 9.54161 18.9611 9.77093 19.205 9.93245C19.4489 10.094 19.7347 10.1807 20.0273 10.1818H20.1818C20.664 10.1818 21.1265 10.3734 21.4675 10.7144C21.8084 11.0553 22 11.5178 22 12C22 12.4822 21.8084 12.9447 21.4675 13.2856C21.1265 13.6266 20.664 13.8182 20.1818 13.8182H20.1C19.8075 13.8193 19.5217 13.906 19.2778 14.0676C19.0339 14.2291 18.8425 14.4584 18.7273 14.7273Z"
+            stroke="black"
+            stroke-width="1.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      ),
+    },
+    {
+      name: "Connect your Wallet",
+      onclick: () => setShowMenu(false),
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M16.5 14H16.51M3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V9C21 7.89543 20.1046 7 19 7L5 7C3.89543 7 3 6.10457 3 5ZM3 5C3 3.89543 3.89543 3 5 3H17M17 14C17 14.2761 16.7761 14.5 16.5 14.5C16.2239 14.5 16 14.2761 16 14C16 13.7239 16.2239 13.5 16.5 13.5C16.7761 13.5 17 13.7239 17 14Z"
+            stroke="black"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
+    },
+    {
+      name: "Support",
+      link: "/profile/support",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M21 18V12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12V18M5.5 21C4.11929 21 3 19.8807 3 18.5V16.5C3 15.1193 4.11929 14 5.5 14C6.88071 14 8 15.1193 8 16.5V18.5C8 19.8807 6.88071 21 5.5 21ZM18.5 21C17.1193 21 16 19.8807 16 18.5V16.5C16 15.1193 17.1193 14 18.5 14C19.8807 14 21 15.1193 21 16.5V18.5C21 19.8807 19.8807 21 18.5 21Z"
+            stroke="black"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
     },
     {
       name: "Logout",
       link: "/auth/logout",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M16 17.0003L21 12.0003M21 12.0003L16 7.00031M21 12.0003H9M12 17.0003C12 17.2959 12 17.4437 11.989 17.5717C11.8748 18.9023 10.8949 19.9972 9.58503 20.2576C9.45903 20.2826 9.31202 20.299 9.01835 20.3316L7.99694 20.4451C6.46248 20.6156 5.69521 20.7008 5.08566 20.5058C4.27293 20.2457 3.60942 19.6518 3.26118 18.8728C3 18.2885 3 17.5165 3 15.9726V8.028C3 6.48407 3 5.71211 3.26118 5.12783C3.60942 4.34879 4.27293 3.75491 5.08566 3.49483C5.69521 3.29978 6.46246 3.38502 7.99694 3.55552L9.01835 3.66901C9.31212 3.70165 9.45901 3.71797 9.58503 3.74303C10.8949 4.00346 11.8748 5.09835 11.989 6.42891C12 6.55694 12 6.70473 12 7.00031"
+            stroke="#FF3333"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
     },
   ];
 
@@ -83,8 +153,9 @@ const TopNav = () => {
       <nav
         className={`w-full ${
           scrolledTo5Percent ? "pt-0 px-1 lg:px-6" : "pt-4 px-2 lg:px-8"
-        } pb-4 mb-2 left-0 right-0 select-none z-[101] transition-all fixed font-semibold`}
+        } pb-4 mb-2 left-0 right-0 select-none z-[101] transition-all fixed font-medium`}
       >
+        {/* menu */}
         <div
           className={`flex fixed w-screen justify-end h-screen transition-all ${
             showMenu ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -104,21 +175,43 @@ const TopNav = () => {
               }
               exit={{ x: "100%", y: scrolledTo5Percent ? 70 : 80 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-col py-5 pl-5 pr-8 bg-primary rounded-l-lg h-max gap-4"
+              className="flex flex-col pb-4 bg-gray-100 rounded-xl h-max gap-4"
             >
-              <ul className="flex flex-col gap-4 justify-start items-start">
+              <div className="w-full rounded-2xl -translate-y-1 px-6 py-6 bg-darkGold flex justify-between items-center">
+                <span className="text-gray-200 flex flex-col text-base">
+                  <span>Wallet</span> <span>balance</span>
+                </span>
+                <span className="text-lg text-slate-50">$7893.02</span>
+              </div>
+              <ul className="flex flex-col gap-2 justify-start items-start">
                 {navLinks.map((link, index) => (
-                  <Link
-                    href={link.link}
+                  <li
                     key={index}
-                    className="border-transparent"
+                    className="flex w-full md:hover:bg-slate-200 active:bg-slate-200 group px-4 py-2 items-center justify-start gap-2 cursor-pointer select-none"
                   >
-                    <li className="text-gray-800 text-base">{link.name}</li>
-                  </Link>
+                    <div className="w-11 h-11 p-2 border group-hover:border-gray-500 rounded-xl flex items-center justify-center bg-[#E8E8E8]">
+                      <span className="w-full h-full">{link.icon}</span>
+                    </div>
+                    {link.link ? (
+                      <Link
+                        href={link.link}
+                        key={index}
+                        className="border-transparent hover:border-transparent hover:opacity-100"
+                      >
+                        <li className="text-gray-800 text-lg">{link.name}</li>
+                      </Link>
+                    ) : (
+                      <li
+                        className="text-gray-800 text-lg cursor-pointer"
+                        onClick={link.onclick}
+                        key={index}
+                      >
+                        {link.name}
+                      </li>
+                    )}
+                  </li>
                 ))}
               </ul>
-
-              <ConnectWallet textClassName={"flex"} label="Connect Wallet" />
             </motion.div>
           </OutsideAlerter>
         </div>
@@ -136,250 +229,45 @@ const TopNav = () => {
                 <LogoSvg className="w-full h-full" />
               </div>
             </Link>
-            <ul className="gap-10 hidden lg:flex">
-              <Link href="/product/swap" className="border-none text-gray-900">
-                <li>Swap</li>
-              </Link>
-              <Link href="/product/wager" className="border-none text-gray-900">
-                <li>Wager</li>
-              </Link>
-            </ul>
-          </div>
-
-          {/* center */}
-          <div className="border lg:w-[479px] w-40 border-gray-400 p-2 rounded-full flex gap-2 items-center justify-center">
-            <svg
-              className="text-gray-400"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M19 19L14.65 14.65M9 4C11.7614 4 14 6.23858 14 9M17 9C17 13.4183 13.4183 17 9 17C4.58172 17 1 13.4183 1 9C1 4.58172 4.58172 1 9 1C13.4183 1 17 4.58172 17 9Z"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <input
-              type="text"
-              className="select-text lg:text-base text-sm w-full bg-transparent border-none shadow-none outline-none"
-              placeholder="Search..."
-              name="search"
-              id="search"
-            />
           </div>
 
           {/* right */}
-          <div className="flex lg:gap-6 gap-2 mr-1">
-            <div className="hidden lg:flex gap-2 items-center cursor-pointer relative">
-              <span
-                onClick={() => {
-                  setShowMaterialDropdown(!showMaterialDropdown);
-                  setShowNotificationDropdown(false);
-                }}
-              >
-                Materials
-              </span>
+          <div className="flex lg:gap-6 gap-2 mr-1 items-center">
+            <span>
               <svg
-                onClick={() => setShowMaterialDropdown(!showMaterialDropdown)}
-                width="14"
-                height="8"
-                viewBox="0 0 14 8"
+                className="text-gray-600"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M1 1L7 7L13 1"
-                  stroke="black"
+                  d="M19 19L14.65 14.65M9 4C11.7614 4 14 6.23858 14 9M17 9C17 13.4183 13.4183 17 9 17C4.58172 17 1 13.4183 1 9C1 4.58172 4.58172 1 9 1C13.4183 1 17 4.58172 17 9Z"
+                  stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
               </svg>
-              {/* dropdown */}
-              {showMaterialDropdown && (
-                <OutsideAlerter
-                  visible={showMaterialDropdown}
-                  setState={setShowMaterialDropdown}
-                  className="overflow-hidden backdrop-blur-lg rounded-xl absolute top-8 border border-themeColor -right-1 shadow-md bg-navBarColor flex flex-col gap-4"
-                >
-                  <div className="flex gap-2 w-full px-4 py-2 border-b border-transparent hover:border-themeColor">
-                    <svg
-                      width="22"
-                      height="20"
-                      viewBox="0 0 22 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M1 4.2C1 3.07989 1 2.51984 1.21799 2.09202C1.40973 1.71569 1.71569 1.40973 2.09202 1.21799C2.51984 1 3.07989 1 4.2 1H4.6C6.84021 1 7.96031 1 8.81596 1.43597C9.56861 1.81947 10.1805 2.43139 10.564 3.18404C11 4.03968 11 5.15979 11 7.4V19L10.8999 18.8499C10.2053 17.808 9.85798 17.287 9.3991 16.9098C8.99286 16.5759 8.52477 16.3254 8.02161 16.1726C7.45325 16 6.82711 16 5.57482 16H4.2C3.0799 16 2.51984 16 2.09202 15.782C1.71569 15.5903 1.40973 15.2843 1.21799 14.908C1 14.4802 1 13.9201 1 12.8V4.2Z"
-                        fill="#FAF7F0"
-                      />
-                      <path
-                        d="M21 4.2C21 3.07989 21 2.51984 20.782 2.09202C20.5903 1.71569 20.2843 1.40973 19.908 1.21799C19.4802 1 18.9201 1 17.8 1H17.4C15.1598 1 14.0397 1 13.184 1.43597C12.4314 1.81947 11.8195 2.43139 11.436 3.18404C11 4.03968 11 5.15979 11 7.4V19L11.1001 18.8499C11.7947 17.808 12.142 17.287 12.6009 16.9098C13.0071 16.5759 13.4752 16.3254 13.9784 16.1726C14.5468 16 15.1729 16 16.4252 16H17.8C18.9201 16 19.4802 16 19.908 15.782C20.2843 15.5903 20.5903 15.2843 20.782 14.908C21 14.4802 21 13.9201 21 12.8V4.2Z"
-                        fill="#FAF7F0"
-                      />
-                      <path
-                        d="M11 19L10.8999 18.8499C10.2053 17.808 9.85798 17.287 9.3991 16.9098C8.99286 16.5759 8.52476 16.3254 8.02161 16.1726C7.45325 16 6.82711 16 5.57482 16H4.2C3.07989 16 2.51984 16 2.09202 15.782C1.71569 15.5903 1.40973 15.2843 1.21799 14.908C1 14.4802 1 13.9201 1 12.8V4.2C1 3.07989 1 2.51984 1.21799 2.09202C1.40973 1.71569 1.71569 1.40973 2.09202 1.21799C2.51984 1 3.07989 1 4.2 1H4.6C6.84021 1 7.96031 1 8.81596 1.43597C9.56861 1.81947 10.1805 2.43139 10.564 3.18404C11 4.03968 11 5.15979 11 7.4M11 19V7.4M11 19L11.1001 18.8499C11.7947 17.808 12.142 17.287 12.6009 16.9098C13.0071 16.5759 13.4752 16.3254 13.9784 16.1726C14.5467 16 15.1729 16 16.4252 16H17.8C18.9201 16 19.4802 16 19.908 15.782C20.2843 15.5903 20.5903 15.2843 20.782 14.908C21 14.4802 21 13.9201 21 12.8V4.2C21 3.07989 21 2.51984 20.782 2.09202C20.5903 1.71569 20.2843 1.40973 19.908 1.21799C19.4802 1 18.9201 1 17.8 1H17.4C15.1598 1 14.0397 1 13.184 1.43597C12.4314 1.81947 11.8195 2.43139 11.436 3.18404C11 4.03968 11 5.15979 11 7.4"
-                        stroke="#D2B37D"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    <span>Whitepaper</span>
-                  </div>
-
-                  <div className="flex gap-2 w-full px-4 py-2 border-t border-b border-transparent hover:border-themeColor">
-                    <svg
-                      width="20"
-                      height="21"
-                      viewBox="0 0 20 21"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5.8 1H14.2C15.8802 1 16.7202 1 17.362 1.32698C17.9265 1.6146 18.3854 2.07354 18.673 2.63803C19 3.27976 19 4.11984 19 5.8V11.2C19 12.8802 19 13.7202 18.673 14.362C18.3854 14.9265 17.9265 15.3854 17.362 15.673C16.7202 16 15.8802 16 14.2 16H11.6837C11.0597 16 10.7477 16 10.4492 16.0613C10.1844 16.1156 9.9282 16.2055 9.68749 16.3285C9.41617 16.4671 9.17252 16.662 8.68521 17.0518L6.29976 18.9602C5.88367 19.2931 5.67563 19.4595 5.50054 19.4597C5.34827 19.4599 5.20422 19.3906 5.10923 19.2716C5 19.1348 5 18.8684 5 18.3355V16C4.07003 16 3.60504 16 3.22354 15.8978C2.18827 15.6204 1.37962 14.8117 1.10222 13.7765C1 13.395 1 12.93 1 12V5.8C1 4.11984 1 3.27976 1.32698 2.63803C1.6146 2.07354 2.07354 1.6146 2.63803 1.32698C3.27976 1 4.11984 1 5.8 1Z"
-                        fill="#FAF7F0"
-                      />
-                      <path
-                        d="M8 6.00224C8.1762 5.50136 8.52397 5.07901 8.98173 4.80998C9.43949 4.54095 9.9777 4.4426 10.501 4.53237C11.0243 4.62213 11.499 4.89421 11.8409 5.30041C12.1829 5.70661 12.37 6.22072 12.3692 6.75168C12.3692 8.25056 10.1209 9 10.1209 9M10.1499 12H10.1599M5 16V18.3355C5 18.8684 5 19.1348 5.10923 19.2716C5.20422 19.3906 5.34827 19.4599 5.50054 19.4597C5.67563 19.4595 5.88367 19.2931 6.29976 18.9602L8.68521 17.0518C9.17252 16.662 9.41617 16.4671 9.68749 16.3285C9.9282 16.2055 10.1844 16.1156 10.4492 16.0613C10.7477 16 11.0597 16 11.6837 16H14.2C15.8802 16 16.7202 16 17.362 15.673C17.9265 15.3854 18.3854 14.9265 18.673 14.362C19 13.7202 19 12.8802 19 11.2V5.8C19 4.11984 19 3.27976 18.673 2.63803C18.3854 2.07354 17.9265 1.6146 17.362 1.32698C16.7202 1 15.8802 1 14.2 1H5.8C4.11984 1 3.27976 1 2.63803 1.32698C2.07354 1.6146 1.6146 2.07354 1.32698 2.63803C1 3.27976 1 4.11984 1 5.8V12C1 12.93 1 13.395 1.10222 13.7765C1.37962 14.8117 2.18827 15.6204 3.22354 15.8978C3.60504 16 4.07003 16 5 16Z"
-                        stroke="#D2B37D"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    <span>FAQ</span>
-                  </div>
-
-                  <div className="flex gap-2 w-full px-4 py-2 border-t border-transparent hover:border-themeColor">
-                    <svg
-                      width="20"
-                      height="18"
-                      viewBox="0 0 20 18"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M1.75 2.25H13.75V14.25C13.75 14.7975 13.915 15.3075 14.1722 15.75H3.25C2.3575 15.75 1.75 15.1425 1.75 14.25V2.25ZM3.25 7.5V3.75H12.25V7.5H3.25ZM3.25 9.75V8.25H7V9.75H3.25ZM8.5 9.75V8.25H12.25V9.75H8.5ZM3.25 12V10.5H7V12H3.25ZM8.5 12V10.5H12.25V12H8.5ZM3.25 14.25V12.75H7V14.25H3.25ZM8.5 14.25V12.75H12.25V14.25H8.5Z"
-                        fill="#FAF7F0"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M3.25 7.5V3.75H12.25V7.5H3.25ZM10.75 5.25H4.75V6H10.75V5.25ZM3.25 9.75V8.25H7V9.75H3.25ZM8.5 9.75V8.25H12.25V9.75H8.5ZM3.25 12V10.5H7V12H3.25ZM8.5 12V10.5H12.25V12H8.5ZM3.25 14.25V12.75H7V14.25H3.25ZM8.5 14.25V12.75H12.25V14.25H8.5Z"
-                        fill="#D2B37D"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M0.25 0.75V14.25C0.25 15.9075 1.5925 17.25 3.25 17.25H16.75C18.4075 17.25 19.75 15.9075 19.75 14.25V6H15.25V0.75H0.25ZM13.75 2.25H1.75V14.25C1.75 15.1425 2.3575 15.75 3.25 15.75H14.1722C13.915 15.3075 13.75 14.7975 13.75 14.25V2.25ZM18.25 7.5H15.25V14.25C15.25 15.1425 15.8575 15.75 16.75 15.75C17.6425 15.75 18.25 15.1425 18.25 14.25V7.5Z"
-                        fill="#D2B37D"
-                      />
-                      <path d="M4.75 5.25H10.75V6H4.75V5.25Z" fill="#FAF7F0" />
-                    </svg>
-
-                    <span>Blog</span>
-                  </div>
-                </OutsideAlerter>
-              )}
-            </div>
-            {/* icons */}
+            </span>
             <div className="flex gap-4">
-              <div className="relative hidden lg:flex items-center justify-center">
-                <svg
-                  onClick={() => {
-                    setShowNotificationDropdown(!showNotificationDropdown);
-                    setShowMaterialDropdown(false);
-                  }}
-                  className="cursor-pointer"
-                  width="22"
-                  height="22"
-                  viewBox="0 0 19 22"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M13.2358 8.44541C12.8789 7.11328 11.926 5.99931 10.5867 5.34858C9.24742 4.69785 7.6315 4.56365 6.09443 4.97551C4.55735 5.38737 3.22502 6.31155 2.39054 7.54473C1.55606 8.77792 1.28779 10.2191 1.64473 11.5512C2.2353 13.7553 2.12063 15.5137 1.74768 16.8498C1.32261 18.3727 1.11008 19.1341 1.16749 19.287C1.23318 19.4619 1.2807 19.5099 1.45494 19.5774C1.60723 19.6364 2.247 19.465 3.52654 19.1222L15.3916 15.9429C16.6712 15.6001 17.3109 15.4286 17.4133 15.3014C17.5304 15.1558 17.5476 15.0905 17.517 14.9061C17.4903 14.745 16.9255 14.1919 15.796 13.0856C14.8049 12.1149 13.8264 10.6495 13.2358 8.44541Z"
-                    fill="black"
-                  />
-                  <path
-                    d="M11.3909 17.0149C11.8198 18.6153 10.87 20.2603 9.26961 20.6891C7.66921 21.118 6.0242 20.1682 5.59537 18.5678M7.89146 4.74097C8.19567 4.19367 8.29588 3.53217 8.12101 2.87957C7.76366 1.54591 6.39282 0.754452 5.05915 1.11181C3.72549 1.46916 2.93403 2.84 3.29138 4.17367C3.46625 4.82627 3.88378 5.34904 4.42088 5.67091M13.2358 8.44541C12.8789 7.11328 11.926 5.99931 10.5867 5.34858C9.24742 4.69785 7.6315 4.56365 6.09443 4.97551C4.55735 5.38737 3.22502 6.31155 2.39054 7.54473C1.55606 8.77792 1.28779 10.2191 1.64473 11.5512C2.2353 13.7553 2.12063 15.5137 1.74768 16.8498C1.32261 18.3727 1.11008 19.1341 1.16749 19.287C1.23318 19.4619 1.2807 19.5099 1.45494 19.5774C1.60723 19.6364 2.247 19.465 3.52654 19.1222L15.3916 15.9429C16.6711 15.6001 17.3109 15.4287 17.4133 15.3014C17.5304 15.1558 17.5476 15.0905 17.517 14.9061C17.4903 14.745 16.9255 14.1919 15.796 13.0856C14.8049 12.1149 13.8264 10.6495 13.2358 8.44541Z"
-                    stroke="black"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                {/* badge */}
-                <div className="rounded-full bg-red-600 w-3 h-3 absolute top-0 right-0"></div>
-                {showNotificationDropdown && (
-                  <OutsideAlerter
-                    visible={showNotificationDropdown}
-                    setState={setShowNotificationDropdown}
-                    className="overflow-hidden backdrop-blur-lg rounded-xl absolute top-8 border border-themeColor -right-1 shadow-md bg-navBarColor flex flex-col gap-4"
-                  >
-                    <div className="flex gap-2 max-w-[320px] px-6 py-3 w-max border-t border-transparent hover:border-themeCXolor">
-                      <svg
-                        width="20"
-                        height="22"
-                        viewBox="0 0 20 22"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M6.63306 2.03371C7.61959 1.3649 8.79099 1 10 1C11.5913 1 13.1174 1.63214 14.2426 2.75736C15.3679 3.88258 16 5.4087 16 7C16 9.10077 16.2702 10.7512 16.6484 12.0324M4.25867 5.25724C4.08866 5.81726 4 6.40406 4 7C4 10.0902 3.22047 12.206 2.34966 13.6054C1.61513 14.7859 1.24786 15.3761 1.26132 15.5408C1.27624 15.7231 1.31486 15.7926 1.46178 15.9016C1.59446 16 2.19259 16 3.38885 16H15M7.35418 20C8.05931 20.6224 8.98555 21 10 21C11.0144 21 11.9407 20.6224 12.6458 20M19 20L1 2"
-                          stroke="#D2B37D"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-
-                      <span>You have no pending notification</span>
-                    </div>
-                  </OutsideAlerter>
-                )}
-              </div>
-              {account.connected ? (
-                <figure
-                  className="flex items-center justify-center overflow-hidden bg-center bg-cover bg-no-repeat bg-[#68E1FD] rounded-full w-10 h-10"
-                  style={{
-                    backgroundImage: `url(/images/user-pic.png)`,
-                  }}
-                />
-              ) : (
-                <ConnectWallet label="Connect Wallet" />
-              )}
-              <button
+              <div
+                className="pl-1 pr-3 py-1 flex gap-2 bg-darkGold rounded-full items-center justify-center cursor-pointer relative"
                 onClick={() => setShowMenu(!showMenu)}
-                type="button"
-                className="lg:hidden"
-                title="Open Menu"
               >
-                <svg
-                  width="20"
-                  height="14"
-                  viewBox="0 0 20 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M19 7H7M19 1H1M19 13H1"
-                    stroke="black"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                <figure className="relative overflow-hidden w-6 h-6 flex justify-center items-center rounded-full bg-[#68E1FD]">
+                  <Image
+                    width={30}
+                    height={30}
+                    className="rounded-full w-full h-full object-cover"
+                    src="/images/user-pic.png"
+                    alt="Profile"
                   />
-                </svg>
-              </button>
+                </figure>
+
+                <span className="text-gray-200 text-sm">$7893.02</span>
+              </div>
             </div>
           </div>
         </div>
