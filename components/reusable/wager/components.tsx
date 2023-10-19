@@ -1,5 +1,5 @@
 import { MatchLeagueIcon, sportsList } from "@/utils";
-import { MatchType, WagerType } from "@/utils/types";
+import { EventType, WagerType } from "@/utils/types";
 import Image from "next/image";
 import React from "react";
 import UserComponent from "../components";
@@ -12,23 +12,23 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
       {/* header */}
       <div className="pb-2 pl-2  pt-1 gap-4 flex items-center justify-between">
         <span className="w-8">
-          {sportsList.find((n) => n.name === wager.match?.sport.name)?.icon}
+          {sportsList.find((n) => n.name === wager.event?.sport.name)?.icon}
         </span>
         <div className="w-full justify-center">
           <div className="flex justify-center items-center gap-2">
-            {wager.match && wager.match.sport.league ? (
+            {wager.event && wager.event.sport.league ? (
               <React.Fragment>
                 {/* home */}
                 <div className="flex gap-1">
                   <span className="font-medium text-sm">
-                    {wager.match.home.name}
+                    {wager.event.home.name}
                   </span>
                   <Image
                     width={25}
                     height={25}
                     alt=""
                     className="object-contain"
-                    src={wager.match.home.image}
+                    src={wager.event.home.image}
                   />
                 </div>
 
@@ -42,10 +42,10 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
                     height={25}
                     alt=""
                     className="object-contain"
-                    src={wager.match.away.image}
+                    src={wager.event.away.image}
                   />
                   <span className="font-medium text-sm">
-                    {wager.match.away.name}
+                    {wager.event.away.name}
                   </span>
                 </div>
               </React.Fragment>
@@ -104,9 +104,9 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
 };
 
 export const SportEventWagerCardComponent = ({
-  match,
+  event,
 }: {
-  match: MatchType;
+  event: EventType;
 }) => {
   return (
     <div className="w-full bg-white rounded-lg divide-y-2">
@@ -114,21 +114,21 @@ export const SportEventWagerCardComponent = ({
       <div className="px-3 py-2 bg-white rounded-t-xl w-full shadow-sm flex justify-between gap-4 items-center">
         {/* match name */}
         <div className="flex gap-2 justify-start items-center">
-          {match.sport.league ? (
-            <MatchLeagueIcon type={match.sport.league.name} />
+          {event.sport.league ? (
+            <MatchLeagueIcon type={event.sport.league.name} />
           ) : (
             <span className="w-[16px] h-[17px]">
-              {sportsList.find((n) => n.name === match.sport.name)?.icon}
+              {sportsList.find((n) => n.name === event.sport.name)?.icon}
             </span>
           )}
-          {match.sport.league ? (
+          {event.sport.league ? (
             <span className="font-medium capitalize">
-              {match.sport.league.country} |{" "}
-              {match.sport.league.name.replace(/_/g, " ")}
+              {event.sport.league.country} |{" "}
+              {event.sport.league.name.replace(/_/g, " ")}
             </span>
           ) : (
             <span className="font-medium capitalize">
-              {match.sport.name.replace(/_/g, " ")}
+              {event.sport.name.replace(/_/g, " ")}
             </span>
           )}
         </div>
@@ -156,12 +156,12 @@ export const SportEventWagerCardComponent = ({
             <Image
               width={80}
               height={80}
-              src={match.home.image}
-              alt={match.home.name}
+              src={event.home.image}
+              alt={event.home.name}
               className="object-contain"
             />
             <span className="text-gray-800 font-semibold flex justify-center w-full items-center text-center">
-              {match.home.name}
+              {event.home.name}
             </span>
           </div>
           {/* vs */}
@@ -171,12 +171,12 @@ export const SportEventWagerCardComponent = ({
             <Image
               width={80}
               height={80}
-              src={match.away.image}
-              alt={match.away.name}
+              src={event.away.image}
+              alt={event.away.name}
               className="object-contain"
             />
             <span className="text-gray-800 font-semibold flex justify-center w-full items-center text-center">
-              {match.away.name}
+              {event.away.name}
             </span>
           </div>
         </div>
@@ -187,16 +187,16 @@ export const SportEventWagerCardComponent = ({
             Ends in{" "}
             <span className="text-gray-800 font-semibold flex gap-1">
               <span>
-                {match.time.days}{" "}
-                {parseInt(match.time.days) > 1 ? "days" : "day"}
+                {event.time.days}{" "}
+                {parseInt(event.time.days) > 1 ? "days" : "day"}
               </span>
               <span>
-                {match.time.hours}
-                {parseInt(match.time.hours) > 1 ? "hrs" : "hr"}
+                {event.time.hours}
+                {parseInt(event.time.hours) > 1 ? "hrs" : "hr"}
               </span>
               <span>
-                {match.time.minutes}
-                {parseInt(match.time.minutes) > 1 ? "mins" : "min"}
+                {event.time.minutes}
+                {parseInt(event.time.minutes) > 1 ? "mins" : "min"}
               </span>
             </span>
           </span>

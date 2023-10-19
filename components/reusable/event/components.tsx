@@ -1,10 +1,13 @@
+import Image from "next/image";
+import { useState } from "react";
 import { sportsList } from "@/utils";
 import { MatchLeagueIcon } from "@/utils/components";
-import { MatchType } from "@/utils/types";
-import Image from "next/image";
-import React from "react";
+import { EventType } from "@/utils/types";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Keyboard, Scrollbar, Pagination } from "swiper/modules";
+import { SlideControlButtons } from "@/components/reusable";
 
-export const MatchCardComponet = ({ match }: { match: MatchType }) => {
+export const EventCardComponet = ({ event }: { event: EventType }) => {
   return (
     <div className="mx-auto">
       {/* date */}
@@ -13,21 +16,21 @@ export const MatchCardComponet = ({ match }: { match: MatchType }) => {
         {/* time */}
         <div className="flex gap-6">
           <div className="flex items-end">
-            <span className="text-3xl font-bold">{match.time.days}</span>
+            <span className="text-3xl font-bold">{event.time.days}</span>
             <span className="text-base font-semibold text-gray-400 mb-[1px]">
-              {parseInt(match.time.days) > 1 ? "days" : "day"}
+              {parseInt(event.time.days) > 1 ? "days" : "day"}
             </span>
           </div>
           <div className="flex items-end">
-            <span className="text-3xl font-bold">{match.time.hours}</span>
+            <span className="text-3xl font-bold">{event.time.hours}</span>
             <span className="text-base font-semibold text-gray-400 mb-[1px]">
-              {parseInt(match.time.hours) > 1 ? "hrs" : "hr"}
+              {parseInt(event.time.hours) > 1 ? "hrs" : "hr"}
             </span>
           </div>
           <div className="flex items-end">
-            <span className="text-3xl font-bold">{match.time.minutes}</span>
+            <span className="text-3xl font-bold">{event.time.minutes}</span>
             <span className="text-base font-semibold text-gray-400 mb-[1px]">
-              {parseInt(match.time.minutes) > 1 ? "mins" : "min"}
+              {parseInt(event.time.minutes) > 1 ? "mins" : "min"}
             </span>
           </div>
         </div>
@@ -37,21 +40,21 @@ export const MatchCardComponet = ({ match }: { match: MatchType }) => {
           <div className="px-3 py-2 bg-white rounded-t-xl w-full shadow-sm flex justify-between gap-4 items-center">
             {/* match name */}
             <div className="flex gap-2 justify-start items-center">
-              {match.sport.league ? (
-                <MatchLeagueIcon type={match.sport.league.name} />
+              {event.sport.league ? (
+                <MatchLeagueIcon type={event.sport.league.name} />
               ) : (
                 <span className="w-[16px] h-[17px]">
-                  {sportsList.find((n) => n.name === match.sport.name)?.icon}
+                  {sportsList.find((n) => n.name === event.sport.name)?.icon}
                 </span>
               )}
-              {match.sport.league ? (
+              {event.sport.league ? (
                 <span className="font-medium capitalize">
-                  {match.sport.league.country},{" "}
-                  {match.sport.league.name.replace(/_/g, " ")}
+                  {event.sport.league.country},{" "}
+                  {event.sport.league.name.replace(/_/g, " ")}
                 </span>
               ) : (
                 <span className="font-medium capitalize">
-                  {match.sport.name.replace(/_/g, " ")}
+                  {event.sport.name.replace(/_/g, " ")}
                 </span>
               )}
             </div>
@@ -81,13 +84,13 @@ export const MatchCardComponet = ({ match }: { match: MatchType }) => {
               <Image
                 width={80}
                 height={80}
-                src={match.home.image}
-                alt={match.home.name}
+                src={event.home.image}
+                alt={event.home.name}
                 className="object-contain"
               />
               <span>
                 <span className="text-white font-medium">
-                  {match.home.name}
+                  {event.home.name}
                 </span>
               </span>
             </div>
@@ -98,19 +101,58 @@ export const MatchCardComponet = ({ match }: { match: MatchType }) => {
               <Image
                 width={80}
                 height={80}
-                src={match.away.image}
-                alt={match.away.name}
+                src={event.away.image}
+                alt={event.away.name}
                 className="object-contain"
               />
               <span>
                 <span className="text-white font-medium">
-                  {match.away.name}
+                  {event.away.name}
                 </span>
               </span>
             </div>
           </figure>
         </div>
       </div>
+    </div>
+  );
+};
+
+export const EventsSliderComponent = ({ events }: { events: EventType[] }) => {
+  const [isEnd, setIsEnd] = useState(false);
+  const [isBeginning, setIsBeginning] = useState(true);
+
+  return (
+    <div className="flex justify-center items-center my-6 w-full">
+      {events && events.length > 0 && (
+        <Swiper
+          onSlideChange={(swiper) => {
+            setIsBeginning(swiper.isBeginning);
+            setIsEnd(swiper.isEnd);
+          }}
+          className="flex gap-4 justify-center w-full overflow-hidden relative mx-auto"
+          slidesPerView={1}
+          spaceBetween={30}
+          scrollbar={{
+            hide: true,
+          }}
+          keyboard={{
+            enabled: true,
+          }}
+          navigation={true}
+          modules={[Scrollbar, Navigation, Keyboard, Pagination]}
+        >
+          {events.map((event, i) => (
+            <SwiperSlide
+              key={i}
+              className="flex-col gap-4 px-2 !w-full flex justify-center items-center"
+            >
+              <EventCardComponet event={event} />
+            </SwiperSlide>
+          ))}
+          <SlideControlButtons isEnd={isEnd} isBeginning={isBeginning} />
+        </Swiper>
+      )}
     </div>
   );
 };

@@ -15,7 +15,7 @@ const LobbyComponent = () => {
     if (selectedTab === "all") setFilteredWagers(wagers);
     else
       setFilteredWagers(
-        wagers.filter((wager) => wager.match.sport.name === selectedTab)
+        wagers.filter((wager) => wager.event.sport.name === selectedTab)
       );
   }, [selectedTab]);
   return (

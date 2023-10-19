@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import { FilterMenuComponent } from "../reusable";
 import { sportsList } from "@/utils";
 import { SportEventWagerCardComponent } from "../reusable/wager";
-import { MatchType } from "@/utils/types";
+import { EventType } from "@/utils/types";
 import { matchList } from "@/utils/dummyDatas";
 
 const EventsComponent = () => {
   const [selectedTab, setSelectedTab] = useState("all");
-  const [matches, setMatches] = useState<MatchType[]>(matchList);
-  const [filteredMatches, setFilteredMatches] = useState<MatchType[]>([]);
+  const [events, setEvents] = useState<EventType[]>(matchList);
+  const [filteredEvents, setFilteredEvents] = useState<EventType[]>([]);
 
   useEffect(() => {
-    if (selectedTab === "all") setFilteredMatches(matches);
+    if (selectedTab === "all") setFilteredEvents(events);
     else
-      setFilteredMatches(
-        matches.filter((match) => match.sport.name === selectedTab)
+      setFilteredEvents(
+        events.filter((event) => event.sport.name === selectedTab)
       );
   }, [selectedTab]);
   return (
@@ -35,8 +35,8 @@ const EventsComponent = () => {
       </div>
 
       <div className="flex flex-col gap-5 justify-center items-center my-6 px-3 md:max-w-xl max-w-md w-full">
-        {filteredMatches.map((match, index) => (
-          <SportEventWagerCardComponent match={match} key={index} />
+        {filteredEvents.map((event, index) => (
+          <SportEventWagerCardComponent event={event} key={index} />
         ))}
       </div>
     </section>

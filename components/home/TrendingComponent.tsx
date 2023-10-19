@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
 import { FilterMenuComponent } from "@/components/reusable";
-import MatchesComponent from "./MatchesComponent";
-import { MatchType } from "@/utils/types";
+import { EventType } from "@/utils/types";
 import { sportsList } from "@/utils";
 import { matchList } from "@/utils/dummyDatas";
+import { EventsSliderComponent } from "../reusable/event";
 
 const TrendingComponent = () => {
   const [selectedTab, setSelectedTab] = useState("all");
-  const [matches, setMatches] = useState<MatchType[]>(matchList);
-  const [filteredMatches, setFilteredMatches] = useState<MatchType[]>([]);
+  const [events, setEvents] = useState<EventType[]>(matchList);
+  const [filteredEvents, setFilteredEvents] = useState<EventType[]>([]);
 
   useEffect(() => {
-    if (selectedTab === "all") setFilteredMatches(matches);
+    if (selectedTab === "all") setFilteredEvents(events);
     else
-      setFilteredMatches(
-        matches.filter((match) => match.sport.name === selectedTab)
+      setFilteredEvents(
+        events.filter((event) => event.sport.name === selectedTab)
       );
   }, [selectedTab]);
 
@@ -82,7 +82,7 @@ const TrendingComponent = () => {
       </div>
 
       {/* content area */}
-      <MatchesComponent matches={filteredMatches} />
+      <EventsSliderComponent events={filteredEvents} />
     </section>
   );
 };
