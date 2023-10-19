@@ -6,7 +6,7 @@ type Props = {
     name: string;
     icon: React.ReactNode;
   }>;
-  tabs2: Array<{
+  tabs2?: Array<{
     name: string;
     icon: React.ReactNode;
   }>;
