@@ -95,7 +95,7 @@ export const EventCardComponet = ({ event }: { event: EventType }) => {
               </span>
             </div>
             {/* vs */}
-            <span className="text-gray-400 z-10 text-4xl font-medium">vs</span>
+            <span className="text-gray-400 z-10 text-6xl font-medium">vs</span>
             {/* away */}
             <div className="z-10 flex flex-col gap-2 items-center justify-center">
               <Image

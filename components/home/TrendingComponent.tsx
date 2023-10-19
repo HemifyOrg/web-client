@@ -19,8 +19,8 @@ const TrendingComponent = () => {
   }, [selectedTab]);
 
   return (
-    <section className="mt-16 mb-4 rounded-t-3xl w-full flex flex-col justify-center items-center">
-      <h1 className="flex gap-0 mb-4 items-center text-3xl mx-auto font-semibold">
+    <section className="mt-8 mb-4 rounded-t-3xl w-full flex flex-col justify-center items-center">
+      <h1 className="flex gap-0 mb-4 items-center text-lg mx-auto font-semibold">
         Trending{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"

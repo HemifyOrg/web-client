@@ -139,14 +139,14 @@ const BottomNav = () => {
                 ? `${
                     item.path === "/my-bets" || item.path === "/community"
                       ? ""
-                      : "fill-themeColor "
-                  } text-themeColor`
+                      : "fill-darkGold "
+                  } text-darkGold`
                 : "text-gray-400"
             }`
           )}
           <p
             className={`${
-              pathname === item.path ? "text-themeColor" : "text-gray-400"
+              pathname === item.path ? "text-darkGold" : "text-gray-400"
             } font-medium text-sm`}
           >
             {item.name}

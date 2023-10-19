@@ -8,10 +8,10 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
   return wager.prediction &&
     typeof wager.prediction === "string" &&
     wager.prediction.split(";")?.length === 3 ? (
-    <div className="w-full bg-white rounded-lg divide-y-2">
+    <div className="w-full bg-white rounded-xl overflow-hidden divide-y-2">
       {/* header */}
-      <div className="pb-2 pl-2  pt-1 gap-4 flex items-center justify-between">
-        <span className="w-8">
+      <div className="pb-2 px-3 pt-2 gap-4 flex items-center justify-between">
+        <span className="w-7">
           {sportsList.find((n) => n.name === wager.event?.sport.name)?.icon}
         </span>
         <div className="w-full justify-center">
@@ -59,7 +59,7 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
       {/* content */}
       <div className="flex pt-4 pb-2 gap-5 flex-col w-full justify-center items-center">
         {/* wager info */}
-        <div className="flex gap-4 justify-center items-center">
+        <div className="flex gap-1 justify-center items-center">
           {/* user content */}
           <UserComponent
             src={wager.creator.image}
@@ -67,7 +67,7 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
           />
 
           {/* wage */}
-          <span>
+          <span className="flex justify-center items-center gap-1 pr-4">
             Put up a{" "}
             <span className="px-4 py-1 bg-lightGold rounded font-medium">
               ${wager.currentStake}
@@ -92,7 +92,7 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
         >
           Challenge
         </button>
-        <div className="w-full flex font-medium text-xs px-2 text-gray-400 justify-between items-center">
+        <div className="w-full flex font-medium text-xs px-4 text-gray-400 justify-between items-center">
           <span>Posted {wager.date.start}</span>
           <span>Expires in {wager.date.end}</span>
         </div>

@@ -1,7 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("./fonts/Montserrat/stylesheet.css");
+
+/* Light 100 */
+@import url("https://fonts.googleapis.com/css?family=Lato:100");
+
+/* Light 200 */
+@import url("https://fonts.googleapis.com/css?family=Lato:200");
+
+/* Normal 300 */
+@import url("https://fonts.googleapis.com/css?family=Lato:300");
+
+/* Regular 400 (No need to specify, it's the default) */
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+/* Medium 500 */
+@import url("https://fonts.googleapis.com/css?family=Lato:500");
+
+/* Semi-bold 600 */
+@import url("https://fonts.googleapis.com/css?family:Lato:600");
+
+/* Bold 700 */
+@import url("https://fonts.googleapis.com/css?family=Lato:700");
+
+/* Extra-bold 800 */
+@import url("https://fonts.googleapis.com/css?family=Lato:800");
+
+/* Black 900 */
+@import url("https://fonts.googleapis.com/css?family=Lato:900");
+
 :root {
   --foreground-rgb: 0, 0, 0;
 }
@@ -19,7 +46,7 @@
 /* #011737 */
 
 body {
-  font-family: "Montserrat";
+  font-family: "Lato", sans-serif;
   color: rgb(var(--foreground-rgb));
   scroll-behavior: smooth;
   background: #f0ecec;

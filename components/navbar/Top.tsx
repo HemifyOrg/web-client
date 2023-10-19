@@ -235,7 +235,7 @@ const TopNav = () => {
           </div>
 
           {/* right */}
-          <div className="flex gap-3 mr-1 items-center">
+          <div className="flex gap-4 mr-1 items-center">
             <span>
               <svg
                 className="text-gray-600"
@@ -254,9 +254,9 @@ const TopNav = () => {
                 />
               </svg>
             </span>
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-4 w-max items-center">
               <div
-                className="pl-1 hidden pr-3 py-1 flexx sgap-2 bg-darkGold rounded-full items-center justify-center cursor-pointer relative"
+                className="pl-1 pr-3 py-1 flex gap-2 bg-darkGold rounded-full items-center justify-center cursor-pointer relative"
                 onClick={() => setShowMenu(!showMenu)}
               >
                 <figure className="relative overflow-hidden w-6 h-6 flex justify-center items-center rounded-full bg-[#68E1FD]">
@@ -273,14 +273,14 @@ const TopNav = () => {
               </div>
               <Link
                 href={"/auth/signup"}
-                className="bg-darkGold hover:border-s-blue-950 hover:border-e-blue-950 hover:opacity-100 active:scale-90 transition-all text-gray-100 py-1 px-3 rounded-full"
+                className="bg-darkGold hidden hover:border-s-blue-950 hover:border-e-blue-950 hover:opacity-100 active:scale-90 transition-all text-gray-100 py-1 px-3 rounded-full"
               >
                 Sign up
               </Link>
 
               <Link
                 href={"/auth/signup"}
-                className="border-darkGold hover:border-s-blue-950 hover:border-e-blue-950 hover:opacity-100 active:scale-90 transition-all border-2 text-gray-900 py-1 px-3 rounded-full"
+                className="border-darkGold hidden hover:border-s-blue-950 hover:border-e-blue-950 hover:opacity-100 active:scale-90 transition-all border-2 text-gray-900 py-1 px-3 rounded-full"
               >
                 Log in
               </Link>

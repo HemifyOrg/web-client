@@ -16,7 +16,7 @@ type WinningGameType = {
 
 const WinningGameCardComponent = ({ game }: { game: WinningGameType }) => (
   <Fragment>
-    <figure className="flex gap-2 pl-2 overflow-hidden items-center relative h-24 border bg-[#190D2B] rounded-2xl">
+    <figure className="flex gap-2 pl-2 overflow-hidden items-center relative h-24 bg-[#190D2B] rounded-2xl">
       <UserComponent
         username={game.user.username}
         isVerified={game.user.isVerified}
@@ -539,33 +539,33 @@ const WinningGamesComponent = () => {
       date: "Few secs ago",
     },
     {
-        user: {
-          username: "ayotunde",
-          isVerified: true,
-        },
-        win: 945,
-        event: "baseball",
-        date: "Few secs ago",
+      user: {
+        username: "ayotunde",
+        isVerified: true,
       },
-      {
-        user: {
-          username: "michell",
-          isVerified: true,
-        },
-        win: 500,
-        event: "golf",
-        date: "Few secs ago",
+      win: 945,
+      event: "baseball",
+      date: "Few secs ago",
+    },
+    {
+      user: {
+        username: "michell",
+        isVerified: true,
       },
+      win: 500,
+      event: "golf",
+      date: "Few secs ago",
+    },
   ]);
   return (
-    <section className="mb-4 w-full flex flex-col justify-center items-center bg-[#e6e3e3]">
+    <section className="mb-4 w-full flex flex-col justify-center items-center">
       <div className="flex justify-center mb-4 gap-1 items-center">
-        <h1 className="flex gap-0 items-center text-3xl mx-auto font-semibold">
+        <h1 className="flex gap-0 items-center text-lg mx-auto font-semibold">
           Winning Games
         </h1>
         <svg
-          width="30"
-          height="30"
+          width="25"
+          height="25"
           viewBox="0 0 17 17"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -1361,7 +1361,7 @@ const WinningGamesComponent = () => {
         {winningGames.map((game, idx) => (
           <SwiperSlide
             key={idx}
-            className="!w-96 !flex flex-col h-60 border gap-2 py-4 xs:px-1 px-3"
+            className="!w-80 !flex flex-col h-60 gap-2 py-4 xs:px-1 px-3"
           >
             <WinningGameCardComponent game={game} />
           </SwiperSlide>
