@@ -1,66 +1,6 @@
-import { MatchType, WagerType } from "../types";
+import { EventType, WagerType } from "../types";
 
-export const listOfSwaps = [
-  {
-    id: 0,
-    user: {
-      username: "divine",
-      image: "/images/ape3.png",
-    },
-    trade: 56,
-    currency: "ETH",
-    completionRate: "91.43",
-    offer: "MekaRace",
-    available: "1-3",
-    preference: {
-      username: "butbuddyz",
-      value: "0.5",
-      image: "/images/ape2.png",
-    },
-    negotiation: "NO",
-    fee: "2.05",
-  },
-  {
-    id: 1,
-    user: {
-      username: "russelbluck",
-      image: "/images/ape4.png",
-    },
-    trade: 56,
-    currency: "SOL",
-    completionRate: "91.43",
-    offer: "MekaRace",
-    available: "1-3",
-    preference: {
-      username: "butbuddyz",
-      value: "0.5",
-      image: "/images/ape3.png",
-    },
-    negotiation: "NO",
-    fee: "2.05",
-  },
-  {
-    id: 2,
-    user: {
-      username: "divuzki",
-      image: "/images/ape2.png",
-    },
-    trade: 56,
-    currency: "POL",
-    completionRate: "91.43",
-    offer: "MekaRace",
-    available: "1-3",
-    preference: {
-      username: "botbuddyz",
-      value: "0.5",
-      image: "/images/ape3.png",
-    },
-    negotiation: "NO",
-    fee: "2.05",
-  },
-];
-
-export const matchList: MatchType[] = [
+export const eventList: EventType[] = [
   {
     id: 0,
     sport: {
@@ -161,7 +101,7 @@ export const matchList: MatchType[] = [
 export const wagerList: WagerType[] = [
   {
     id: 0,
-    match: matchList[0],
+    event: eventList[0],
     currentStake: 50,
     creator: {
       username: "divuzki",
@@ -177,7 +117,7 @@ export const wagerList: WagerType[] = [
   {
     id: 1,
     topic: "Bitcoin price - October 30, 2023",
-    match: matchList[3],
+    event: eventList[3],
     currentStake: 100,
     creator: {
       username: "greenlight",
@@ -193,7 +133,7 @@ export const wagerList: WagerType[] = [
   {
     id: 2,
     topic: "2024 U.S.A Presidential Election",
-    match: matchList[4],
+    event: eventList[4],
     currentStake: 50,
     creator: {
       username: "angel",
@@ -208,7 +148,7 @@ export const wagerList: WagerType[] = [
   },
   {
     id: 3,
-    match: matchList[2],
+    event: eventList[2],
     currentStake: 50,
     creator: {
       username: "divuzki",
@@ -223,7 +163,7 @@ export const wagerList: WagerType[] = [
   },
   {
     id: 4,
-    match: matchList[1],
+    event: eventList[1],
     currentStake: 50,
     creator: {
       username: "divuzki",

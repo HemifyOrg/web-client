@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { FilterMenuComponent } from "@/components/reusable";
 import { EventType } from "@/utils/types";
 import { sportsList } from "@/utils";
-import { matchList } from "@/utils/dummyDatas";
+import { eventList } from "@/utils/dummyDatas";
 import { EventsSliderComponent } from "../reusable/event";
 
 const TrendingComponent = () => {
   const [selectedTab, setSelectedTab] = useState("all");
-  const [events, setEvents] = useState<EventType[]>(matchList);
+  const [events, setEvents] = useState<EventType[]>(eventList);
   const [filteredEvents, setFilteredEvents] = useState<EventType[]>([]);
 
   useEffect(() => {

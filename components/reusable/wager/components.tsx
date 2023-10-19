@@ -103,7 +103,7 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
   );
 };
 
-export const SportEventWagerCardComponent = ({
+export const EventWagerCardComponent = ({
   event,
 }: {
   event: EventType;
