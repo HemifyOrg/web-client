@@ -24,7 +24,7 @@ export default function Home() {
 
         <Link
           href={`/product/wager/create`}
-          className="text-white mx-auto text-sm md:text-base px-24 py-4 font-medium rounded-full bg-themeColor mt-1"
+          className="text-white mx-auto text-sm md:text-base px-24 py-4 font-semibold rounded-full bg-themeColor mt-1"
         >
           Create a Wager
         </Link>

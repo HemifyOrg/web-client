@@ -280,14 +280,14 @@ const TopNav = () => {
                 <>
                   <Link
                     href={"/auth/signup"}
-                    className="bg-themeColor hover:border-s-blue-950 hover:border-e-blue-950 hover:opacity-100 active:scale-90 transition-all text-gray-100 py-[2px] px-3 rounded-full"
+                    className="bg-themeColor hover:border-themeColor hover:border-b-themeColor hover:opacity-100 active:scale-90 transition-all text-gray-100 py-[2px] px-3 rounded-full"
                   >
                     Sign up
                   </Link>
 
                   <Link
                     href={"/auth/login"}
-                    className="border-themeColor hover:border-s-blue-950 hover:border-e-blue-950 hover:opacity-100 active:scale-90 transition-all border-2 text-gray-900 py-[2px] px-3 rounded-full"
+                    className="border-themeColor hover:border-themeColor hover:border-b-themeColor hover:opacity-100 active:scale-90 transition-all border-2 text-gray-900 py-[2px] px-3 rounded-full"
                   >
                     Log in
                   </Link>
