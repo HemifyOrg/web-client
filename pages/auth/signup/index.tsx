@@ -44,8 +44,8 @@ const SignupPage = () => {
           <path
             d="M0.5 1.375H15.5M0.5 1.375V12C0.5 12.1658 0.565848 12.3247 0.683058 12.4419C0.800269 12.5592 0.95924 12.625 1.125 12.625H14.875C15.0408 12.625 15.1997 12.5592 15.3169 12.4419C15.4342 12.3247 15.5 12.1658 15.5 12V1.375M0.5 1.375L8 8.25L15.5 1.375"
             stroke="#A0A4A8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       ),
@@ -358,7 +358,7 @@ const SignupPage = () => {
                     typeof errors.email === "string" ||
                     typeof errors.checkedTerms === "string"
                   }
-                  className="disabled:bg-[#e0e3e7] bg-darkGold disabled:cursor-not-allowed border disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all disabled:text-gray-700 text-gray-50 font-medium py-4"
+                  className="disabled:bg-[#e0e3e7] bg-themeColor disabled:cursor-not-allowed border disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all disabled:text-gray-700 text-gray-50 font-medium py-4"
                 >
                   {currentSlide === 1 ? "Verify" : "Next"}
                 </button>
@@ -388,9 +388,9 @@ const SignupPage = () => {
                       <path
                         d="M14.25 11.6667H14.2583M3 4.16667V15.8333C3 16.7538 3.74619 17.5 4.66667 17.5H16.3333C17.2538 17.5 18 16.7538 18 15.8333V7.5C18 6.57953 17.2538 5.83333 16.3333 5.83333L4.66667 5.83333C3.74619 5.83333 3 5.08714 3 4.16667ZM3 4.16667C3 3.24619 3.74619 2.5 4.66667 2.5H14.6667M14.6667 11.6667C14.6667 11.8968 14.4801 12.0833 14.25 12.0833C14.0199 12.0833 13.8333 11.8968 13.8333 11.6667C13.8333 11.4365 14.0199 11.25 14.25 11.25C14.4801 11.25 14.6667 11.4365 14.6667 11.6667Z"
                         stroke="currentColor"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                     <span>Connect your wallet</span>

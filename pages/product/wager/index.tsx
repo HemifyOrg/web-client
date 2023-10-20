@@ -109,7 +109,7 @@ const WagerPage = () => {
         <div className="flex select-none justify-center items-center my-2">
           <div className="flex justify-between relative gap-28 xs:px-20 px-12 items-center bg-white rounded-full">
             <div
-              className={`absolute py-4 w-[55%] transition-all bg-darkGold rounded-full h-full ${
+              className={`absolute py-4 w-[55%] transition-all bg-themeColor rounded-full h-full ${
                 selectedTab === "lobby" ? "left-[45.5%]" : "left-0"
               }`}
             ></div>

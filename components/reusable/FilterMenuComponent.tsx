@@ -54,8 +54,8 @@ const FilterMenuComponent: React.FC<Props> = ({
               key={index}
               className={`flex gap-2 items-center ${
                 selectedTab === tab.name
-                  ? "bg-darkGold text-white"
-                  : "hover:border-darkGold border text-gray-700 bg-secondary"
+                  ? "bg-themeColor text-white"
+                  : "hover:border-themeColor border text-gray-700 bg-secondary"
               } px-8 py-[2px] rounded-full `}
             >
               <span className="w-6 h-6">{tab.icon}</span>
@@ -79,8 +79,8 @@ const FilterMenuComponent: React.FC<Props> = ({
                 key={index}
                 className={`flex gap-2 items-center ${
                   selectedTab2 === tab.name
-                    ? "bg-darkGold text-white"
-                    : "hover:border-darkGold border text-gray-700 bg-secondary"
+                    ? "bg-themeColor text-white"
+                    : "hover:border-themeColor border text-gray-700 bg-secondary"
                 } px-8 py-[2px] rounded-full `}
               >
                 <span className="w-6 h-6">{tab.icon}</span>

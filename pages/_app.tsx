@@ -54,6 +54,13 @@ export default function App({ Component, pageProps }: AppProps) {
         </ApolloProvider>
         <Head>
           <title>{headTitle}</title>
+          <link
+            rel="stylesheet"
+            href="/fonts/Lato-Regular.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
         </Head>
       </PersistGate>
     </Provider>

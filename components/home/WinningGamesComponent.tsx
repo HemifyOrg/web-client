@@ -25,7 +25,7 @@ const WinningGameCardComponent = ({ game }: { game: WinningGameType }) => (
       <div className="flex gap-6 z-10">
         <div className="flex flex-col gap-2 font-medium">
           <span className="text-gray-50 text-sm">Won</span>
-          <span className="text-themeColor">${game.win.toLocaleString()}</span>
+          <span className="text-gold">${game.win.toLocaleString()}</span>
         </div>
         <div className="flex flex-col gap-2 font-medium">
           <span className="text-gray-50 text-sm">Events</span>

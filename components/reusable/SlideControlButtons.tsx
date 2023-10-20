@@ -26,15 +26,15 @@ const SlideControlButtons: React.FC<Props> = ({ isEnd, isBeginning }) => {
             <path
               d="M10.5 12L6.5 8L10.5 4"
               stroke="#A0A4A8"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </span>
 
         <div
-          className={`p-1 w-7 h-7 rounded-xl bg-darkGold transition-all ${
+          className={`p-1 w-7 h-7 rounded-xl bg-themeColor transition-all ${
             isEnd ? "opacity-50" : "active:scale-75"
           }`}
           onClick={() => swiper && swiper.slideNext()}
@@ -48,9 +48,9 @@ const SlideControlButtons: React.FC<Props> = ({ isEnd, isBeginning }) => {
             <path
               d="M6.5 12L10.5 8L6.5 4"
               stroke="#FAFAFA"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </div>

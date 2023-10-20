@@ -88,7 +88,7 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
         {/* challenge btn */}
         <button
           type="button"
-          className="px-10 py-3 font-medium rounded-full bg-darkGold text-white"
+          className="px-10 py-3 font-medium rounded-full bg-themeColor text-white"
         >
           Challenge
         </button>
@@ -103,11 +103,7 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
   );
 };
 
-export const EventWagerCardComponent = ({
-  event,
-}: {
-  event: EventType;
-}) => {
+export const EventWagerCardComponent = ({ event }: { event: EventType }) => {
   return (
     <div className="w-full bg-white rounded-lg divide-y-2">
       {/* header */}
@@ -203,7 +199,7 @@ export const EventWagerCardComponent = ({
 
           <button
             type="button"
-            className="md:px-10 px-4 py-2 xs:py-3 font-medium rounded-full bg-darkGold text-white"
+            className="md:px-10 px-4 py-2 xs:py-3 font-medium rounded-full bg-themeColor text-white"
           >
             Create Wager
           </button>

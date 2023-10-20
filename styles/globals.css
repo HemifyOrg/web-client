@@ -2,32 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Light 100 */
-@import url("https://fonts.googleapis.com/css?family=Lato:100");
-
-/* Light 200 */
-@import url("https://fonts.googleapis.com/css?family=Lato:200");
-
-/* Normal 300 */
-@import url("https://fonts.googleapis.com/css?family=Lato:300");
-
-/* Regular 400 (No need to specify, it's the default) */
-@import url("https://fonts.googleapis.com/css?family=Lato");
-
-/* Medium 500 */
-@import url("https://fonts.googleapis.com/css?family=Lato:500");
-
-/* Semi-bold 600 */
-@import url("https://fonts.googleapis.com/css?family:Lato:600");
-
-/* Bold 700 */
-@import url("https://fonts.googleapis.com/css?family=Lato:700");
-
-/* Extra-bold 800 */
-@import url("https://fonts.googleapis.com/css?family=Lato:800");
-
-/* Black 900 */
-@import url("https://fonts.googleapis.com/css?family=Lato:900");
+@import url("https://fonts.googleapis.com/css2?family=Lato");
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -146,7 +121,7 @@ input[type="checkbox"]::before {
   content: "";
   width: 0.65em;
   height: 0.65em;
-  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  clippath: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
   transform: scale(0);
   transform-origin: bottom left;
   transition: 120ms transform ease-in-out;

@@ -48,7 +48,7 @@ const LeaderBoardComponent = () => {
     <section id="leaderboard" className="py-8 flex flex-col lg:gap-8 gap-2">
       {/* top */}
       <h1 className="flex gap-2 mb-4 items-center text-lg mx-auto font-semibold">
-      Leaderboard{" "}
+        Leaderboard{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
@@ -201,7 +201,7 @@ const LeaderBoardComponent = () => {
 
       <button
         type="button"
-        className="text-2xl font-medium my-5 border-b-2 border-darkGold opacity-90 mx-auto text-darkGold"
+        className="text-2xl font-medium my-5 border-b-2 border-themeColor opacity-90 mx-auto text-themeColor"
       >
         View all
       </button>
