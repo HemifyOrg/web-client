@@ -167,7 +167,7 @@ const SignupPage = () => {
     ][currentSlide];
   };
   return (
-    <main className="md:mt-32 mt-20 mb-12 py-6 px-12 gap-4 h-full flex w-full md:w-[45%] lg:w-1/3 m-auto flex-col items-center justify-start lg:justify-center">
+    <section className="md:mt-32 mt-20 mb-12 py-6 sm:px-12 px-6 gap-4 h-full flex w-full md:w-[45%] lg:w-1/3 m-auto flex-col items-center justify-start lg:justify-center">
       <div className="flex flex-col w-full">
         <h1 className="text-2xl font-semibold">Welcome back</h1>
         <h4>Sign in now and get back to the excitement!</h4>
@@ -270,7 +270,7 @@ const SignupPage = () => {
           </>
         )}
       </Formik>
-    </main>
+    </section>
   );
 };
 
