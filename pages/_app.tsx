@@ -55,11 +55,8 @@ export default function App({ Component, pageProps }: AppProps) {
         <Head>
           <title>{headTitle}</title>
           <link
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
             rel="stylesheet"
-            href="/fonts/Lato-Regular.woff2"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
           />
         </Head>
       </PersistGate>
