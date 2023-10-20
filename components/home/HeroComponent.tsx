@@ -59,43 +59,6 @@ const HeroComponent = () => {
 
   return (
     <div className="flex items-center justify-between w-full py-4 z-10 h-full m-auto lg:flex-row flex-col-reverse">
-      {/* left hero */}
-      <div className="hidden vflex flex-col lg:px-8 lg:gap-6 items-start h-full justify-center">
-        {/* big text */}
-        <div className="lg:flex hidden gap-1 flex-col text-left justify-start text-4xl lg:text-5xl leading-relaxed tracking-wide font-semibold">
-          <div className="flex gap-2">
-            <span>The</span>
-            <div className="relative mr-1">
-              <div className="absolute animate-hero-swipe bg-[#D2B37D] z-[-1] skew-x-[-10deg] skew-y-[-10deg] w-[110%] h-[110%] scale-105" />
-              <span className="text-white animate-hero-swipe">first</span>
-            </div>
-            <span>multichain auction &</span>
-          </div>
-          <span>p2p power house</span>
-        </div>
-        <span className="lg:hidden block mt-4 text-left text-4xl lg:text-5xl leading-relaxed tracking-wide font-semibold">
-          Uniting the Web through Blockchain
-        </span>
-        <span className="text-xl mt-2">Connecting web2 and web3</span>
-        <div className="flex gap-2 mt-2 items-center justify-center">
-          <button
-            title="Explore Wagers"
-            type="button"
-            className="bg-btnImage font-semibold py-2 px-6 rounded-full shadow-sm"
-          >
-            Wager
-          </button>
-          <button
-            title="Click To Start Swapping"
-            type="button"
-            className="border border-themeColor font-semibold py-2 px-6 rounded-full shadow-sm"
-          >
-            Swap
-          </button>
-        </div>
-      </div>
-
-      {/* right hero */}
       <Swiper
         onSwiper={setSwiper}
         effect="coverflow"
