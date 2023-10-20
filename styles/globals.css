@@ -57,13 +57,11 @@ a {
   color: rgb(210 179 125 / var(--tw-border-opacity));
 }
 a {
-  border-bottom: 1px solid rgb(31 41 55 / 1);
+  @apply border-b-2 border-[#1f2937];
 }
 a:hover {
-  border-bottom: 1px solid rgb(210 179 125 / 1);
-  opacity: 0.75;
+  @apply opacity-75 border-b-2 border-themeColor;
 }
-
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

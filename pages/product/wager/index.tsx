@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from "react";
-import { sportsList } from "@/utils";
+import { categoriesList } from "@/utils";
 import { FilterMenuComponent } from "@/components/reusable";
 import { EventType, WagerType } from "@/utils/types";
 import { eventList, wagerList } from "@/utils/dummyDatas";
@@ -18,15 +18,15 @@ const EventsSlideComponent = () => {
     if (selectedFilterBySport === "all") setFilteredEvents(events);
     else
       setFilteredEvents(
-        events.filter((event) => event.sport.name === selectedFilterBySport)
+        events.filter((event) => event.category.name === selectedFilterBySport)
       );
   }, [selectedFilterBySport]);
   return (
     <Fragment>
       <div className="md:max-w-2xl max-w-md w-full mt-2 pb-4">
         <FilterMenuComponent
-          tabs={sportsList}
-          tabs2={sportsList}
+          tabs={categoriesList}
+          tabs2={categoriesList}
           selectedTab={selectedFilterBySport}
           setSelectedTab={setSelectedFilterBySport}
           selectedTab2={selectedFilterByCountry}
@@ -52,14 +52,14 @@ const LobbySlideComponent = () => {
     if (selectedFilter === "all") setFilteredWagers(wagers);
     else
       setFilteredWagers(
-        wagers.filter((wager) => wager.event.sport.name === selectedFilter)
+        wagers.filter((wager) => wager.event.category.name === selectedFilter)
       );
   }, [selectedFilter]);
   return (
     <Fragment>
       <div className="md:max-w-2xl max-w-md w-full mt-2 pb-4">
         <FilterMenuComponent
-          tabs={sportsList}
+          tabs={categoriesList}
           selectedTab={selectedFilter}
           setSelectedTab={setSelectedFilter}
         />

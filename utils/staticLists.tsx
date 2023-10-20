@@ -1,4 +1,4 @@
-export const sportsList = [
+export const categoriesList = [
   {
     name: "all",
     icon: (

@@ -3,7 +3,7 @@ import { EventType, WagerType } from "../types";
 export const eventList: EventType[] = [
   {
     id: 0,
-    sport: {
+    category: {
       league: {
         id: "122",
         name: "premier_league",
@@ -24,7 +24,7 @@ export const eventList: EventType[] = [
   },
   {
     id: 1,
-    sport: {
+    category: {
       league: {
         id: "122",
         name: "world_cup",
@@ -45,7 +45,7 @@ export const eventList: EventType[] = [
   },
   {
     id: 2,
-    sport: {
+    category: {
       league: {
         id: "1232",
         name: "world_cup",
@@ -66,7 +66,7 @@ export const eventList: EventType[] = [
   },
   {
     id: 3,
-    sport: {
+    category: {
       name: "crypto",
     },
     home: {
@@ -82,7 +82,7 @@ export const eventList: EventType[] = [
   },
   {
     id: 4,
-    sport: {
+    category: {
       name: "politics",
     },
     home: {

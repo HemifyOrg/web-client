@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FilterMenuComponent } from "@/components/reusable";
 import { EventType } from "@/utils/types";
-import { sportsList } from "@/utils";
+import { categoriesList } from "@/utils";
 import { eventList } from "@/utils/dummyDatas";
 import { EventsSliderComponent } from "../reusable/event";
 
@@ -14,7 +14,7 @@ const TrendingComponent = () => {
     if (selectedTab === "all") setFilteredEvents(events);
     else
       setFilteredEvents(
-        events.filter((event) => event.sport.name === selectedTab)
+        events.filter((event) => event.category.name === selectedTab)
       );
   }, [selectedTab]);
 
@@ -75,7 +75,7 @@ const TrendingComponent = () => {
       {/* menu area */}
       <div className="px-2 md:max-w-xl max-w-md w-full">
         <FilterMenuComponent
-          tabs={sportsList}
+          tabs={categoriesList}
           selectedTab={selectedTab}
           setSelectedTab={setSelectedTab}
         />

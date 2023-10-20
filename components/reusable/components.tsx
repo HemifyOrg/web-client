@@ -119,7 +119,7 @@ const UserComponent = ({
     <div
       className={
         className ||
-        "gap-2 flex flex-wrap xs:px-2 px-6 items-center text-gray-600"
+        "gap-2 flex flex-wrap xs:px-2 px-4 items-center text-gray-600"
       }
     >
       {src && (

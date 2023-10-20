@@ -1,4 +1,4 @@
-import { MatchLeagueIcon, sportsList } from "@/utils";
+import { MatchLeagueIcon, categoriesList } from "@/utils";
 import { EventType, WagerType } from "@/utils/types";
 import Image from "next/image";
 import React from "react";
@@ -12,11 +12,14 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
       {/* header */}
       <div className="pb-2 px-3 pt-2 gap-4 flex items-center justify-between">
         <span className="w-7">
-          {sportsList.find((n) => n.name === wager.event?.sport.name)?.icon}
+          {
+            categoriesList.find((n) => n.name === wager.event.category.name)
+              ?.icon
+          }
         </span>
         <div className="w-full justify-center">
           <div className="flex justify-center items-center gap-2">
-            {wager.event && wager.event.sport.league ? (
+            {wager.event && wager.event.category.league ? (
               <React.Fragment>
                 {/* home */}
                 <div className="flex gap-1">
@@ -110,21 +113,21 @@ export const EventWagerCardComponent = ({ event }: { event: EventType }) => {
       <div className="px-3 py-2 bg-white rounded-t-xl w-full shadow-sm flex justify-between gap-4 items-center">
         {/* match name */}
         <div className="flex gap-2 justify-start items-center">
-          {event.sport.league ? (
-            <MatchLeagueIcon type={event.sport.league.name} />
+          {event.category.league ? (
+            <MatchLeagueIcon type={event.category.league.name} />
           ) : (
             <span className="w-[16px] h-[17px]">
-              {sportsList.find((n) => n.name === event.sport.name)?.icon}
+              {categoriesList.find((n) => n.name === event.category.name)?.icon}
             </span>
           )}
-          {event.sport.league ? (
+          {event.category.league ? (
             <span className="font-medium capitalize">
-              {event.sport.league.country} |{" "}
-              {event.sport.league.name.replace(/_/g, " ")}
+              {event.category.league.country} |{" "}
+              {event.category.league.name.replace(/_/g, " ")}
             </span>
           ) : (
             <span className="font-medium capitalize">
-              {event.sport.name.replace(/_/g, " ")}
+              {event.category.name.replace(/_/g, " ")}
             </span>
           )}
         </div>

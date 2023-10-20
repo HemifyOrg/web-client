@@ -6,7 +6,7 @@ export interface UserType {
 
 export interface EventType {
   id: number;
-  sport: {
+  category: {
     name:
       | "soccer"
       | "basketball"

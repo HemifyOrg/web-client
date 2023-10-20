@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FilterMenuComponent } from "../reusable";
-import { sportsList } from "@/utils";
+import { categoriesList } from "@/utils";
 import { EventWagerCardComponent } from "../reusable/wager";
 import { EventType } from "@/utils/types";
 import { eventList } from "@/utils/dummyDatas";
@@ -14,7 +14,7 @@ const EventsComponent = () => {
     if (selectedTab === "all") setFilteredEvents(events);
     else
       setFilteredEvents(
-        events.filter((event) => event.sport.name === selectedTab)
+        events.filter((event) => event.category.name === selectedTab)
       );
   }, [selectedTab]);
   return (
@@ -23,12 +23,14 @@ const EventsComponent = () => {
         <h1 className="flex gap-0 items-center text-lg mx-auto font-semibold">
           Events
         </h1>
-        <span className="text-gray-400">Find your favorite event and create wager.</span>
+        <span className="text-gray-400">
+          Find your favorite event and create wager.
+        </span>
       </div>
 
       <div className="px-2 md:max-w-xl max-w-md w-full">
         <FilterMenuComponent
-          tabs={sportsList}
+          tabs={categoriesList}
           selectedTab={selectedTab}
           setSelectedTab={setSelectedTab}
         />

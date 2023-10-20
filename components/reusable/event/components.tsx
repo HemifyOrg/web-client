@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-import { sportsList } from "@/utils";
+import { categoriesList } from "@/utils";
 import { MatchLeagueIcon } from "@/utils/components";
 import { EventType } from "@/utils/types";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -40,21 +40,24 @@ export const EventCardComponet = ({ event }: { event: EventType }) => {
           <div className="px-3 py-2 bg-white rounded-t-xl w-full shadow-sm flex justify-between gap-4 items-center">
             {/* match name */}
             <div className="flex gap-2 justify-start items-center">
-              {event.sport.league ? (
-                <MatchLeagueIcon type={event.sport.league.name} />
+              {event.category.league ? (
+                <MatchLeagueIcon type={event.category.league.name} />
               ) : (
                 <span className="w-[16px] h-[17px]">
-                  {sportsList.find((n) => n.name === event.sport.name)?.icon}
+                  {
+                    categoriesList.find((n) => n.name === event.category.name)
+                      ?.icon
+                  }
                 </span>
               )}
-              {event.sport.league ? (
+              {event.category.league ? (
                 <span className="font-medium capitalize">
-                  {event.sport.league.country},{" "}
-                  {event.sport.league.name.replace(/_/g, " ")}
+                  {event.category.league.country},{" "}
+                  {event.category.league.name.replace(/_/g, " ")}
                 </span>
               ) : (
                 <span className="font-medium capitalize">
-                  {event.sport.name.replace(/_/g, " ")}
+                  {event.category.name.replace(/_/g, " ")}
                 </span>
               )}
             </div>

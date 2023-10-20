@@ -1,8 +1,8 @@
 import { useState, Fragment } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Keyboard, Scrollbar, Pagination } from "swiper/modules";
+import { Navigation, Keyboard, Autoplay, Pagination } from "swiper/modules";
 import { UserComponent } from "../reusable";
-import { sportsList } from "@/utils";
+import { categoriesList } from "@/utils";
 
 type WinningGameType = {
   user: {
@@ -16,13 +16,14 @@ type WinningGameType = {
 
 const WinningGameCardComponent = ({ game }: { game: WinningGameType }) => (
   <Fragment>
-    <figure className="flex gap-2 pl-2 overflow-hidden items-center relative h-24 bg-[#190D2B] rounded-2xl">
+    <figure className="flex gap-2 pl-2 pr-4 overflow-hidden justify-start items-center relative h-24 bg-[#190D2B] rounded-2xl">
       <UserComponent
         username={game.user.username}
+        className="gap-2 flex flex-wrap xs:px-2 px-2 items-center text-gray-600"
         isVerified={game.user.isVerified}
         textClassName="max-w-[100px] text-sm text-gray-300 truncate"
       />
-      <div className="flex gap-6 z-10">
+      <div className="flex gap-8 w-full justify-center sm:gap-6 z-10">
         <div className="flex flex-col gap-2 font-medium">
           <span className="text-gray-50 text-sm">Won</span>
           <span className="text-gold">${game.win.toLocaleString()}</span>
@@ -32,7 +33,10 @@ const WinningGameCardComponent = ({ game }: { game: WinningGameType }) => (
           <span className="text-stone-50 flex gap-2">
             <span className="capitalize">{game.event}</span>
             <span className="w-6">
-              {sportsList.find((sport) => sport.name === game.event)?.icon}
+              {
+                categoriesList.find((category) => category.name === game.event)
+                  ?.icon
+              }
             </span>
           </span>
         </div>
@@ -525,7 +529,7 @@ const WinningGamesComponent = () => {
         username: "greenlight",
         isVerified: true,
       },
-      win: 5945,
+      win: 59455,
       event: "soccer",
       date: "Few secs ago",
     },
@@ -1348,20 +1352,22 @@ const WinningGamesComponent = () => {
 
       <Swiper
         slidesPerView={"auto"}
-        scrollbar={{
-          hide: true,
-        }}
+        centeredSlides={true}
         keyboard={{
           enabled: true,
         }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         navigation={true}
         className="flex justify-center w-full overflow-hidden relative mx-auto"
-        modules={[Scrollbar, Navigation, Keyboard, Pagination]}
+        modules={[Autoplay, Navigation, Pagination]}
       >
         {winningGames.map((game, idx) => (
           <SwiperSlide
             key={idx}
-            className="!w-80 !flex flex-col h-60 gap-2 py-4 xs:px-1 px-3"
+            className="!w-[23rem] !flex flex-col h-60 gap-2 py-4 xs:px-1 px-3"
           >
             <WinningGameCardComponent game={game} />
           </SwiperSlide>

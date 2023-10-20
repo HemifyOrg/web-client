@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FilterMenuComponent } from "../reusable";
-import { sportsList } from "@/utils";
+import { categoriesList } from "@/utils";
 import { WagerCardComponent } from "../reusable/wager";
 import { WagerType } from "@/utils/types";
 import { wagerList } from "@/utils/dummyDatas";
@@ -14,7 +14,7 @@ const LobbyComponent = () => {
     if (selectedTab === "all") setFilteredWagers(wagers);
     else
       setFilteredWagers(
-        wagers.filter((wager) => wager.event.sport.name === selectedTab)
+        wagers.filter((wager) => wager.event.category.name === selectedTab)
       );
   }, [selectedTab]);
   return (
@@ -28,7 +28,7 @@ const LobbyComponent = () => {
 
       <div className="px-2 md:max-w-xl max-w-md w-full">
         <FilterMenuComponent
-          tabs={sportsList}
+          tabs={categoriesList}
           selectedTab={selectedTab}
           setSelectedTab={setSelectedTab}
         />
