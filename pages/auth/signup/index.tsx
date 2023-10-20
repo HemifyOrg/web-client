@@ -351,14 +351,14 @@ const SignupPage = () => {
 
               <div className="flex gap-4 my-2 justify-center items-center w-full">
                 <button
-                  type={currentSlide === 1 ? "submit" : "button"}
+                  type={"button"}
                   onClick={currentSlide === 0 ? goToNextSlide : undefined}
                   disabled={
                     !dirty ||
                     typeof errors.email === "string" ||
                     typeof errors.checkedTerms === "string"
                   }
-                  className="disabled:bg-[#e0e3e7] bg-themeColor disabled:cursor-not-allowed border disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all disabled:text-gray-700 text-gray-50 font-medium py-4"
+                  className="disabled:bg-[#F1F5F9] bg-themeColor disabled:cursor-not-allowed border disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all disabled:text-gray-700 text-gray-50 font-medium py-4"
                 >
                   {currentSlide === 1 ? "Verify" : "Next"}
                 </button>

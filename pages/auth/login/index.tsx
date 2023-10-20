@@ -209,7 +209,7 @@ const SignupPage = () => {
 
               <div className="flex gap-4 my-2 justify-center items-center w-full">
                 <button
-                  type={currentSlide === 1 ? "submit" : "button"}
+                  type={"button"}
                   onClick={currentSlide === 0 ? goToNextSlide : undefined}
                   disabled={
                     !dirty ||
