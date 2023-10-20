@@ -126,7 +126,7 @@ const BottomNav = () => {
     },
   ];
   return (
-    <div className="fixed bg-secondary z-50 rounded-t-2xl flex justify-between items-center py-4 px-6 bottom-0 w-full right-0">
+    <div className="fixed bg-secondary z-50 rounded-t-2xl flex justify-between items-center py-4 xs:px-6 px-3 bottom-0 w-full right-0">
       {navItems.map((item, index) => (
         <Link
           href={item.path}
