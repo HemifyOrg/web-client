@@ -23,7 +23,7 @@ export default function Home() {
         <HeroComponent />
 
         <Link
-          href={`/product/wager/create`}
+          href={`/product/wager`}
           className="text-white mx-auto text-sm md:text-base px-24 py-4 font-semibold rounded-full bg-themeColor mt-1"
         >
           Create a Wager

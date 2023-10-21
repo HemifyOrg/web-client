@@ -1367,7 +1367,7 @@ const WinningGamesComponent = () => {
         {winningGames.map((game, idx) => (
           <SwiperSlide
             key={idx}
-            className="!w-[23rem] !flex flex-col h-60 gap-2 py-4 xs:px-1 px-3"
+            className="!w-[21rem] !flex flex-col h-60 gap-2 py-4 xs:px-1 px-3"
           >
             <WinningGameCardComponent game={game} />
           </SwiperSlide>
