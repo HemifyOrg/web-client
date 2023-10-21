@@ -1360,14 +1360,15 @@ const WinningGamesComponent = () => {
           delay: 2500,
           disableOnInteraction: false,
         }}
+        spaceBetween={10}
         navigation={true}
-        className="flex justify-center w-full overflow-hidden relative mx-auto"
+        className="flex justify-center items-center w-full px-6 overflow-hidden relative mx-auto"
         modules={[Autoplay, Navigation, Pagination]}
       >
         {winningGames.map((game, idx) => (
           <SwiperSlide
             key={idx}
-            className="!w-[21rem] !flex flex-col h-60 gap-2 py-4 xs:px-1 px-3"
+            className="xs:!w-[21rem] !flex flex-col h-60 gap-2 py-4 xs:px-1"
           >
             <WinningGameCardComponent game={game} />
           </SwiperSlide>
