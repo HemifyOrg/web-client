@@ -3,6 +3,7 @@ import { EventType, WagerType } from "@/utils/types";
 import Image from "next/image";
 import React from "react";
 import UserComponent from "../components";
+import { useRouter } from "next/router";
 
 export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
   return wager.prediction &&
@@ -107,6 +108,7 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
 };
 
 export const EventWagerCardComponent = ({ event }: { event: EventType }) => {
+  const router = useRouter();
   return (
     <div className="w-full bg-white rounded-lg divide-y-2">
       {/* header */}
@@ -202,6 +204,11 @@ export const EventWagerCardComponent = ({ event }: { event: EventType }) => {
 
           <button
             type="button"
+            onClick={() =>
+              router.push(
+                `/product/wager/${event.category.name}/${event.id}/create`
+              )
+            }
             className="md:px-10 px-4 py-2 xs:py-3 font-medium rounded-full bg-themeColor text-white"
           >
             Create Wager

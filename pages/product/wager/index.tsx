@@ -78,13 +78,14 @@ const WagerPage = () => {
   const [selectedTab, setSelectedTab] = useState("events");
 
   return (
-    <div className="mt-20 flex flex-col w-full px-5 justify-center items-center">
+    <div className="mt-20 flex flex-col w-full xs:px-3 md:px-5 px-2 justify-center items-center">
       <div className="w-full flex justify-end items-center p-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
           viewBox="0 0 20 20"
+          className="transition-all active:scale-90"
           fill="none"
         >
           <path
@@ -104,38 +105,36 @@ const WagerPage = () => {
         </svg>
       </div>
 
-      <div className="flex flex-col gap-6 my-5">
-        {/* tabs */}
-        <div className="flex select-none justify-center items-center my-2">
-          <div className="flex justify-between relative gap-28 xs:px-20 px-12 items-center bg-white rounded-full">
-            <div
-              className={`absolute py-4 w-[55%] transition-all bg-themeColor rounded-full h-full ${
-                selectedTab === "lobby" ? "left-[45.5%]" : "left-0"
-              }`}
-            ></div>
-            <button
-              type="button"
-              onClick={() => {
-                setSelectedTab("events");
-              }}
-              className={`z-10 text-lg font-medium cursor-pointer h-full ${
-                selectedTab === "events" ? "text-slate-200" : "text-slate-800"
-              }`}
-            >
-              Events
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setSelectedTab("lobby");
-              }}
-              className={`z-10 text-lg py-4 font-medium cursor-pointer h-full ${
-                selectedTab === "lobby" ? "text-slate-200" : "text-slate-800"
-              }`}
-            >
-              Lobby
-            </button>
-          </div>
+      {/* tabs */}
+      <div className="flex select-none justify-center items-center my-2 w-full px-2">
+        <div className="flex justify-between relative xs:gap-28 xs:w-auto w-full xs:px-20 px-12 items-center bg-white rounded-full">
+          <div
+            className={`absolute py-4 w-[55%] transition-all bg-themeColor rounded-full h-full ${
+              selectedTab === "lobby" ? "left-[45.5%]" : "left-0"
+            }`}
+          ></div>
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedTab("events");
+            }}
+            className={`z-10 text-lg font-medium cursor-pointer h-full ${
+              selectedTab === "events" ? "text-slate-200" : "text-slate-800"
+            }`}
+          >
+            Events
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedTab("lobby");
+            }}
+            className={`z-10 text-lg py-4 font-medium cursor-pointer h-full ${
+              selectedTab === "lobby" ? "text-slate-200" : "text-slate-800"
+            }`}
+          >
+            Lobby
+          </button>
         </div>
       </div>
 

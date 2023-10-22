@@ -29,7 +29,7 @@ export default function Home() {
           Create a Wager
         </Link>
 
-        <div className="md:px-4 px-2 flex flex-col">
+        <div className="xs:px-3 md:px-5 px-2 flex flex-col">
           <TrendingComponent />
           <LobbyComponent />
           <EventsComponent />

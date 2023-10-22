@@ -49,9 +49,6 @@ export default function App({ Component, pageProps }: AppProps) {
         }
         persistor={reduxStoreMainPersistor}
       >
-        <ApolloProvider client={client}>
-          <Layout Component={Component} {...pageProps} />
-        </ApolloProvider>
         <Head>
           <title>{headTitle}</title>
           <link
@@ -59,6 +56,9 @@ export default function App({ Component, pageProps }: AppProps) {
             rel="stylesheet"
           />
         </Head>
+        <ApolloProvider client={client}>
+          <Layout Component={Component} {...pageProps} />
+        </ApolloProvider>
       </PersistGate>
     </Provider>
   );
