@@ -36,13 +36,13 @@ const FilterMenuComponent: React.FC<Props> = ({
         tabs2 && selectedTab2 && setSelectedTab2
           ? "rounded-3xl"
           : "rounded-full"
-      } flex relative overflow-hidden gap-1 px-4 divide-x-2s`}
+      } flex relative overflow-hidden shadow-sm gap-1 px-4 divide-x-2s`}
     >
       <div className="flex flex-col w-full">
         <div
           className={
             className ||
-            `mx-auto overflow-x-auto scrollbar-none w-full px-4 py-2 shadow-sm bg-white flex gap-4 items-center justify-start`
+            `mx-auto overflow-x-auto scrollbar-none w-full p-2 shadow-sm bg-white flex gap-3 items-center justify-start`
           }
         >
           {tabs.map((tab, index) => (
