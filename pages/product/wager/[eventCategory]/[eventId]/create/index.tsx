@@ -378,7 +378,7 @@ const CreateWagerMainPage = () => {
                           <span className="text-xs">Week 8</span>
                         </div>
                         <div className="w-full justify-start flex">
-                          <span className="max-w-[5rem] text-sm truncate">
+                          <span className="max-w-[5rem] text-sm truncate text-slate-900">
                             Chelsa
                           </span>
                         </div>
@@ -391,7 +391,7 @@ const CreateWagerMainPage = () => {
                           <span className="text-xs">Week 9</span>
                         </div>
                         <div className="w-full justify-start flex">
-                          <span className="max-w-[5rem] text-sm truncate">
+                          <span className="max-w-[5rem] text-sm truncate text-slate-900">
                             Dortmund
                           </span>
                         </div>
