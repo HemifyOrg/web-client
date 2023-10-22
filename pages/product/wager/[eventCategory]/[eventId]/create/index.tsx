@@ -464,7 +464,7 @@ const CreateWagerMainPage = () => {
                     22/10/23
                   </span>
                 </div>
-                <div className="bg-gray-100 rounded-lg flex justify-center items-center xs:px-5 px-2 py-2 flex-col w-full h-full">
+                <div className="bg-gray-200 rounded-lg flex justify-center items-center xs:px-5 px-2 py-2 flex-col w-full h-full">
                   <div className="flex gap-1 items-center justify-start mr-auto">
                     <span>Time</span>
                     <span className="w-5 h-5">
@@ -841,7 +841,7 @@ const CreateWagerMainPage = () => {
                   Stamford Bridge
                   </span>
                 </div>
-                <div className="bg-gray-100 rounded-lg flex justify-center items-center xs:px-5 px-2 py-2 flex-col w-full h-full">
+                <div className="bg-gray-200 rounded-lg flex justify-center items-center xs:px-5 px-2 py-2 flex-col w-full h-full">
                   <div className="flex gap-1 items-center justify-start mr-auto">
                     <span>Location</span>
                     <span className="w-5 h-5">
