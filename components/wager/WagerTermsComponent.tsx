@@ -6,7 +6,7 @@ type WagerTermType = {
   name: string;
   value: string;
   isLiked: boolean;
-  options: { name: string }[];
+  options: { name: string; value?: string }[];
 };
 
 const TermComponent = ({ term }: { term: WagerTermType }) => (
@@ -55,18 +55,23 @@ const TermComponent = ({ term }: { term: WagerTermType }) => (
     {/* options */}
     <div
       className={`${
-        term.options.length > 2 ? "xs:grid-cols-3" : ""
+        term.options.length === 3 ? "xs:grid-cols-3" : ""
       } grid-cols-2 auto-cols-fr grid gap-2 pt-3 xs:text-base text-sm pb-2 justify-items-center items-center w-full justify-center`}
     >
       {term.options.map((option, index) => (
         <button
           key={index}
           type="button"
-          className="bg-gray-200 rounded-lg flex justify-center items-center xs:p-5 p-2 w-full h-full"
+          className="bg-gray-200 rounded-lg flex flex-col justify-center items-center xs:p-5 p-2 w-full h-full"
         >
           <span className="xs:text-base capitalize text-sm text-gray-900 font-medium">
             {option.name}
           </span>
+          {option.value && (
+            <span className="xs:text-lg capitalize text-base text-gray-900 font-semibold">
+              {option.value}
+            </span>
+          )}
         </button>
       ))}
     </div>
@@ -114,19 +119,58 @@ const termsList: WagerTermType[] = [
     name: "over 5.5 corners",
     value: "over/under",
     isLiked: false,
-    options: [{ name: "yes" }, { name: "no" }],
+    options: [{ name: "2" }, { name: "2" }],
   },
   {
     name: "over 10.5 corners",
     value: "over/under",
     isLiked: false,
-    options: [{ name: "yes" }, { name: "no" }],
+    options: [{ name: "2" }, { name: "2" }],
   },
   {
     name: "Win both halves",
     value: "over/under",
     isLiked: false,
-    options: [{ name: "yes" }, { name: "no" }],
+    options: [{ name: "2" }, { name: "2" }],
+  },
+  {
+    name: "Win either halves",
+    value: "over/under",
+    isLiked: true,
+    options: [{ name: "2" }, { name: "2" }],
+  },
+  {
+    name: "first team to score",
+    value: "over/under",
+    isLiked: true,
+    options: [{ name: "2" }, { name: "2" }],
+  },
+  {
+    name: "to score",
+    value: "over/under",
+    isLiked: true,
+    options: [
+      { name: "Jackson", value: "1+" },
+      { name: "Marco Reus", value: "1+" },
+      { name: "Raheem Sterling", value: "1+" },
+      { name: "Karim Adeyemi", value: "1+" },
+      { name: "Reece James", value: "1+" },
+      { name: "Niklas Süle", value: "1+" },
+      { name: "Enzo Fernandez", value: "1+" },
+      { name: "Emre Can", value: "1+" },
+      { name: "Cole Palmer", value: "1+" },
+      { name: "Marcel Sabitze", value: "1+" },
+      { name: "Jackson", value: "2+" },
+      { name: "Marco Reus", value: "2+" },
+      { name: "Raheem Sterling", value: "2+" },
+      { name: "Karim Adeyemi", value: "2+" },
+      { name: "Reece James", value: "2+" },
+      { name: "Niklas Süle", value: "2+" },
+      { name: "Enzo Fernandez", value: "2+" },
+      { name: "Emre Can", value: "2+" },
+      { name: "Cole Palmer", value: "2+" },
+      { name: "Marcel Sabitze", value: "2+" },
+    ],
   },
 ];
 const WagerTermsComponent = () => {
