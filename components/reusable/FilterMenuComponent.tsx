@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 type Props = {
   tabs: Array<{
     name: string;
-    icon: React.ReactNode;
+    icon?: React.ReactNode;
   }>;
   tabs2?: Array<{
     name: string;
-    icon: React.ReactNode;
+    icon?: React.ReactNode;
   }>;
   selectedTab: string;
   setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
@@ -56,10 +56,10 @@ const FilterMenuComponent: React.FC<Props> = ({
                 selectedTab === tab.name
                   ? "bg-themeColor text-white"
                   : "hover:border-themeColor border text-gray-700 bg-secondary"
-              } px-8 py-[2px] rounded-full `}
+              } px-8 py-[3px] rounded-full `}
             >
-              <span className="w-6 h-6">{tab.icon}</span>
-              <span className="text-xs capitalize">{tab.name}</span>
+              {tab.icon && <span className="w-5 h-5">{tab.icon}</span>}
+              <span className="text-xs capitalize w-max">{tab.name.replaceAll("-", " ")}</span>
             </motion.button>
           ))}
         </div>
@@ -81,10 +81,10 @@ const FilterMenuComponent: React.FC<Props> = ({
                   selectedTab2 === tab.name
                     ? "bg-themeColor text-white"
                     : "hover:border-themeColor border text-gray-700 bg-secondary"
-                } px-8 py-[2px] rounded-full `}
+                } px-8 py-[3px] rounded-full `}
               >
-                <span className="w-6 h-6">{tab.icon}</span>
-                <span className="text-xs capitalize">{tab.name}</span>
+                {tab.icon && <span className="w-5 h-5">{tab.icon}</span>}
+                <span className="text-xs capitalize">{tab.name.replaceAll("-", " ")}</span>
               </motion.button>
             ))}
           </div>

@@ -1,7 +1,9 @@
 import { FilterMenuComponent } from "@/components/reusable";
+import WagerTermsComponent from "@/components/wager/WagerTermsComponent";
 import { MatchLeagueIcon } from "@/utils";
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 
 const tabsList = [
@@ -75,6 +77,8 @@ const teamMatchData = [
 ];
 const CreateWagerMainPage = () => {
   const [selectedTab, setSelectedTab] = React.useState("summary");
+  const [open, setOpen] = React.useState(false);
+  const router = useRouter();
   return (
     <div className="mt-20 mb-12 flex flex-col w-full xs:px-3 md:px-5 px-2 justify-center items-center">
       <Head>
@@ -82,8 +86,10 @@ const CreateWagerMainPage = () => {
         <meta name="description" content="Create Wager" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <div className="w-full flex justify-between items-center p-1">
         <svg
+          onClick={() => (open ? setOpen(false) : router.back())}
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -99,12 +105,21 @@ const CreateWagerMainPage = () => {
             strokeLinejoin="round"
           />
         </svg>
+        <span
+          className={`text-xl font-semibold w-ful transition-opacity flex ${
+            !open ? "opacity-0 pointer-events-none" : "opacity-100"
+          } justify-center`}
+        >
+          Chose your term
+        </span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
           viewBox="0 0 20 20"
-          className="transition-all active:scale-90"
+          className={`transition-all active:scale-90 ${
+            open ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
           fill="none"
         >
           <path
@@ -123,8 +138,21 @@ const CreateWagerMainPage = () => {
           />
         </svg>
       </div>
-      {/* <div className="px-2 md:max-w-xl max-w-md w-full"> */}
-      <div className="mt-1 xs:px-2 flex flex-col md:max-w-xl max-w-lg w-full gap-2 justify-center items-center">
+
+      {/* wager terms */}
+      <div
+        className={`${
+          !open ? "opacity-0 pointer-events-none w-0 h-0" : "opacity-100 flex"
+        } mt-1 xs:px-2 flex transition-all duration-300 flex-col md:max-w-xl max-w-lg w-full gap-2 justify-center items-center`}
+      >
+        <WagerTermsComponent />
+      </div>
+
+      <div
+        className={`${
+          open ? "opacity-0 pointer-events-none w-0 h-0" : "opacity-100 flex"
+        } mt-1 xs:px-2 flex flex-col transition-all md:max-w-xl max-w-lg w-full gap-2 justify-center items-center`}
+      >
         {/* event home & away info */}
         <div className="flex flex-col gap-2 w-full mx-auto">
           {/* top */}
@@ -168,6 +196,7 @@ const CreateWagerMainPage = () => {
 
         <button
           type="button"
+          onClick={() => setOpen(true)}
           className="text-white mx-auto text-sm md:text-base xs:px-24 px-12 py-4 font-medium rounded-full bg-themeColor my-3"
         >
           Select wager terms
@@ -838,7 +867,7 @@ const CreateWagerMainPage = () => {
                     </span>
                   </div>
                   <span className="xs:text-lg text-base text-gray-900 font-medium mr-auto">
-                  Stamford Bridge
+                    Stamford Bridge
                   </span>
                 </div>
                 <div className="bg-gray-200 rounded-lg flex justify-center items-center xs:px-5 px-2 py-2 flex-col w-full h-full">

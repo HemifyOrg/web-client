@@ -1,10 +1,30 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import { useState, useEffect } from "react";
 
 const BottomNav = () => {
   const router = useRouter();
-  const { pathname } = router;
+  const { asPath } = router;
+
+  const [activePath, setActivePath] = useState(asPath);
+
+  // activePath is the path of the current page
+  // asPath is the path of the current page with query params
+  // we use asPath to check if the current page is the same as the path
+  // if it is, we add the theme color to the icon
+  // else, we add the gray color to the icon
+  // we use useEffect to update the activePath whenever the asPath changes
+  // this is because the asPath changes when the query params change
+  // and we want to keep the activePath the same as the path
+  useEffect(() => {
+    // use regex to know if asPath matches any of the paths in navItems patterns
+    // if it does, set the activePath to the path
+    // else, set the activePath to the asPath
+    const path = navItems.find((n) => new RegExp(n.path).test(asPath))?.path;
+    console.log("path", asPath, path);
+    if (path) setActivePath(path);
+    else setActivePath(asPath);
+  }, [asPath]);
 
   const navItems = [
     {
@@ -135,7 +155,7 @@ const BottomNav = () => {
         >
           {item.icon(
             `w-6 h-6 ${
-              pathname === item.path
+              asPath === item.path
                 ? `${
                     item.path === "/my-bets" || item.path === "/community"
                       ? ""
@@ -146,7 +166,9 @@ const BottomNav = () => {
           )}
           <p
             className={`${
-              pathname === item.path ? "text-themeColor" : "text-gray-400"
+              activePath.startsWith(item.path)
+                ? "text-themeColor"
+                : "text-gray-400"
             } font-medium text-sm`}
           >
             {item.name}
