@@ -64,7 +64,11 @@ const TermComponent = ({ term }: { term: WagerTermType }) => (
           type="button"
           className="bg-gray-200 rounded-lg flex flex-col justify-center items-center xs:p-5 p-2 w-full h-full"
         >
-          <span className="xs:text-base capitalize text-sm text-gray-900 font-medium">
+          <span
+            className={`${
+              option.value ? "text-gray-600" : "xs:text-base text-gray-900"
+            } capitalize text-sm  font-medium`}
+          >
             {option.name}
           </span>
           {option.value && (
