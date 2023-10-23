@@ -122,6 +122,12 @@ const termsList: WagerTermType[] = [
     isLiked: false,
     options: [{ name: "yes" }, { name: "no" }],
   },
+  {
+    name: "Win both halves",
+    value: "over/under",
+    isLiked: false,
+    options: [{ name: "yes" }, { name: "no" }],
+  },
 ];
 const WagerTermsComponent = () => {
   const [selectedTab, setSelectedTab] = React.useState("all");
@@ -139,7 +145,7 @@ const WagerTermsComponent = () => {
   }, [selectedTab]);
 
   return (
-    <div className="w-full mt-5 flex flex-col gap-6">
+    <div className="w-full mt-5 flex flex-col gap-6 overflow-hidden">
       <FilterMenuComponent
         tabs={tabs}
         selectedTab={selectedTab}

@@ -80,7 +80,7 @@ const CreateWagerMainPage = () => {
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
   return (
-    <div className="mt-20 mb-12 flex flex-col w-full xs:px-3 md:px-5 px-2 justify-center items-center">
+    <div className="mt-20 mb-6 overflow-hidden flex flex-col w-full xs:px-3 md:px-5 px-2 justify-center items-center">
       <Head>
         <title>Create Wager</title>
         <meta name="description" content="Create Wager" />
@@ -143,7 +143,7 @@ const CreateWagerMainPage = () => {
       <div
         className={`${
           !open ? "opacity-0 pointer-events-none w-0 h-0" : "opacity-100 flex"
-        } mt-1 xs:px-2 flex transition-all duration-300 flex-col md:max-w-xl max-w-lg w-full gap-2 justify-center items-center`}
+        } mt-1 xs:px-2 flex flex-col transition-all duration-300 md:max-w-xl max-w-lg w-full gap-2 justify-center items-center`}
       >
         <WagerTermsComponent />
       </div>
