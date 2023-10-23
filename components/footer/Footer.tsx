@@ -7,20 +7,15 @@ import SocialLinkComponent from "./SocialLinkComponent";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <div className="flex flex-col px-2 divide-y-[0.5px] divide-[#3F3626] lg:px-8 gap-4 pb-2 pt-4 bg-footerBg">
+    <div className="flex flex-col px-4 divide-y-2 divide-gray-500 lg:px-8 mb-12 gap-4 pb-6 pt-4 bg-footerBg">
       <div className="flex lg:flex-row gap-4 flex-col w-full justify-between">
         {/* logo section */}
-        <div className="flex flex-col gap-2 justify-center items-start">
-          <div className="flex flex-col gap-1">
-            <figure className="flex items-center justify-center overflow-hidden w-12 h-12 bg-white p-2 shadow-md rounded-full">
-              <LogoSvg className="w-full h-full" />
-            </figure>
-            <span className="lg:text-base text-sm text-gray-100">
-              Powered by BBLabs
-            </span>
-          </div>
-          <span className="text-xl font-semibold text-gray-100">
-            Uniting the Web through Blockchain
+        <div className="flex gap-5 items-center">
+          <figure className="flex items-center justify-center overflow-hidden w-12 h-12 bg-white p-4 shadow-md rounded-xl">
+            <LogoSvg className="w-full h-full" />
+          </figure>
+          <span className="lg:text-xl text-lg font-semibold text-gray-100">
+            Your passion, your win.
           </span>
         </div>
 
