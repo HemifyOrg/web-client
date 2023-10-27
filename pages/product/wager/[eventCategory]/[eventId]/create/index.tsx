@@ -1,6 +1,7 @@
 import { FilterMenuComponent } from "@/components/reusable";
 import WagerTermsComponent from "@/components/wager/WagerTermsComponent";
 import { MatchLeagueIcon } from "@/utils";
+import { SelectedTermType } from "@/utils/types";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -77,6 +78,8 @@ const teamMatchData = [
 ];
 const CreateWagerMainPage = () => {
   const [selectedTab, setSelectedTab] = React.useState("summary");
+  const [selectedWagerTerm, setSelectedWagerTerm] =
+    React.useState<SelectedTermType | null>(null);
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
   return (
@@ -145,7 +148,10 @@ const CreateWagerMainPage = () => {
           !open ? "opacity-0 pointer-events-none w-0 h-0" : "opacity-100 flex"
         } mt-1 xs:px-2 flex flex-col transition-all duration-300 md:max-w-xl max-w-lg w-full gap-2 justify-center items-center`}
       >
-        <WagerTermsComponent />
+        <WagerTermsComponent
+          selectedWagerTerm={selectedWagerTerm}
+          setSelectedWagerTerm={setSelectedWagerTerm}
+        />
       </div>
 
       <div

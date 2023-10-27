@@ -4,6 +4,18 @@ export interface UserType {
   isVerified: boolean;
 }
 
+export type SelectedTermType = {
+  term: string;
+  value: string;
+  option: { id: number, name: string; value?: string };
+};
+
+export type WagerTermType = {
+  name: string;
+  value: string;
+  isLiked: boolean;
+  options: { name: string; value?: string }[];
+};
 export interface EventType {
   id: number;
   category: {

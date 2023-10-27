@@ -1,35 +1,15 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 
 const BottomNav = () => {
   const router = useRouter();
   const { asPath } = router;
 
-  const [activePath, setActivePath] = useState(asPath);
-
-  // activePath is the path of the current page
-  // asPath is the path of the current page with query params
-  // we use asPath to check if the current page is the same as the path
-  // if it is, we add the theme color to the icon
-  // else, we add the gray color to the icon
-  // we use useEffect to update the activePath whenever the asPath changes
-  // this is because the asPath changes when the query params change
-  // and we want to keep the activePath the same as the path
-  useEffect(() => {
-    // use regex to know if asPath matches any of the paths in navItems patterns
-    // if it does, set the activePath to the path
-    // else, set the activePath to the asPath
-    const path = navItems.find((n) => new RegExp(n.path).test(asPath))?.path;
-    console.log("path", asPath, path);
-    if (path) setActivePath(path);
-    else setActivePath(asPath);
-  }, [asPath]);
-
   const navItems = [
     {
       name: "Home",
       path: "/",
+      pattern: /^\/$/,
       icon: (className: string) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -52,6 +32,7 @@ const BottomNav = () => {
     {
       name: "Wager",
       path: "/product/wager",
+      pattern: /^\/product\/wager/,
       icon: (className: string) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -81,6 +62,7 @@ const BottomNav = () => {
     {
       name: "My Bets",
       path: "/my-bets",
+      pattern: /^\/my-bets/,
       icon: (className: string) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -103,6 +85,7 @@ const BottomNav = () => {
     {
       name: "Profile",
       path: "/profile",
+      pattern: /^\/profile/,
       icon: (className: string) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -125,6 +108,7 @@ const BottomNav = () => {
     {
       name: "Community",
       path: "/community",
+      pattern: /^\/community/,
       icon: (className: string) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -155,7 +139,7 @@ const BottomNav = () => {
         >
           {item.icon(
             `w-6 h-6 ${
-              asPath === item.path
+              item.pattern.test(asPath)
                 ? `${
                     item.path === "/my-bets" || item.path === "/community"
                       ? ""
@@ -166,9 +150,7 @@ const BottomNav = () => {
           )}
           <p
             className={`${
-              activePath.startsWith(item.path)
-                ? "text-themeColor"
-                : "text-gray-400"
+              item.pattern.test(asPath) ? "text-themeColor" : "text-gray-400"
             } font-medium text-sm`}
           >
             {item.name}
