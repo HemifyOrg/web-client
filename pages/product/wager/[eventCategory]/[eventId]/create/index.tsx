@@ -1,4 +1,4 @@
-import { FilterMenuComponent } from "@/components/reusable";
+import { FilterMenuComponent, OutsideAlerter } from "@/components/reusable";
 import WagerTermsComponent from "@/components/wager/WagerTermsComponent";
 import { MatchLeagueIcon } from "@/utils";
 import { SelectedTermType } from "@/utils/types";
@@ -140,6 +140,15 @@ const CreateWagerMainPage = () => {
             strokeLinejoin="round"
           />
         </svg>
+      </div>
+
+      <div>
+        <OutsideAlerter
+          setState={undefined}
+          visible={selectedWagerTerm !== null}
+        >
+          <div className="flex flex-col justify-center items-center w-9/12 bg-white"></div>
+        </OutsideAlerter>
       </div>
 
       {/* wager terms */}

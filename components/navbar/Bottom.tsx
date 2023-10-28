@@ -9,7 +9,6 @@ const BottomNav = () => {
     {
       name: "Home",
       path: "/",
-      pattern: /^\/$/,
       icon: (className: string) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +31,6 @@ const BottomNav = () => {
     {
       name: "Wager",
       path: "/product/wager",
-      pattern: /^\/product\/wager/,
       icon: (className: string) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +60,6 @@ const BottomNav = () => {
     {
       name: "My Bets",
       path: "/my-bets",
-      pattern: /^\/my-bets/,
       icon: (className: string) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +82,6 @@ const BottomNav = () => {
     {
       name: "Profile",
       path: "/profile",
-      pattern: /^\/profile/,
       icon: (className: string) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +104,6 @@ const BottomNav = () => {
     {
       name: "Community",
       path: "/community",
-      pattern: /^\/community/,
       icon: (className: string) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -135,26 +130,32 @@ const BottomNav = () => {
         <Link
           href={item.path}
           key={index}
-          className="flex border-none hover:border-none hover:opacity-80 flex-col items-center justify-center"
+          className={`flex ${
+            (
+              item.path === "/"
+                ? /^\/$/.test(asPath)
+                : new RegExp(`${item.path}`).test(asPath)
+            )
+              ? "text-themeColor"
+              : "text-gray-400"
+          } border-none hover:border-none hover:opacity-80 flex-col items-center justify-center`}
         >
           {item.icon(
             `w-6 h-6 ${
-              item.pattern.test(asPath)
+              (
+                item.path === "/"
+                  ? /^\/$/.test(asPath)
+                  : new RegExp(`${item.path}`).test(asPath)
+              )
                 ? `${
                     item.path === "/my-bets" || item.path === "/community"
                       ? ""
-                      : "fill-themeColor "
+                      : "fill-current"
                   } text-themeColor`
                 : "text-gray-400"
             }`
           )}
-          <p
-            className={`${
-              item.pattern.test(asPath) ? "text-themeColor" : "text-gray-400"
-            } font-medium text-sm`}
-          >
-            {item.name}
-          </p>
+          <p className={`text-current font-medium text-sm`}>{item.name}</p>
         </Link>
       ))}
     </div>
