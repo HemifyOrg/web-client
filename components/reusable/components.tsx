@@ -37,11 +37,26 @@ export const OutsideAlerter = (props: {
   setState: Function | undefined;
   className?: string;
   visible?: boolean | undefined;
+  motion?: {
+    initial: any;
+    animate: any;
+    exit: any;
+  } | null;
 }) => {
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef, props.setState, props.visible);
 
-  return (
+  return props.motion ? (
+    <motion.div
+      initial={props.motion.initial}
+      animate={props.motion.animate}
+      exit={props.motion.exit}
+      ref={wrapperRef}
+      className={props.className}
+    >
+      {props.children}
+    </motion.div>
+  ) : (
     <div ref={wrapperRef} className={props.className}>
       {props.children}
     </div>

@@ -142,14 +142,46 @@ const CreateWagerMainPage = () => {
         </svg>
       </div>
 
-      <div>
-        <OutsideAlerter
-          setState={undefined}
-          visible={selectedWagerTerm !== null}
-        >
-          <div className="flex flex-col justify-center items-center w-9/12 bg-white"></div>
-        </OutsideAlerter>
-      </div>
+      {selectedWagerTerm && (
+        <div className="fixed w-screen h-screen left-0 top-0 flex justify-center items-center bg-[#00000071] z-10">
+          <OutsideAlerter
+            setState={() => setSelectedWagerTerm(null)}
+            visible={selectedWagerTerm !== null}
+            motion={{
+              initial: { opacity: 0, scale: 0.5 },
+              animate: { opacity: 1, scale: 1 },
+              exit: { opacity: 0, scale: 0.5 },
+            }}
+            className="flex flex-col justify-center items-center w-[343px] px-2 gap-5 py-4 bg-white rounded-2xl"
+          >
+            <div className="flex w-full justify-center items-center">
+              <figure
+                className="w-[50px] h-[50px] bg-center bg-no-repeat bg-contain"
+                style={{
+                  backgroundImage: `url(/images/assets/think-emoji.svg)`,
+                }}
+              />
+            </div>
+            <span className="font-semibold text-sm">
+              Are you sure you want to continue with this term?
+            </span>
+            <div className="flex gap-2 px-2 justify-center items-center">
+              <button
+                type="button"
+                className="px-16 text-sm border-themeColor border text-themeColor font-medium py-3 rounded-full"
+              >
+                No
+              </button>
+              <button
+                type="button"
+                className="px-16 text-sm bg-themeColor text-gray-200 font-medium py-3 rounded-full"
+              >
+                Yes
+              </button>
+            </div>
+          </OutsideAlerter>
+        </div>
+      )}
 
       {/* wager terms */}
       <div
