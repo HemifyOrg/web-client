@@ -1,5 +1,5 @@
 import { FilterMenuComponent, OutsideAlerter } from "@/components/reusable";
-import WagerTermsComponent from "@/components/wager/WagerTermsComponent";
+import { WagerAmountComponent, WagerTermsComponent } from "@/components/wager";
 import { MatchLeagueIcon } from "@/utils";
 import { SelectedTermType } from "@/utils/types";
 import Head from "next/head";
@@ -64,24 +64,16 @@ const tabsList = [
   },
 ];
 
-const teamMatchData = [
-  {
-    home: {
-      league: "EFL",
-      score: 0,
-    },
-    away: {
-      league: "Bundesliga",
-      score: 2,
-    },
-  },
-];
 const CreateWagerMainPage = () => {
   const [selectedTab, setSelectedTab] = React.useState("summary");
   const [selectedWagerTerm, setSelectedWagerTerm] =
     React.useState<SelectedTermType | null>(null);
-  const [open, setOpen] = React.useState(false);
+  const [showTermsScreen, setShowTermsScreen] = React.useState(false);
+  const [showAmountScreen, setShowAmountScreen] = React.useState(false);
+  const [showReviewScreen, setShowReviewScreen] = React.useState(false);
+  const [wagerAmount, setWagerAmount] = React.useState(0);
   const router = useRouter();
+
   return (
     <div className="mt-20 mb-6 overflow-hidden flex flex-col w-full xs:px-3 md:px-5 px-2 justify-center items-center">
       <Head>
@@ -92,7 +84,13 @@ const CreateWagerMainPage = () => {
 
       <div className="w-full flex justify-between items-center p-1">
         <svg
-          onClick={() => (open ? setOpen(false) : router.back())}
+          onClick={() =>
+            showAmountScreen
+              ? setShowAmountScreen(false)
+              : showTermsScreen
+              ? setShowTermsScreen(false)
+              : router.back()
+          }
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -110,10 +108,10 @@ const CreateWagerMainPage = () => {
         </svg>
         <span
           className={`text-xl font-semibold w-ful transition-opacity flex ${
-            !open ? "opacity-0 pointer-events-none" : "opacity-100"
+            !showTermsScreen ? "opacity-0 pointer-events-none" : "opacity-100"
           } justify-center`}
         >
-          Chose your term
+          {showAmountScreen ? "Wager amount" : "Chose your term"}
         </span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +119,7 @@ const CreateWagerMainPage = () => {
           height="24"
           viewBox="0 0 20 20"
           className={`transition-all active:scale-90 ${
-            open ? "opacity-0 pointer-events-none" : "opacity-100"
+            showTermsScreen ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
           fill="none"
         >
@@ -142,14 +140,14 @@ const CreateWagerMainPage = () => {
         </svg>
       </div>
 
-      {selectedWagerTerm && (
+      {selectedWagerTerm && !showAmountScreen && (
         <div className="fixed w-screen h-screen left-0 top-0 flex justify-center items-center bg-[#00000071] z-10">
           <OutsideAlerter
             setState={() => setSelectedWagerTerm(null)}
             visible={selectedWagerTerm !== null}
             motion={{
               initial: { opacity: 0, scale: 0.5 },
-              animate: { opacity: 1, scale: 1 },
+              animate: { opacity: 1, scale: 1, transition: { delay: 0.2 } },
               exit: { opacity: 0, scale: 0.5 },
             }}
             className="flex flex-col justify-center items-center w-[343px] px-2 gap-5 py-4 bg-white rounded-2xl"
@@ -168,11 +166,13 @@ const CreateWagerMainPage = () => {
             <div className="flex gap-2 px-2 justify-center items-center">
               <button
                 type="button"
+                onClick={() => setSelectedWagerTerm(null)}
                 className="px-16 text-sm border-themeColor border text-themeColor font-medium py-3 rounded-full"
               >
                 No
               </button>
               <button
+                onClick={() => setShowAmountScreen(true)}
                 type="button"
                 className="px-16 text-sm bg-themeColor text-gray-200 font-medium py-3 rounded-full"
               >
@@ -184,20 +184,37 @@ const CreateWagerMainPage = () => {
       )}
 
       {/* wager terms */}
+      {!showAmountScreen && (
+        <div
+          className={`${
+            !showTermsScreen
+              ? "opacity-0 pointer-events-none w-0 h-0"
+              : "opacity-100 flex"
+          } mt-1 xs:px-2 flex flex-col transition-all duration-300 md:max-w-xl max-w-lg w-full gap-2 justify-center items-center`}
+        >
+          <WagerTermsComponent
+            selectedWagerTerm={selectedWagerTerm}
+            setSelectedWagerTerm={setSelectedWagerTerm}
+          />
+        </div>
+      )}
+
+      {/* wager amount */}
       <div
         className={`${
-          !open ? "opacity-0 pointer-events-none w-0 h-0" : "opacity-100 flex"
+          !showAmountScreen
+            ? "opacity-0 pointer-events-none w-0 h-0"
+            : "opacity-100 flex"
         } mt-1 xs:px-2 flex flex-col transition-all duration-300 md:max-w-xl max-w-lg w-full gap-2 justify-center items-center`}
       >
-        <WagerTermsComponent
-          selectedWagerTerm={selectedWagerTerm}
-          setSelectedWagerTerm={setSelectedWagerTerm}
-        />
+        <WagerAmountComponent />
       </div>
 
       <div
         className={`${
-          open ? "opacity-0 pointer-events-none w-0 h-0" : "opacity-100 flex"
+          showTermsScreen
+            ? "opacity-0 pointer-events-none w-0 h-0"
+            : "opacity-100 flex"
         } mt-1 xs:px-2 flex flex-col transition-all md:max-w-xl max-w-lg w-full gap-2 justify-center items-center`}
       >
         {/* event home & away info */}
@@ -243,7 +260,7 @@ const CreateWagerMainPage = () => {
 
         <button
           type="button"
-          onClick={() => setOpen(true)}
+          onClick={() => setShowTermsScreen(true)}
           className="text-white mx-auto text-sm md:text-base xs:px-24 px-12 py-4 font-medium rounded-full bg-themeColor my-3"
         >
           Select wager terms
