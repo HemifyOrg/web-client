@@ -28,14 +28,13 @@ const WagerAmountComponent = ({
             value={wagerAmount === 0 ? "" : wagerAmount}
             onChange={(e) => {
               // validate wager amount to only accept numbers with 2 decimal places'
-              const value = e.target.value;
-              const regex = /^\d*\.?\d{0,2}$/;
+              let value = e.target.value;
+              let regex = /^\d*\.?\d{0,2}$/;
               if (regex.test(value)) {
                 setWagerAmount(parseFloat(value));
               }
             }}
             type="number"
-            inputMode="decimal"
             className="w-full outline-none px-2"
           />
           <div className="border-l bg-gray-600 h-5 my-auto" />

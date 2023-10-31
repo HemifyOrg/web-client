@@ -120,11 +120,15 @@ const CreateWagerMainPage = () => {
           />
         </svg>
         <span
-          className={`text-xl font-semibold w-ful transition-opacity flex ${
+          className={`text-xl font-semibold w-full capitalize transition-opacity flex ${
             !showTermsScreen ? "opacity-0 pointer-events-none" : "opacity-100"
           } justify-center`}
         >
-          {showAmountScreen ? "Wager amount" : "Chose your term"}
+          {showReviewScreen
+            ? "Review your Wager"
+            : showAmountScreen
+            ? "Wager amount"
+            : "Chose your term"}
         </span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
