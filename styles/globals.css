@@ -74,6 +74,9 @@ input::-webkit-inner-spin-button {
 button {
   @apply transition-transform active:scale-90;
 }
+button:disabled {
+  @apply opacity-50 cursor-not-allowed active:scale-100;
+}
 
 /* Firefox */
 input[type="number"] {

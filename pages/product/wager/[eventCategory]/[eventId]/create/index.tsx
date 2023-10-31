@@ -1,5 +1,9 @@
 import { FilterMenuComponent, OutsideAlerter } from "@/components/reusable";
-import { WagerAmountComponent, WagerTermsComponent } from "@/components/wager";
+import {
+  WagerAmountComponent,
+  WagerReviewComponent,
+  WagerTermsComponent,
+} from "@/components/wager";
 import { MatchLeagueIcon } from "@/utils";
 import { SelectedTermType } from "@/utils/types";
 import Head from "next/head";
@@ -74,6 +78,12 @@ const CreateWagerMainPage = () => {
   const [wagerAmount, setWagerAmount] = React.useState(0);
   const router = useRouter();
 
+  React.useEffect(() => {
+    titleRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [showTermsScreen, showAmountScreen, showReviewScreen]);
+
+  const titleRef = React.useRef<HTMLDivElement>(null);
+
   return (
     <div className="mt-20 mb-6 overflow-hidden flex flex-col w-full xs:px-3 md:px-5 px-2 justify-center items-center">
       <Head>
@@ -82,7 +92,10 @@ const CreateWagerMainPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="w-full flex justify-between items-center p-1">
+      <div
+        ref={titleRef}
+        className="w-full flex justify-between items-center p-1"
+      >
         <svg
           onClick={() =>
             showAmountScreen
@@ -202,12 +215,30 @@ const CreateWagerMainPage = () => {
       {/* wager amount */}
       <div
         className={`${
-          !showAmountScreen
+          !showAmountScreen || showReviewScreen
             ? "opacity-0 pointer-events-none w-0 h-0"
             : "opacity-100 flex"
         } mt-1 xs:px-2 flex flex-col transition-all duration-300 md:max-w-xl max-w-lg w-full gap-2 justify-center items-center`}
       >
-        <WagerAmountComponent />
+        <WagerAmountComponent
+          setShowReviewScreen={setShowReviewScreen}
+          setWagerAmount={setWagerAmount}
+          wagerAmount={wagerAmount}
+        />
+      </div>
+
+      {/* wager review */}
+      <div
+        className={`${
+          !showReviewScreen
+            ? "opacity-0 pointer-events-none w-0 h-0"
+            : "opacity-100 flex"
+        } mt-1 xs:px-2 flex flex-col transition-all duration-300 md:max-w-xl max-w-lg w-full gap-2 justify-center items-center`}
+      >
+        <WagerReviewComponent
+          selectedWagerTerm={selectedWagerTerm}
+          wagerAmount={wagerAmount}
+        />
       </div>
 
       <div

@@ -22,28 +22,6 @@ const validatePhone = (value: string) => {
   return undefined;
 };
 
-const validateDoB = (value: string) => {
-  // Regular expression to match only numbers
-  // check if user is 18 years and above
-  const regEx = /^[\d]*$/;
-
-  if (!value) {
-    return "Date of birth is required";
-  }
-
-  if (!regEx.test(value)) {
-    return "Invalid date of birth";
-  }
-
-  const currentYear = new Date().getFullYear();
-  const userYear = parseInt(value.split("/")[2]);
-  if (currentYear - userYear < 18) {
-    return "You must be 18 years and above";
-  }
-
-  return undefined;
-};
-
 export const TextError = (props: ErrorMessageProps | any) => {
   return (
     <motion.div
@@ -90,7 +68,6 @@ export const dobList = [
   },
 ];
 
-let currentDOBIndex: number = 0;
 export const InputField = ({
   name,
   label,

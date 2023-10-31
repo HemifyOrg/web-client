@@ -1,6 +1,14 @@
 import React from "react";
 
-const WagerAmountComponent = () => {
+const WagerAmountComponent = ({
+  setWagerAmount,
+  wagerAmount,
+  setShowReviewScreen,
+}: {
+  setWagerAmount: React.Dispatch<React.SetStateAction<number>>;
+  wagerAmount: number;
+  setShowReviewScreen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <div className="flex flex-col h-full w-full px-8 gap-16">
       <figure
@@ -16,7 +24,20 @@ const WagerAmountComponent = () => {
       <div className="flex flex-col gap-3 w-full justify-center items-center px-2">
         <span>Input your wager amount</span>
         <div className="w-full flex bg-white gap-2 overflow-hidden rounded-full p-3">
-          <input type="number" className="w-full outline-none px-2" />
+          <input
+            value={wagerAmount === 0 ? "" : wagerAmount}
+            onChange={(e) => {
+              // validate wager amount to only accept numbers with 2 decimal places'
+              const value = e.target.value;
+              const regex = /^\d*\.?\d{0,2}$/;
+              if (regex.test(value)) {
+                setWagerAmount(parseFloat(value));
+              }
+            }}
+            type="number"
+            inputMode="decimal"
+            className="w-full outline-none px-2"
+          />
           <div className="border-l bg-gray-600 h-5 my-auto" />
           <svg
             width="24"
@@ -41,6 +62,13 @@ const WagerAmountComponent = () => {
       <div className="w-full px-4 my-20">
         <button
           type="button"
+          disabled={isNaN(wagerAmount) || wagerAmount === 0}
+          onClick={(e) =>
+            setShowReviewScreen(
+              !e.currentTarget.disabled ||
+                !(isNaN(wagerAmount) || wagerAmount === 0)
+            )
+          }
           className="mx-auto bg-themeColor xs:px-20 w-full px-10 py-4 text-gray-100 rounded-full shadow"
         >
           Review wager
