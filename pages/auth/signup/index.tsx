@@ -349,7 +349,7 @@ const SignupPage = () => {
                 </Slide>
               </AnimatePresence>
 
-              <div className="flex gap-4 my-2 justify-center items-center w-full">
+              <div className="flex gap-4 justify-center items-center w-full">
                 <button
                   type={"button"}
                   onClick={currentSlide === 0 ? goToNextSlide : undefined}
