@@ -98,7 +98,9 @@ const CreateWagerMainPage = () => {
       >
         <svg
           onClick={() =>
-            showAmountScreen
+            showReviewScreen
+              ? setShowReviewScreen(false)
+              : showAmountScreen
               ? setShowAmountScreen(false)
               : showTermsScreen
               ? setShowTermsScreen(false)
@@ -158,7 +160,7 @@ const CreateWagerMainPage = () => {
       </div>
 
       {selectedWagerTerm && !showAmountScreen && (
-        <div className="fixed w-screen h-screen left-0 top-0 flex justify-center items-center bg-[#00000071] z-10">
+        <div className="fixed w-screen h-screen left-0 top-0 flex justify-center items-center bg-[#00000071] z-10 px-2">
           <OutsideAlerter
             setState={() => setSelectedWagerTerm(null)}
             visible={selectedWagerTerm !== null}
@@ -167,7 +169,7 @@ const CreateWagerMainPage = () => {
               animate: { opacity: 1, scale: 1, transition: { delay: 0.2 } },
               exit: { opacity: 0, scale: 0.5 },
             }}
-            className="flex flex-col justify-center items-center w-[343px] px-2 gap-5 py-4 bg-white rounded-2xl"
+            className="flex flex-col justify-center items-center w-full xs:w-[343px] px-2 gap-5 py-4 bg-white rounded-2xl"
           >
             <div className="flex w-full justify-center items-center">
               <figure
@@ -177,21 +179,21 @@ const CreateWagerMainPage = () => {
                 }}
               />
             </div>
-            <span className="font-semibold text-sm">
+            <span className="font-semibold text-sm xs:text-left text-center">
               Are you sure you want to continue with this term?
             </span>
             <div className="flex gap-2 px-2 justify-center items-center">
               <button
                 type="button"
                 onClick={() => setSelectedWagerTerm(null)}
-                className="px-16 text-sm border-themeColor border text-themeColor font-medium py-3 rounded-full"
+                className="px-14 xs:px-16 text-sm border-themeColor border text-themeColor font-medium py-3 rounded-full"
               >
                 No
               </button>
               <button
                 onClick={() => setShowAmountScreen(true)}
                 type="button"
-                className="px-16 text-sm bg-themeColor text-gray-200 font-medium py-3 rounded-full"
+                className="px-14 xs:px-16 text-sm bg-themeColor text-gray-200 font-medium py-3 rounded-full"
               >
                 Yes
               </button>
