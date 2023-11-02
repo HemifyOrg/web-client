@@ -32,7 +32,7 @@ const SignupPage = () => {
       placeholder: "example@email.com",
       autoComplete: "email",
       className:
-        "relative items-center flex border rounded-xl py-2 px-4 w-full bg-white",
+        `relative items-center flex border rounded-xl py-2 px-4 w-full bg-white`,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"

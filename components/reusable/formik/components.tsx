@@ -22,6 +22,28 @@ const validatePhone = (value: string) => {
   return undefined;
 };
 
+const validateDoB = (value: string) => {
+  // Regular expression to match only numbers
+  // check if user is 18 years and above
+  const regEx = /^[\d]*$/;
+
+  if (!value) {
+    return "Date of birth is required";
+  }
+
+  if (!regEx.test(value)) {
+    return "Invalid date of birth";
+  }
+
+  const currentYear = new Date().getFullYear();
+  const userYear = parseInt(value.split("/")[2]);
+  if (currentYear - userYear < 18) {
+    return "You must be 18 years and above";
+  }
+
+  return undefined;
+};
+
 export const TextError = (props: ErrorMessageProps | any) => {
   return (
     <motion.div
@@ -42,6 +64,7 @@ type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   helpText?: string;
   infoText?: string;
   loading?: boolean;
+  icon?: React.ReactNode;
 };
 
 export const dobList = [
@@ -72,6 +95,7 @@ export const InputField = ({
   name,
   label,
   hideError,
+  icon,
   type,
   helpText,
   infoText,
@@ -79,7 +103,6 @@ export const InputField = ({
   ...props
 }: InputFieldProps) => {
   const [field, meta] = useField(name);
-  console.log(meta.touched, meta.error);
   const currentYear = new Date().getFullYear();
   const { values, setFieldValue, setFieldTouched } = useFormikContext<any>();
   const [dob, setDob] = React.useState<{
@@ -140,7 +163,7 @@ export const InputField = ({
       typeof dob.year === "string" &&
       parseInt(dob.year) > 1909 &&
       parseInt(dob.year) < currentYear
-      ) {
+    ) {
       setFieldTouched("dob", true);
       setFieldValue("dob", `${dob.month}/${dob.day}/${dob.year}`);
     } else {
@@ -150,14 +173,16 @@ export const InputField = ({
 
   return (
     <div
-      className={`${props.className ? "w-auto" : "w-full"} flex flex-col gap-2`}
+      className={`${
+        type === "checkbox" ? "w-auto" : "w-full"
+      } flex flex-col gap-2`}
     >
       {label && (
         <label
           className="flex items-center gap-1 text-gray-700 text-sm font-bold"
           htmlFor={field.name}
         >
-          <span className="capitalize">{label}</span>
+          <span className="capitalize font-medium">{label}</span>
           {infoText && (
             <div className="group cursor-pointer relative">
               <span
@@ -217,7 +242,14 @@ export const InputField = ({
           />
         </div>
       ) : (
-        <div className="relative items-center flex">
+        <div className={props.className}>
+          {icon && (
+            <>
+              <span className="pr-1 mr-2">{icon}</span>
+              {/* divider */}
+              <div className="w-px h-5 bg-gray-300" />
+            </>
+          )}
           <Field
             validate={type === "phone" ? validatePhone : null}
             type={type === "phone" || type === "number" ? undefined : type}
@@ -363,7 +395,9 @@ export const OTPField: FC<Props> = ({
                 onKeyDown={(e) => handleOnKeyDown(e, index)}
                 inputMode="numeric"
                 disabled={loading}
-                className="w-12 h-12 border-2 rounded disabled:animate-pulse disabled:opacity-50 bg-transparent outline-none text-center font-semibold text-xl spin-button-none border-gray-400 focus:border-gray-700 focus:text-gray-700 text-gray-400 transition"
+                className={`w-12 h-12 !border-themeColor !bg-primary appearance-none border-[0.5px] rounded p-2 selection:bg-themeColor autofill:selection:!bg-blue-300
+          text-gray-700 flex justify-center items-center text-2xl font-semibold text-center
+          leading-tight focus:outline-none focus:shadow disabled:opacity-50 disabled:cursor-not-allowed`}
               />
               {index === otp.length - 1 ? null : (
                 <span className="w-2 py-0.5 bg-gray-400" />
