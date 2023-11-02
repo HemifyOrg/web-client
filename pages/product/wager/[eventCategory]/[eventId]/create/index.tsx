@@ -85,17 +85,17 @@ const CreateWagerMainPage = () => {
   const titleRef = React.useRef<HTMLDivElement>(null);
 
   return (
-    <div className="mt-20 mb-6 overflow-hidden flex flex-col w-full xs:px-3 md:px-5 px-2 justify-center items-center">
+    <div
+      ref={titleRef}
+      className="mt-20 mb-6 overflow-hidden flex flex-col w-full xs:px-3 md:px-5 px-2 justify-center items-center"
+    >
       <Head>
         <title>Create Wager</title>
         <meta name="description" content="Create Wager" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div
-        ref={titleRef}
-        className="w-full flex justify-between items-center p-1"
-      >
+      <div className="w-full flex justify-between items-center p-1">
         <svg
           onClick={() =>
             showReviewScreen

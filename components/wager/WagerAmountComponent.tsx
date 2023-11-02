@@ -10,7 +10,7 @@ const WagerAmountComponent = ({
   setShowReviewScreen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
-    <div className="flex flex-col h-full w-full px-8 gap-16">
+    <div className="flex flex-col h-full w-full px-4 xs:px-8 gap-16">
       <figure
         style={{
           backgroundImage: `url(/images/assets/dollar-dollar-gradient.png)`,
@@ -21,7 +21,7 @@ const WagerAmountComponent = ({
         <span className="text-4xl text-[#FFDE59] font-semibold">$7893.02</span>
       </figure>
 
-      <div className="flex flex-col gap-3 w-full justify-center items-center px-2">
+      <div className="flex flex-col gap-3 w-full justify-center items-center">
         <span>Input your wager amount</span>
         <div className="w-full flex bg-white gap-2 overflow-hidden rounded-full p-3">
           <input
@@ -58,7 +58,7 @@ const WagerAmountComponent = ({
           </svg>
         </div>
       </div>
-      <div className="w-full px-4 my-20">
+      <div className="w-full my-12 px-2">
         <button
           type="button"
           disabled={isNaN(wagerAmount) || wagerAmount === 0}
@@ -68,7 +68,7 @@ const WagerAmountComponent = ({
                 !(isNaN(wagerAmount) || wagerAmount === 0)
             )
           }
-          className="mx-auto bg-themeColor xs:px-20 w-full px-10 py-4 text-gray-100 rounded-full shadow"
+          className="mx-auto bg-themeColor xs:px-20 w-full px-10 py-3 text-gray-100 rounded-full shadow"
         >
           Review wager
         </button>
