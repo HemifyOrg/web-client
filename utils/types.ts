@@ -4,9 +4,21 @@ export interface UserType {
   isVerified: boolean;
 }
 
-export interface MatchType {
+export type SelectedTermType = {
+  term: string;
+  value: string;
+  option: { id: number, name: string; value?: string };
+};
+
+export type WagerTermType = {
+  name: string;
+  value: string;
+  isLiked: boolean;
+  options: { name: string; value?: string }[];
+};
+export interface EventType {
   id: number;
-  sport: {
+  category: {
     name:
       | "soccer"
       | "basketball"
@@ -58,30 +70,11 @@ export interface WagerType {
     username: string;
     image: string;
   }[];
-  match: MatchType;
+  event: EventType;
   topic?: string | null;
   prediction: string;
   date: {
     start: string;
     end: string;
   };
-}
-
-export interface SwapType {
-  user: {
-    username: string;
-    image: string;
-  };
-  trade: number;
-  currency: string;
-  completionRate: string;
-  offer: string;
-  available: string;
-  preference: {
-    username: string;
-    image: string;
-    value: string;
-  };
-  negotiation: string;
-  fee: string;
 }

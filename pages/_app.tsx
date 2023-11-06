@@ -7,9 +7,8 @@ import { PersistGate } from "redux-persist/integration/react";
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
 import { capitalizeAWord } from "@/utils";
-import { ApolloProvider } from "@apollo/client";
-import { client } from "@/graphql";
 import Head from "next/head";
+import { ApolloWrapper } from "@/lib/apollo-provider";
 
 export const runtime = "experimental-edge";
 
@@ -49,12 +48,16 @@ export default function App({ Component, pageProps }: AppProps) {
         }
         persistor={reduxStoreMainPersistor}
       >
-        <ApolloProvider client={client}>
-          <Layout Component={Component} {...pageProps} />
-        </ApolloProvider>
         <Head>
           <title>{headTitle}</title>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+            rel="stylesheet"
+          />
         </Head>
+        <ApolloWrapper>
+          <Layout Component={Component} {...pageProps} />
+        </ApolloWrapper>
       </PersistGate>
     </Provider>
   );

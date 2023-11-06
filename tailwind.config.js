@@ -8,17 +8,17 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        xs: "475px",
+        xs: "378px",
       },
       colors: {
-        themeColor: "#D2B37D",
+        themeColor: "#6E5E1B",
         navBarColor: "rgba(246, 239, 226, 0.7)",
         primary: "#f0ecec",
         secondary: "#FFFCEE",
-        darkGold: "#6E5E1B",
         lightGold: "#FFF5CD",
+        gold: "#D2B37D",
         statusBg: "#3F3626",
-        footerBg: "#353535",
+        footerBg: "#52575C",
       },
       backgroundImage: {
         btnImage: "radial-gradient(transparent, #D2B37D)",
@@ -28,5 +28,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 };

@@ -7,6 +7,7 @@ import {
   LeaderBoardComponent,
   WinningGamesComponent,
 } from "@/components/home";
+import Link from "next/link";
 
 export default function Home() {
   // const account = useSelector((state: RootState) => state.account);
@@ -21,18 +22,20 @@ export default function Home() {
         {/* hero section */}
         <HeroComponent />
 
-        <button
-          type="button"
-          className="text-white mx-auto text-sm md:text-base px-24 py-4 font-medium rounded-full bg-darkGold mt-10"
+        <Link
+          href={`/product/wager`}
+          className="text-white mx-auto text-sm md:text-base px-24 py-4 font-semibold rounded-full bg-themeColor mt-1"
         >
           Create a Wager
-        </button>
+        </Link>
 
-        <TrendingComponent />
-        <LobbyComponent />
-        <EventsComponent />
-        <LeaderBoardComponent />
-        <WinningGamesComponent />
+        <div className="xs:px-3 md:px-5 px-2 flex flex-col">
+          <TrendingComponent />
+          <LobbyComponent />
+          <EventsComponent />
+          <LeaderBoardComponent />
+          <WinningGamesComponent />
+        </div>
       </main>
     </>
   );

@@ -1,7 +1,7 @@
 import HeroComponent from "./HeroComponent";
 import LobbyComponent from "./LobbyComponent";
 import EventsComponent from "./EventsComponent";
-import TrendingComponent from "./trending";
+import TrendingComponent from "./TrendingComponent";
 import LeaderBoardComponent from "./LeaderBoardComponent";
 import WinningGamesComponent from "./WinningGamesComponent";
 

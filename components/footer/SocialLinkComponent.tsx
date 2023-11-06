@@ -7,7 +7,7 @@ const SocialLinkComponent = ({ link }: { link: SocialLink }) => {
       href={link.href}
       rel="noreferrer"
       target="_blank"
-      className="p-[6px] bg-[#EDDFC7B2] rounded-full w-8 h-8 flex justify-center items-center"
+      className="p-[6px] bg-primary rounded-full w-8 h-8 flex justify-center items-center"
       title={link.title}
     >
       {link.icon}

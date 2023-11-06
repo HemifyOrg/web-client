@@ -11,25 +11,24 @@ export const quickLinks: QuickLinkType[] = [
   {
     title: "Products",
     subLinks: [
-      { title: "Betting", href: "/product/wager" },
-      { title: "Duel bet", href: "/product/duel-bet" },
-      { title: "Loot box", href: "/product/loot-box", isComingSoon: true },
+      { title: "Player-vs-Player Wager", href: "/product/wager" },
+      { title: "Group Wager", href: "#/product/duel-bet", isComingSoon: true },
     ],
   },
   {
     title: "Profile",
     subLinks: [
       { title: "Settings", href: "/profile/settings" },
-      { title: "Wallet", href: "/profile/wallet" },
-      { title: "Notification", href: "/profile/notification" },
+      { title: "Profile", href: "/profile" },
+      { title: "Notifications", href: "/profile/notifications" },
     ],
   },
   {
     title: "Materials",
     subLinks: [
       { title: "Whitepaper", href: "/material/whitepaper" },
-      { title: "Blog", href: "/material/blog" },
       { title: "FAQ", href: "/material/faq" },
+      { title: "Blog", href: "/material/blog" },
     ],
   },
 ];

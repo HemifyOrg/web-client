@@ -44,8 +44,8 @@ const SignupPage = () => {
           <path
             d="M0.5 1.375H15.5M0.5 1.375V12C0.5 12.1658 0.565848 12.3247 0.683058 12.4419C0.800269 12.5592 0.95924 12.625 1.125 12.625H14.875C15.0408 12.625 15.1997 12.5592 15.3169 12.4419C15.4342 12.3247 15.5 12.1658 15.5 12V1.375M0.5 1.375L8 8.25L15.5 1.375"
             stroke="#A0A4A8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       ),
@@ -167,7 +167,7 @@ const SignupPage = () => {
     ][currentSlide];
   };
   return (
-    <main className="md:mt-32 mt-20 mb-12 py-6 px-12 gap-4 h-full flex w-full md:w-[45%] lg:w-1/3 m-auto flex-col items-center justify-start lg:justify-center">
+    <section className="md:mt-32 mt-20 mb-12 py-6 sm:px-12 px-6 gap-4 h-full flex w-full md:w-[45%] lg:w-1/3 m-auto flex-col items-center justify-start lg:justify-center">
       <div className="flex flex-col w-full">
         <h1 className="text-2xl font-semibold">Welcome back</h1>
         <h4>Sign in now and get back to the excitement!</h4>
@@ -209,14 +209,14 @@ const SignupPage = () => {
 
               <div className="flex gap-4 my-2 justify-center items-center w-full">
                 <button
-                  type={currentSlide === 1 ? "submit" : "button"}
+                  type={"button"}
                   onClick={currentSlide === 0 ? goToNextSlide : undefined}
                   disabled={
                     !dirty ||
                     typeof errors.email === "string" ||
                     typeof errors.checkedTerms === "string"
                   }
-                  className="disabled:bg-[#e0e3e7] bg-darkGold disabled:cursor-not-allowed border disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all disabled:text-gray-700 text-gray-50 font-medium py-4"
+                  className="disabled:bg-[#F1F5F9] bg-themeColor disabled:cursor-not-allowed border disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all disabled:text-gray-700 text-gray-50 font-medium py-4"
                 >
                   {currentSlide === 1 ? "Verify" : "Login"}
                 </button>
@@ -246,16 +246,19 @@ const SignupPage = () => {
                       <path
                         d="M14.25 11.6667H14.2583M3 4.16667V15.8333C3 16.7538 3.74619 17.5 4.66667 17.5H16.3333C17.2538 17.5 18 16.7538 18 15.8333V7.5C18 6.57953 17.2538 5.83333 16.3333 5.83333L4.66667 5.83333C3.74619 5.83333 3 5.08714 3 4.16667ZM3 4.16667C3 3.24619 3.74619 2.5 4.66667 2.5H14.6667M14.6667 11.6667C14.6667 11.8968 14.4801 12.0833 14.25 12.0833C14.0199 12.0833 13.8333 11.8968 13.8333 11.6667C13.8333 11.4365 14.0199 11.25 14.25 11.25C14.4801 11.25 14.6667 11.4365 14.6667 11.6667Z"
                         stroke="currentColor"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
-                    <span>Login with wallet</span>
+                    <span className="text-sm">Login with wallet</span>
                   </button>
                   <span className="mx-auto mt-2 flex gap-2">
                     Don’t have an account?
-                    <Link href="/auth/signup">
+                    <Link
+                      href="/auth/signup"
+                      className="border-b border-themeColor hover:bor"
+                    >
                       <span className="text-themeColor font-semibold">
                         Create one
                       </span>
@@ -267,7 +270,7 @@ const SignupPage = () => {
           </>
         )}
       </Formik>
-    </main>
+    </section>
   );
 };
 

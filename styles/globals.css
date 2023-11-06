@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("./fonts/Montserrat/stylesheet.css");
+
+@import url("https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900");
+
 :root {
   --foreground-rgb: 0, 0, 0;
 }
@@ -12,14 +14,10 @@
   }
 }
 
-@viewport {
-  min-zoom: 50%;
-  max-zoom: 200%;
-}
 /* #011737 */
 
 body {
-  font-family: "Montserrat";
+  font-family: "Lato", sans-serif;
   color: rgb(var(--foreground-rgb));
   scroll-behavior: smooth;
   background: #f0ecec;
@@ -45,8 +43,8 @@ select:-webkit-autofill:focus {
 }
 
 .form input {
-  @apply border-transparent bg-transparent appearance-none border-[0.5px] rounded w-full p-2 selection:bg-themeColor autofill:selection:!bg-blue-300
-         autofill:hover:!bg-themeColor text-gray-700
+  @apply border-transparent bg-transparent appearance-none border-[0.5px] rounded w-full p-2 selection:bg-transparent autofill:selection:!bg-blue-300
+         autofill:hover:!bg-transparent text-gray-700
           leading-tight focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
@@ -58,24 +56,11 @@ a {
   --tw-border-opacity: 1;
   color: rgb(210 179 125 / var(--tw-border-opacity));
 }
-.animate-hero-swipe {
-  animation: heroSwipe 1000ms alternate both;
-}
 a {
-  border-bottom: 1px solid rgb(31 41 55 / 1);
+  @apply border-b-2 border-[#1f2937];
 }
 a:hover {
-  border-bottom: 1px solid rgb(210 179 125 / 1);
-  opacity: 0.75;
-}
-@keyframes heroSwipe {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 110%;
-    color: white;
-  }
+  @apply opacity-75 border-b-2 border-themeColor;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -84,6 +69,13 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   appearance: none;
   margin: 0;
+}
+
+button {
+  @apply transition-transform active:scale-90;
+}
+button:disabled {
+  @apply opacity-50 cursor-not-allowed active:scale-100;
 }
 
 /* Firefox */
