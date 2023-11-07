@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 
 import { loadConfig } from "../../features/configSlice";
 import { useDispatch, useSelector } from "react-redux";
-import ConnectWallet from "@/components/reusable/ConnectWallect";
 
 import { AppDispatch, RootState } from "../../app/store";
 import { ThunkDispatch, AnyAction } from "@reduxjs/toolkit";
@@ -14,11 +13,7 @@ import { OutsideAlerter } from "../reusable";
 import Image from "next/image";
 
 const TopNav = () => {
-  const [showMaterialDropdown, setShowMaterialDropdown] = useState(false);
-  const [showNotificationDropdown, setShowNotificationDropdown] =
-    useState(false);
   const config = useSelector((state: RootState) => state.config);
-  const account = useSelector((state: RootState) => state.account);
   const [showMenu, setShowMenu] = useState(false);
   const [hoverNav, setHoverNav] = useState(false);
   const [scrolledTo5Percent, setScrolledTo5Percent] = useState(false);

@@ -3,6 +3,7 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { configReducer } from "../features";
 import userSlice from "@/features/userSlice";
+import alertSlice from "@/features/alertSlice";
 
 const persistConfigMain = {
   key: "root",
@@ -12,6 +13,7 @@ const persistConfigMain = {
 
 const rootReducerMain = combineReducers({
   user: userSlice.reducer,
+  notifications: alertSlice.reducer,
   config: configReducer,
 });
 

@@ -14,6 +14,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import BottomNav from "./navbar/Bottom";
+import MulipleAlerts from "./MulipleAlerts";
 
 const Layout = ({ Component, pageProps }: AppProps) => {
   // const showConnectPopup = useSelector(
@@ -61,6 +62,7 @@ const Layout = ({ Component, pageProps }: AppProps) => {
         <Footer />
       </motion.div>
       <BottomNav />
+      <MulipleAlerts />
     </motion.div>
   );
 };
