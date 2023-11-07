@@ -1,22 +1,17 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import {accountReducer, configReducer} from "../features";
-
-
-const persistConfigAccountMain = {
-  key: "account",
-  storage,
-};
+import { configReducer } from "../features";
+import userSlice from "@/features/userSlice";
 
 const persistConfigMain = {
   key: "root",
   storage,
-  whitelist: ["account"],
+  whitelist: ["user"],
 };
 
 const rootReducerMain = combineReducers({
-  account: persistReducer(persistConfigAccountMain, accountReducer),
+  user: userSlice.reducer,
   config: configReducer,
 });
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { OutsideAlerter } from './components'
-import { connectAccount } from '@/features/accountSlice';
+// import { connectAccount } from '@/features/accountSlice';
 import { setShowConnectModal } from '@/features/configSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/app/store';
@@ -15,20 +15,20 @@ const WalletListItem = styled.li.attrs({
 const ConnectWalletPopup = () => {
   const dispatch: AppDispatch =
     useDispatch<ThunkDispatch<RootState, undefined, AnyAction>>();
-  const account = useSelector((state: RootState) => state.account);
+  // const account = useSelector((state: RootState) => state.account);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (account && !account.loading && account.address && account.networkId)
-      setIsLoading(false);
-  }, [account]);
+  // useEffect(() => {
+  //   if (account && !account.loading && account.address && account.networkId)
+  //     setIsLoading(false);
+  // }, [account]);
 
   function onWalletListItemClick(
     walletName: "metamask" | "walletconnect" | "coinbase"
   ) {
     return ({ target }: { target: any }) => {
       setIsLoading(true);
-      dispatch(connectAccount({ walletType: walletName }));
+      // dispatch(connectAccount({ walletType: walletName }));
       target.parentElement.parentElement.removeAttribute("open");
     };
   }

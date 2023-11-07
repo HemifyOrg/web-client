@@ -5,12 +5,17 @@ import {
   Form,
   Formik,
   FormikErrors,
+  FormikHelpers,
   FormikTouched,
 } from "formik";
 import * as Yup from "yup";
 import { AnimatePresence } from "framer-motion";
 import { Slide, TimerComponent } from "@/components/reusable";
 import Link from "next/link";
+import { useMutation } from "@apollo/client";
+import { RegisterEmail, SignUp } from "@/graphql/mutations";
+import errorHandler from "@/apollo/errorHandler";
+import { userActions } from "@/app/actions";
 
 const SignupPage = () => {
   const SignupSchema = Yup.object().shape({
@@ -22,6 +27,7 @@ const SignupPage = () => {
   });
   const initialValues = {
     email: "",
+    otp: "",
     checkedTerms: true,
   };
   const fieldsList = [
@@ -31,8 +37,7 @@ const SignupPage = () => {
       type: "email",
       placeholder: "example@email.com",
       autoComplete: "email",
-      className:
-        `relative items-center flex border rounded-xl py-2 px-4 w-full bg-white`,
+      className: `relative items-center flex border rounded-xl py-2 px-4 w-full bg-white`,
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -71,6 +76,56 @@ const SignupPage = () => {
     }, 600);
   };
 
+  const [
+    registerEmailMutation,
+    { loading: registerEmailLoding, error: registerEmailError },
+  ] = useMutation(RegisterEmail);
+
+  const [signUpMutation, { loading: signUpLoding, error: signUpError }] =
+    useMutation(SignUp);
+
+  useEffect(() => {
+    if (
+      registerEmailError &&
+      registerEmailError?.message === "OTP already sent"
+    ) {
+      goToNextSlide();
+    }
+  }, [registerEmailError]);
+
+  const handleOnSubmit = async (values: typeof initialValues) => {
+    if (currentSlide === 0) {
+      registerEmailMutation({
+        variables: {
+          email: values.email,
+        },
+        onCompleted: (data) => {
+          console.log({ data });
+          goToNextSlide();
+        },
+      }).catch(errorHandler);
+      return;
+    } else if (currentSlide === 1) {
+      signUpMutation({
+        variables: {
+          email: values.email,
+          otp: values.otp,
+        },
+        onCompleted: (data) => {
+          let result = data?.signUp;
+          userActions.login({...result, ...result.user});
+          console.log({ data });
+        },
+        onError: (error) => {
+          console.log({ error });
+        },
+      }).catch(errorHandler);
+      return;
+    }
+    console.log({ values });
+    alert(JSON.stringify(values, null, 2));
+  };
+
   const SlidesComponent = ({
     ...props
   }: {
@@ -80,7 +135,6 @@ const SignupPage = () => {
     touched: FormikTouched<typeof initialValues>;
     errors: FormikErrors<typeof initialValues>;
   }) => {
-    const [otpValue, setOTPValue] = useState("");
     const [email, setEmail] = useState("");
 
     // use 'useEffect' to set email value
@@ -96,17 +150,9 @@ const SignupPage = () => {
       setEmail(newEmail); // set the new email
     }, [props.values.email]);
 
-    const [loading, setLoading] = useState(false);
-
     const [sentOTP, setSentOTP] = useState(false);
 
-    // use 'useEffect' to check if otp is valid, then trigger 'goToNextSlide'
-    useEffect(() => {
-      if (otpValue.length === 6 && otpValue === "123456") {
-        setLoading(true);
-      }
-    }, [otpValue]);
-
+    // to handle timer update
     const handleTimerUpdate = (isEnded: boolean) => {
       if (isEnded === true) {
         setSentOTP(false);
@@ -116,7 +162,12 @@ const SignupPage = () => {
     return [
       <>
         {fieldsList.slice(0, 4).map((field, index) => (
-          <InputField {...field} key={index} />
+          <InputField
+            {...field}
+            key={index}
+            loading={registerEmailLoding}
+            disabled={registerEmailLoding}
+          />
         ))}
         {/* term and condition checkbox */}
         <label className="flex items-center justify-start gap-2">
@@ -166,8 +217,8 @@ const SignupPage = () => {
         </p>
         <OTPField
           label="Enter Verification Code"
-          setValue={setOTPValue}
-          loading={loading}
+          setValue={(value) => props.setValues({ ...props.values, otp: value })}
+          loading={signUpLoding}
         />
         <div className="flex flex-col justify-center items-center">
           <span className="text-sm font-semibold">
@@ -207,15 +258,7 @@ const SignupPage = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={SignupSchema}
-        onSubmit={(values, actions) => {
-          if (currentSlide === 0) {
-            goToNextSlide();
-            return;
-          }
-          console.log({ values, actions });
-          alert(JSON.stringify(values, null, 2));
-          actions.setSubmitting(false);
-        }}
+        onSubmit={handleOnSubmit}
       >
         {({ dirty, setValues, values, touched, errors }) => (
           <>
@@ -352,13 +395,14 @@ const SignupPage = () => {
               <div className="flex gap-4 justify-center items-center w-full">
                 <button
                   type={"button"}
-                  onClick={currentSlide === 0 ? goToNextSlide : undefined}
+                  onClick={() => handleOnSubmit(values)}
                   disabled={
                     !dirty ||
                     typeof errors.email === "string" ||
-                    typeof errors.checkedTerms === "string"
+                    typeof errors.checkedTerms === "string" ||
+                    registerEmailLoding
                   }
-                  className="disabled:bg-[#F1F5F9] bg-themeColor disabled:cursor-not-allowed border disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all disabled:text-gray-700 text-gray-50 font-medium py-4"
+                  className="disabled:bg-secondary bg-themeColor disabled:cursor-not-allowed border disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all disabled:text-gray-700 text-gray-50 font-medium py-4"
                 >
                   {currentSlide === 1 ? "Verify" : "Next"}
                 </button>

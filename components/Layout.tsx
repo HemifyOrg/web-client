@@ -16,12 +16,9 @@ import "swiper/css/pagination";
 import BottomNav from "./navbar/Bottom";
 
 const Layout = ({ Component, pageProps }: AppProps) => {
-  const showConnectPopup = useSelector(
-    (state: RootState) => state.config.showConnectModal
-  );
-  const isConnected = useSelector(
-    (state: RootState) => state.account.connected
-  );
+  // const showConnectPopup = useSelector(
+  //   (state: RootState) => state.config.showConnectModal
+  // );
   const [isAnimating, setIsAnimating] = useState(false);
   const router = useRouter();
 
@@ -59,7 +56,7 @@ const Layout = ({ Component, pageProps }: AppProps) => {
         transition={{ duration: 0.3 }}
         className="relative h-full overflow-x-hidden"
       >
-        {showConnectPopup && !isConnected && <ConnectWalletPopup />}
+        {/* {showConnectPopup && !isConnected && <ConnectWalletPopup />} */}
         <Component {...pageProps} />
         <Footer />
       </motion.div>

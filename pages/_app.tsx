@@ -8,7 +8,7 @@ import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
 import { capitalizeAWord } from "@/utils";
 import Head from "next/head";
-import { ApolloWrapper } from "@/lib/apollo-provider";
+import { ApolloWrapper } from "@/apollo/apollo-provider";
 
 export const runtime = "experimental-edge";
 

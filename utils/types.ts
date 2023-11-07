@@ -4,6 +4,20 @@ export interface UserType {
   isVerified: boolean;
 }
 
+export type UserState = {
+  email: string;
+  image: string;
+  country: string;
+  state: string;
+  city: string;
+  timezone: string;
+  id: string;
+  token: string;
+  refreshToken: string;
+  exp: string;
+  loading: boolean;
+};
+
 export type SelectedTermType = {
   term: string;
   value: string;
