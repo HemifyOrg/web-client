@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 export type AlertType = {
   message: string;
   type: string;
-  id: React.Key;
+  id?: React.Key;
   timeout?: number;
   redirect_link?: string;
 };
