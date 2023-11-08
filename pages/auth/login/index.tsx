@@ -1,19 +1,18 @@
 import { useState, useEffect, SetStateAction } from "react";
-import { InputField, TextError, OTPField } from "@/components/reusable/formik";
-import {
-  ErrorMessage,
-  Form,
-  Formik,
-  FormikErrors,
-  FormikTouched,
-} from "formik";
+import { InputField, OTPField } from "@/components/reusable/formik";
+import { Form, Formik, FormikErrors, FormikTouched } from "formik";
 import * as Yup from "yup";
 import { AnimatePresence } from "framer-motion";
 import { Slide, TimerComponent } from "@/components/reusable";
 import Link from "next/link";
+import withAuth from "@/app/withAuth";
+import { Login } from "@/graphql/mutations";
+import { useMutation } from "@apollo/client";
+import errorHandler from "@/apollo/errorHandler";
+import { alertActions, userActions } from "@/app/actions";
 
-const SignupPage = () => {
-  const SignupSchema = Yup.object().shape({
+const LoginPage = () => {
+  const LoginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     checkedTerms: Yup.boolean().oneOf(
       [true],
@@ -22,7 +21,7 @@ const SignupPage = () => {
   });
   const initialValues = {
     email: "",
-    checkedTerms: true,
+    otp: "",
   };
   const fieldsList = [
     {
@@ -71,6 +70,43 @@ const SignupPage = () => {
     }, 600);
   };
 
+  const [loginMutation, { loading: loginLoding, error: loginError }] =
+    useMutation(Login);
+
+  const handleOnSubmit = async (values: typeof initialValues) => {
+    if (loginLoding) return;
+    if (currentSlide === 0) {
+      loginMutation({
+        variables: {
+          email: values.email,
+        },
+        onCompleted: (data) => {
+          if (data.login?.success) {
+            goToNextSlide();
+          }
+        },
+      }).catch(errorHandler);
+      return;
+    } else if (currentSlide === 1) {
+      loginMutation({
+        variables: {
+          email: values.email,
+          otp: values.otp,
+        },
+        onCompleted: (data) => {
+          let result = data?.login;
+          userActions.login({ ...result, ...result.user });
+          alertActions.addAlert({
+            id: "login-success",
+            message: "Welcome back!",
+            type: "success",
+          });
+        },
+      }).catch(errorHandler);
+      return;
+    }
+  };
+
   const SlidesComponent = ({
     ...props
   }: {
@@ -80,7 +116,6 @@ const SignupPage = () => {
     touched: FormikTouched<typeof initialValues>;
     errors: FormikErrors<typeof initialValues>;
   }) => {
-    const [otpValue, setOTPValue] = useState("");
     const [email, setEmail] = useState("");
 
     // use 'useEffect' to set email value
@@ -96,16 +131,7 @@ const SignupPage = () => {
       setEmail(newEmail); // set the new email
     }, [props.values.email]);
 
-    const [loading, setLoading] = useState(false);
-
     const [sentOTP, setSentOTP] = useState(false);
-
-    // use 'useEffect' to check if otp is valid, then trigger 'goToNextSlide'
-    useEffect(() => {
-      if (otpValue.length === 6 && otpValue === "123456") {
-        setLoading(true);
-      }
-    }, [otpValue]);
 
     const handleTimerUpdate = (isEnded: boolean) => {
       if (isEnded === true) {
@@ -116,7 +142,12 @@ const SignupPage = () => {
     return [
       <>
         {fieldsList.slice(0, 4).map((field, index) => (
-          <InputField {...field} key={index} />
+          <InputField
+            {...field}
+            key={index}
+            loading={loginLoding}
+            disabled={loginLoding}
+          />
         ))}
       </>,
       <div className="flex flex-col gap-5 py-2">
@@ -133,8 +164,8 @@ const SignupPage = () => {
         </p>
         <OTPField
           label="Enter Verification Code"
-          setValue={setOTPValue}
-          loading={loading}
+          setValue={(value) => props.setValues({ ...props.values, otp: value })}
+          loading={loginLoding}
         />
         <div className="flex flex-col justify-center items-center">
           <span className="text-sm font-semibold">
@@ -174,16 +205,8 @@ const SignupPage = () => {
       </div>
       <Formik
         initialValues={initialValues}
-        validationSchema={SignupSchema}
-        onSubmit={(values, actions) => {
-          if (currentSlide === 0) {
-            goToNextSlide();
-            return;
-          }
-          console.log({ values, actions });
-          alert(JSON.stringify(values, null, 2));
-          actions.setSubmitting(false);
-        }}
+        validationSchema={LoginSchema}
+        onSubmit={handleOnSubmit}
       >
         {({ dirty, setValues, values, touched, errors }) => (
           <>
@@ -210,11 +233,9 @@ const SignupPage = () => {
               <div className="flex gap-4 my-2 justify-center items-center w-full">
                 <button
                   type={"button"}
-                  onClick={currentSlide === 0 ? goToNextSlide : undefined}
+                  onClick={() => handleOnSubmit(values)}
                   disabled={
-                    !dirty ||
-                    typeof errors.email === "string" ||
-                    typeof errors.checkedTerms === "string"
+                    !dirty || typeof errors.email === "string" || loginLoding
                   }
                   className="disabled:bg-[#F1F5F9] bg-themeColor disabled:cursor-not-allowed border disabled:opacity-50 rounded-full px-5 w-full active:scale-90 transition-all disabled:text-gray-700 text-gray-50 font-medium py-4"
                 >
@@ -274,4 +295,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default withAuth(LoginPage, true);

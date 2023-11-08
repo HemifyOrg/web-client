@@ -7,10 +7,24 @@ import {
   NextSSRApolloClient,
   SSRMultipartLink,
 } from "@apollo/experimental-nextjs-app-support/ssr";
+import { setContext } from "@apollo/client/link/context";
+import { useAppSelector } from "@/app/store";
 
 function makeClient() {
+  const token = useAppSelector((state) => state.user.token);
+
+  const authLink = setContext((_, { headers }) => {
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : "",
+      },
+    };
+  });
+
   const httpLink = new HttpLink({
-    uri: process.env.NEXT_PUBLIC_GRAPHQL_URL || `http://localhost:8000/graphql/`,
+    uri:
+      process.env.NEXT_PUBLIC_GRAPHQL_URL || `http://localhost:8000/graphql/`,
   });
 
   return new NextSSRApolloClient({
@@ -21,9 +35,9 @@ function makeClient() {
             new SSRMultipartLink({
               stripDefer: true,
             }),
-            httpLink,
+            authLink.concat(httpLink),
           ])
-        : httpLink,
+        : authLink.concat(httpLink),
   });
 }
 

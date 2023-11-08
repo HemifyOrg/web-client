@@ -5,7 +5,6 @@ import {
   Form,
   Formik,
   FormikErrors,
-  FormikHelpers,
   FormikTouched,
 } from "formik";
 import * as Yup from "yup";
@@ -15,7 +14,8 @@ import Link from "next/link";
 import { useMutation } from "@apollo/client";
 import { RegisterEmail, SignUp } from "@/graphql/mutations";
 import errorHandler from "@/apollo/errorHandler";
-import { userActions } from "@/app/actions";
+import { alertActions, userActions } from "@/app/actions";
+import withAuth from "@/app/withAuth";
 
 const SignupPage = () => {
   const SignupSchema = Yup.object().shape({
@@ -84,6 +84,7 @@ const SignupPage = () => {
   const [signUpMutation, { loading: signUpLoding, error: signUpError }] =
     useMutation(SignUp);
 
+  // delete after testing
   useEffect(() => {
     if (
       registerEmailError &&
@@ -94,6 +95,7 @@ const SignupPage = () => {
   }, [registerEmailError]);
 
   const handleOnSubmit = async (values: typeof initialValues) => {
+    if (signUpLoding || registerEmailLoding) return;
     if (currentSlide === 0) {
       registerEmailMutation({
         variables: {
@@ -113,17 +115,15 @@ const SignupPage = () => {
         },
         onCompleted: (data) => {
           let result = data?.signUp;
-          userActions.login({...result, ...result.user});
-          console.log({ data });
-        },
-        onError: (error) => {
-          console.log({ error });
+          userActions.login({ ...result, ...result.user });
+          alertActions.addAlert({
+            type: "success",
+            message: "Successfully signed up",
+          });
         },
       }).catch(errorHandler);
       return;
     }
-    console.log({ values });
-    alert(JSON.stringify(values, null, 2));
   };
 
   const SlidesComponent = ({
@@ -457,4 +457,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default withAuth(SignupPage, true);

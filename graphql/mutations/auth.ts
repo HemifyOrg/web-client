@@ -28,3 +28,23 @@ export const SignUp = gql`
     }
   }
 `;
+
+export const Login = gql`
+  mutation Login($email: String!, $otp: String) {
+    login(email: $email, otp: $otp) {
+      success
+      token
+      refreshToken
+      exp
+      user {
+        email
+        image
+        country
+        state
+        city
+        timezone
+        id
+      }
+    }
+  }
+`;
