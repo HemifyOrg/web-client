@@ -64,6 +64,7 @@ const Summary = () => {
                 </div>
 
             </div>
+            <p className="text-center pt-2 font-normal text-[0.875rem] leading-[1.5rem]">You’re better than <span className="text-[#6E5E1B] font-extrabold text-[0.875rem]" >64%</span> of Hemify users</p>
         </div>
 
     </section>
