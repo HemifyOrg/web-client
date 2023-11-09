@@ -42,7 +42,6 @@ const EventsSlideComponent = () => {
     </Fragment>
   );
 };
-
 const LobbySlideComponent = () => {
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [wagers, setWagers] = useState<WagerType[]>(wagerList);
