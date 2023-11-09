@@ -11,7 +11,7 @@ import Link from "next/link";
 import { LogoSvg } from "@/utils";
 import { OutsideAlerter } from "../reusable";
 import Image from "next/image";
-import { userActions } from "@/app/actions";
+import { alertActions, userActions } from "@/app/actions";
 
 const TopNav = () => {
   const config = useSelector((state: RootState) => state.config);
@@ -129,7 +129,13 @@ const TopNav = () => {
     },
     {
       name: "Logout",
-      onclick: () => userActions.logout(),
+      onclick: () => {
+        userActions.logout();
+        alertActions.addAlert({
+          message: "Logged out successfully",
+          type: "success",
+        });
+      },
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
           <path

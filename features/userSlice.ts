@@ -47,7 +47,17 @@ const userSlice = createSlice({
       state.isAuthenticated = true;
     },
     logout: (state) => {
-      state = initialState;
+      state.email = "";
+      state.image = "";
+      state.country = "";
+      state.state = "";
+      state.city = "";
+      state.timezone = "";
+      state.id = "";
+      state.token = "";
+      state.refreshToken = "";
+      state.exp = "";
+      state.isAuthenticated = false;
     },
   },
 });
