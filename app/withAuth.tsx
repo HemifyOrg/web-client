@@ -1,10 +1,7 @@
 import { useRouter, withRouter } from "next/router";
 import { useAppSelector } from "./store";
 
-const withAuth = (
-  Component: React.ComponentType<any>,
-  authPage?: boolean
-) => {
+const withAuth = (Component: React.ComponentType<any>, authPage?: boolean) => {
   return withRouter((props: any) => {
     let user = useAppSelector((state) => state.user);
     const router = useRouter();
@@ -12,12 +9,12 @@ const withAuth = (
     const { query: searchQuery } = router;
     let query = searchQuery.next ? searchQuery.next : null;
 
-    if (!user && !authPage) {
+    if (!user.isAuthenticated && !authPage) {
       router.push(`/auth/login?next=${pathname}`);
       return null;
     }
 
-    if (user) {
+    if (user.isAuthenticated) {
       if (authPage) {
         router.push(`${query ? query : "/"}`);
         return null;

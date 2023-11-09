@@ -11,24 +11,26 @@ export type UserState = {
   token: string;
   refreshToken: string;
   exp: string;
-  loading: boolean;
+  isAuthenticated: boolean;
+};
+
+const initialState: UserState | null = {
+  email: "",
+  image: "",
+  country: "",
+  state: "",
+  city: "",
+  timezone: "",
+  id: "",
+  token: "",
+  refreshToken: "",
+  exp: "",
+  isAuthenticated: false,
 };
 
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    email: "",
-    image: "",
-    country: "",
-    state: "",
-    city: "",
-    timezone: "",
-    id: "",
-    token: "",
-    refreshToken: "",
-    exp: "",
-    loading: false,
-  } as UserState,
+  initialState: initialState,
 
   reducers: {
     login: (state, action: { payload: UserState; type: string }) => {
@@ -42,6 +44,20 @@ const userSlice = createSlice({
       state.token = action.payload.token;
       state.refreshToken = action.payload.refreshToken;
       state.exp = action.payload.exp;
+      state.isAuthenticated = true;
+    },
+    logout: (state) => {
+      state.email = "";
+      state.image = "";
+      state.country = "";
+      state.state = "";
+      state.city = "";
+      state.timezone = "";
+      state.id = "";
+      state.token = "";
+      state.refreshToken = "";
+      state.exp = "";
+      state.isAuthenticated = false;
     },
   },
 });

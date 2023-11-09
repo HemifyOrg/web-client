@@ -4,13 +4,14 @@ import { motion } from "framer-motion";
 import { loadConfig } from "../../features/configSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-import { AppDispatch, RootState } from "../../app/store";
+import { AppDispatch, RootState, useAppSelector } from "../../app/store";
 import { ThunkDispatch, AnyAction } from "@reduxjs/toolkit";
 import Link from "next/link";
 
 import { LogoSvg } from "@/utils";
 import { OutsideAlerter } from "../reusable";
 import Image from "next/image";
+import { userActions } from "@/app/actions";
 
 const TopNav = () => {
   const config = useSelector((state: RootState) => state.config);
@@ -128,7 +129,7 @@ const TopNav = () => {
     },
     {
       name: "Logout",
-      link: "/auth/logout",
+      onclick: () => userActions.logout(),
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
           <path
@@ -143,156 +144,152 @@ const TopNav = () => {
     },
   ];
 
-  const isLoggin = false;
+  const isLoggin = useAppSelector((state) => state.user.isAuthenticated);
 
   return (
-    <React.Fragment>
-      <nav
-        className={`w-full ${
-          scrolledTo5Percent ? "pt-0 px-1 lg:px-6" : "pt-4 px-2 lg:px-8"
-        } pb-4 mb-2 left-0 right-0 select-none z-[101] transition-all fixed font-medium`}
+    <nav
+      className={`w-full ${
+        scrolledTo5Percent ? "pt-0 px-1 lg:px-6" : "pt-4 px-2 lg:px-8"
+      } pb-4 mb-2 left-0 right-0 select-none z-[101] transition-all fixed font-medium`}
+    >
+      {/* menu */}
+      <div
+        className={`flex fixed w-screen justify-end h-screen transition-all ${
+          showMenu ? "opacity-100" : "opacity-0 pointer-events-none"
+        } top-0 xs:px-8 lg:px-12 md:px-6 px-3 left-0 bg-[#0000001a]`}
       >
-        {/* menu */}
-        <div
-          className={`flex fixed w-screen justify-end h-screen transition-all ${
-            showMenu ? "opacity-100" : "opacity-0 pointer-events-none"
-          } top-0 xs:px-8 lg:px-12 md:px-6 px-3 left-0 bg-[#0000001a]`}
+        <OutsideAlerter
+          visible={showMenu}
+          setState={hoverNav === false ? setShowMenu : undefined}
+          className="h-max"
         >
-          <OutsideAlerter
-            visible={showMenu}
-            setState={hoverNav === false ? setShowMenu : undefined}
-            className="h-max"
+          <motion.div
+            initial={{ x: "100%", y: scrolledTo5Percent ? 70 : 80 }}
+            animate={
+              showMenu
+                ? { x: 0, y: scrolledTo5Percent ? 70 : 80 }
+                : { x: "100%", y: scrolledTo5Percent ? 70 : 80 }
+            }
+            exit={{ x: "100%", y: scrolledTo5Percent ? 70 : 80 }}
+            transition={{ duration: 0.3 }}
+            className="flex flex-col pb-4 bg-gray-100 rounded-xl h-max gap-4"
           >
-            <motion.div
-              initial={{ x: "100%", y: scrolledTo5Percent ? 70 : 80 }}
-              animate={
-                showMenu
-                  ? { x: 0, y: scrolledTo5Percent ? 70 : 80 }
-                  : { x: "100%", y: scrolledTo5Percent ? 70 : 80 }
-              }
-              exit={{ x: "100%", y: scrolledTo5Percent ? 70 : 80 }}
-              transition={{ duration: 0.3 }}
-              className="flex flex-col pb-4 bg-gray-100 rounded-xl h-max gap-4"
-            >
-              <div className="w-full rounded-2xl -translate-y-1 px-6 py-6 bg-themeColor flex justify-between items-center">
-                <span className="text-gray-200 flex flex-col text-base">
-                  <span>Wallet</span> <span>balance</span>
-                </span>
-                <span className="text-lg text-slate-50">$7893.02</span>
-              </div>
-              <ul className="flex flex-col gap-2 justify-start items-start">
-                {navLinks.map((link, index) => (
-                  <li
-                    onClick={() => {
-                      setTimeout(() => setShowMenu(false), 200);
-                    }}
-                    key={index}
-                    className="flex w-full md:hover:bg-slate-200 active:bg-slate-200 group pl-4 pr-6 py-2 items-center justify-start gap-2 cursor-pointer select-none"
-                  >
-                    <div className="w-11 h-11 p-2 border group-hover:border-gray-500 rounded-xl flex items-center justify-center bg-[#E8E8E8]">
-                      <span className="w-full h-full">{link.icon}</span>
-                    </div>
-                    {link.link ? (
-                      <Link
-                        href={link.link}
-                        key={index}
-                        className="border-transparent hover:border-transparent hover:opacity-100"
-                      >
-                        <span className="text-gray-800 text-lg">
-                          {link.name}
-                        </span>
-                      </Link>
-                    ) : (
-                      <span
-                        className="text-gray-800 text-lg cursor-pointer"
-                        onClick={link.onclick}
-                        key={index}
-                      >
-                        {link.name}
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </OutsideAlerter>
-        </div>
-        <div
-          onMouseEnter={() => setHoverNav(true)}
-          onMouseLeave={() => setHoverNav(false)}
-          className={`shadow-sm w-full lg:pr-4 transition-all px-1 lg:pl-2 pb-2 ${
-            scrolledTo5Percent ? "rounded-b-3xl pt-[10px]" : "rounded-3xl pt-2"
-          } bg-navBarColor backdrop-blur-md flex items-center justify-between lg:gap-0 gap-5`}
-        >
-          {/* left */}
-          <div className="flex ml-2 gap-20 items-center lg:justify-between justify-center lg:ml-0">
-            <Link href="/" className="border-none hover:border-none">
-              <div className="w-10 h-10 flex justify-center items-center shadow-md bg-white p-2 rounded-lg">
-                <LogoSvg className="w-full h-full" />
-              </div>
-            </Link>
-          </div>
-
-          {/* right */}
-          <div className="flex gap-4 mr-1 items-center">
-            <span>
-              <svg
-                className="text-gray-600"
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M19 19L14.65 14.65M9 4C11.7614 4 14 6.23858 14 9M17 9C17 13.4183 13.4183 17 9 17C4.58172 17 1 13.4183 1 9C1 4.58172 4.58172 1 9 1C13.4183 1 17 4.58172 17 9Z"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
-            <div className="flex gap-2 w-max items-center">
-              {isLoggin ? (
-                <div
-                  className="pl-1 pr-3 py-1 flex gap-2 bg-themeColor rounded-full items-center justify-center cursor-pointer relative"
-                  onClick={() => setShowMenu(!showMenu)}
-                >
-                  <figure className="relative overflow-hidden w-6 h-6 flex justify-center items-center rounded-full bg-[#68E1FD]">
-                    <Image
-                      width={undefined}
-                      height={undefined}
-                      className="rounded-full w-full h-full object-cover"
-                      src="/images/user-pic.png"
-                      alt="Profile"
-                    />
-                  </figure>
-
-                  <span className="text-gray-200 text-sm">$7893.02</span>
-                </div>
-              ) : (
-                <>
-                  <Link
-                    href={"/auth/signup"}
-                    className="bg-themeColor hover:border-themeColor hover:border-b-themeColor hover:opacity-100 active:scale-90 transition-all text-gray-100 py-[2px] px-3 rounded-full"
-                  >
-                    Sign up
-                  </Link>
-
-                  <Link
-                    href={"/auth/login"}
-                    className="border-themeColor hover:border-themeColor hover:border-b-themeColor hover:opacity-100 active:scale-90 transition-all border-2 text-gray-900 py-[2px] px-3 rounded-full"
-                  >
-                    Log in
-                  </Link>
-                </>
-              )}
+            <div className="w-full rounded-2xl -translate-y-1 px-8 py-6 bg-themeColor flex justify-between items-center">
+              <span className="text-gray-200 flex flex-col text-base">
+                <span>Wallet</span> <span>balance</span>
+              </span>
+              <span className="text-lg text-slate-50">$7893.02</span>
             </div>
+            <ul className="flex flex-col gap-2 justify-start items-start">
+              {navLinks.map((link, index) => (
+                <li
+                  onClick={() => {
+                    setTimeout(() => setShowMenu(false), 200);
+                  }}
+                  key={index}
+                  className="flex w-full md:hover:bg-slate-200 active:bg-slate-200 group pl-4 pr-6 py-2 items-center justify-start gap-2 cursor-pointer select-none"
+                >
+                  <div className="w-11 h-11 p-2 border group-hover:border-gray-500 rounded-xl flex items-center justify-center bg-[#E8E8E8]">
+                    <span className="w-full h-full">{link.icon}</span>
+                  </div>
+                  {link.link ? (
+                    <Link
+                      href={link.link}
+                      key={index}
+                      className="border-transparent hover:border-transparent hover:opacity-100"
+                    >
+                      <span className="text-gray-800 text-lg">{link.name}</span>
+                    </Link>
+                  ) : (
+                    <span
+                      className="text-gray-800 text-lg cursor-pointer"
+                      onClick={link.onclick}
+                      key={index}
+                    >
+                      {link.name}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </OutsideAlerter>
+      </div>
+      <div
+        onMouseEnter={() => setHoverNav(true)}
+        onMouseLeave={() => setHoverNav(false)}
+        className={`shadow-sm w-full lg:pr-4 transition-all px-1 lg:pl-2 pb-2 ${
+          scrolledTo5Percent ? "rounded-b-3xl pt-[10px]" : "rounded-3xl pt-2"
+        } bg-navBarColor backdrop-blur-md flex items-center justify-between lg:gap-0 gap-5`}
+      >
+        {/* left */}
+        <div className="flex ml-2 gap-20 items-center lg:justify-between justify-center lg:ml-0">
+          <Link href="/" className="border-none hover:border-none">
+            <div className="w-10 h-10 flex justify-center items-center shadow-md bg-white p-2 rounded-lg">
+              <LogoSvg className="w-full h-full" />
+            </div>
+          </Link>
+        </div>
+
+        {/* right */}
+        <div className="flex gap-4 mr-1 items-center">
+          <span>
+            <svg
+              className="text-gray-600"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M19 19L14.65 14.65M9 4C11.7614 4 14 6.23858 14 9M17 9C17 13.4183 13.4183 17 9 17C4.58172 17 1 13.4183 1 9C1 4.58172 4.58172 1 9 1C13.4183 1 17 4.58172 17 9Z"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+          <div className="flex gap-2 w-max items-center">
+            {isLoggin ? (
+              <div
+                className="pl-1 pr-3 py-1 flex gap-2 bg-themeColor rounded-full items-center justify-center cursor-pointer relative"
+                onClick={() => setShowMenu(!showMenu)}
+              >
+                <figure className="relative overflow-hidden w-6 h-6 flex justify-center items-center rounded-full bg-[#68E1FD]">
+                  <Image
+                    width={24}
+                    height={24}
+                    className="rounded-full w-full h-full object-cover"
+                    src="/images/user-pic.png"
+                    alt="Profile"
+                  />
+                </figure>
+
+                <span className="text-gray-200 text-sm">$7893.02</span>
+              </div>
+            ) : (
+              <>
+                <Link
+                  href={"/auth/signup"}
+                  className="bg-themeColor hover:border-themeColor hover:border-b-themeColor hover:opacity-100 active:scale-90 transition-all text-gray-100 py-[2px] px-3 rounded-full"
+                >
+                  Sign up
+                </Link>
+
+                <Link
+                  href={"/auth/login"}
+                  className="border-themeColor hover:border-themeColor hover:border-b-themeColor hover:opacity-100 active:scale-90 transition-all border-2 text-gray-900 py-[2px] px-3 rounded-full"
+                >
+                  Log in
+                </Link>
+              </>
+            )}
           </div>
         </div>
-      </nav>
-    </React.Fragment>
+      </div>
+    </nav>
   );
 };
 export default TopNav;
