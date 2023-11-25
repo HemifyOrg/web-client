@@ -30,4 +30,37 @@ export const HISTORY = [
         amount: 10000.00,
         date: new Date(),
     },
+    {
+        id: 5,
+        type: 'Transfer',
+        process: 'Transfer from @Divine',
+        medium: 'Received',
+        amount: 10000.00,
+        date: new Date(),
+    },
+    {
+        id: 6,
+        type: 'Transfer',
+        process: 'Transfer from @BigMitch',
+        medium: 'Received',
+        amount: 10800.00,
+        date: new Date(),
+    },
+    {
+        id: 7,
+        type: 'Transfer',
+        process: 'Transfer to @Divine',
+        medium: 'Sent',
+        amount: 10000.00,
+        date: new Date(),
+    },
+    {
+        id: 8,
+        type: 'Transfer',
+        process: 'Transfer to @pheyi',
+        medium: 'Sent',
+        amount: 13000.00,
+        date: new Date(),
+    },
+    
 ]
