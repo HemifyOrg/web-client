@@ -13,7 +13,6 @@ const Visitor = () => {
     //     { name: 'WalletHistory' },
     //     { name: 'Favourites' },
     //   ];
-    
       // const [selectedTab, setSelectedTab] = useState("Summary");
     
 
