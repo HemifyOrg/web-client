@@ -13,26 +13,23 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
       {/* header */}
       <div className="pb-2 px-3 pt-2 gap-4 flex items-center justify-between">
         <span className="w-7">
-          {
-            categoriesList.find((n) => n.name === wager.event.category.name)
-              ?.icon
-          }
+          {categoriesList.find((n) => n.name === wager.event.category)?.icon}
         </span>
         <div className="w-full justify-center">
           <div className="flex justify-center items-center gap-2">
-            {wager.event && wager.event.category.league ? (
+            {wager.event && wager.event.league ? (
               <React.Fragment>
                 {/* home */}
                 <div className="flex gap-1">
                   <span className="font-medium text-sm">
-                    {wager.event.home.name}
+                    {wager.event.teams.home.name}
                   </span>
                   <Image
                     width={25}
                     height={25}
                     alt=""
                     className="object-contain"
-                    src={wager.event.home.image}
+                    src={wager.event.teams.home.logo}
                   />
                 </div>
 
@@ -46,10 +43,10 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
                     height={25}
                     alt=""
                     className="object-contain"
-                    src={wager.event.away.image}
+                    src={wager.event.teams.away.logo}
                   />
                   <span className="font-medium text-sm">
-                    {wager.event.away.name}
+                    {wager.event.teams.away.name}
                   </span>
                 </div>
               </React.Fragment>
@@ -115,21 +112,26 @@ export const EventWagerCardComponent = ({ event }: { event: EventType }) => {
       <div className="px-3 py-2 bg-white rounded-t-xl w-full shadow-sm flex justify-between gap-4 items-center">
         {/* match name */}
         <div className="flex gap-2 justify-start items-center">
-          {event.category.league ? (
-            <MatchLeagueIcon type={event.category.league.name} />
+          {event.league ? (
+            <Image
+              width={16}
+              height={17}
+              src={event.league.logo}
+              alt={event.league.name}
+              className="object-contain"
+            />
           ) : (
             <span className="w-[16px] h-[17px]">
-              {categoriesList.find((n) => n.name === event.category.name)?.icon}
+              {categoriesList.find((n) => n.name === event.category)?.icon}
             </span>
           )}
-          {event.category.league ? (
+          {event.league ? (
             <span className="font-medium capitalize">
-              {event.category.league.country} |{" "}
-              {event.category.league.name.replace(/_/g, " ")}
+              {event.league.country} | {event.league.name.replace(/_/g, " ")}
             </span>
           ) : (
             <span className="font-medium capitalize">
-              {event.category.name.replace(/_/g, " ")}
+              {event.category.replace(/_/g, " ")}
             </span>
           )}
         </div>
@@ -157,57 +159,47 @@ export const EventWagerCardComponent = ({ event }: { event: EventType }) => {
             <Image
               width={80}
               height={80}
-              src={event.home.image}
-              alt={event.home.name}
+              src={event.teams.home.logo}
+              alt={event.teams.home.name}
               className="object-contain"
             />
             <span className="text-gray-800 font-semibold flex justify-center w-full items-center text-center">
-              {event.home.name}
+              {event.teams.home.name}
             </span>
           </div>
           {/* vs */}
-          <span className="text-gray-400 z-10 text-5xl font-medium">vs</span>
+          <span className="text-gray-400 z-10 text-2xl flex flex-col gap-3 justify-center items-center font-medium">
+            {/* format date to "22/11/20" */}
+            <span>
+              {new Date(event.date).toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "numeric",
+                year: "2-digit",
+              })}
+            </span>
+            <span className="font-bold">16:23 {event.timezone}</span>
+          </span>
           {/* away */}
           <div className="z-10 flex flex-col gap-2 items-center justify-center">
             <Image
               width={80}
               height={80}
-              src={event.away.image}
-              alt={event.away.name}
+              src={event.teams.away.logo}
+              alt={event.teams.away.name}
               className="object-contain"
             />
             <span className="text-gray-800 font-semibold flex justify-center w-full items-center text-center">
-              {event.away.name}
+              {event.teams.away.name}
             </span>
           </div>
         </div>
 
         {/* wager info & create btn */}
-        <div className="flex flex-wrap w-full xs:justify-between justify-center gap-2 mb-2 pl-4 pr-2 items-center">
-          <span className="text-gray-400 flex gap-1 text-sm font-medium">
-            Ends in{" "}
-            <span className="text-gray-800 font-semibold flex gap-1">
-              <span>
-                {event.time.days}{" "}
-                {parseInt(event.time.days) > 1 ? "days" : "day"}
-              </span>
-              <span>
-                {event.time.hours}
-                {parseInt(event.time.hours) > 1 ? "hrs" : "hr"}
-              </span>
-              <span>
-                {event.time.minutes}
-                {parseInt(event.time.minutes) > 1 ? "mins" : "min"}
-              </span>
-            </span>
-          </span>
-
+        <div className="flex flex-wrap w-full justify-center gap-2 mb-2 pl-4 pr-2 items-center">
           <button
             type="button"
             onClick={() =>
-              router.push(
-                `/product/wager/${event.category.name}/${event.id}/create`
-              )
+              router.push(`/product/wager/${event.category}/${event.id}/create`)
             }
             className="md:px-10 px-4 py-2 xs:py-3 font-medium rounded-full bg-themeColor text-white"
           >
