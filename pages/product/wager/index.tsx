@@ -7,18 +7,34 @@ import {
   EventWagerCardComponent,
   WagerCardComponent,
 } from "@/components/reusable/wager";
+import { useQuery } from "@apollo/client";
+import { FIXTURES } from "@/graphql/queries/event";
 
 const EventsSlideComponent = () => {
-  const [events, setEvents] = useState<EventType[]>(eventList);
+  const [events, setEvents] = useState<EventType[]>([]);
   const [selectedFilterBySport, setSelectedFilterBySport] = useState("all");
   const [selectedFilterByCountry, setSelectedFilterByCountry] = useState("all");
   const [filteredEvents, setFilteredEvents] = useState<EventType[]>([]);
+
+  useQuery(FIXTURES, {
+    variables: {
+      status: "NS",
+      first: 10,
+    },
+    onCompleted(data) {
+      let result = data?.fixtures;
+      if (result) {
+        setEvents(result);
+        setFilteredEvents(result);
+      }
+    },
+  });
 
   useEffect(() => {
     if (selectedFilterBySport === "all") setFilteredEvents(events);
     else
       setFilteredEvents(
-        events.filter((event) => event.category.name === selectedFilterBySport)
+        events.filter((event) => event.category === selectedFilterBySport)
       );
   }, [selectedFilterBySport]);
   return (
@@ -51,7 +67,7 @@ const LobbySlideComponent = () => {
     if (selectedFilter === "all") setFilteredWagers(wagers);
     else
       setFilteredWagers(
-        wagers.filter((wager) => wager.event.category.name === selectedFilter)
+        wagers.filter((wager) => wager.event.category === selectedFilter)
       );
   }, [selectedFilter]);
   return (
