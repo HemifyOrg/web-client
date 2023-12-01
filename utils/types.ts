@@ -21,7 +21,7 @@ export type UserState = {
 export type SelectedTermType = {
   term: string;
   value: string;
-  option: { id: number, name: string; value?: string };
+  option: { id: number; name: string; value?: string };
 };
 
 export type WagerTermType = {
@@ -30,46 +30,61 @@ export type WagerTermType = {
   isLiked: boolean;
   options: { name: string; value?: string }[];
 };
+
+export type GoalsType = {
+  home: number;
+  away: number;
+};
+
+export type ScoreType = {
+  halftime: GoalsType;
+  fulltime: GoalsType;
+  extratime: GoalsType;
+  penalty: GoalsType;
+};
+
+export type TeamType = {
+  id: number;
+  name: string;
+  logo: string;
+};
+
 export interface EventType {
   id: number;
-  category: {
-    name:
-      | "soccer"
-      | "basketball"
-      | "baseball"
-      | "golf"
-      | "ruby"
-      | "hockey"
-      | "crypto"
-      | "politics"
-      | "nft"
-      | "favorite";
-    league?: {
-      id: string;
-      country: string;
-      name:
-        | "world_cup"
-        | "premier_league"
-        | "la_liga"
-        | "bundesliga"
-        | "serie_a"
-        | "ligue_1";
-    };
-  };
-  home: {
+  category:
+    | "soccer"
+    | "basketball"
+    | "baseball"
+    | "golf"
+    | "ruby"
+    | "hockey"
+    | "crypto"
+    | "politics"
+    | "nft"
+    | "favorite";
+
+  league?: {
+    id: number;
     name: string;
-    image: string;
+    country: string;
+    season?: string;
+    logo: string;
+    flag?: string;
+    round?: string;
   };
-  away: {
-    name: string;
-    image: string;
+  teams: {
+    home: TeamType & { winner?: boolean };
+    away: TeamType & { winner?: boolean };
   };
-  status: "live" | "upcoming" | "ended" | "cancelled";
-  time: {
-    days: string;
-    hours: string;
-    minutes: string;
+  goals?: GoalsType;
+  score?: ScoreType;
+  status: {
+    long: string;
+    short: string;
+    elapsed: number;
   };
+  date: string;
+  timestamp: number;
 }
 
 export interface WagerType {

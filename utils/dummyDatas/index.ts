@@ -4,12 +4,12 @@ export const eventList: EventType[] = [
   {
     id: 0,
     category: {
-      league: {
-        id: "122",
-        name: "premier_league",
-        country: "england",
-      },
       name: "soccer",
+    },
+    league: {
+      id: "122",
+      name: "premier_league",
+      country: "england",
     },
     home: {
       name: "Liverpool",
@@ -82,9 +82,7 @@ export const eventList: EventType[] = [
   },
   {
     id: 4,
-    category: {
-      name: "politics",
-    },
+    category: "politics",
     home: {
       name: "Donald Trump",
       image: "/images/trump.png",

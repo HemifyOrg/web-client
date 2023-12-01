@@ -7,14 +7,14 @@ import { wagerList } from "@/utils/dummyDatas";
 
 const LobbyComponent = () => {
   const [selectedTab, setSelectedTab] = useState("all");
-  const [wagers, setWagers] = useState<WagerType[]>(wagerList);
+  const [wagers, setWagers] = useState<WagerType[]>([]);
   const [filteredWagers, setFilteredWagers] = useState<WagerType[]>([]);
 
   useEffect(() => {
     if (selectedTab === "all") setFilteredWagers(wagers);
     else
       setFilteredWagers(
-        wagers.filter((wager) => wager.event.category.name === selectedTab)
+        wagers.filter((wager) => wager.event.category === selectedTab)
       );
   }, [selectedTab]);
   return (
