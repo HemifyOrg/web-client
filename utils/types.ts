@@ -19,7 +19,7 @@ export type UserState = {
 };
 
 export type SelectedTermType = {
-  term: string;
+  name: string;
   value: string;
   option: { id: number; name: string; value?: string };
 };
@@ -51,6 +51,7 @@ export type TeamType = {
 
 export interface EventType {
   id: number;
+  timezone: string;
   category:
     | "soccer"
     | "basketball"
@@ -64,7 +65,7 @@ export interface EventType {
     | "favorite";
 
   league?: {
-    id: number;
+    id: string;
     name: string;
     country: string;
     season?: string;
@@ -83,6 +84,11 @@ export interface EventType {
     short: string;
     elapsed: number;
   };
+  venue?: {
+    id: number;
+    name: string;
+    city: string;
+  }
   date: string;
   timestamp: number;
 }

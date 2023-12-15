@@ -1,7 +1,11 @@
-import { SelectedTermType } from "@/utils/types";
+import { EventType, SelectedTermType } from "@/utils/types";
 import { useRouter } from "next/router";
 import React from "react";
 import { motion } from "framer-motion";
+import { useMutation } from "@apollo/client";
+import { CREATE_EVENT } from "@/graphql/mutations";
+import errorHandler from "@/apollo/errorHandler";
+import { alertActions } from "@/app/actions";
 
 const WagerCreateSuccessCardComponent = () => {
   const [showShareCard, setShowShareCard] = React.useState(false);
@@ -112,13 +116,16 @@ const WagerCreateSuccessCardComponent = () => {
 const WagerReviewComponent = ({
   selectedWagerTerm,
   wagerAmount,
+  fixture,
 }: {
   selectedWagerTerm: SelectedTermType | null;
   wagerAmount: number;
+  fixture: EventType;
 }) => {
   const router = useRouter();
   const { eventCategory } = router.query;
   const [showPopup, setShowPopup] = React.useState(false);
+  const [createEvent, { loading }] = useMutation(CREATE_EVENT);
   return (
     <div className="flex flex-col gap-4 px-4 justify-center items-center">
       {showPopup && <WagerCreateSuccessCardComponent />}
@@ -156,7 +163,7 @@ const WagerReviewComponent = ({
         <div className="flex flex-col gap-3 justify-center items-start">
           <span className="text-slate-400 font-semibold text-base">Title</span>
           <span className="text-slate-700 font-semibold text-base capitalize">
-            Champions League
+            {fixture.league?.name}
           </span>
         </div>
         <div className="flex flex-col gap-3 justify-center items-start">
@@ -164,14 +171,14 @@ const WagerReviewComponent = ({
             Your wager terms
           </span>
           <span className="text-slate-600 font-semibold capitalize text-base">
-            {selectedWagerTerm?.term.includes("winner") ? (
+            {selectedWagerTerm?.name.includes("winner") ? (
               selectedWagerTerm?.option.name
             ) : (
               <>
                 {selectedWagerTerm?.option.name} (
                 {
                   <span className="text-themeColor text-sm">
-                    {selectedWagerTerm?.term}
+                    {selectedWagerTerm?.name}
                   </span>
                 }
                 )
@@ -241,7 +248,7 @@ const WagerReviewComponent = ({
               </defs>
             </svg>
           </div>
-          <span className="text-slate-700  font-semibold text-base">2.5%</span>
+          <span className="text-slate-700  font-semibold text-base">5%</span>
         </div>
 
         <div className="flex gap-3 justify-between items-start w-full">
@@ -249,7 +256,7 @@ const WagerReviewComponent = ({
             Potential win
           </span>
           <span className="text-slate-700 font-semibold text-base">
-            $292.5.00 USDT
+            ${(wagerAmount * 2) - (wagerAmount * 0.5)} USDT
           </span>
         </div>
       </div>
@@ -257,7 +264,25 @@ const WagerReviewComponent = ({
       <div className="w-full px-4 my-10">
         <button
           type="button"
-          onClick={() => setShowPopup(true)}
+          onClick={() => {
+            createEvent({
+              variables: {
+                stake: wagerAmount,
+                categoryName: eventCategory as string,
+                eventId: `${fixture.id}`,
+                prediction: selectedWagerTerm,
+              },
+              onCompleted: (data) => {
+                const { success, error } = data.createEvent;
+                if (success) setShowPopup(true);
+                else
+                  alertActions.addAlert({
+                    type: "error",
+                    message: error,
+                  });
+              },
+            }).catch(errorHandler);
+          }}
           disabled={isNaN(wagerAmount) || wagerAmount === 0}
           className="mx-auto bg-themeColor xs:px-20 w-full px-10 py-4 text-gray-100 rounded-full shadow"
         >
