@@ -69,7 +69,7 @@ const TermComponent = ({
             type="button"
             onClick={() =>
               setSelectedWagerTerm({
-                term: term.name,
+                name: term.name,
                 value: term.value,
                 option: {
                   id: index,
@@ -80,7 +80,7 @@ const TermComponent = ({
             }
             className={`bg-gray-200 rounded-lg border-2 ${
               selectedWagerTerm &&
-              selectedWagerTerm.term === term.name &&
+              selectedWagerTerm.name === term.name &&
               selectedWagerTerm.value === term.value &&
               selectedWagerTerm?.option?.id === index
                 ? "border-themeColor"

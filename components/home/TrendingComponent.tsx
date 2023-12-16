@@ -2,19 +2,18 @@ import { useState, useEffect } from "react";
 import { FilterMenuComponent } from "@/components/reusable";
 import { EventType } from "@/utils/types";
 import { categoriesList } from "@/utils";
-import { eventList } from "@/utils/dummyDatas";
 import { EventsSliderComponent } from "../reusable/event";
 
 const TrendingComponent = () => {
   const [selectedTab, setSelectedTab] = useState("all");
-  const [events, setEvents] = useState<EventType[]>(eventList);
+  const [events, setEvents] = useState<EventType[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<EventType[]>([]);
 
   useEffect(() => {
     if (selectedTab === "all") setFilteredEvents(events);
     else
       setFilteredEvents(
-        events.filter((event) => event.category.name === selectedTab)
+        events.filter((event) => event.category === selectedTab)
       );
   }, [selectedTab]);
 

@@ -119,12 +119,12 @@ export const Slide: React.FC<SlideProps> = ({
 
 const UserComponent = ({
   src,
-  username,
+  // username,
   className,
   textClassName,
   isVerified,
 }: {
-  username: string;
+  // username: string;
   isVerified?: boolean;
   src?: string;
   className?: string;
@@ -147,12 +147,12 @@ const UserComponent = ({
         />
       )}
       <div className="flex gap-1 items-start justify-center">
-        <span
+        {/* <span
           title={username}
           className={textClassName || "max-w-[80px] truncate"}
         >
           <span className="font-semibold">@{username}</span>
-        </span>
+        </span> */}
         {isVerified && (
           <svg
             xmlns="http://www.w3.org/2000/svg"

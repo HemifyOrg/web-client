@@ -1,5 +1,5 @@
 export interface UserType {
-  username: string;
+  id: string;
   image: string;
   isVerified: boolean;
 }
@@ -19,9 +19,9 @@ export type UserState = {
 };
 
 export type SelectedTermType = {
-  term: string;
+  name: string;
   value: string;
-  option: { id: number, name: string; value?: string };
+  option: { id: number; name: string; value?: string };
 };
 
 export type WagerTermType = {
@@ -30,47 +30,79 @@ export type WagerTermType = {
   isLiked: boolean;
   options: { name: string; value?: string }[];
 };
-export interface EventType {
+
+export type GoalsType = {
+  home: number;
+  away: number;
+};
+
+export type ScoreType = {
+  halftime: GoalsType;
+  fulltime: GoalsType;
+  extratime: GoalsType;
+  penalty: GoalsType;
+};
+
+export type TeamType = {
   id: number;
-  category: {
-    name:
-      | "soccer"
-      | "basketball"
-      | "baseball"
-      | "golf"
-      | "ruby"
-      | "hockey"
-      | "crypto"
-      | "politics"
-      | "nft"
-      | "favorite";
-    league?: {
-      id: string;
-      country: string;
-      name:
-        | "world_cup"
-        | "premier_league"
-        | "la_liga"
-        | "bundesliga"
-        | "serie_a"
-        | "ligue_1";
-    };
-  };
-  home: {
+  name: string;
+  logo: string;
+};
+
+export interface APIEventType {
+  id: number;
+  timezone: string;
+  category:
+    | "soccer"
+    | "basketball"
+    | "baseball"
+    | "golf"
+    | "ruby"
+    | "hockey"
+    | "crypto"
+    | "politics"
+    | "nft"
+    | "favorite";
+
+  league?: {
+    id: string;
     name: string;
-    image: string;
+    country: string;
+    season?: string;
+    logo: string;
+    flag?: string;
+    round?: string;
   };
-  away: {
+  teams: {
+    home: TeamType & { winner?: boolean };
+    away: TeamType & { winner?: boolean };
+  };
+  goals?: GoalsType;
+  score?: ScoreType;
+  status: {
+    long: string;
+    short: string;
+    elapsed: number;
+  };
+  venue?: {
+    id: number;
     name: string;
-    image: string;
+    city: string;
   };
-  status: "live" | "upcoming" | "ended" | "cancelled";
-  time: {
-    days: string;
-    hours: string;
-    minutes: string;
-  };
+  date: string;
+  timestamp: number;
 }
+
+export type EventType = {
+  category: string;
+  eventId: number;
+  prediction: SelectedTermType;
+  creator: UserType;
+  stake: string;
+  timestamp: number;
+  homeTeam: TeamType;
+  awayTeam: TeamType;
+};
 
 export interface WagerType {
   id: number;

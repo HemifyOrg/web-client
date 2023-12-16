@@ -1,7 +1,11 @@
-import { SelectedTermType } from "@/utils/types";
+import { APIEventType, SelectedTermType } from "@/utils/types";
 import { useRouter } from "next/router";
 import React from "react";
 import { motion } from "framer-motion";
+import { useMutation } from "@apollo/client";
+import { CREATE_EVENT } from "@/graphql/mutations";
+import errorHandler from "@/apollo/errorHandler";
+import { alertActions } from "@/app/actions";
 
 const WagerCreateSuccessCardComponent = () => {
   const [showShareCard, setShowShareCard] = React.useState(false);
@@ -112,13 +116,16 @@ const WagerCreateSuccessCardComponent = () => {
 const WagerReviewComponent = ({
   selectedWagerTerm,
   wagerAmount,
+  fixture,
 }: {
   selectedWagerTerm: SelectedTermType | null;
   wagerAmount: number;
+  fixture: APIEventType;
 }) => {
   const router = useRouter();
   const { eventCategory } = router.query;
   const [showPopup, setShowPopup] = React.useState(false);
+  const [createEvent, { loading }] = useMutation(CREATE_EVENT);
   return (
     <div className="flex flex-col gap-4 px-4 justify-center items-center">
       {showPopup && <WagerCreateSuccessCardComponent />}
@@ -156,7 +163,7 @@ const WagerReviewComponent = ({
         <div className="flex flex-col gap-3 justify-center items-start">
           <span className="text-slate-400 font-semibold text-base">Title</span>
           <span className="text-slate-700 font-semibold text-base capitalize">
-            Champions League
+            {fixture.league?.name}
           </span>
         </div>
         <div className="flex flex-col gap-3 justify-center items-start">
@@ -164,14 +171,14 @@ const WagerReviewComponent = ({
             Your wager terms
           </span>
           <span className="text-slate-600 font-semibold capitalize text-base">
-            {selectedWagerTerm?.term.includes("winner") ? (
+            {selectedWagerTerm?.name.includes("winner") ? (
               selectedWagerTerm?.option.name
             ) : (
               <>
                 {selectedWagerTerm?.option.name} (
                 {
                   <span className="text-themeColor text-sm">
-                    {selectedWagerTerm?.term}
+                    {selectedWagerTerm?.name}
                   </span>
                 }
                 )
@@ -205,8 +212,8 @@ const WagerReviewComponent = ({
                   fill="#26A17B"
                 />
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M13.4411 13.0373V13.0358C13.3586 13.0418 12.9334 13.0673 11.9846 13.0673C11.2271 13.0673 10.6939 13.0448 10.5064 13.0358V13.038C7.59036 12.9098 5.41386 12.402 5.41386 11.7945C5.41386 11.1878 7.59036 10.68 10.5064 10.5495V12.5325C10.6969 12.546 11.2429 12.5783 11.9974 12.5783C12.9026 12.5783 13.3564 12.5408 13.4411 12.5333V10.551C16.3511 10.6808 18.5224 11.1885 18.5224 11.7945C18.5224 12.402 16.3511 12.9083 13.4411 13.0373ZM13.4411 10.3448V8.57026H17.5016V5.86426H6.44586V8.57026H10.5064V10.344C7.20636 10.4955 4.72461 11.1495 4.72461 11.9325C4.72461 12.7155 7.20636 13.3688 10.5064 13.521V19.2075H13.4411V13.5195C16.7359 13.368 19.2116 12.7148 19.2116 11.9325C19.2116 11.1503 16.7359 10.497 13.4411 10.3448Z"
                   fill="white"
                 />
@@ -226,12 +233,12 @@ const WagerReviewComponent = ({
               viewBox="0 0 10 10"
               fill="none"
             >
-              <g clip-path="url(#clip0_10182_145049)">
+              <g clipPath="url(#clip0_10182_145049)">
                 <path
                   d="M5 6.66666V4.99999M5 3.33333H5.00417M1.25 3.30893V6.69106C1.25 6.83383 1.25 6.90521 1.27104 6.96888C1.28964 7.0252 1.32007 7.0769 1.36026 7.12052C1.4057 7.16983 1.4681 7.2045 1.5929 7.27383L4.67624 8.98679C4.79441 9.05244 4.85349 9.08527 4.91606 9.09814C4.97144 9.10952 5.02856 9.10952 5.08394 9.09814C5.14651 9.08527 5.20559 9.05244 5.32376 8.98679L8.4071 7.27383C8.5319 7.2045 8.5943 7.16983 8.63974 7.12052C8.67993 7.0769 8.71036 7.0252 8.72896 6.96888C8.75 6.90521 8.75 6.83383 8.75 6.69106V3.30893C8.75 3.16616 8.75 3.09478 8.72896 3.03111C8.71036 2.97479 8.67993 2.92309 8.63974 2.87947C8.5943 2.83016 8.5319 2.79549 8.4071 2.72616L5.32376 1.0132C5.20559 0.947546 5.14651 0.914722 5.08394 0.901853C5.02856 0.890463 4.97144 0.890463 4.91606 0.901853C4.85349 0.914722 4.79441 0.947546 4.67624 1.0132L1.5929 2.72616C1.4681 2.79549 1.4057 2.83016 1.36026 2.87947C1.32007 2.92309 1.28964 2.97479 1.27104 3.03111C1.25 3.09478 1.25 3.16616 1.25 3.30893Z"
                   stroke="#F59E0B"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </g>
               <defs>
@@ -241,7 +248,7 @@ const WagerReviewComponent = ({
               </defs>
             </svg>
           </div>
-          <span className="text-slate-700  font-semibold text-base">2.5%</span>
+          <span className="text-slate-700  font-semibold text-base">5%</span>
         </div>
 
         <div className="flex gap-3 justify-between items-start w-full">
@@ -249,7 +256,7 @@ const WagerReviewComponent = ({
             Potential win
           </span>
           <span className="text-slate-700 font-semibold text-base">
-            $292.5.00 USDT
+            ${(wagerAmount * 2) - (wagerAmount * 0.5)} USDT
           </span>
         </div>
       </div>
@@ -257,7 +264,25 @@ const WagerReviewComponent = ({
       <div className="w-full px-4 my-10">
         <button
           type="button"
-          onClick={() => setShowPopup(true)}
+          onClick={() => {
+            createEvent({
+              variables: {
+                stake: wagerAmount,
+                category: eventCategory as string,
+                eventId: `${fixture.id}`,
+                prediction: selectedWagerTerm,
+              },
+              onCompleted: (data) => {
+                const { success, error } = data.createEvent;
+                if (success) setShowPopup(true);
+                else
+                  alertActions.addAlert({
+                    type: "error",
+                    message: error,
+                  });
+              },
+            }).catch(errorHandler);
+          }}
           disabled={isNaN(wagerAmount) || wagerAmount === 0}
           className="mx-auto bg-themeColor xs:px-20 w-full px-10 py-4 text-gray-100 rounded-full shadow"
         >

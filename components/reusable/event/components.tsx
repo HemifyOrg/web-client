@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Keyboard, Scrollbar, Pagination } from "swiper/modules";
 import { SlideControlButtons } from "@/components/reusable";
 
-export const EventCardComponet = ({ event }: { event: EventType }) => {
+export const EventCardComponet = ({ event }: { event: any }) => {
   return (
     <div className="mx-auto">
       {/* date */}
@@ -40,24 +40,26 @@ export const EventCardComponet = ({ event }: { event: EventType }) => {
           <div className="px-3 py-2 bg-white rounded-t-xl w-full shadow-sm flex justify-between gap-4 items-center">
             {/* match name */}
             <div className="flex gap-2 justify-start items-center">
-              {event.category.league ? (
-                <MatchLeagueIcon type={event.category.league.name} />
+              {event.league ? (
+                <Image
+                  width={16}
+                  height={17}
+                  src={event.league.logo}
+                  alt={event.league.name}
+                  className="object-contain"
+                />
               ) : (
                 <span className="w-[16px] h-[17px]">
-                  {
-                    categoriesList.find((n) => n.name === event.category.name)
-                      ?.icon
-                  }
+                  {categoriesList.find((n) => n.name === event.category)?.icon}
                 </span>
               )}
-              {event.category.league ? (
+              {event.league ? (
                 <span className="font-medium capitalize">
-                  {event.category.league.country},{" "}
-                  {event.category.league.name.replace(/_/g, " ")}
+                  {event.league.country}, {event.league.name.replace(/_/g, " ")}
                 </span>
               ) : (
                 <span className="font-medium capitalize">
-                  {event.category.name.replace(/_/g, " ")}
+                  {event.category.replace(/_/g, " ")}
                 </span>
               )}
             </div>
@@ -87,13 +89,13 @@ export const EventCardComponet = ({ event }: { event: EventType }) => {
               <Image
                 width={80}
                 height={80}
-                src={event.home.image}
-                alt={event.home.name}
+                src={event.teams.home.logo}
+                alt={event.teams.home.name}
                 className="object-contain"
               />
               <span>
                 <span className="text-white font-medium">
-                  {event.home.name}
+                  {event.teams.home.name}
                 </span>
               </span>
             </div>
@@ -104,13 +106,13 @@ export const EventCardComponet = ({ event }: { event: EventType }) => {
               <Image
                 width={80}
                 height={80}
-                src={event.away.image}
-                alt={event.away.name}
+                src={event.teams.away.logo}
+                alt={event.teams.away.name}
                 className="object-contain"
               />
               <span>
                 <span className="text-white font-medium">
-                  {event.away.name}
+                  {event.teams.away.name}
                 </span>
               </span>
             </div>

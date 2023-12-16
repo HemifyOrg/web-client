@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { FilterMenuComponent } from "../reusable";
 import { categoriesList } from "@/utils";
-import { WagerCardComponent } from "../reusable/wager";
-import { WagerType } from "@/utils/types";
-import { wagerList } from "@/utils/dummyDatas";
+import { EventCardComponent } from "../reusable/wager";
+import { EventType } from "@/utils/types";
+import { useQuery } from "@apollo/client";
+import { EVENTS } from "@/graphql/queries/event";
 
 const LobbyComponent = () => {
   const [selectedTab, setSelectedTab] = useState("all");
-  const [wagers, setWagers] = useState<WagerType[]>(wagerList);
-  const [filteredWagers, setFilteredWagers] = useState<WagerType[]>([]);
+  const [events, setEvents] = useState<EventType[]>([]);
+  const [filteredEvents, setFilteredEvents] = useState<EventType[]>([]);
+
+  useQuery(EVENTS, {
+    variables: { category: selectedTab },
+    onCompleted: (data) => {
+      console.log(data.events);
+      setEvents(data.events);
+      setFilteredEvents(data.events);
+    },
+  });
 
   useEffect(() => {
-    if (selectedTab === "all") setFilteredWagers(wagers);
+    if (selectedTab === "all") setFilteredEvents(events);
     else
-      setFilteredWagers(
-        wagers.filter((wager) => wager.event.category.name === selectedTab)
+      setFilteredEvents(
+        events.filter((event) => event.category === selectedTab)
       );
   }, [selectedTab]);
   return (
@@ -35,8 +45,8 @@ const LobbyComponent = () => {
       </div>
 
       <div className="flex flex-col gap-5 justify-center items-center my-6 px-3 md:max-w-xl max-w-md w-full">
-        {filteredWagers.map((wager, index) => (
-          <WagerCardComponent wager={wager} key={index} />
+        {filteredEvents.map((event, index) => (
+          <EventCardComponent event={event} key={index} />
         ))}
       </div>
     </section>
