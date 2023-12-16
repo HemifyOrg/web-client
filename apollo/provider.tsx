@@ -17,7 +17,7 @@ function makeClient() {
     return {
       headers: {
         ...headers,
-        authorization: token ? `Bearer ${token}` : "",
+        authorization: token && token !== "" ? `JWT ${token}` : "",
       },
     };
   });

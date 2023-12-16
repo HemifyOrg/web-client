@@ -42,3 +42,51 @@ export const FIXTURES = gql`
     }
   }
 `;
+
+export const FIXTURE = gql`
+  query Fixture($fixtureId: String!) {
+    fixture(fixtureId: $fixtureId) {
+      category
+      timezone
+      id
+      goals {
+        home
+        away
+      }
+      status {
+        long
+        short
+        elapsed
+      }
+      date
+      timestamp
+      league {
+        id
+        name
+        country
+        season
+        logo
+        flag
+        round
+      }
+      venue {
+      name
+      city
+    }
+      teams {
+        home {
+          id
+          name
+          winner
+          logo
+        }
+        away {
+          id
+          name
+          winner
+          logo
+        }
+      }
+    }
+  }
+`;

@@ -1,35 +1,34 @@
-import { MatchLeagueIcon, categoriesList } from "@/utils";
-import { EventType, WagerType } from "@/utils/types";
+import { categoriesList } from "@/utils";
+import { APIEventType, EventType } from "@/utils/types";
 import Image from "next/image";
 import React from "react";
 import UserComponent from "../components";
 import { useRouter } from "next/router";
 
-export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
-  return wager.prediction &&
-    typeof wager.prediction === "string" &&
-    wager.prediction.split(";")?.length === 3 ? (
+export const EventCardComponent = ({ event }: { event: EventType }) => {
+  console.log(event);
+  return (
     <div className="w-full bg-white rounded-xl overflow-hidden divide-y-2">
       {/* header */}
       <div className="pb-2 px-3 pt-2 gap-4 flex items-center justify-between">
         <span className="w-7">
-          {categoriesList.find((n) => n.name === wager.event.category)?.icon}
+          {categoriesList.find((n) => n.name === event.category.toLowerCase())?.icon}
         </span>
         <div className="w-full justify-center">
           <div className="flex justify-center items-center gap-2">
-            {wager.event && wager.event.league ? (
+            {event && event.homeTeam ? (
               <React.Fragment>
                 {/* home */}
                 <div className="flex gap-1">
                   <span className="font-medium text-sm">
-                    {wager.event.teams.home.name}
+                    {event.homeTeam.name}
                   </span>
                   <Image
                     width={25}
                     height={25}
                     alt=""
                     className="object-contain"
-                    src={wager.event.teams.home.logo}
+                    src={event.homeTeam.logo}
                   />
                 </div>
 
@@ -43,15 +42,16 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
                     height={25}
                     alt=""
                     className="object-contain"
-                    src={wager.event.teams.away.logo}
+                    src={event.awayTeam.logo}
                   />
                   <span className="font-medium text-sm">
-                    {wager.event.teams.away.name}
+                    {event.awayTeam.name}
                   </span>
                 </div>
               </React.Fragment>
             ) : (
-              <span className="font-medium">{wager.topic}</span>
+              // <span className="font-medium">{event.topic}</span>
+              <></>
             )}
           </div>
         </div>
@@ -63,15 +63,15 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
         <div className="flex gap-1 justify-center items-center">
           {/* user content */}
           <UserComponent
-            src={wager.creator.image}
-            username={wager.creator.username}
+            src={event.creator?.image}
+            // username={event.creator?.username || "Anonymous"}
           />
 
           {/* wage */}
           <span className="flex justify-center items-center gap-1 pr-4">
             Put up a{" "}
             <span className="px-4 py-1 bg-lightGold rounded font-medium">
-              ${wager.currentStake}
+              ${event.stake}
             </span>{" "}
             Wager
           </span>
@@ -79,11 +79,13 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
 
         {/* wager challenge */}
         <div className="flex justify-between xs:gap-16 gap-8 p-2 rounded bg-lightGold">
-          <span className="font-medium">{wager.prediction.split(";")[0]}</span>
-          <span>{wager.prediction.split(";")[1]}</span>
-          <span className="font-semibold">
-            {wager.prediction.split(";")[2]}
-          </span>
+          {/* <span className="font-medium">
+          {event.prediction.option.name}
+        </span>
+        <span>{event.prediction.split(";")[1]}</span>
+        <span className="font-semibold">
+          {event.prediction.name}
+        </span> */}
         </div>
 
         {/* challenge btn */}
@@ -94,17 +96,15 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
           Challenge
         </button>
         <div className="w-full flex font-medium text-xs px-4 text-gray-400 justify-between items-center">
-          <span>Posted {wager.date.start}</span>
-          <span>Expires in {wager.date.end}</span>
+          <span>Posted {event.timestamp}</span>
+          <span>Expires in {event.timestamp}</span>
         </div>
       </div>
     </div>
-  ) : (
-    <></>
   );
 };
 
-export const EventWagerCardComponent = ({ event }: { event: EventType }) => {
+export const EventWagerCardComponent = ({ event }: { event: APIEventType }) => {
   const router = useRouter();
   return (
     <div className="w-full bg-white rounded-lg divide-y-2">
@@ -154,7 +154,7 @@ export const EventWagerCardComponent = ({ event }: { event: EventType }) => {
       {/* content */}
       <div className="flex pt-4 pb-2 gap-5 flex-col w-full justify-center items-center">
         {/* match team info */}
-        <div className="px-4 sm:px-10 py-4 overflow-hidden relative w-full rounded-lg flex justify-between items-center">
+        <div className="px-2 sm:px-10 py-4 overflow-hidden relative w-full rounded-lg flex justify-between items-center">
           <div className="z-10 flex flex-col gap-2 items-center justify-center">
             <Image
               width={80}
@@ -168,7 +168,7 @@ export const EventWagerCardComponent = ({ event }: { event: EventType }) => {
             </span>
           </div>
           {/* vs */}
-          <span className="text-gray-400 z-10 text-2xl flex flex-col gap-3 justify-center items-center font-medium">
+          <span className="text-gray-400 z-10 sm:text-2xl mx-2 flex flex-col gap-3 justify-center items-center font-medium">
             {/* format date to "22/11/20" */}
             <span>
               {new Date(event.date).toLocaleDateString("en-US", {

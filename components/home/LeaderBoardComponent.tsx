@@ -164,7 +164,7 @@ const LeaderBoardComponent = () => {
               <UserComponent
                 src={user.image}
                 className="flex gap-1 flex-wrap items-center"
-                username={user.username}
+                // username={user.username}
               />
             </div>
 

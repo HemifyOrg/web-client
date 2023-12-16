@@ -1,5 +1,5 @@
 export interface UserType {
-  username: string;
+  id: string;
   image: string;
   isVerified: boolean;
 }
@@ -19,7 +19,7 @@ export type UserState = {
 };
 
 export type SelectedTermType = {
-  term: string;
+  name: string;
   value: string;
   option: { id: number; name: string; value?: string };
 };
@@ -49,8 +49,9 @@ export type TeamType = {
   logo: string;
 };
 
-export interface EventType {
+export interface APIEventType {
   id: number;
+  timezone: string;
   category:
     | "soccer"
     | "basketball"
@@ -64,7 +65,7 @@ export interface EventType {
     | "favorite";
 
   league?: {
-    id: number;
+    id: string;
     name: string;
     country: string;
     season?: string;
@@ -83,9 +84,25 @@ export interface EventType {
     short: string;
     elapsed: number;
   };
+  venue?: {
+    id: number;
+    name: string;
+    city: string;
+  };
   date: string;
   timestamp: number;
 }
+
+export type EventType = {
+  category: string;
+  eventId: number;
+  prediction: SelectedTermType;
+  creator: UserType;
+  stake: string;
+  timestamp: number;
+  homeTeam: TeamType;
+  awayTeam: TeamType;
+};
 
 export interface WagerType {
   id: number;

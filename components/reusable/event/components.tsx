@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Keyboard, Scrollbar, Pagination } from "swiper/modules";
 import { SlideControlButtons } from "@/components/reusable";
 
-export const EventCardComponet = ({ event }: { event: EventType }) => {
+export const EventCardComponet = ({ event }: { event: any }) => {
   return (
     <div className="mx-auto">
       {/* date */}

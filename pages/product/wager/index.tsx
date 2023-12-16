@@ -1,20 +1,19 @@
 import { useState, useEffect, Fragment } from "react";
 import { categoriesList } from "@/utils";
 import { FilterMenuComponent } from "@/components/reusable";
-import { EventType, WagerType } from "@/utils/types";
-import { eventList, wagerList } from "@/utils/dummyDatas";
+import { APIEventType, EventType } from "@/utils/types";
 import {
+  EventCardComponent,
   EventWagerCardComponent,
-  WagerCardComponent,
 } from "@/components/reusable/wager";
 import { useQuery } from "@apollo/client";
 import { FIXTURES } from "@/graphql/queries/event";
 
 const EventsSlideComponent = () => {
-  const [events, setEvents] = useState<EventType[]>([]);
+  const [events, setEvents] = useState<APIEventType[]>([]);
   const [selectedFilterBySport, setSelectedFilterBySport] = useState("all");
   const [selectedFilterByCountry, setSelectedFilterByCountry] = useState("all");
-  const [filteredEvents, setFilteredEvents] = useState<EventType[]>([]);
+  const [filteredEvents, setFilteredEvents] = useState<APIEventType[]>([]);
 
   useQuery(FIXTURES, {
     variables: {
@@ -60,14 +59,14 @@ const EventsSlideComponent = () => {
 };
 const LobbySlideComponent = () => {
   const [selectedFilter, setSelectedFilter] = useState("all");
-  const [wagers, setWagers] = useState<WagerType[]>(wagerList);
-  const [filteredWagers, setFilteredWagers] = useState<WagerType[]>([]);
+  const [events, setEvents] = useState<EventType[]>([]);
+  const [filteredEvents, setFilteredEvents] = useState<EventType[]>([]);
 
   useEffect(() => {
-    if (selectedFilter === "all") setFilteredWagers(wagers);
+    if (selectedFilter === "all") setFilteredEvents(events);
     else
-      setFilteredWagers(
-        wagers.filter((wager) => wager.event.category === selectedFilter)
+      setFilteredEvents(
+        events.filter((event) => event.category === selectedFilter)
       );
   }, [selectedFilter]);
   return (
@@ -81,8 +80,8 @@ const LobbySlideComponent = () => {
       </div>
 
       <div className="flex flex-col gap-5 justify-center items-center my-6 md:max-w-xl max-w-md w-full">
-        {filteredWagers.map((wager, index) => (
-          <WagerCardComponent wager={wager} key={index} />
+        {filteredEvents.map((event, index) => (
+          <EventCardComponent event={event} key={index} />
         ))}
       </div>
     </Fragment>

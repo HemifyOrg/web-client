@@ -8,8 +8,12 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'media-4.api-sports.io',
+        protocol: "https",
+        hostname: "media-4.api-sports.io",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
       },
     ],
   },
