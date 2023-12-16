@@ -154,7 +154,7 @@ export const EventWagerCardComponent = ({ event }: { event: APIEventType }) => {
       {/* content */}
       <div className="flex pt-4 pb-2 gap-5 flex-col w-full justify-center items-center">
         {/* match team info */}
-        <div className="px-2 sm:px-10 py-4 overflow-hidden relative w-full rounded-lg flex justify-between items-center">
+        <div className="px-4 sm:px-10 py-4 overflow-hidden relative w-full rounded-lg flex justify-between items-center">
           <div className="z-10 flex flex-col gap-2 items-center justify-center">
             <Image
               width={80}
@@ -168,7 +168,7 @@ export const EventWagerCardComponent = ({ event }: { event: APIEventType }) => {
             </span>
           </div>
           {/* vs */}
-          <span className="text-gray-400 z-10 sm:text-2xl mx-2 flex flex-col gap-3 justify-center items-center font-medium">
+          <span className="text-gray-400 z-10 text-2xl flex flex-col gap-3 justify-center items-center font-medium">
             {/* format date to "22/11/20" */}
             <span>
               {new Date(event.date).toLocaleDateString("en-US", {
