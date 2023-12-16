@@ -303,7 +303,7 @@ const CreateWagerMainPage = () => {
             <div className="flex flex-col gap-2 w-full mx-auto">
               {/* top */}
               {event?.league && (
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center gap-2">
                   <figure className="w-12 h-12 rounded-full">
                     <Image
                       src={event?.league?.logo}
@@ -319,7 +319,7 @@ const CreateWagerMainPage = () => {
               )}
 
               {/* bottom */}
-              <div className="bg-gray-50 rounded-2xl gap-10 w-full px-8 py-4 flex justify-between items-center shadow-sm">
+              <div className="bg-gray-50 rounded-2xl gap-10 w-full xs:px-8 px-2 py-4 flex justify-between items-center shadow-sm">
                 <div className="flex flex-col items-center justify-center gap-2">
                   <Image
                     width={80}
