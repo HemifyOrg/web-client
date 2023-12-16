@@ -7,6 +7,14 @@ export const EVENTS = gql`
         id
         image
       }
+      homeTeam {
+        name
+        logo
+      }
+      awayTeam {
+        name
+        logo
+      }
       category
       stake
       eventId
