@@ -91,6 +91,9 @@ export interface EventType {
   }
   date: string;
   timestamp: number;
+  prediction?: SelectedTermType;
+  creator?: UserType;
+  stake?: string;
 }
 
 export interface WagerType {

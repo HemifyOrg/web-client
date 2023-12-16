@@ -5,31 +5,29 @@ import React from "react";
 import UserComponent from "../components";
 import { useRouter } from "next/router";
 
-export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
-  return wager.prediction &&
-    typeof wager.prediction === "string" &&
-    wager.prediction.split(";")?.length === 3 ? (
+export const EventCardComponent = ({ event }: { event: EventType }) => {
+  return (
     <div className="w-full bg-white rounded-xl overflow-hidden divide-y-2">
       {/* header */}
       <div className="pb-2 px-3 pt-2 gap-4 flex items-center justify-between">
         <span className="w-7">
-          {categoriesList.find((n) => n.name === wager.event.category)?.icon}
+          {categoriesList.find((n) => n.name === event.category)?.icon}
         </span>
         <div className="w-full justify-center">
           <div className="flex justify-center items-center gap-2">
-            {wager.event && wager.event.league ? (
+            {event && event.league ? (
               <React.Fragment>
                 {/* home */}
                 <div className="flex gap-1">
                   <span className="font-medium text-sm">
-                    {wager.event.teams.home.name}
+                    {event.teams.home.name}
                   </span>
                   <Image
                     width={25}
                     height={25}
                     alt=""
                     className="object-contain"
-                    src={wager.event.teams.home.logo}
+                    src={event.teams.home.logo}
                   />
                 </div>
 
@@ -43,15 +41,16 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
                     height={25}
                     alt=""
                     className="object-contain"
-                    src={wager.event.teams.away.logo}
+                    src={event.teams.away.logo}
                   />
                   <span className="font-medium text-sm">
-                    {wager.event.teams.away.name}
+                    {event.teams.away.name}
                   </span>
                 </div>
               </React.Fragment>
             ) : (
-              <span className="font-medium">{wager.topic}</span>
+              // <span className="font-medium">{event.topic}</span>
+              <></>
             )}
           </div>
         </div>
@@ -63,15 +62,15 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
         <div className="flex gap-1 justify-center items-center">
           {/* user content */}
           <UserComponent
-            src={wager.creator.image}
-            username={wager.creator.username}
+            src={event.creator?.image}
+            username={event.creator?.username || "Anonymous"}
           />
 
           {/* wage */}
           <span className="flex justify-center items-center gap-1 pr-4">
             Put up a{" "}
             <span className="px-4 py-1 bg-lightGold rounded font-medium">
-              ${wager.currentStake}
+              ${event.stake}
             </span>{" "}
             Wager
           </span>
@@ -79,11 +78,13 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
 
         {/* wager challenge */}
         <div className="flex justify-between xs:gap-16 gap-8 p-2 rounded bg-lightGold">
-          <span className="font-medium">{wager.prediction.split(";")[0]}</span>
-          <span>{wager.prediction.split(";")[1]}</span>
-          <span className="font-semibold">
-            {wager.prediction.split(";")[2]}
-          </span>
+          {/* <span className="font-medium">
+          {event.prediction.option.name}
+        </span>
+        <span>{event.prediction.split(";")[1]}</span>
+        <span className="font-semibold">
+          {event.prediction.name}
+        </span> */}
         </div>
 
         {/* challenge btn */}
@@ -94,13 +95,11 @@ export const WagerCardComponent = ({ wager }: { wager: WagerType }) => {
           Challenge
         </button>
         <div className="w-full flex font-medium text-xs px-4 text-gray-400 justify-between items-center">
-          <span>Posted {wager.date.start}</span>
-          <span>Expires in {wager.date.end}</span>
+          <span>Posted {event.date}</span>
+          <span>Expires in {event.timestamp}</span>
         </div>
       </div>
     </div>
-  ) : (
-    <></>
   );
 };
 

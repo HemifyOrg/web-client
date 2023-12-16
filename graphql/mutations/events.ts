@@ -3,13 +3,13 @@ import { gql } from "@apollo/client";
 export const CREATE_EVENT = gql`
   mutation CREATE_EVENT_MUTATION(
     $stake: Decimal!
-    $categoryName: String!
+    $category: String!
     $eventId: String!
     $prediction: PredictionInput!
   ) {
     createEvent(
       stake: $stake
-      categoryName: $categoryName
+      category: $category
       eventId: $eventId
       prediction: $prediction
     ) {

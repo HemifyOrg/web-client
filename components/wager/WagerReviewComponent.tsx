@@ -268,7 +268,7 @@ const WagerReviewComponent = ({
             createEvent({
               variables: {
                 stake: wagerAmount,
-                categoryName: eventCategory as string,
+                category: eventCategory as string,
                 eventId: `${fixture.id}`,
                 prediction: selectedWagerTerm,
               },
