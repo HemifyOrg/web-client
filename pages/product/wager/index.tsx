@@ -1,7 +1,7 @@
 import { useState, useEffect, Fragment } from "react";
 import { categoriesList } from "@/utils";
 import { FilterMenuComponent } from "@/components/reusable";
-import { EventType } from "@/utils/types";
+import { APIEventType, EventType } from "@/utils/types";
 import {
   EventCardComponent,
   EventWagerCardComponent,
@@ -10,10 +10,10 @@ import { useQuery } from "@apollo/client";
 import { FIXTURES } from "@/graphql/queries/event";
 
 const EventsSlideComponent = () => {
-  const [events, setEvents] = useState<EventType[]>([]);
+  const [events, setEvents] = useState<APIEventType[]>([]);
   const [selectedFilterBySport, setSelectedFilterBySport] = useState("all");
   const [selectedFilterByCountry, setSelectedFilterByCountry] = useState("all");
-  const [filteredEvents, setFilteredEvents] = useState<EventType[]>([]);
+  const [filteredEvents, setFilteredEvents] = useState<APIEventType[]>([]);
 
   useQuery(FIXTURES, {
     variables: {

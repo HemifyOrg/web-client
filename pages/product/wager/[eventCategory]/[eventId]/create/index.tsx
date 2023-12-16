@@ -5,7 +5,7 @@ import {
   WagerTermsComponent,
 } from "@/components/wager";
 import { FIXTURE } from "@/graphql/queries/event";
-import { EventType, SelectedTermType } from "@/utils/types";
+import { APIEventType, SelectedTermType } from "@/utils/types";
 import { useLazyQuery, useQuery } from "@apollo/client";
 import Head from "next/head";
 import Image from "next/image";
@@ -75,7 +75,7 @@ const CreateWagerMainPage = () => {
   const [selectedWagerTerm, setSelectedWagerTerm] =
     React.useState<SelectedTermType | null>(null);
   const [wagerAmount, setWagerAmount] = React.useState(0);
-  const [event, setEvent] = React.useState<EventType | null>(null);
+  const [event, setEvent] = React.useState<APIEventType | null>(null);
   const [loading, setLoading] = React.useState(true);
 
   const [showTermsScreen, setShowTermsScreen] = React.useState(false);

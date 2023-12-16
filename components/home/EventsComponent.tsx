@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { FilterMenuComponent } from "../reusable";
 import { categoriesList } from "@/utils";
 import { EventWagerCardComponent } from "../reusable/wager";
-import { EventType } from "@/utils/types";
+import { APIEventType } from "@/utils/types";
 import { useQuery } from "@apollo/client";
 import { FIXTURES } from "@/graphql/queries/event";
 
 const EventsComponent = () => {
   const [selectedTab, setSelectedTab] = useState("all");
-  const [events, setEvents] = useState<EventType[]>([]);
-  const [filteredEvents, setFilteredEvents] = useState<EventType[]>([]);
+  const [events, setEvents] = useState<APIEventType[]>([]);
+  const [filteredEvents, setFilteredEvents] = useState<APIEventType[]>([]);
 
   useQuery(FIXTURES, {
     variables: {

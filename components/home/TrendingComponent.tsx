@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { FilterMenuComponent } from "@/components/reusable";
 import { EventType } from "@/utils/types";
 import { categoriesList } from "@/utils";
-import { eventList } from "@/utils/dummyDatas";
 import { EventsSliderComponent } from "../reusable/event";
 
 const TrendingComponent = () => {
