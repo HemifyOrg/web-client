@@ -18,7 +18,7 @@ const WinningGameCardComponent = ({ game }: { game: WinningGameType }) => (
   <Fragment>
     <figure className="flex gap-2 pl-2 pr-4 overflow-hidden justify-start items-center relative h-24 bg-[#190D2B] rounded-2xl">
       <UserComponent
-        username={game.user.username}
+        // username={game.user.username}
         className="gap-2 flex flex-wrap xs:px-2 px-2 items-center text-gray-600"
         isVerified={game.user.isVerified}
         textClassName="max-w-[100px] text-sm text-gray-300 truncate"
