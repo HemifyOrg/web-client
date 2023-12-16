@@ -3,11 +3,22 @@ import { FilterMenuComponent } from "../reusable";
 import { categoriesList } from "@/utils";
 import { EventCardComponent } from "../reusable/wager";
 import { EventType } from "@/utils/types";
+import { useQuery } from "@apollo/client";
+import { EVENTS } from "@/graphql/queries/event";
 
 const LobbyComponent = () => {
   const [selectedTab, setSelectedTab] = useState("all");
   const [events, setEvents] = useState<EventType[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<EventType[]>([]);
+
+  useQuery(EVENTS, {
+    variables: { category: selectedTab },
+    onCompleted: (data) => {
+      console.log(data.events);
+      setEvents(data.events);
+      setFilteredEvents(data.events);
+    },
+  });
 
   useEffect(() => {
     if (selectedTab === "all") setFilteredEvents(events);

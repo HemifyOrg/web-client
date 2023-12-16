@@ -1,5 +1,5 @@
 export interface UserType {
-  username: string;
+  id: string;
   image: string;
   isVerified: boolean;
 }

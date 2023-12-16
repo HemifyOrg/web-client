@@ -1,17 +1,18 @@
-import { MatchLeagueIcon, categoriesList } from "@/utils";
-import { EventType, WagerType } from "@/utils/types";
+import { categoriesList } from "@/utils";
+import { EventType } from "@/utils/types";
 import Image from "next/image";
 import React from "react";
 import UserComponent from "../components";
 import { useRouter } from "next/router";
 
 export const EventCardComponent = ({ event }: { event: EventType }) => {
+  console.log(event);
   return (
     <div className="w-full bg-white rounded-xl overflow-hidden divide-y-2">
       {/* header */}
       <div className="pb-2 px-3 pt-2 gap-4 flex items-center justify-between">
         <span className="w-7">
-          {categoriesList.find((n) => n.name === event.category)?.icon}
+          {categoriesList.find((n) => n.name === event.category.toLowerCase())?.icon}
         </span>
         <div className="w-full justify-center">
           <div className="flex justify-center items-center gap-2">
@@ -63,7 +64,7 @@ export const EventCardComponent = ({ event }: { event: EventType }) => {
           {/* user content */}
           <UserComponent
             src={event.creator?.image}
-            username={event.creator?.username || "Anonymous"}
+            // username={event.creator?.username || "Anonymous"}
           />
 
           {/* wage */}

@@ -1,14 +1,23 @@
 import { gql } from "@apollo/client";
 
-export const GET_EVENTS = gql`
-  query GET_EVENTS_QUERY($category: String!) {
-    getEvents(category: $category) {
-      id
+export const EVENTS = gql`
+  query EVENTS_QUERY($category: String!) {
+    events(category: $category) {
+      creator {
+        id
+        image
+      }
       category
+      stake
       eventId
       prediction {
         name
         value
+        option {
+          id
+          name
+          value
+        }
       }
     }
   }
