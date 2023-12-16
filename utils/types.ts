@@ -49,7 +49,7 @@ export type TeamType = {
   logo: string;
 };
 
-export interface EventType {
+export interface APIEventType {
   id: number;
   timezone: string;
   category:
@@ -88,13 +88,21 @@ export interface EventType {
     id: number;
     name: string;
     city: string;
-  }
+  };
   date: string;
   timestamp: number;
-  prediction?: SelectedTermType;
-  creator?: UserType;
-  stake?: string;
 }
+
+export type EventType = {
+  category: string;
+  eventId: number;
+  prediction: SelectedTermType;
+  creator: UserType;
+  stake: string;
+  timestamp: number;
+  homeTeam: TeamType;
+  awayTeam: TeamType;
+};
 
 export interface WagerType {
   id: number;

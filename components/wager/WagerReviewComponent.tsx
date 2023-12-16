@@ -1,4 +1,4 @@
-import { EventType, SelectedTermType } from "@/utils/types";
+import { APIEventType, SelectedTermType } from "@/utils/types";
 import { useRouter } from "next/router";
 import React from "react";
 import { motion } from "framer-motion";
@@ -120,7 +120,7 @@ const WagerReviewComponent = ({
 }: {
   selectedWagerTerm: SelectedTermType | null;
   wagerAmount: number;
-  fixture: EventType;
+  fixture: APIEventType;
 }) => {
   const router = useRouter();
   const { eventCategory } = router.query;

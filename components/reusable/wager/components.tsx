@@ -1,5 +1,5 @@
 import { categoriesList } from "@/utils";
-import { EventType } from "@/utils/types";
+import { APIEventType, EventType } from "@/utils/types";
 import Image from "next/image";
 import React from "react";
 import UserComponent from "../components";
@@ -16,19 +16,19 @@ export const EventCardComponent = ({ event }: { event: EventType }) => {
         </span>
         <div className="w-full justify-center">
           <div className="flex justify-center items-center gap-2">
-            {event && event.league ? (
+            {event && event.homeTeam ? (
               <React.Fragment>
                 {/* home */}
                 <div className="flex gap-1">
                   <span className="font-medium text-sm">
-                    {event.teams.home.name}
+                    {event.homeTeam.name}
                   </span>
                   <Image
                     width={25}
                     height={25}
                     alt=""
                     className="object-contain"
-                    src={event.teams.home.logo}
+                    src={event.homeTeam.logo}
                   />
                 </div>
 
@@ -42,10 +42,10 @@ export const EventCardComponent = ({ event }: { event: EventType }) => {
                     height={25}
                     alt=""
                     className="object-contain"
-                    src={event.teams.away.logo}
+                    src={event.awayTeam.logo}
                   />
                   <span className="font-medium text-sm">
-                    {event.teams.away.name}
+                    {event.awayTeam.name}
                   </span>
                 </div>
               </React.Fragment>
@@ -96,7 +96,7 @@ export const EventCardComponent = ({ event }: { event: EventType }) => {
           Challenge
         </button>
         <div className="w-full flex font-medium text-xs px-4 text-gray-400 justify-between items-center">
-          <span>Posted {event.date}</span>
+          <span>Posted {event.timestamp}</span>
           <span>Expires in {event.timestamp}</span>
         </div>
       </div>
@@ -104,7 +104,7 @@ export const EventCardComponent = ({ event }: { event: EventType }) => {
   );
 };
 
-export const EventWagerCardComponent = ({ event }: { event: EventType }) => {
+export const EventWagerCardComponent = ({ event }: { event: APIEventType }) => {
   const router = useRouter();
   return (
     <div className="w-full bg-white rounded-lg divide-y-2">
