@@ -8,7 +8,7 @@ interface Data {
   process?: string;
   medim: string;
   amount: number;
-  date: string; // or date: Date;
+  date: number; // or date: Date;
 }
 
 const All: React.FC<Data > = () => {
