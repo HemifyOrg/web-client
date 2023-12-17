@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { OutsideAlerter } from "./components";
-// import { connectAccount } from '@/features/accountSlice';
 import { setShowConnectModal } from "@/features/configSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "@/app/store";
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { LogoSvg } from "@/utils";
-import styled from "styled-components";
 
 const WalletListItem = ({
   children,
