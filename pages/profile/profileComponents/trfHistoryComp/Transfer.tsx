@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react';
 import TransferComp from "../miniComponents/TransferComp";
 import { HISTORY } from '@/utils/dummyDatas/profileIndex';
 
