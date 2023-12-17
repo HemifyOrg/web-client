@@ -1,16 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import { OutsideAlerter } from './components'
-// import { connectAccount } from '@/features/accountSlice';
-import { setShowConnectModal } from '@/features/configSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '@/app/store';
-import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
-import { LogoSvg } from '@/utils';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import { OutsideAlerter } from "./components";
+import { setShowConnectModal } from "@/features/configSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "@/app/store";
+import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
+import { LogoSvg } from "@/utils";
 
-const WalletListItem = styled.li.attrs({
-  className: "flex flex-col group transition-all items-center justify-center",
-})``;
+const WalletListItem = ({
+  children,
+  onClick,
+}: {
+  children: React.ReactNode;
+  onClick: (e: any) => void;
+}) => (
+  <li
+    onClick={onClick}
+    className="flex flex-col group transition-all items-center justify-center"
+  >
+    {children}
+  </li>
+);
 
 const ConnectWalletPopup = () => {
   const dispatch: AppDispatch =
@@ -269,4 +278,4 @@ const ConnectWalletPopup = () => {
   );
 };
 
-export default ConnectWalletPopup
+export default ConnectWalletPopup;

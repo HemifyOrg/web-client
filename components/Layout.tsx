@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TopNav from "./navbar/Top";
-import { ConnectWalletPopup } from "./reusable";
+// import { ConnectWalletPopup } from "./reusable";
 import { AppProps } from "next/app";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
