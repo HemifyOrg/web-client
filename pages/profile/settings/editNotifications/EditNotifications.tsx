@@ -20,29 +20,29 @@ const EditNotifications = () => {
 
             <div className='p-3 border-b-2 rounded-b-2xl mb-3'>
                 <div >
-                    <p className='text-black font-semibold text-[1rem]'>Wager Matched</p>
-                    <p className='text-[#A0A4A8]'>Get notified when your wager gets a challenger</p>
+                    <p className='text-black font-semibold text-[0.875rem]'>Wager Matched</p>
+                    <p className='text-[#A0A4A8] text-[0.75rem]'>Get notified when your wager gets a challenger</p>
                 </div>
             </div>
 
             <div  className='p-3 border-b-2 rounded-b-2xl mb-3'>
                 <div >
-                    <p className='text-black font-semibold text-[1rem]'>New Message</p>
-                    <p className='text-[#A0A4A8]'>Get notified when you receive a wager message</p>
+                    <p className='text-black font-semibold text-[0.875rem]'>New Message</p>
+                    <p className='text-[#A0A4A8] text-[0.75rem]'>Get notified when you receive a wager message</p>
                 </div>
             </div>
 
             <div  className='p-3 border-b-2 rounded-b-2xl mb-3'>
                 <div >
-                    <p className='text-black font-semibold text-[1rem]'>Favourite</p>
-                    <p className='text-[#A0A4A8]'>Get notified when a wager in your favorite category is posted in the lobby</p>
+                    <p className='text-black font-semibold text-[0.875rem]'>Favourite</p>
+                    <p className='text-[#A0A4A8] text-[0.75rem]'>Get notified when a wager in your favorite category is posted in the lobby</p>
                 </div>
             </div>
 
             <div className='p-3 border-b-2 rounded-b-2xl'>
                 <div >
-                    <p className='text-black font-semibold text-[1rem]'>win or loss</p>
-                    <p className='text-[#A0A4A8]'>Get notified when you win or lose a wager</p>
+                    <p className='text-black font-semibold text-[0.875rem]'>win or loss</p>
+                    <p className='text-[#A0A4A8] text-[0.75rem]'>Get notified when you win or lose a wager</p>
                 </div>
             </div>
 
@@ -59,29 +59,29 @@ const EditNotifications = () => {
 
             <div className='p-3 border-b-2 rounded-b-2xl mb-3'>
                 <div >
-                    <p className='text-black font-semibold text-[1rem]'>New Follow</p>
-                    <p className='text-[#A0A4A8]'>Receive notification when you get a new follow</p>
+                    <p className='text-black font-semibold text-[0.875rem]'>New Follow</p>
+                    <p className='text-[#A0A4A8] text-[0.75rem]'>Receive notification when you get a new follow</p>
                 </div>
             </div>
 
             <div  className='p-3 border-b-2 rounded-b-2xl mb-3'>
                 <div >
-                    <p className='text-black font-semibold text-[1rem]'>Offers and promotions</p>
-                    <p className='text-[#A0A4A8]'>Be the first to receive promotional updates</p>
+                    <p className='text-black font-semibold text-[0.875rem]'>Offers and promotions</p>
+                    <p className='text-[#A0A4A8] text-[0.75rem]'>Be the first to receive promotional updates</p>
                 </div>
             </div>
 
             <div  className='p-3 border-b-2 rounded-b-2xl mb-3'>
                 <div >
-                    <p className='text-black font-semibold text-[1rem]'>Newsletter</p>
-                    <p className='text-[#A0A4A8]'>Be the first to receive Hemify weekly newsletter</p>
+                    <p className='text-black font-semibold text-[0.875rem]'>Newsletter</p>
+                    <p className='text-[#A0A4A8] text-[0.75rem]'>Be the first to receive Hemify weekly newsletter</p>
                 </div>
             </div>
 
             <div className='p-3 border-b-2 rounded-b-2xl'>
                 <div >
-                    <p className='text-black font-semibold text-[1rem]'>Product Update</p>
-                    <p className='text-[#A0A4A8]'>Be the first to receive updates on Hemify</p>
+                    <p className='text-black font-semibold text-[0.875rem]'>Product Update</p>
+                    <p className='text-[#A0A4A8] text-[0.75rem]'>Be the first to receive updates on Hemify</p>
                 </div>
             </div>
 
