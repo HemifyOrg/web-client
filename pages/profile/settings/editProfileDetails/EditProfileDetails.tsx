@@ -15,7 +15,7 @@ const EditProfileDetails = () => {
   return (
     <div className='bg-[#E8E8E8] pb-2'>
 
-        <div className='mt-24 flex justify-between w-[85%] m-auto'>
+        <div className='mt-24 flex justify-between w-[85%] m-auto mb-3'>
             <svg onClick={() => {router.push('/profile/settings')}} className='hover:cursor-pointer hover:scale-110' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M20 12H4M4 12L10 18M4 12L10 6" stroke="#25282B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -23,7 +23,7 @@ const EditProfileDetails = () => {
             <p className='md:mr-[40%]  mr-[33%] text-[1.25rem] font-bold '>Edit Profile Details</p>
         </div>
 
-        <div className='bg-white w-[80%] m-auto rounded-2xl pt-4 pb-4'>
+        <div className='bg-white w-[85%] m-auto rounded-2xl pt-4 pb-4'>
             <p className='text-center text-[#A0A4A8] mb-3'>Profile Image</p>
             <div className='md:w-[19%] w-[25%] h-max bg-[#A0A4A8] m-auto p-0 rounded-xl '>
                 <Image src={profileImage} alt='profile picture' className='w-[100%] h-[100%] block'/>
@@ -62,7 +62,7 @@ const EditProfileDetails = () => {
                 </svg>
                 </p>
 
-                <button className='bg-[#6E5E1B] text-white p-2 rounded-xl w-[20%]' onClick={() => {setXlink(!xLink)}}>connect</button>
+                <button className='bg-[#6E5E1B] text-white p-2 rounded-xl w-[33%]' onClick={() => {setXlink(!xLink)}}>connect</button>
             </div>
             <div className='flex justify-between mt-3 mb-2'>
                 <p className='mt-1 text-[#202121]' >Telegram <svg className='inline-flex' xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -77,7 +77,7 @@ const EditProfileDetails = () => {
                 </svg>
                 </p>
 
-                <button className='bg-[#6E5E1B] text-white p-2 rounded-xl w-[20%]' onClick={() => {setTelegramModal(!telegramModal)}}>connect</button>
+                <button className='bg-[#6E5E1B] text-white p-2 rounded-xl w-[33%]' onClick={() => {setTelegramModal(!telegramModal)}}>connect</button>
                 {
                     xLink ? <XLink /> : null
                 }

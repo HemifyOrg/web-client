@@ -7,7 +7,7 @@ const Feedback = () => {
 
   return (
     <div className='bg-black fixed inset-0 items-center z-50 bg-opacity-50' >
-        <div className='bg-white rounded-[2rem] md:w-[50%] w-[80%] m-auto md:mt-[15%] mt-[24%] p-4'>
+        <div className='bg-white rounded-[2rem] md:w-[50%] w-[80%] m-auto md:mt-[15%] mt-[28%] p-4'>
             <button className='p-3 rounded-[1rem] block text-right hover:scale-110 transition ml-auto text-[#A0A4A8]' onClick={() => {setFeedBackModel(!feedBackModel)}}>X</button>
 
         <form  className='w-[100%] m-auto p-5'>
