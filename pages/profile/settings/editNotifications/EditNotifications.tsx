@@ -90,7 +90,7 @@ const EditNotifications = () => {
         
 
     </div>
-    <button className='bg-[#6E5E1B] p-4 block m-auto w-[30%] rounded-xl mt-3 mb-3 text-white hover:scale-110'>Save changes</button>
+    <button className='bg-[#6E5E1B] p-4 block m-auto w-[50%] rounded-xl mt-3 mb-3 text-white hover:scale-110'>Save changes</button>
 
     </div>
   )
