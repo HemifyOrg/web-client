@@ -56,7 +56,7 @@ const index = () => {
                     showWithdraw(false)}}
                     >All</button>
                 <button className={`${deposit ? 'bg-[#6E5E1B] text-white transition' : null} hover:border-[#6E5E1B] border-[.1rem] rounded-[1rem] text-[0.925rem] font-medium leading-[0.77775rem] w-[30%] py-2`} onClick={() => {
-                    showAll(false); 
+                    showAll(false);
                     showDeposit(true); 
                     showTransfer(false); 
                     showWithdraw(false)}}

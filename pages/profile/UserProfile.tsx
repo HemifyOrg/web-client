@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import coverImage from '../../public/profile_images/cover_image.png'
 import Summary from "./profileComponents/Summary";
@@ -6,8 +7,8 @@ import WalletHistory from "./profileComponents/WalletHistory";
 import Favourites from "./profileComponents/Favourites";
 import { FilterMenuComponent } from '@/components/reusable';
 
-const LoggedIn: React.FC<{}> = () =>  {
-
+const LoggedIn = () =>  {
+    const router = useRouter();
     const [ summary , setSummary ] = useState(true);
     const [ walletHistory , setWalletHistory ] = useState(false);
     const [ favourites , setFavourites ] = useState(false);
@@ -65,7 +66,7 @@ const LoggedIn: React.FC<{}> = () =>  {
                 </div>
 
                 </div>
-                <button className="flex h-[3rem] p-[.7rem] text-center text-[#6E5E1B] rounded-[1.5rem] border-2 border-[#6E5E1B]">
+                <button onClick={() => {router.push('/profile/settings')}} className="flex h-[3rem] p-[.7rem] text-center text-[#6E5E1B] rounded-[1.5rem] border-2 border-[#6E5E1B]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
 <path d="M7.99935 12.9167H6.74935C5.58638 12.9167 5.00489 12.9167 4.53173 13.0602C3.46639 13.3834 2.63272 14.217 2.30955 15.2824C2.16602 15.7555 2.16602 16.337 2.16602 17.5M12.5827 6.25C12.5827 8.32107 10.9038 10 8.83268 10C6.76161 10 5.08268 8.32107 5.08268 6.25C5.08268 4.17893 6.76161 2.5 8.83268 2.5C10.9038 2.5 12.5827 4.17893 12.5827 6.25ZM9.66602 17.5L12.2505 16.7616C12.3742 16.7262 12.4361 16.7085 12.4938 16.682C12.5451 16.6585 12.5938 16.6298 12.6393 16.5965C12.6905 16.5589 12.736 16.5134 12.827 16.4224L18.2077 11.0417C18.783 10.4664 18.783 9.53362 18.2077 8.95831C17.6324 8.38302 16.6997 8.38303 16.1244 8.95833L10.7437 14.339C10.6526 14.43 10.6071 14.4756 10.5695 14.5267C10.5362 14.5722 10.5075 14.6209 10.484 14.6722C10.4575 14.7299 10.4398 14.7918 10.4044 14.9155L9.66602 17.5Z" stroke="#6E5E1B" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
