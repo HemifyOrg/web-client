@@ -94,13 +94,13 @@ const LoggedIn = () =>  {
                 <p className='font-bold text-[1.6rem] text-[#6E5E1B] leading-9'>$7893.02</p>
 
                 <div className="flex justify-around mt-[1rem] px-2 w-[95%] m-auto">
-                    <button className=" border-[.1rem] text-[0.925rem] text-[#2AC769] border-[#2AC769] rounded-[1rem] p-[.5rem] inline-flex">Deposit <svg className="mt-2 ml-1" xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none">
+                    <button className=" border-[.1rem] text-[0.925rem] text-[#2AC769] border-[#2AC769] rounded-[1rem] p-[.5rem] inline-flex" onClick={() => {router.push('/profile/deposit')}}>Deposit <svg className="mt-2 ml-1" xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none">
   <path d="M4.37654 2.25049V7.74938M4.37654 7.74938L6.43862 5.6873M4.37654 7.74938L2.31445 5.6873" stroke="#2AC769" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg></button>
-                    <button className=" border-[.1rem] text-[0.925rem] text-[#F33] border-[#F33] rounded-[1rem] p-[.5rem] inline-flex">Withdraw <svg className="mt-2  ml-1" xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none">
+                    <button className=" border-[.1rem] text-[0.925rem] text-[#F33] border-[#F33] rounded-[1rem] p-[.5rem] inline-flex" onClick={() => {router.push('/profile/withdraw')}}>Withdraw <svg className="mt-2  ml-1" xmlns="http://www.w3.org/2000/svg" width="9" height="10" viewBox="0 0 9 10" fill="none">
   <path d="M4.62458 7.74938V2.25049M4.62458 2.25049L2.5625 4.31257M4.62458 2.25049L6.68667 4.31257" stroke="#FF3333" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg></button>
-                    <button className=" border-[.1rem] text-[0.925rem] text-[#542A8F] border-[#542A8F] rounded-[1rem] p-[.5rem] inline-flex ">Transfer <svg className="mt-2  ml-1" xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12" fill="none">
+                    <button className=" border-[.1rem] text-[0.925rem] text-[#542A8F] border-[#542A8F] rounded-[1rem] p-[.5rem] inline-flex " onClick={() => {router.push('/profile/transfer')}}>Transfer <svg className="mt-2  ml-1" xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12" fill="none">
   <path d="M2.74805 8.5H10.748M10.748 8.5L8.74805 6.5M10.748 8.5L8.74805 10.5M10.748 3.5H2.74805M2.74805 3.5L4.74805 1.5M2.74805 3.5L4.74805 5.5" stroke="#542A8F" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg></button>
                 </div>
