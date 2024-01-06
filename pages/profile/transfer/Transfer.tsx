@@ -30,7 +30,7 @@ const Transfer = () => {
 
         <form className='bg-white w-[100%] rounded-xl p-8 mt-9 mb-5'>
             <p className='text-[#A0A4A8] text-[0.975rem]'>Enter the user's name</p>
-            <div className='bg-[#E8E8E8] flex rounded-3xl  hover:scale-105 transition'>
+            <div className='bg-[#E8E8E8] flex rounded-3xl  hover:scale-105 transition px-2'>
                 <svg className='m-auto' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="none">
   <path d="M16.6654 17.5C16.6654 16.337 16.6654 15.7555 16.5218 15.2824C16.1987 14.217 15.365 13.3834 14.2996 13.0602C13.8265 12.9167 13.245 12.9167 12.082 12.9167H7.91537C6.7524 12.9167 6.17091 12.9167 5.69775 13.0602C4.63241 13.3834 3.79873 14.217 3.47556 15.2824C3.33203 15.7555 3.33203 16.337 3.33203 17.5M13.7487 6.25C13.7487 8.32107 12.0698 10 9.9987 10C7.92763 10 6.2487 8.32107 6.2487 6.25C6.2487 4.17893 7.92763 2.5 9.9987 2.5C12.0698 2.5 13.7487 4.17893 13.7487 6.25Z" stroke="#A0A4A8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -38,8 +38,8 @@ const Transfer = () => {
             </div>
 
             <p className='text-[#A0A4A8] text-[0.975rem] mt-8'>Input the amount</p>
-            <div className='bg-[#E8E8E8] flex rounded-3xl  hover:scale-105 transition'>
-                <input placeholder='eg 450' className=' bg-transparent w-[90%]  p-4 outline-none' type='number' required/>
+            <div className='bg-[#E8E8E8] flex rounded-3xl hover:scale-105 transition px-2'>
+                <input placeholder='eg 450' className=' bg-transparent w-[87%]  p-4 outline-none' type='number' required/>
                 <svg className='m-auto' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="#26A17B"/>
   <path fill-rule="evenodd" clip-rule="evenodd" d="M13.4431 13.0373V13.0358C13.3606 13.0418 12.9353 13.0673 11.9866 13.0673C11.2291 13.0673 10.6958 13.0448 10.5083 13.0358V13.038C7.59231 12.9098 5.41581 12.402 5.41581 11.7945C5.41581 11.1878 7.59231 10.68 10.5083 10.5495V12.5325C10.6988 12.546 11.2448 12.5783 11.9993 12.5783C12.9046 12.5783 13.3583 12.5408 13.4431 12.5333V10.551C16.3531 10.6808 18.5243 11.1885 18.5243 11.7945C18.5243 12.402 16.3531 12.9083 13.4431 13.0373ZM13.4431 10.3448V8.57026H17.5036V5.86426H6.44781V8.57026H10.5083V10.344C7.20831 10.4955 4.72656 11.1495 4.72656 11.9325C4.72656 12.7155 7.20831 13.3688 10.5083 13.521V19.2075H13.4431V13.5195C16.7378 13.368 19.2136 12.7148 19.2136 11.9325C19.2136 11.1503 16.7378 10.497 13.4431 10.3448Z" fill="white"/>
