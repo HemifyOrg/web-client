@@ -2,13 +2,13 @@ import React from 'react'
 import AllComp from "../miniComponents/AllComp";
 import { HISTORY } from '@/utils/dummyDatas/profileIndex';
 
- interface Data  {
-        id: number;
-        type: string ;
-        process?: string;
-        medim: string;
-        amount: number;
-        date: number;
+interface Data {
+  id: number;
+  type: string;
+  process?: string;
+  medim: string;
+  amount: number;
+  date: number; // or date: Date;
 }
 
 const All: React.FC<Data > = () => {
